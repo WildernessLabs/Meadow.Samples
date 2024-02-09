@@ -1,6 +1,5 @@
 ﻿using Meadow.Hardware;
 using Meadow.Modbus;
-using System.Diagnostics;
 
 namespace Tstat8_Sample;
 
@@ -20,17 +19,16 @@ internal class Program
             var tstat = new TStat8(client, thermostatModbusAddress, TimeSpan.FromSeconds(1));
             tstat.StartPolling();
 
-            var i = 0;
+            Console.WriteLine($"MinSetPoint: {tstat.MinSetPoint}");
+            Console.WriteLine($"MaxSetPoint: {tstat.MaxSetPoint}");
+            Console.WriteLine($"PowerUpSetPoint: {tstat.PowerUpSetPoint}");
             while (true)
             {
                 await Task.Delay(1000);
-                Debug.WriteLine($"Temp: {tstat.Temperature}");
-                Debug.WriteLine($"SetPoint: {tstat.SetPoint}");
-                Debug.WriteLine($"MinSetPoint: {tstat.MinSetPoint}");
-                Debug.WriteLine($"MaxSetPoint: {tstat.MaxSetPoint}");
-                Debug.WriteLine($"PowerUpSetPoint: {tstat.PowerUpSetPoint}");
-                Debug.WriteLine($"Humidity: {tstat.Humidity}");
-                Debug.WriteLine($"Clock: {tstat.Clock}");
+                Console.WriteLine($"Temp: {tstat.Temperature}");
+                Console.WriteLine($"SetPoint: {tstat.SetPoint}");
+                Console.WriteLine($"Humidity: {tstat.Humidity}");
+                Console.WriteLine($"Clock: {tstat.Clock}");
             }
         }
     }
