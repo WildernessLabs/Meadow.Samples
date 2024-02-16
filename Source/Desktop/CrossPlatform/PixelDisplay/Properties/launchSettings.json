@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Blinky": {
+    "PixelDisplay_Sample": {
       "commandName": "Project"
     }
   }

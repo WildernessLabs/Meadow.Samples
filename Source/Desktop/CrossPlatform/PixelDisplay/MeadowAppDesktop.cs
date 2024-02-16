@@ -2,19 +2,7 @@
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
-
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-#if WINDOWS
-        System.Windows.Forms.Application.EnableVisualStyles();
-        System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-        ApplicationConfiguration.Initialize();
-#endif
-        await MeadowOS.Start(args);
-    }
-}
+using System.Threading.Tasks;
 
 public class MeadowAppDesktop : App<Desktop>
 {
@@ -34,12 +22,12 @@ public class MeadowAppDesktop : App<Desktop>
 
     private void GenerateLayout()
     {
-        var screen = new DisplayScreen(Device.Display);
+        var screen = new DisplayScreen(Device.Display!);
 
-        var title = new Meadow.Foundation.Graphics.MicroLayout.Label(0, (screen.Height - 15) / 2, screen.Width, 30)
+        var title = new Label(0, (screen.Height - 15) / 2, screen.Width, 30)
         {
             Font = new Font12x20(),
-            TextColor = Meadow.Color.LightBlue,
+            TextColor = Color.LightBlue,
             Text = "Hello Meadow!"
         };
 
