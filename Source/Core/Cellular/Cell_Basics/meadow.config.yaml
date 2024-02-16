@@ -1,0 +1,13 @@
+﻿# Device specific config.
+Device:
+    # Name of the device on the network.
+    Name: CellBasics
+
+    # Corresponding MCU pin names for the reserved pins
+    # (COMX_RX pin, COM_TX pin, TURN_ON pin)
+    ReservedPins: I9;H13;C7
+
+# Network configuration.
+Network:
+    #  Which interface should be used?
+    DefaultInterface: Cell

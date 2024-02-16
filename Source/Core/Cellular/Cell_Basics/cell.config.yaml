@@ -1,0 +1,13 @@
+Settings:
+    APN: YOUR-APN         # (required) Access Point Name
+    Module: BG95M3        # (required) Module model (BG770A, BG95M3 or M95)
+    User: USER            # (optional) APN user 
+    Password: PASSWORD    # (optional) APN password
+    Operator: 00000       # (optional) Carrier numeric operator code
+    Mode: CATM1           # (optional) Network mode (CATM1, NBIOT or GSM)
+    Interface: /dev/ttyS1 # (optional) Serial interface 
+                          # UART1 (COM1) = /dev/ttyS0 
+                          # UART4 (COM4) = /dev/ttyS1 (default), 
+                          # UART6 = /dev/ttyS3) 
+    TurnOnPin: D10        # (optional) Enable pin to turn the module on/off. 
+                          # Default value is Meadow Pin name D10
