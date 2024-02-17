@@ -51,6 +51,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docs", "_docs", "{AFAD0D21
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.WinForms", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.WinForms\Driver\Displays.WinForms.csproj", "{7493E09D-D009-4D33-8EB2-88AC246E5B58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.Gtk", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Gtk\Driver\Displays.Gtk.csproj", "{45F3C458-3C90-4D03-970D-1C348CE23313}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,6 +172,18 @@ Global
 		{927E765E-B65D-434F-924C-A660DB9F1032}.Release|Any CPU.Build.0 = Release|Any CPU
 		{927E765E-B65D-434F-924C-A660DB9F1032}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{927E765E-B65D-434F-924C-A660DB9F1032}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{7493E09D-D009-4D33-8EB2-88AC246E5B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7493E09D-D009-4D33-8EB2-88AC246E5B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7493E09D-D009-4D33-8EB2-88AC246E5B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7493E09D-D009-4D33-8EB2-88AC246E5B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7493E09D-D009-4D33-8EB2-88AC246E5B58}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{7493E09D-D009-4D33-8EB2-88AC246E5B58}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{45F3C458-3C90-4D03-970D-1C348CE23313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F3C458-3C90-4D03-970D-1C348CE23313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F3C458-3C90-4D03-970D-1C348CE23313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F3C458-3C90-4D03-970D-1C348CE23313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F3C458-3C90-4D03-970D-1C348CE23313}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F3C458-3C90-4D03-970D-1C348CE23313}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +207,8 @@ Global
 		{14D4AF83-3672-422E-88B8-A48ECC64DE14} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 		{D48DBA1B-5374-441F-8706-5652AEAD41A1} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 		{927E765E-B65D-434F-924C-A660DB9F1032} = {3C0784C4-BFE3-49C7-A11C-3749E8147A9F}
+		{7493E09D-D009-4D33-8EB2-88AC246E5B58} = {A809F07D-DD94-4375-8776-23FBE73591A5}
+		{45F3C458-3C90-4D03-970D-1C348CE23313} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
