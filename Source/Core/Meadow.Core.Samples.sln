@@ -140,6 +140,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakeOnInterrupt", "IO\WakeO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NtpSample", "OS\NTP\NtpSample.csproj", "{7CC98421-3EBD-4D9C-88D3-93E04B1C5163}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultiPlatform", "MultiPlatform", "{EFFD606D-A892-4379-BEEC-20E01CB53807}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiPlatformF7_Sample", "MultiPlatform\MultiPlatformF7_Sample.csproj", "{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -432,6 +436,12 @@ Global
 		{7CC98421-3EBD-4D9C-88D3-93E04B1C5163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CC98421-3EBD-4D9C-88D3-93E04B1C5163}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7CC98421-3EBD-4D9C-88D3-93E04B1C5163}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -497,6 +507,7 @@ Global
 		{4DCEC7AD-4317-4CB5-84C0-38675E2C13EB} = {234C2A00-F5E8-4E3D-899F-7EC3470B03E0}
 		{0FD2CD47-8D3C-463D-B215-67A89ED789A8} = {234C2A00-F5E8-4E3D-899F-7EC3470B03E0}
 		{7CC98421-3EBD-4D9C-88D3-93E04B1C5163} = {8D279C3D-43E8-4823-9D33-682231D1A48D}
+		{B0FDA1C3-6BA5-407D-9BCC-0DD6E82996D2} = {EFFD606D-A892-4379-BEEC-20E01CB53807}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3E6AE55-DFFB-4B7B-8143-96D0D1AA8CD9}
