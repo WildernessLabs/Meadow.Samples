@@ -1,0 +1,70 @@
+<Project Sdk="Meadow.Sdk/1.1.0">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <OutputType>Library</OutputType>
+    <AssemblyName>App</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="m8b_question.jpg" />
+    <None Remove="Resources\m8b_01.bmp" />
+    <None Remove="Resources\m8b_02.bmp" />
+    <None Remove="Resources\m8b_03.bmp" />
+    <None Remove="Resources\m8b_04.bmp" />
+    <None Remove="Resources\m8b_05.bmp" />
+    <None Remove="Resources\m8b_06.bmp" />
+    <None Remove="Resources\m8b_07.bmp" />
+    <None Remove="Resources\m8b_08.bmp" />
+    <None Remove="Resources\m8b_09.bmp" />
+    <None Remove="Resources\m8b_10.bmp" />
+    <None Remove="Resources\m8b_11.bmp" />
+    <None Remove="Resources\m8b_12.bmp" />
+    <None Remove="Resources\m8b_13.bmp" />
+    <None Remove="Resources\m8b_14.bmp" />
+    <None Remove="Resources\m8b_15.bmp" />
+    <None Remove="Resources\m8b_16.bmp" />
+    <None Remove="Resources\m8b_17.bmp" />
+    <None Remove="Resources\m8b_18.bmp" />
+    <None Remove="Resources\m8b_19.bmp" />
+    <None Remove="Resources\m8b_20.bmp" />
+    <None Remove="Resources\m8b_question.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\m8b_01.bmp" />
+    <EmbeddedResource Include="Resources\m8b_02.bmp" />
+    <EmbeddedResource Include="Resources\m8b_03.bmp" />
+    <EmbeddedResource Include="Resources\m8b_04.bmp" />
+    <EmbeddedResource Include="Resources\m8b_05.bmp" />
+    <EmbeddedResource Include="Resources\m8b_06.bmp" />
+    <EmbeddedResource Include="Resources\m8b_07.bmp" />
+    <EmbeddedResource Include="Resources\m8b_08.bmp" />
+    <EmbeddedResource Include="Resources\m8b_09.bmp" />
+    <EmbeddedResource Include="Resources\m8b_10.bmp" />
+    <EmbeddedResource Include="Resources\m8b_11.bmp" />
+    <EmbeddedResource Include="Resources\m8b_12.bmp" />
+    <EmbeddedResource Include="Resources\m8b_13.bmp" />
+    <EmbeddedResource Include="Resources\m8b_14.bmp" />
+    <EmbeddedResource Include="Resources\m8b_15.bmp" />
+    <EmbeddedResource Include="Resources\m8b_16.bmp" />
+    <EmbeddedResource Include="Resources\m8b_17.bmp" />
+    <EmbeddedResource Include="Resources\m8b_18.bmp" />
+    <EmbeddedResource Include="Resources\m8b_19.bmp" />
+    <EmbeddedResource Include="Resources\m8b_20.bmp" />
+    <EmbeddedResource Include="Resources\m8b_question.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Graphics.MicroLayout\Driver\Graphics.MicroLayout.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="app.config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="meadow.config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="wifi.config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

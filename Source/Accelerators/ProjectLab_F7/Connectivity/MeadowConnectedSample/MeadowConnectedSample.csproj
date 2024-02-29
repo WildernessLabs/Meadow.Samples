@@ -1,0 +1,41 @@
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <OutputType>Library</OutputType>
+    <AssemblyName>App</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="img_ble_paired.jpg" />
+    <None Remove="img_ble_pairing.jpg" />
+    <None Remove="Resources\img_ble_paired.bmp" />
+    <None Remove="Resources\img_ble_pairing.bmp" />
+    <None Remove="Resources\img_meadow.bmp" />
+    <None Remove="Resources\img_wifi_connected.bmp" />
+    <None Remove="Resources\img_wifi_connecting.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\img_ble_paired.bmp" />
+    <EmbeddedResource Include="Resources\img_ble_pairing.bmp" />
+    <EmbeddedResource Include="Resources\img_meadow.bmp" />
+    <EmbeddedResource Include="Resources\img_wifi_connected.bmp" />
+    <EmbeddedResource Include="Resources\img_wifi_connecting.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Maple\Source\Web.Maple.Server\Web.Maple.Server.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
+    <PackageReference Include="System.Text.Json" Version="7.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="app.config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="meadow.config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="wifi.config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="..\Connectivity.Common\CommonContracts.projitems" Label="Shared" />
+</Project>
