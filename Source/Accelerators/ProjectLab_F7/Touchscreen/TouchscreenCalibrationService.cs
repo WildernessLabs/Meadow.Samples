@@ -3,6 +3,7 @@ using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Hardware;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Touchscreen_Demo;
@@ -51,7 +52,18 @@ public class TouchscreenCalibrationService
         _calPoints = new CalibrationPoint[_calibrationPoints.Length];
     }
 
-    public Task Calibrate()
+    public IEnumerable<CalibrationPoint>? GetSavedCalibrationData()
+    {
+        // TODO
+        return null;
+    }
+
+    public void SaveCalibrationData(IEnumerable<CalibrationPoint> data)
+    {
+        // TODO
+    }
+
+    public Task Calibrate(bool saveCalibrationData = true)
     {
         _touchscreen.TouchUp += OnTouchUp;
 
@@ -73,7 +85,12 @@ public class TouchscreenCalibrationService
             _touchscreen.SetCalibrationData(_calPoints);
             _screen.Controls.Clear();
 
-            CalibrationComplete(this, _calPoints);
+            if (saveCalibrationData)
+            {
+                SaveCalibrationData(_calPoints);
+            }
+
+            CalibrationComplete?.Invoke(this, _calPoints);
         });
     }
 

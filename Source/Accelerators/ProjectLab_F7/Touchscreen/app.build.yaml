@@ -1,2 +1,0 @@
-﻿Deploy:
-  nolink: [ Meadow.Contracts, Mcp23xxx, Meadow.Foundation, Meadow.F7, Meadow.Units ]
