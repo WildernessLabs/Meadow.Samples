@@ -4,7 +4,7 @@
 
 Sample applications for Meadow platforms, libraries and peripherals
 
-## Meadow.Core
+## [Meadow.Core](/Source/Meadow.Core/)
 
 Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
 
