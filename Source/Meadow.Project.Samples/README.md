@@ -1,6 +1,6 @@
 <img src="Design/meadow.project.samples.jpg" alt="iot, dotnet, meadow, meadow-project-samples" style="margin-bottom:10px" />
 
-Public project samples for Meadow and Meadow.Foundation. Click on any of the projects below to go to the Hackster projects and learn how to build them.
+# Meadow.Project.Samples
 
 <table>
     <tr>
