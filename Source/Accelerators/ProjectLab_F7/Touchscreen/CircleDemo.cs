@@ -33,7 +33,7 @@ public class CircleDemo
             _touchscreen.TouchDown += Touchscreen_TouchDown;
             _touchscreen.TouchUp += Touchscreen_TouchUp;
 
-            _inflateTimer = new Timer(InflateTimerproc);
+            _inflateTimer = new Timer(InflateTimerProc);
         }
     }
 
@@ -49,16 +49,16 @@ public class CircleDemo
         }
     }
 
-    private void InflateTimerproc(object o)
+    private void InflateTimerProc(object? o)
     {
         if (_currentCircle == null) return;
         _currentCircle.Radius += inflateSize;
-        _inflateTimer.Change(inflateRate, -1);
+        _inflateTimer?.Change(inflateRate, -1);
     }
 
     private void Touchscreen_TouchUp(ITouchScreen sender, TouchPoint point)
     {
-        _inflateTimer.Change(-1, -1);
+        _inflateTimer?.Change(-1, -1);
         _currentCircle = null;
     }
 
@@ -76,6 +76,6 @@ public class CircleDemo
         };
         _circles.Add(_currentCircle);
         _display.Controls.Add(_currentCircle);
-        _inflateTimer.Change(inflateRate, -1);
+        _inflateTimer?.Change(inflateRate, -1);
     }
 }
