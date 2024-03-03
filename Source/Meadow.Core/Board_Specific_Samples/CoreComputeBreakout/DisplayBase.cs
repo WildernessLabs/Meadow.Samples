@@ -1,6 +1,7 @@
 ﻿using Meadow;
 using Meadow.Foundation.Graphics;
 using Meadow.Logging;
+using Meadow.Peripherals.Displays;
 
 namespace MeadowApp
 {
@@ -10,7 +11,7 @@ namespace MeadowApp
         private RotationType _rotation;
 
         protected Logger Logger { get; private set; }
-        protected abstract IGraphicsDisplay Display { get; }
+        protected abstract IPixelDisplay Display { get; }
 
         public DisplayBase(Logger logger, RotationType rotation = RotationType.Default)
         {

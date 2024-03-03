@@ -1,7 +1,7 @@
 ﻿using Meadow.Foundation.Displays;
-using Meadow.Foundation.Graphics;
 using Meadow.Hardware;
 using Meadow.Logging;
+using Meadow.Peripherals.Displays;
 
 namespace MeadowApp
 {
@@ -16,6 +16,6 @@ namespace MeadowApp
             _display = new Ssd1306(bus, displayType: Ssd130xBase.DisplayType.OLED128x64);
         }
 
-        protected override IGraphicsDisplay Display => _display;
+        protected override IPixelDisplay Display => _display;
     }
 }

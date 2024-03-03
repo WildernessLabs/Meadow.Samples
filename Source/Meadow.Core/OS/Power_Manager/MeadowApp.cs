@@ -37,7 +37,7 @@ namespace Watchdog
                 Thread.Sleep(500);
             };
 
-            Device.PlatformOS.AfterWake += () =>
+            Device.PlatformOS.AfterWake += (s, e) =>
             {
                 green.State = true;
                 red.State = blue.State = false;

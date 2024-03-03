@@ -23,7 +23,7 @@ namespace Update_Sample
         {
             Resolver.UpdateService.OnUpdateAvailable += (s, e) =>
             {
-                Resolver.Log.Info($"An {e.UpdateType} update is available! Version: {e.Version} Size: {e.DownloadSize}");
+                Resolver.Log.Info($"An {e.UpdateType} update is available! Version: {e.Version} Size: {e.FileSize}");
 
                 Resolver.Log.Info("Retrieving update...");
                 _stopWatch = Stopwatch.StartNew();

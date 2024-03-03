@@ -79,7 +79,7 @@ namespace Cell_Basics
             }
         }
 
-        void CellAdapter_NetworkDisconnected(INetworkAdapter networkAdapter)
+        void CellAdapter_NetworkDisconnected(INetworkAdapter sender, NetworkDisconnectionEventArgs args)
         {
             Console.WriteLine("Cell network disconnected!");
         }

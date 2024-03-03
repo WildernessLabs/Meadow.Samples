@@ -1,10 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation;
-using Meadow.Foundation.Leds;
 using Meadow.Hardware;
-using Meadow.Peripherals.Leds;
-using System;
 using System.Threading.Tasks;
 
 namespace MeadowApp
@@ -49,7 +45,8 @@ namespace MeadowApp
                 Resolver.Log.Info($"Joined network - IP Address: {networkAdapter.IpAddress}");
             };
             // disconnect event
-            wifi.NetworkDisconnected += sender => {
+            wifi.NetworkDisconnected += (s, o) =>
+            {
                 Resolver.Log.Info($"Network disconnected.");
             };
         }

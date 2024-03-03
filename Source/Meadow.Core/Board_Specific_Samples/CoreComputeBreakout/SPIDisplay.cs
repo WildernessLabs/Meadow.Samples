@@ -1,8 +1,7 @@
-﻿using Meadow.Devices;
-using Meadow.Foundation.Displays;
-using Meadow.Foundation.Graphics;
+﻿using Meadow.Foundation.Displays;
 using Meadow.Hardware;
 using Meadow.Logging;
+using Meadow.Peripherals.Displays;
 
 namespace MeadowApp
 {
@@ -22,6 +21,6 @@ namespace MeadowApp
             _display = new St7789(bus, _chipSelect, _dc, _reset, 240, 240);
         }
 
-        protected override IGraphicsDisplay Display => _display;
+        protected override IPixelDisplay Display => _display;
     }
 }
