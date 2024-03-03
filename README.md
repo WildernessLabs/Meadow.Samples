@@ -12,9 +12,9 @@ Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
 
 Samples that demonstrate using the `Meadow` stack on desktop platforms (Windows, Mac and Linux)
 
-## IoT Accelerators
+## [IoT Accelerators](/Source/Accelerators/)
 
-Samples for the Wilderness Labs IoT Accelerators such as ProjectLab, Juego, GNSS Tracker and Clima
+Samples for the Wilderness Labs IoT Accelerators such as [ProjectLab](./Source/Accelerators/ProjectLab_F7/), Juego, GNSS Tracker and Clima
 
 ## Devices
 
