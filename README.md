@@ -4,30 +4,26 @@
 
 Sample applications for Meadow platforms, libraries and peripherals
 
-## [Meadow.Core](/Source/Meadow.Core/)
+## [Juego.Samples](/Source/Juego.Samples/)
+
+Samples that demonstrate usage of `Juego` functionality and capabilities.
+
+## [Meadow.Core.Samples](/Source/Meadow.Core.Samples/)
 
 Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
 
-## Meadow.Desktop
+## [Meadow.Cloud.Samples](/Source/Meadow.Cloud.Samples/)
 
-Samples that demonstrate using the `Meadow` stack on desktop platforms (Windows, Mac and Linux)
+Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
 
-## [IoT Accelerators](/Source/Accelerators/)
+## [Meadow.Project.Samples](/Source/Meadow.Project.Samples/)
 
-Samples for the Wilderness Labs IoT Accelerators such as [ProjectLab](./Source/Accelerators/ProjectLab_F7/), Juego, GNSS Tracker and Clima
+Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
 
-## Devices
+## [Meadow.Desktop.Samples](/Source/Meadow.Desktop.Samples/)
 
-Sample implementations of specific devices using `Meadow` libraries.
+Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
 
-## Hackster
+## [Meadow.ProjectLab.Samples](/Source/Meadow.ProjectLab.Samples/)
 
-Sample applications that we have also published on Hackster.io
-
-## Games
-
-Sample games running on Meadow hardware
-
-## Cloud
-
-Samples integrating with Meadow.Cloud
+Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
