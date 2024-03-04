@@ -1,6 +1,7 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Graphics.MicroLayout;
+using Meadow.Hardware;
 using System.Threading.Tasks;
 
 namespace Touchscreen_Demo;
@@ -25,7 +26,15 @@ public class MeadowApp : App<F7CoreComputeV2>
 
         // retrieve stored calibration
         var ts = new TouchscreenCalibrationService(display);
-        if (ts.GetSavedCalibrationData() == null)
+
+        //        ts.EraseCalibrationData();
+
+        var calData = ts.GetSavedCalibrationData();
+        if (calData != null)
+        {
+            (projectLab.Touchscreen as ICalibratableTouchscreen).SetCalibrationData(calData);
+        }
+        else
         {
             Resolver.Log.Info("Calibrating");
 

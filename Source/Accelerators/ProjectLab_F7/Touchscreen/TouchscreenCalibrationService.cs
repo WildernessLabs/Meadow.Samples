@@ -4,6 +4,8 @@ using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Hardware;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Touchscreen_Demo;
@@ -20,6 +22,11 @@ public class TouchscreenCalibrationService
     private CalibrationPoint[] _calPoints;
     private int _lastTouch = Environment.TickCount;
     private Label _instruction;
+
+    public const string CalibrationDataFile = "ts-cal.dat";
+    public static Color ScreenColor = Color.White;
+    public static Color CrosshairColor = Color.Black;
+    public static Color TextColor = Color.DarkBlue;
 
     public TouchscreenCalibrationService(DisplayScreen screen)
     {
@@ -39,28 +46,47 @@ public class TouchscreenCalibrationService
         {
             Font = new Font8x12(),
             Text = "Touch Cal Point",
-            TextColor = Color.Yellow,
+            TextColor = TextColor,
             HorizontalAlignment = Meadow.Foundation.Graphics.HorizontalAlignment.Center,
             VerticalAlignment = Meadow.Foundation.Graphics.VerticalAlignment.Center
         };
 
         _calibrationPoints = new Crosshair[]
         {
-            new Crosshair(margin, margin) { ForeColor = Color.White },
-            new Crosshair(_screen.Width - margin, _screen.Height - margin) { ForeColor = Color.White }
+            new Crosshair(margin, margin) { ForeColor = CrosshairColor },
+            new Crosshair(_screen.Width - margin, _screen.Height - margin) { ForeColor = CrosshairColor }
         };
         _calPoints = new CalibrationPoint[_calibrationPoints.Length];
     }
 
+    private FileInfo GetCalibrationFileInfo()
+    {
+        return new FileInfo(Path.Combine(MeadowOS.FileSystem.DataDirectory, CalibrationDataFile));
+    }
+
     public IEnumerable<CalibrationPoint>? GetSavedCalibrationData()
     {
-        // TODO
-        return null;
+        var fi = GetCalibrationFileInfo();
+        if (!fi.Exists) { return null; }
+        using var file = fi.OpenText();
+        var json = file.ReadToEnd();
+        var data = SimpleJson.SimpleJson.DeserializeObject<CalibrationPoint[]>(json);
+        return data;
+    }
+
+    public void EraseCalibrationData()
+    {
+        var fi = GetCalibrationFileInfo();
+        if (fi.Exists) { fi.Delete(); }
     }
 
     public void SaveCalibrationData(IEnumerable<CalibrationPoint> data)
     {
-        // TODO
+        var fi = GetCalibrationFileInfo();
+        if (fi.Exists) { fi.Delete(); }
+        var json = JsonSerializer.Serialize(data);
+        using var file = fi.CreateText();
+        file.Write(json);
     }
 
     public Task Calibrate(bool saveCalibrationData = true)
@@ -68,6 +94,7 @@ public class TouchscreenCalibrationService
         _touchscreen.TouchUp += OnTouchUp;
 
         _screen.Controls.Clear();
+        _screen.BackgroundColor = ScreenColor;
         _screen.Controls.Add(_instruction);
         _screen.Controls.Add(_calibrationPoints[_currentPoint]);
         _screen.Invalidate();
@@ -76,7 +103,6 @@ public class TouchscreenCalibrationService
         {
             while (_currentPoint < _calibrationPoints.Length)
             {
-                //                Resolver.Log.Info($"waiting for point {_currentPoint}");
                 await Task.Delay(500);
             }
             _touchscreen.TouchUp -= OnTouchUp;
@@ -87,6 +113,7 @@ public class TouchscreenCalibrationService
 
             if (saveCalibrationData)
             {
+                _instruction.Text = "Saving Calibration Data...";
                 SaveCalibrationData(_calPoints);
             }
 
