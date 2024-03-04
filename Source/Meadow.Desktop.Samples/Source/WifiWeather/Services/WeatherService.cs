@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Meadow;
+using System.Text.Json;
 using WifiWeather.Models;
 
 namespace WifiWeather.Services
@@ -26,12 +27,12 @@ namespace WifiWeather.Services
                 }
                 catch (TaskCanceledException)
                 {
-                    Console.WriteLine("Request timed out.");
+                    Resolver.Log.Info("Request timed out.");
                     return null;
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Request went sideways: {e.Message}");
+                    Resolver.Log.Info($"Request went sideways: {e.Message}");
                     return null;
                 }
             }

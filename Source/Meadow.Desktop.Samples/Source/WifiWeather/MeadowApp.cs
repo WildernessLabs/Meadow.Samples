@@ -11,7 +11,7 @@ public class MeadowApp : App<Windows>
 
     public override Task Initialize()
     {
-        Console.WriteLine("Creating Outputs");
+        Resolver.Log.Info("Creating Outputs");
 
         var expander = FtdiExpanderCollection.Devices[0];
 

@@ -2,8 +2,9 @@
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.ICs.IOExpanders;
+using System.Threading.Tasks;
 
-public class MeadowApp : App<Windows>
+public class MeadowApp : App<Desktop>
 {
     private FtdiExpander _expander = FtdiExpanderCollection.Devices[0];
     private Max7219 _display;
@@ -16,11 +17,11 @@ public class MeadowApp : App<Windows>
 
     public override Task Initialize()
     {
-        Console.WriteLine("Creating SPI Bus");
+        Resolver.Log.Info("Creating SPI Bus");
 
         var bus = _expander.CreateSpiBus();
 
-        Console.WriteLine("Creating Display");
+        Resolver.Log.Info("Creating Display");
 
         _display = new Max7219(bus, _expander.Pins.C0, 4, 3, Max7219.Max7219Mode.Display);
         _graphics = new MicroGraphics(_display);

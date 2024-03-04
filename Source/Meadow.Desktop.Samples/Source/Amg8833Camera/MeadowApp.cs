@@ -20,7 +20,7 @@ public class MeadowApp : App<Meadow.Windows>
 
     public override Task Initialize()
     {
-        Console.WriteLine("Creating Outputs");
+        Resolver.Log.Info("Creating Outputs");
 
         _display = new WinFormsDisplay(320, 480);
 
