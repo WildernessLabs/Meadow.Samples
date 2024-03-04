@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace WiFi_Basics
 {
-    public class MeadowApp : App<Windows>
+    public class MeadowApp : App<Desktop>
     {
         public static async Task Main(string[] args)
         {

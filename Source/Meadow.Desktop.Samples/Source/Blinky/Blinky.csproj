@@ -15,8 +15,8 @@
     </ItemGroup>
     
     <ItemGroup>
-      <None Update="libmpsse.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="libmpsse.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 </Project>
