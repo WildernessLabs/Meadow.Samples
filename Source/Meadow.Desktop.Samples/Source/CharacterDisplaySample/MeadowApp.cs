@@ -1,14 +1,17 @@
 ﻿using Meadow;
 using Meadow.Foundation.Displays.Lcd;
 using Meadow.Foundation.ICs.IOExpanders;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-public class MeadowApp : App<Windows>
+public class MeadowApp : App<Desktop>
 {
     private CharacterDisplay? display;
 
     public override Task Initialize()
     {
-        Console.WriteLine("Creating Outputs");
+        Resolver.Log.Info("Creating Outputs");
 
         var expander = FtdiExpanderCollection.Devices[0];
 

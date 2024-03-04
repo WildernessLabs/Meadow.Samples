@@ -2,8 +2,9 @@
 using Meadow.Foundation.Sensors.Hid;
 using Meadow.Hardware;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
-public class MeadowApp : App<Windows>
+public class MeadowApp : App<Desktop>
 {
     private Keyboard _keyBoard;
     private IDigitalInterruptPort _a;

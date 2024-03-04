@@ -1,8 +1,10 @@
 ﻿using Meadow;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Hardware;
+using System.Threading;
+using System.Threading.Tasks;
 
-public class MeadowApp : App<Windows>
+public class MeadowApp : App<Desktop>
 {
     private FtdiExpander _expander = FtdiExpanderCollection.Devices[0];
     private IDigitalOutputPort _c0;
@@ -14,7 +16,7 @@ public class MeadowApp : App<Windows>
 
     public override Task Initialize()
     {
-        Console.WriteLine("Creating Outputs");
+        Resolver.Log.Info("Creating Outputs");
 
         _c0 = _expander.CreateDigitalOutputPort(_expander.Pins.C0);
 

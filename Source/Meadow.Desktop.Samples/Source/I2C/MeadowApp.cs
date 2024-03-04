@@ -2,8 +2,9 @@
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Foundation.Sensors.Motion;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
-public class MeadowApp : App<Windows>
+public class MeadowApp : App<Desktop>
 {
     private FtdiExpander _expander = FtdiExpanderCollection.Devices[0];
     private Bno055 _bno;
@@ -16,7 +17,7 @@ public class MeadowApp : App<Windows>
 
     public override Task Initialize()
     {
-        Console.WriteLine("Creating Outputs");
+        Resolver.Log.Info("Creating Outputs");
 
         var bus = _expander.CreateI2cBus();
 
