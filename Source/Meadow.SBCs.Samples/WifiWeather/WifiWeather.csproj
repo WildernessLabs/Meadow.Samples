@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <None Remove="w_clear.jpg" />
+        <None Remove="w_cloudy.jpg" />
+        <None Remove="w_drizzle.jpg" />
+        <None Remove="w_misc.jpg" />
+        <None Remove="w_rain.jpg" />
+        <None Remove="w_snow.jpg" />
+        <None Remove="w_storm.jpg" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <EmbeddedResource Include="w_clear.jpg" />
+        <EmbeddedResource Include="w_cloudy.jpg" />
+        <EmbeddedResource Include="w_drizzle.jpg" />
+        <EmbeddedResource Include="w_misc.jpg" />
+        <EmbeddedResource Include="w_rain.jpg" />
+        <EmbeddedResource Include="w_snow.jpg" />
+        <EmbeddedResource Include="w_storm.jpg" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Meadow.Linux" Version="*" />
+        <PackageReference Include="System.Text.Json" Version="*" />
+        <PackageReference Include="SimpleJpegDecoder" Version="*" />
+        <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
+    </ItemGroup>
+</Project>
