@@ -17,17 +17,34 @@ Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/M
     <tr>
         <td>
             <img src="Design/meadow-linux-blinky.png"/><br/>
-            Running Blinky app on a Raspberry Pi with Meadow.Linux</br>
-            <a href="Source/Linux/Blinky/">Source Code</a>
+            Getting started with a Blinky app on a Raspberry Pi</br>
+            <a href="Source/Blinky/">Source Code</a>
         </td>
         <td>
             <img src="Design/meadow-linux-character-display.png"/><br/>
-            Using a LCD Display on a Raspberry Pi with Meadow.Linux</br>
-            <a href="Source/Linux/CharacterDisplaySample/">Source Code</a>
+            Using a 20x4 LCD Character Display on a Raspberry Pi</br>
+            <a href="Source/CharacterDisplaySample/">Source Code</a>
         </td>
         <td>
             <img src="Design/template-orange.png"/><br/>
-            Build a weather widget on a Raspberry Pi w/ Meadow.Linux</br>
+            Using MicroGraphics on a ST7789 display on a Raspberry Pi</br>
+            <a href="Source/ST7789_Sample/">Source Code</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="Design/template-green.png"/><br/>
+            Build a weather widget using MicroLayout on a Raspberry Pi</br>
+            <a href="Source/WifiWeather/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/template-blue.png"/><br/>
+            Using a BME280 atmospheric sensor on a Raspberry Pi</br>
+            <a href="Source/Bme280_Sample/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/template-orange.png"/><br/>
+            Using push buttons on a Rapsberry Pi</br>
             <a href="Source/Linux/WifiWeather/">Source Code</a>
         </td>
     </tr>
