@@ -2,32 +2,32 @@
 
 # Meadow.Samples
 
-Sample applications for Meadow platforms, libraries and peripherals
+Sample applications for Meadow platforms, libraries and peripherals.
 
-## Meadow.Core
+## [Juego.Samples](/Source/Juego.Samples/)
 
-Samples that demonstrate usage of `Meadow.Core` functionality and capabilities.
+An extensive collection of [Juego](https://github.com/WildernessLabs/Juego) projects using Meadow.Foundation’s MicroGraphics.
 
-## Meadow.Desktop
+## [Meadow.Core.Samples](/Source/Meadow.Core.Samples/)
 
-Samples that demonstrate using the `Meadow` stack on desktop platforms (Windows, Mac and Linux)
+Sample Meadow applications that illustrate usage of [Meadow.Core](https://developer.wildernesslabs.co/Meadow/Meadow.OS/) features such as GPIO, WiFi, BLE, and more.
 
-## IoT Accelerators
+## [Meadow.SBCs.Samples](/Source/Meadow.SBCs.Samples/)
 
-Samples for the Wilderness Labs IoT Accelerators such as ProjectLab, Juego, GNSS Tracker and Clima
+An extensive collection of Meadow.Linux projects that run on Single-Board-Computers like Raspberri Pis.
 
-## Devices
+## [Meadow.Cloud.Samples](/Source/Meadow.Cloud.Samples/)
 
-Sample implementations of specific devices using `Meadow` libraries.
+An extensive collection of project samples using various [Meadow.Cloud](https://developer.wildernesslabs.co/Meadow/Meadow.Cloud/) features such as OTA updates.
 
-## Hackster
+## [Meadow.Project.Samples](/Source/Meadow.Project.Samples/)
 
-Sample applications that we have also published on Hackster.io
+An extensive collection of Meadow Dev Kit projects using Meadow.Foundation libraries and peripherals.
 
-## Games
+## [Meadow.Desktop.Samples](/Source/Meadow.Desktop.Samples/)
 
-Sample games running on Meadow hardware
+An extensive collection of Meadow.Desktop projects that run on Windows, Linux, and macOS.
 
-## Cloud
+## [Meadow.ProjectLab.Samples](/Source/Meadow.ProjectLab.Samples/)
 
-Samples integrating with Meadow.Cloud
+Collection of project samples for the Wilderness Labs [ProjectLab](https://github.com/WildernessLabs/Meadow.ProjectLab) for rapid prototyping.

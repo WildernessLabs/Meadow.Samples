@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-LightSensor", "02-LightSensor.csproj", "{24440FB5-0EA2-47A0-88C0-7532EB9B5ED5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24440FB5-0EA2-47A0-88C0-7532EB9B5ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24440FB5-0EA2-47A0-88C0-7532EB9B5ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24440FB5-0EA2-47A0-88C0-7532EB9B5ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24440FB5-0EA2-47A0-88C0-7532EB9B5ED5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E8657A8-20DB-4E2E-9221-D5566A49F1BE}
+	EndGlobalSection
+EndGlobal

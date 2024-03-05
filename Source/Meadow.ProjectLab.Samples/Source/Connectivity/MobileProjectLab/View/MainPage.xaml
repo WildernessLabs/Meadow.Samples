@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileProjectLab.View.MainPage"
+    BackgroundColor="White"
+    Title="Project Lab Companion App">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="TextColor">#555</Color>
+            <Style x:Key="ButtonNavStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BackgroundColor" Value="#14607F" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Frame Padding="20" CornerRadius="10" BackgroundColor="#23abe3" BorderColor="Transparent">
+                <StackLayout Spacing="15">
+                    <Image Source="img_project_lab" />
+                    <Button Text="WIFI using Maple" Clicked="BtnMapleClicked" Style="{StaticResource ButtonNavStyle}" />
+                    <Button Text="Bluetooth" Clicked="BtnBluetoothClicked" Style="{StaticResource ButtonNavStyle}" />
+                </StackLayout>
+            </Frame>
+
+            <Label Text="By Wilderness Labs" TextColor="Black" 
+                HorizontalOptions="Center" VerticalOptions="EndAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

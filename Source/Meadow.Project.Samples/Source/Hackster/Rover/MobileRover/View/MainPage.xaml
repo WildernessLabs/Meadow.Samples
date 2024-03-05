@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileRover.View.MainPage"
+    BackgroundColor="White"
+    Title="Maple Devices">
+
+    <ContentPage.Content>
+        <Grid>
+            <Frame BackgroundColor="#dcdcdc" Padding="15">
+                <Grid BackgroundColor="#1a1a1a">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- DPad -->
+                    <Grid Grid.Column="0" WidthRequest="150" HeightRequest="150"
+                        HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="img_dpad.png" Aspect="AspectFit" />
+                        <Grid RowSpacing="0" ColumnSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="btnUp" IsEnabled="{Binding IsConnected}" BackgroundColor="Transparent" 
+                                Margin="5" Grid.Row="0" Grid.Column="1">
+
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonUpPressed}" Value="true">
+                                        <Setter Property="BackgroundColor" Value="#55FF0000" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonUpPressed}" Value="false">
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <Button x:Name="btnDown" IsEnabled="{Binding IsConnected}" BackgroundColor="Transparent" 
+                                Margin="5" Grid.Row="2" Grid.Column="1">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonDownPressed}" Value="true">
+                                        <Setter Property="BackgroundColor" Value="#55FF0000" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonDownPressed}" Value="false">
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <Button x:Name="btnLeft" IsEnabled="{Binding IsConnected}" BackgroundColor="Transparent" 
+                                Margin="5" Grid.Row="1" Grid.Column="0">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonLeftPressed}" Value="true">
+                                        <Setter Property="BackgroundColor" Value="#55FF0000" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonLeftPressed}" Value="false">
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <Button x:Name="btnRight" IsEnabled="{Binding IsConnected}" BackgroundColor="Transparent" 
+                                Margin="5" Grid.Row="1" Grid.Column="2">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonRightPressed}" Value="true">
+                                        <Setter Property="BackgroundColor" Value="#55FF0000" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsButtonRightPressed}" Value="false">
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Middle Section -->
+                    <Grid Grid.Column="1" RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" BackgroundColor="#808080" />
+
+                        <Frame Grid.Row="1" BackgroundColor="#808080" HasShadow="False" CornerRadius="10" />
+
+                        <Frame Grid.Row="2" BackgroundColor="#808080" HasShadow="False" Padding="7.5" CornerRadius="10">
+                            <Image Source="img_meadow.png" Aspect="AspectFit" />
+                        </Frame>
+
+                        <Frame Grid.Row="3" BackgroundColor="#808080" HasShadow="False" Padding="5" CornerRadius="10" />
+
+                        <Grid Grid.Row="4" BackgroundColor="#808080" />
+                    </Grid>
+
+                    <!-- Red Buttons -->
+                    <Grid Grid.Column="2" Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Frame BackgroundColor="Green" HasShadow="False" CornerRadius="8" Padding="0"
+                                WidthRequest="15" HeightRequest="15" HorizontalOptions="End" VerticalOptions="Center">
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding IsConnected}" Value="true">
+                                        <Setter Property="BackgroundColor" Value="Green" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding IsConnected}" Value="false">
+                                        <Setter Property="BackgroundColor" Value="Red" />
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                            </Frame>
+                            <Button Command="{Binding CmdSearchForDevices}" BackgroundColor="Transparent" HorizontalOptions="End" />
+                        </Grid>
+
+                        <Grid Grid.Row="1" ColumnSpacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Frame Grid.Column="0" BackgroundColor="#dddddd" HasShadow="False" Padding="5" CornerRadius="7"
+                                WidthRequest="55" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Grid>
+                                    <Frame BackgroundColor="Red" HasShadow="False" CornerRadius="25" Padding="20" />
+                                    <Button x:Name="btnA" BackgroundColor="Transparent" />
+                                </Grid>
+                            </Frame>
+
+                            <Frame Grid.Column="1" BackgroundColor="#dddddd" HasShadow="False" Padding="5" CornerRadius="7"
+                                WidthRequest="55" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Grid>
+                                    <Frame BackgroundColor="Red" HasShadow="False" CornerRadius="25" Padding="20" />
+                                    <Button x:Name="btnB" BackgroundColor="Transparent" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
