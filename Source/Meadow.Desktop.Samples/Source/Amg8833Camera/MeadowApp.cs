@@ -3,26 +3,18 @@ using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Foundation.Sensors.Camera;
-using System.Windows.Forms;
+using System.Threading.Tasks;
 
-public class MeadowApp : App<Meadow.Windows>
+public class MeadowApp : App<Desktop>
 {
     private FtdiExpander _ft232h;
-    private WinFormsDisplay _display;
     private DisplayScreen _screen;
     private Amg8833 _camera;
     private Box[] _pixelBoxes;
 
-    public static async Task Main(string[] args)
-    {
-        await MeadowOS.Start(args);
-    }
-
     public override Task Initialize()
     {
         Resolver.Log.Info("Creating Outputs");
-
-        _display = new WinFormsDisplay(320, 480);
 
         _ft232h = FtdiExpanderCollection.Devices[0];
         var bus = _ft232h.CreateI2cBus();
@@ -36,7 +28,7 @@ public class MeadowApp : App<Meadow.Windows>
     private void CreateLayout()
     {
         _pixelBoxes = new Box[64];
-        _screen = new DisplayScreen(_display);
+        _screen = new DisplayScreen(Device.Display!);
         var x = 0;
         var y = 0;
         var boxSize = 40;
@@ -63,6 +55,9 @@ public class MeadowApp : App<Meadow.Windows>
 
     public override Task Run()
     {
+        // NOTE: this will not return until the display is closed
+        ExecutePlatformDisplayRunner();
+
         _ = Task.Run(async () =>
         {
             await Task.Delay(1000);
@@ -95,8 +90,17 @@ public class MeadowApp : App<Meadow.Windows>
             }
         });
 
-        Application.Run(_display);
-
         return Task.CompletedTask;
+    }
+
+    private void ExecutePlatformDisplayRunner()
+    {
+#if WINDOWS
+        System.Windows.Forms.Application.Run(Device.Display as System.Windows.Forms.Form);
+#endif
+        if (Device.Display is GtkDisplay gtk)
+        {
+            gtk.Run();
+        }
     }
 }

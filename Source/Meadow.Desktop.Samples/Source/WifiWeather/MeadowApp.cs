@@ -1,11 +1,13 @@
 ﻿using Meadow;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.ICs.IOExpanders;
+using System;
+using System.Threading.Tasks;
 using WifiWeather.Services;
 using WifiWeather.ViewModels;
 using WifiWeather.Views;
 
-public class MeadowApp : App<Windows>
+public class MeadowApp : App<Desktop>
 {
     private DisplayView _displayController;
 

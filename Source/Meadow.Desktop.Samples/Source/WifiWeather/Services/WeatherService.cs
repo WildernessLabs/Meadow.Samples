@@ -1,5 +1,8 @@
 ﻿using Meadow;
+using System;
+using System.Net.Http;
 using System.Text.Json;
+using System.Threading.Tasks;
 using WifiWeather.Models;
 
 namespace WifiWeather.Services
