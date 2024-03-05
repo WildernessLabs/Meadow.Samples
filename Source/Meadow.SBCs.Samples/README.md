@@ -44,7 +44,7 @@ Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/M
         </td>
         <td>
             <img src="Design/template-orange.png"/><br/>
-            Using push buttons on a Rapsberry Pi</br>
+            Working with push button events on a Rapsberry Pi</br>
             <a href="Source/Linux/WifiWeather/">Source Code</a>
         </td>
     </tr>
