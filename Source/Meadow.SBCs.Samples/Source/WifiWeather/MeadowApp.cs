@@ -6,9 +6,11 @@ using WifiWeather.Services;
 using WifiWeather.ViewModels;
 using WifiWeather.Views;
 
+namespace WifiWeather;
+
 public class MeadowApp : LinuxApp<RaspberryPi>
 {
-    private DisplayView _displayController;
+    private DisplayView? _displayController;
 
     public override Task Initialize()
     {
@@ -60,10 +62,5 @@ public class MeadowApp : LinuxApp<RaspberryPi>
             _displayController.UpdateDateTime();
             await Task.Delay(TimeSpan.FromSeconds(1));
         }
-    }
-
-    public static async Task Main(string[] args)
-    {
-        await MeadowOS.Start(args);
     }
 }

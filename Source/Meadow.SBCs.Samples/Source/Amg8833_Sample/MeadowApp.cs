@@ -5,17 +5,14 @@ using Meadow.Foundation.Sensors.Camera;
 using Meadow.Peripherals.Displays;
 using System.Threading.Tasks;
 
+namespace Amg8833_Sample;
+
 public class MeadowApp : LinuxApp<RaspberryPi>
 {
-    private IPixelDisplay _display;
-    private DisplayScreen _screen;
-    private Amg8833 _camera;
-    private Box[] _pixelBoxes;
-
-    public static async Task Main(string[] args)
-    {
-        await MeadowOS.Start(args);
-    }
+    private IPixelDisplay? _display;
+    private DisplayScreen? _screen;
+    private Amg8833? _camera;
+    private Box[]? _pixelBoxes;
 
     public override Task Initialize()
     {

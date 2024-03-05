@@ -4,6 +4,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
+namespace CharacterDisplaySample;
+
 public class MeadowApp : LinuxApp<RaspberryPi>
 {
     private CharacterDisplay? display;
@@ -46,10 +48,5 @@ public class MeadowApp : LinuxApp<RaspberryPi>
             UpdateCountdown();
             Thread.Sleep(1000);
         }
-    }
-
-    public static async Task Main(string[] args)
-    {
-        await MeadowOS.Start(args);
     }
 }

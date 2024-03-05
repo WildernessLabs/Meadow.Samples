@@ -4,9 +4,11 @@ using Meadow.Peripherals.Leds;
 using System;
 using System.Threading.Tasks;
 
+namespace Blinky;
+
 public class MeadowApp : LinuxApp<RaspberryPi>
 {
-    RgbLed rgbLed;
+    RgbLed? rgbLed;
 
     public override Task Initialize()
     {
@@ -57,10 +59,5 @@ public class MeadowApp : LinuxApp<RaspberryPi>
 
             await Task.Delay(1000);
         }
-    }
-
-    static async Task Main(string[] args)
-    {
-        await MeadowOS.Start(args);
     }
 }
