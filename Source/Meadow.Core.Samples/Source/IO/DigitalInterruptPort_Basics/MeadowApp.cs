@@ -48,7 +48,7 @@ namespace DigitalInterruptPort_Basics
                     if (result.Old is { } old)
                     { // C# 8 null pattern matching for not null
                         //return (result.New.Time - old.Time) > TimeSpan.FromSeconds(1);
-                        return (result.New.Time - old.Time) > TimeSpan.FromSeconds(1).TotalSeconds;
+                        return (result.New.Time - old.Time) > TimeSpan.FromSeconds(1);
                     }
                     else return false;
                 }
