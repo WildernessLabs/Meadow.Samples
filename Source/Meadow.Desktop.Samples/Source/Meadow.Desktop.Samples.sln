@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sensors", "Sensors", "{7767
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelDisplay_Sample", "PixelDisplay\PixelDisplay_Sample.csproj", "{70CE51F7-E284-462F-898A-2D1E05F7C301}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touchscreen_Demo", "Touchscreen_Demo\Touchscreen_Demo.csproj", "{225FDA12-9095-45AC-93D0-B79532946B1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{70CE51F7-E284-462F-898A-2D1E05F7C301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70CE51F7-E284-462F-898A-2D1E05F7C301}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70CE51F7-E284-462F-898A-2D1E05F7C301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{225FDA12-9095-45AC-93D0-B79532946B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{225FDA12-9095-45AC-93D0-B79532946B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{225FDA12-9095-45AC-93D0-B79532946B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{225FDA12-9095-45AC-93D0-B79532946B1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +126,7 @@ Global
 		{61E745AB-452C-433E-AAAC-C06DA6A9CA0A} = {58C4412D-464A-4AB5-ACC8-72B446780173}
 		{5D5B4A50-D50F-488B-9B14-6DEDBB3CE25D} = {7767CC6F-1548-49C7-BC3B-CC7C202A2901}
 		{70CE51F7-E284-462F-898A-2D1E05F7C301} = {58C4412D-464A-4AB5-ACC8-72B446780173}
+		{225FDA12-9095-45AC-93D0-B79532946B1F} = {58C4412D-464A-4AB5-ACC8-72B446780173}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
