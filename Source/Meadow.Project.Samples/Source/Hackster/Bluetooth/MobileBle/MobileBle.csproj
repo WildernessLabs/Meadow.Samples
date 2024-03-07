@@ -50,4 +50,8 @@
 	  <PackageReference Include="Plugin.BLE" Version="2.1.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
+	</ItemGroup>
+
 </Project>

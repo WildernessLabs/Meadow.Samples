@@ -6,9 +6,9 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.F7" Version="*" />
-    <PackageReference Include="Meadow.Foundation" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Leds.Apa102" Version="*" />
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Leds.Apa102\Driver\Leds.Apa102.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">
