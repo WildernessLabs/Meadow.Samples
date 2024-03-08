@@ -14,10 +14,10 @@ jobs:
 
     steps:
 
-    - name: Checkout Juego.Samples
+    - name: Checkout Meadow.Samples
       uses: actions/checkout@v3
       with:
-        path: Juego.Samples
+        path: Meadow.Samples
         ref: main
 
     - name: Setup .NET
