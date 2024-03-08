@@ -20,7 +20,7 @@ Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/M
 
 To run these samples, make sure:
 
-1. Your development environment is [properly configured](http://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/Getting_Started_Windows/) to run Meadow apps on Windows.
+1. Your development environment is [properly configured](https://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/) to run Meadow apps on your dev machine.
 2. [Optional] If the sample you wish to run uses a physical peripheral or sensor, add the native library (`libmpsse.dll`) of the FT232H IO Expander depending on your CPU's architecture ([Win32 or x64](/Support%20Files/Windows/FT232H%20Native%20Library/))  to that project and set the **Copy to Output Directory** to `Copy if newer` or `Copy always`
 
 <p align="center">
@@ -43,34 +43,34 @@ Also check the pinout to make sure to connect the peripheral or sensor on the ri
         <td>
             <img src="Design/wildernesslabs-meadow-windows-winforms.jpg"/><br/>
             Build HMI Screens using Meadow.WinForms</br>
-            <a href="https://www.hackster.io/wilderness-labs/run-meadow-micrographics-on-winforms-directly-from-your-pc-db875b">Hackster</a> | <a href="Source/Windows/WinForms/">Source Code</a>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-micrographics-on-winforms-directly-from-your-pc-db875b">Hackster</a> | <a href="Source/WinForms/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-windows-maui.png"/><br/>
             Build hardware apps using Meadow in a MAUI app</br>
-            <a href="https://www.hackster.io/wilderness-labs/run-meadow-within-a-maui-windows-application-196d8d">Hackster</a> | <a href="Source/Windows/MauiMeadow/">Source Code</a>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-within-a-maui-windows-application-196d8d">Hackster</a> | <a href="Source/MauiMeadow/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-windows-avalonia.png"/><br/>
             Build hardware apps using Meadow in an Avalonia app</br>
-            <a href="https://www.hackster.io/wilderness-labs/run-meadow-within-an-avalonia-application-68371e">Hackster</a> | <a href="Source/Windows/AvaloniaMeadow/">Source Code</a>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-within-an-avalonia-application-68371e">Hackster</a> | <a href="Source/AvaloniaMeadow/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
             <img src="Design/wildernesslabs-meadow-windows-blinky.png"/><br/>
             Running Blinky app with an FT232H IO Expander</br>
-            <a href="https://www.hackster.io/wilderness-labs/run-meadow-apps-directly-from-your-pc-using-meadow-windows-dab4bf">Hackster</a> | <a href="Source/Windows/Blinky/">Source Code</a>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-apps-directly-from-your-pc-using-meadow-windows-dab4bf">Hackster</a> | <a href="Source/Blinky/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-windows-characterdisplay.png"/><br/>
             Using a Character Display with an FT232H IO Expander</br>
-            <a href="https://www.hackster.io/wilderness-labs/control-an-lcd-display-with-your-pc-using-meadow-windows-186c6d">Hackster</a> | <a href="Source/Windows/CharacterDisplaySample/">Source Code</a>
+            <a href="https://www.hackster.io/wilderness-labs/control-an-lcd-display-with-your-pc-using-meadow-windows-186c6d">Hackster</a> | <a href="Source/CharacterDisplaySample/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-windows-graphics.png"/><br/>
             Show weather data on a display with an FT232H IO Expander</br>
-            <a href="https://www.hackster.io/wilderness-labs/build-this-weather-widget-running-directly-from-your-pc-57c69f">Hackster</a> | <a href="Source/Windows/WifiWeather/">Source Code</a>
+            <a href="https://www.hackster.io/wilderness-labs/build-this-weather-widget-running-directly-from-your-pc-57c69f">Hackster</a> | <a href="Source/WifiWeather/">Source Code</a>
         </td>
     </tr>
     <tr>
@@ -85,49 +85,6 @@ Also check the pinout to make sure to connect the peripheral or sensor on the ri
         </td>
     </tr>
 </table>
-
-## Linux
-
-### Meadow.Linux Samples
-
-<table>
-    <tr>
-        <td>
-            <img src="Design/meadow-linux-blinky.png"/><br/>
-            Running Blinky app on a Raspberry Pi with Meadow.Linux</br>
-            <a href="Source/Linux/Blinky/">Source Code</a>
-        </td>
-        <td>
-            <img src="Design/meadow-linux-character-display.png"/><br/>
-            Using a LCD Display on a Raspberry Pi with Meadow.Linux</br>
-            <a href="Source/Linux/CharacterDisplaySample/">Source Code</a>
-        </td>
-        <td>
-            <img src="Design/template-orange.png"/><br/>
-            Build a weather widget on a Raspberry Pi w/ Meadow.Linux</br>
-            <a href="Source/Linux/WifiWeather/">Source Code</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        </td>
-        <td>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        </td>
-        <td>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        </td>
-    </tr>
-</table>
-
-### Linux embedded pinout diagrams
-
-#### Raspberry Pi 4
-
-<p align="center">
-    <img src="Design/pinout-rpi.png" style="width:75%" />
-</p>
 
 ## Support
 
