@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "COM14",
+            "type": "meadow",
+            "request": "launch",
+            "preLaunchTask": "meadow: Build"
+        }
+    ]
+}

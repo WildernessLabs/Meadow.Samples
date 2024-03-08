@@ -1,4 +1,4 @@
-<img src="Design/meadow.project.samples.jpg" alt="iot, dotnet, meadow, meadow-project-samples" style="margin-bottom:10px" />
+<img src="Design/wildernesslabs-meadow-project-samples.jpg" alt="iot, dotnet, meadow, meadow-project-samples" style="margin-bottom:10px" />
 
 # Meadow.Project.Samples
 

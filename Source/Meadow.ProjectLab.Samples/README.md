@@ -1,4 +1,4 @@
-<img src="Design/meadow-projectlab-samples.jpg" style="margin-bottom:10px" />
+<img src="Design/wildernesslabs-meadow-projectlab-samples.jpg" style="margin-bottom:10px" />
 
 # Meadow.ProjectLab.Samples
 
