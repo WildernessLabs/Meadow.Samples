@@ -26,9 +26,12 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Meadow.Linux" Version="*" />
         <PackageReference Include="System.Text.Json" Version="*" />
         <PackageReference Include="SimpleJpegDecoder" Version="*" />
-        <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
+      <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.TftSpi\Driver\Displays.TftSpi.csproj" />
     </ItemGroup>
 </Project>
