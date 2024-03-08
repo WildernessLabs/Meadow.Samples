@@ -4,7 +4,7 @@
 
 Sample applications for Meadow platforms, libraries and peripherals.
 
-## [Juego.Samples](/Source/Juego.Samples/)
+[![Juego.Samples](Source/Juego.Samples/Design/wildernesslabs-meadow-juego-samples.jpg)](/Source/Juego.Samples/)
 
 An extensive collection of [Juego](https://github.com/WildernessLabs/Juego) projects using Meadow.Foundation’s MicroGraphics.
 
