@@ -4,11 +4,11 @@
         <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="Meadow.Desktop" Version="*" />
+      <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <None Update="meadow.config.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
