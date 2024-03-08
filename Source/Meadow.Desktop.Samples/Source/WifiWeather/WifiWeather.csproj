@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0-windows'">
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="w_clear.bmp" />
+        <None Remove="w_cloudy.bmp" />
+        <None Remove="w_drizzle.bmp" />
+        <None Remove="w_misc.bmp" />
+        <None Remove="w_rain.bmp" />
+        <None Remove="w_snow.bmp" />
+        <None Remove="w_storm.bmp" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <EmbeddedResource Include="w_clear.bmp" />
+        <EmbeddedResource Include="w_cloudy.bmp" />
+        <EmbeddedResource Include="w_drizzle.bmp" />
+        <EmbeddedResource Include="w_misc.bmp" />
+        <EmbeddedResource Include="w_rain.bmp" />
+        <EmbeddedResource Include="w_snow.bmp" />
+        <EmbeddedResource Include="w_storm.bmp" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="System.Text.Json" Version="*" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Meadow.Desktop" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Update="libmpsse.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

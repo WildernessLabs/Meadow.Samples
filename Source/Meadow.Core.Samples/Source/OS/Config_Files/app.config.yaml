@@ -1,0 +1,6 @@
+﻿Logging:
+  LogLevel:
+    Default: "Information"
+Lifecycle:
+  ResetOnAppFailure: true
+  AppFailureRestartDelaySeconds: 2
