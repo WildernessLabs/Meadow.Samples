@@ -84,4 +84,4 @@ jobs:
       run: dotnet workload install maui --ignore-failed-sources
     
     - name: Build Meadow.Windows.Samples
-      run: dotnet build -c Release Meadow.Samples/Source/Meadow.Desktop.Samples/Source/Windows/Meadow.Desktop.Samples.sln
+      run: dotnet build -c Release Meadow.Samples/Source/Meadow.Desktop.Samples/Source/Meadow.Desktop.Samples.sln
