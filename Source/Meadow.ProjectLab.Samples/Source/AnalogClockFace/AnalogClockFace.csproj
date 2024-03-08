@@ -6,7 +6,7 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
+    <PackageReference Include="Meadow.ProjectLab" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.config.yaml">

@@ -5,11 +5,11 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Meadow.F7" Version="*" />
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DefineDebug>false</DefineDebug>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
-  </ItemGroup>
 </Project>

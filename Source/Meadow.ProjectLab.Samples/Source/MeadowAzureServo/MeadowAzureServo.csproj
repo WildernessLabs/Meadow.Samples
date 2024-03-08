@@ -6,9 +6,9 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\amqpnetlite\src\Amqp.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Meadow.Foundation.Grove\Source\Servo\Driver\Servo.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
+    <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Grove.Servos.Servo" Version="*" />
+    <PackageReference Include="Meadow.ProjectLab" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">

@@ -6,9 +6,9 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Light.Tsl2591\Driver\Sensors.Light.Tsl2591.csproj" />
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.F7" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Light.Tsl2591" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Meadow.Foundation.Sensors.Light.Tsl2591" />

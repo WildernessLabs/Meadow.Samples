@@ -12,8 +12,8 @@
     <EmbeddedResource Include="level_3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Meadow.Foundation.Grove\Source\MoistureSensor\Driver\MoistureSensor.csproj" />
+    <PackageReference Include="Meadow.ProjectLab" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Grove.Sensors.Moisture.MoistureSensor" Version="*" />
     <PackageReference Include="SimpleJpegDecoder" Version="0.*" />
   </ItemGroup>
   <PropertyGroup>
