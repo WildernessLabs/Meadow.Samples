@@ -48,7 +48,7 @@
     </ItemGroup>
 
     <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Web.Maple.Client" Version="*" />
+    <ProjectReference Include="..\..\..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Plugin.BLE" Version="3.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />

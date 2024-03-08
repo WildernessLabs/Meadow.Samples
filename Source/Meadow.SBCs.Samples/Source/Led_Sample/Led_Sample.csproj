@@ -6,6 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-    <PackageReference Include="Meadow.Linux" Version="*" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
     </ItemGroup>
 </Project>
