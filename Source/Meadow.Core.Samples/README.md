@@ -1,4 +1,4 @@
-<img src="Design/wilderness-labs-meadow-core-samples.jpg" style="margin-bottom:10px" />
+<img src="Design/wildernesslabs-meadow-core-samples.jpg" style="margin-bottom:10px" />
 
 # Meadow.Core.Samples
 
