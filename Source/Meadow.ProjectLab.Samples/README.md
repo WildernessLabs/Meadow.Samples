@@ -1,6 +1,21 @@
-<img src="Design/meadow-projectlab-samples.jpg" style="margin-bottom:10px" />
+<img src="Design/wildernesslabs-meadow-projectlab-samples.jpg" style="margin-bottom:10px" />
 
 # Meadow.ProjectLab.Samples
+
+This repo contains code samples for the Wilderness Labs Meadow [Project Lab](https://github.com/WildernessLabs/Meadow.Project.Lab) board. Project Lab is a hardware development and prototyping board designed to enable rapid prototyping and IoT software development with [Meadow](http://developer.wildernesslabs.co/Meadow/) and [Meadow.Foundation](http://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
+
+
+## Contents
+* [Project Samples](#project-samples)
+* [Hardware Specifications](#hardware-specifications)
+* [Pinout Diagram](#pinout-diagram)
+  * [Project Lab v3.e](#project-lab-v3e)
+  * [Project Lab v2.e](#project-lab-v2e)
+  * [Project Lab v1.e](#project-lab-v1e)
+* [License](#license)
+* [Support](#support)
+
+## Project Samples
 
 <table>
     <tr>
@@ -122,3 +137,76 @@
         </td>
     </tr>
 </table>
+
+## Hardware Specifications
+
+<img src="Design/project-lab-specs.jpg" alt="project-lab, specs, iot, dotnet" style="margin-top:10px;margin-bottom:10px" />
+
+<table>
+    <tr>
+        <th>Onboard Peripherals</th>
+        <th>Connectivity</th>
+    </tr>
+    <tr>
+        <td><strong>ILI9341</strong> - SPI 320x240 color display</li></td>
+        <td><strong>MikroBUS</strong> - Two sets of MikroBUS pin headers</td>
+    </tr>
+    <tr>
+        <td><strong>BMI270</strong> - I2C motion and acceleration sensor</td>
+        <td><strong>Qwiic</strong> - Stemma QT I2C connector</td>
+    </tr>
+    <tr>
+        <td><strong>BH1750</strong> - I2C light sensor</td>
+        <td><strong>Grove</strong> - Analog header</td>
+    </tr>
+    <tr>
+        <td><strong>BME688</strong> - I2C atmospheric sensor</td>
+        <td><strong>Grove</strong> - GPIO/serial header</td>
+    </tr>
+    <tr>
+        <td><strong>Push Button</strong> - 4 momentary buttons</td>
+        <td><strong>RS-485</strong> - Serial</td>
+    </tr>
+    <tr>
+        <td><strong>Magnetic Audio Transducer</strong> - High quality piezo speaker</td>
+        <td><strong>Ports</strong> - 3.3V, 5V, ground, one analog and two GPIO ports</td>
+    </tr>
+</table>
+
+## Pinout Diagram
+
+Check the diagrams below to see what pins on the Meadow are connected to every peripheral on board and its connectors:
+&nbsp;
+
+### Project Lab v3.e
+
+<img src="Design/projectlab-pinout-v3.jpg" alt="project-lab-v3, pinout, iot, dotnet" style="margin-top:10px;margin-bottom:10px" />
+
+### Project Lab v2.e
+
+<img src="Design/projectlab-pinout-v2.jpg" alt="project-lab-v2, specs, iot, dotnet" style="margin-top:10px;margin-bottom:10px" />
+
+### Project Lab v1.e
+
+<img src="Design/projectlab-pinout-v1.jpg" alt="project-lab-v1, specs, iot, dotnet" style="margin-top:10px;margin-bottom:10px" />
+
+## License
+Copyright 2023, Wilderness Labs Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+## Support
+
+Having trouble building/running these projects? 
+* File an [issue](https://github.com/WildernessLabs/Meadow.Desktop.Samples/issues) with a repro case to investigate, and/or
+* Join our [public Slack](http://slackinvite.wildernesslabs.co/), where we have an awesome community helping, sharing and building amazing things using Meadow.

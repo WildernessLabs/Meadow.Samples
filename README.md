@@ -4,30 +4,30 @@
 
 Sample applications for Meadow platforms, libraries and peripherals.
 
-## [Juego.Samples](/Source/Juego.Samples/)
+---
 
-An extensive collection of [Juego](https://github.com/WildernessLabs/Juego) projects using Meadow.Foundation’s MicroGraphics.
+[![Juego.Samples](Source/Juego.Samples/Design/wildernesslabs-meadow-juego-samples.jpg)](/Source/Juego.Samples/)
 
-## [Meadow.Core.Samples](/Source/Meadow.Core.Samples/)
+---
 
-Sample Meadow applications that illustrate usage of [Meadow.Core](https://developer.wildernesslabs.co/Meadow/Meadow.OS/) features such as GPIO, WiFi, BLE, and more.
+[![Meadow.Core.Samples](Source/Meadow.Core.Samples/Design/wildernesslabs-meadow-core-samples.jpg)](/Source/Meadow.Core.Samples/)
 
-## [Meadow.SBCs.Samples](/Source/Meadow.SBCs.Samples/)
+---
 
-An extensive collection of Meadow.Linux projects that run on Single-Board-Computers like Raspberri Pis.
+[![Meadow.SBCs.Samples](Source/Meadow.SBCs.Samples/Design/wildernesslabs-meadow-sbcs-samples.jpg)](/Source/Meadow.SBCs.Samples/)
 
-## [Meadow.Cloud.Samples](/Source/Meadow.Cloud.Samples/)
+---
 
-An extensive collection of project samples using various [Meadow.Cloud](https://developer.wildernesslabs.co/Meadow/Meadow.Cloud/) features such as OTA updates.
+[![Meadow.Cloud.Samples](Source/Meadow.Cloud.Samples/Design/wildernesslabs-meadow-cloud-samples.jpg)](/Source/Meadow.Cloud.Samples/)
 
-## [Meadow.Project.Samples](/Source/Meadow.Project.Samples/)
+---
 
-An extensive collection of Meadow Dev Kit projects using Meadow.Foundation libraries and peripherals.
+[![Meadow.Project.Samples](Source/Meadow.Project.Samples/Design/wildernesslabs-meadow-project-samples.jpg)](/Source/Meadow.Project.Samples/)
 
-## [Meadow.Desktop.Samples](/Source/Meadow.Desktop.Samples/)
+---
 
-An extensive collection of Meadow.Desktop projects that run on Windows, Linux, and macOS.
+[![Meadow.Desktop.Samples](Source/Meadow.Desktop.Samples/Design/wildernesslabs-meadow-desktop-samples.jpg)](/Source/Meadow.Desktop.Samples/)
 
-## [Meadow.ProjectLab.Samples](/Source/Meadow.ProjectLab.Samples/)
+---
 
-Collection of project samples for the Wilderness Labs [ProjectLab](https://github.com/WildernessLabs/Meadow.ProjectLab) for rapid prototyping.
+[![Meadow.ProjectLab.Samples](Source/Meadow.ProjectLab.Samples/Design/wildernesslabs-meadow-projectlab-samples.jpg)](/Source/Meadow.ProjectLab.Samples/)
