@@ -1,0 +1,33 @@
+﻿# Device specific config.
+Device:
+    # Name of the device on the network.
+    Name: CellBasics
+
+    # Corresponding MCU pin names for the reserved pins
+    # (COMX_RX pin, COM_TX pin, ENABLE pin)
+    # Examples:
+    # Using mikroBUS 1 on Project Lab v3 with Quectel BG95-M3 (Meadow AN pin as enable pin),
+    #  reserve the following:
+    ReservedPins: B15;B14;A3
+
+    # Using mikroBUS 1 on Project Lab v3 with Quectel M95 (Meadow RST pin as enable pin),
+    #  reserve the following:
+    # ReservedPins: B15;B14;H10
+
+    # Using COM4 on F7FeatherV2 with BG95-M3 or M95 (Meadow D10 pin as enable pin), 
+    #  reserve the following:
+    # ReservedPins: I9;H13;C7
+
+    # Using COM1 on F7FeatherV2 with BG95-M3 or M95 (Meadow D10 pin as enable pin), 
+    #  reserve the following:
+    # ReservedPins: B15;B14;C7
+
+    # IMPORTANT: 
+    # Ensure to use the MCU pin names, not the Meadow pin names (seen on the board)
+    # For a custom setup, consult the pinout definition on your 
+    #  Meadow device datasheet for the correct MCU pin names
+
+# Network configuration.
+Network:
+    #  Which interface should be used?
+    DefaultInterface: Cell
