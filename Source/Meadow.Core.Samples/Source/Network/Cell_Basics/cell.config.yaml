@@ -1,0 +1,28 @@
+Settings:
+    APN: YOUR-APN         # (required) Access Point Name
+    Module: BG95M3        # (required) Module model (BG770A, BG95M3 or M95)
+    User: USER            # (optional) APN user 
+    Password: PASSWORD    # (optional) APN password
+    Operator: 00000       # (optional) Carrier numeric operator code
+    Mode: CATM1           # (optional) Network mode (CATM1, NBIOT or GSM)
+    Interface: COM1       # (required) Serial interface (COM1 (default), COM4 or COM6)
+    EnablePin: A3         # (required) Enable MCU pin to turn the module on/off.
+                          # Default value is MCU Pin A3
+
+                          # IMPORTANT: 
+                          # Ensure to use the MCU pin names, not the Meadow pin names (seen on the board)
+                          #
+                          #  Examples:
+                          #  Using mikroBUS 1 on Project Lab v3 with Quectel BG95-M3 (Meadow AN pin as enable pin):
+                          #   EnablePin: A3
+                          #
+                          #  Using mikroBUS 1 on Project Lab v3 with Quectel M95 (Meadow RST pin as enable pin):
+                          #   EnablePin: H10
+                          #
+                          #  Using Meadow D10 pin as Enable pin on F7FeatherV2 with BG95-M3 or M95: 
+                          #   EnablePin: C7
+                          #
+                          # For a custom setup, consult the pinout definition on your 
+                          #  Meadow device datasheet for the correct MCU pin names
+
+
