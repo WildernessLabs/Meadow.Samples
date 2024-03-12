@@ -4,34 +4,74 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
     <ItemGroup>
-        <None Remove="w_clear.jpg" />
-        <None Remove="w_cloudy.jpg" />
-        <None Remove="w_drizzle.jpg" />
-        <None Remove="w_misc.jpg" />
-        <None Remove="w_rain.jpg" />
-        <None Remove="w_snow.jpg" />
-        <None Remove="w_storm.jpg" />
+      <None Remove="Resources\img_meadow.bmp" />
+      <None Remove="Resources\img_refreshed.bmp" />
+      <None Remove="Resources\img_refreshing.bmp" />
+      <None Remove="Resources\img_wifi_connected.bmp" />
+      <None Remove="Resources\img_wifi_connecting.bmp" />
+      <None Remove="Resources\w_clear_moon.bmp" />
+      <None Remove="Resources\w_clear_sun.bmp" />
+      <None Remove="Resources\w_clouds.bmp" />
+      <None Remove="Resources\w_clouds_moon.bmp" />
+      <None Remove="Resources\w_clouds_sun.bmp" />
+      <None Remove="Resources\w_drizzle.bmp" />
+      <None Remove="Resources\w_drizzle_heavy.bmp" />
+      <None Remove="Resources\w_drizzle_light_moon.bmp" />
+      <None Remove="Resources\w_drizzle_light_sun.bmp" />
+      <None Remove="Resources\w_misc.bmp" />
+      <None Remove="Resources\w_mist.bmp" />
+      <None Remove="Resources\w_rain.bmp" />
+      <None Remove="Resources\w_rain_heavy.bmp" />
+      <None Remove="Resources\w_rain_light_moon.bmp" />
+      <None Remove="Resources\w_rain_light_sun.bmp" />
+      <None Remove="Resources\w_snow.bmp" />
+      <None Remove="Resources\w_snow_light_moon.bmp" />
+      <None Remove="Resources\w_snow_light_sun.bmp" />
+      <None Remove="Resources\w_snow_rain.bmp" />
+      <None Remove="Resources\w_storm.bmp" />
+      <None Remove="Resources\w_storm_heavy.bmp" />
+      <None Remove="Resources\w_storm_light_moon.bmp" />
+      <None Remove="Resources\w_storm_light_sun.bmp" />
     </ItemGroup>
-    
     <ItemGroup>
-        <EmbeddedResource Include="w_clear.jpg" />
-        <EmbeddedResource Include="w_cloudy.jpg" />
-        <EmbeddedResource Include="w_drizzle.jpg" />
-        <EmbeddedResource Include="w_misc.jpg" />
-        <EmbeddedResource Include="w_rain.jpg" />
-        <EmbeddedResource Include="w_snow.jpg" />
-        <EmbeddedResource Include="w_storm.jpg" />
+      <EmbeddedResource Include="Resources\img_meadow.bmp" />
+      <EmbeddedResource Include="Resources\img_refreshed.bmp" />
+      <EmbeddedResource Include="Resources\img_refreshing.bmp" />
+      <EmbeddedResource Include="Resources\img_wifi_connected.bmp" />
+      <EmbeddedResource Include="Resources\img_wifi_connecting.bmp" />
+      <EmbeddedResource Include="Resources\w_clear_moon.bmp" />
+      <EmbeddedResource Include="Resources\w_clear_sun.bmp" />
+      <EmbeddedResource Include="Resources\w_clouds.bmp" />
+      <EmbeddedResource Include="Resources\w_clouds_moon.bmp" />
+      <EmbeddedResource Include="Resources\w_clouds_sun.bmp" />
+      <EmbeddedResource Include="Resources\w_drizzle.bmp" />
+      <EmbeddedResource Include="Resources\w_drizzle_heavy.bmp" />
+      <EmbeddedResource Include="Resources\w_drizzle_light_moon.bmp" />
+      <EmbeddedResource Include="Resources\w_drizzle_light_sun.bmp" />
+      <EmbeddedResource Include="Resources\w_misc.bmp" />
+      <EmbeddedResource Include="Resources\w_mist.bmp" />
+      <EmbeddedResource Include="Resources\w_rain.bmp" />
+      <EmbeddedResource Include="Resources\w_rain_heavy.bmp" />
+      <EmbeddedResource Include="Resources\w_rain_light_moon.bmp" />
+      <EmbeddedResource Include="Resources\w_rain_light_sun.bmp" />
+      <EmbeddedResource Include="Resources\w_snow.bmp" />
+      <EmbeddedResource Include="Resources\w_snow_light_moon.bmp" />
+      <EmbeddedResource Include="Resources\w_snow_light_sun.bmp" />
+      <EmbeddedResource Include="Resources\w_snow_rain.bmp" />
+      <EmbeddedResource Include="Resources\w_storm.bmp" />
+      <EmbeddedResource Include="Resources\w_storm_heavy.bmp" />
+      <EmbeddedResource Include="Resources\w_storm_light_moon.bmp" />
+      <EmbeddedResource Include="Resources\w_storm_light_sun.bmp" />
     </ItemGroup>
     
     <ItemGroup>
         <PackageReference Include="System.Text.Json" Version="*" />
-        <PackageReference Include="SimpleJpegDecoder" Version="*" />
     </ItemGroup>
     
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
+      <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Graphics.MicroLayout\Driver\Graphics.MicroLayout.csproj" />
       <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.TftSpi\Driver\Displays.TftSpi.csproj" />
     </ItemGroup>
 </Project>
