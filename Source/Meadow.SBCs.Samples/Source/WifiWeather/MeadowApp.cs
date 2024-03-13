@@ -11,9 +11,6 @@ public class MeadowApp : LinuxApp<RaspberryPi>
     {
         Resolver.Log.Info("Initialize...");
 
-        //var hardware = new WifiWeatherHardware();
-        //var network = Device.NetworkAdapters.Primary<INetworkAdapter>();
-
         mainController = new MainController();
         mainController.Initialize();
 

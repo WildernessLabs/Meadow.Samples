@@ -1,8 +1,8 @@
 <img src="Design/wildernesslabs-meadow-sbcs-samples.jpg" style="margin-bottom:10px" />
 
-# Meadow.Desktop.Samples
+# Meadow.SBCs.Samples
 
-Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/Getting_Started_Windows/) and [Meadow.Linux](http://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/Getting_Started_Linux/). Click on any of these sample project to learn how they work and run them straight from your Windows machine or Linux device.
+Public project samples for [Single-Board-Computers (SBCs)](https://developer.wildernesslabs.co/Meadow/Getting_Started/SBCs/). Click on any of these sample project to learn how they work and run them on a Raspberry Pi, SeeedStudio reTerminal and/or Nvidia Jetson Nano.
 
 ## Contents
 
@@ -16,24 +16,24 @@ Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/M
 <table>
     <tr>
         <td>
-            <img src="Design/meadow-linux-blinky.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-blinky.jpg"/><br/>
             Getting started with a Blinky app on a Raspberry Pi</br>
             <a href="Source/Blinky/">Source Code</a>
         </td>
         <td>
-            <img src="Design/meadow-linux-character-display.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-character-display.jpg"/><br/>
             Using a 20x4 LCD Character Display on a Raspberry Pi</br>
             <a href="Source/CharacterDisplaySample/">Source Code</a>
         </td>
         <td>
-            <img src="Design/template-orange.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-st7789.jpg"/><br/>
             Using MicroGraphics on a ST7789 display on a Raspberry Pi</br>
             <a href="Source/ST7789_Sample/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
-            <img src="Design/template-green.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-wifiweather.jpg"/><br/>
             Build a weather widget using MicroLayout on a Raspberry Pi</br>
             <a href="Source/WifiWeather/">Source Code</a>
         </td>
