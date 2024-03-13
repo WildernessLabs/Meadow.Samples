@@ -49,11 +49,10 @@ public class MeadowApp : LinuxApp<RaspberryPi>
 
             _display = new St7789(
                 spiBus: spiBus,
-                chipSelectPin: Device.Pins.GPIO25, // A03
-                dcPin: Device.Pins.GPIO27, // A04
-                resetPin: Device.Pins.GPIO22, // A05
-                width: 240,
-                height: 240);
+                chipSelectPin: null,
+                dcPin: Device.Pins.GPIO20,
+                resetPin: Device.Pins.GPIO21,
+                width: 240, height: 240);
         }
         catch (NativeException e)
         {

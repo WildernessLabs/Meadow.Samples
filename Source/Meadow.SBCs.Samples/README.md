@@ -16,24 +16,24 @@ Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/M
 <table>
     <tr>
         <td>
-            <img src="Design/meadow-linux-blinky.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-blinky.jpg"/><br/>
             Getting started with a Blinky app on a Raspberry Pi</br>
             <a href="Source/Blinky/">Source Code</a>
         </td>
         <td>
-            <img src="Design/meadow-linux-character-display.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-character-display.jpg"/><br/>
             Using a 20x4 LCD Character Display on a Raspberry Pi</br>
             <a href="Source/CharacterDisplaySample/">Source Code</a>
         </td>
         <td>
-            <img src="Design/template-orange.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-st7789.jpg"/><br/>
             Using MicroGraphics on a ST7789 display on a Raspberry Pi</br>
             <a href="Source/ST7789_Sample/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
-            <img src="Design/template-green.png"/><br/>
+            <img src="Design/wildernesslabs-meadow-linux-wifiweather.jpg"/><br/>
             Build a weather widget using MicroLayout on a Raspberry Pi</br>
             <a href="Source/WifiWeather/">Source Code</a>
         </td>
