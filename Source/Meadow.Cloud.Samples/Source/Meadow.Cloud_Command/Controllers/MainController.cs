@@ -32,7 +32,7 @@ namespace Meadow.Cloud_Command.Controllers
             Thread.Sleep(3000);
             displayController.ShowDataScreen();
 
-            Resolver.UpdateService.OnStateChanged += (sender, state) =>
+            Resolver.UpdateService.StateChanged += (sender, state) =>
             {
                 if (state.ToString().ToLower() == "idle")
                 {

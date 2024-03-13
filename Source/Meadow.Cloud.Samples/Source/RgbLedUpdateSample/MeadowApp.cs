@@ -1,10 +1,8 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation;
 using Meadow.Foundation.Leds;
 using Meadow.Hardware;
 using Meadow.Peripherals.Leds;
-using Meadow.Update;
 using System.Threading.Tasks;
 
 namespace RgbLedUpdateSample;
@@ -30,7 +28,7 @@ meadow package publish -p your_package_id -c your_collection_id
 // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
 public class MeadowApp : App<F7FeatherV2>
 {
-    RgbPwmLed onboardLed;
+    private RgbPwmLed onboardLed;
 
     public override Task Initialize()
     {
@@ -56,10 +54,9 @@ public class MeadowApp : App<F7FeatherV2>
     {
         Resolver.Log.Info("Run...");
 
-        var svc = Resolver.Services.Get<IUpdateService>() as UpdateService;
-        svc.ClearUpdates(); // uncomment to clear persisted info
+        Resolver.UpdateService.ClearUpdates(); // uncomment to clear persisted info
 
-        svc.OnUpdateAvailable += (updateService, info) =>
+        Resolver.UpdateService.UpdateAvailable += (updateService, info) =>
         {
             onboardLed.StartBlink(Color.Orange);
             Resolver.Log.Info("Update available!");
@@ -71,7 +68,7 @@ public class MeadowApp : App<F7FeatherV2>
             });
         };
 
-        svc.OnUpdateRetrieved += (updateService, info) =>
+        Resolver.UpdateService.UpdateRetrieved += (updateService, info) =>
         {
             onboardLed.StartBlink(Color.Yellow);
             Resolver.Log.Info("Update retrieved!");

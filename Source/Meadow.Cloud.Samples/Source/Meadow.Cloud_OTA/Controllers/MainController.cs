@@ -7,9 +7,9 @@ namespace Meadow.Cloud_OTA.Controllers
 {
     internal class MainController
     {
-        IMeadowCloudOtaHardware hardware;
-        IWiFiNetworkAdapter network;
-        DisplayController displayController;
+        private IMeadowCloudOtaHardware hardware;
+        private IWiFiNetworkAdapter network;
+        private DisplayController displayController;
 
         public MainController(IMeadowCloudOtaHardware hardware, IWiFiNetworkAdapter network)
         {
@@ -26,21 +26,28 @@ namespace Meadow.Cloud_OTA.Controllers
 
         public Task Run()
         {
-            var svc = Resolver.Services.Get<IUpdateService>() as UpdateService;
-            svc.ClearUpdates(); // uncomment to clear persisted info
+            var cloudService = Resolver.MeadowCloudService;
+            var updateService = Resolver.UpdateService;
 
-            svc.OnStateChanged += SvcOnStateChanged;
+            updateService.ClearUpdates(); // uncomment to clear persisted info
 
-            svc.OnUpdateProgress += SvcOnUpdateProgress;
+            updateService.StateChanged += OnUpdateStateChanged;
 
-            svc.OnUpdateAvailable += SvcOnUpdateAvailable;
+            updateService.RetrieveProgress += SvcOnUpdateProgress;
 
-            svc.OnUpdateRetrieved += SvcOnUpdateRetrieved;
+            updateService.UpdateAvailable += SvcOnUpdateAvailable;
+
+            updateService.UpdateRetrieved += SvcOnUpdateRetrieved;
 
             return Task.CompletedTask;
         }
 
-        private void SvcOnStateChanged(object sender, UpdateState e)
+        private void OnCloudStateChanged(object sender, CloudConnectionState e)
+        {
+            displayController.UpdateStatus($"{FormatStatusMessage(e)}");
+        }
+
+        private void OnUpdateStateChanged(object sender, UpdateState e)
         {
             displayController.UpdateStatus($"{FormatStatusMessage(e)}");
         }
@@ -78,13 +85,24 @@ namespace Meadow.Cloud_OTA.Controllers
             {
                 case UpdateState.Dead: message = "Failed"; break;
                 case UpdateState.Disconnected: message = "Disconnected"; break;
-                case UpdateState.Authenticating: message = "Authenticating..."; break;
-                case UpdateState.Connecting: message = "Connecting..."; break;
                 case UpdateState.Connected: message = "Connected!"; break;
-                case UpdateState.Idle: message = "Ready!"; break;
-                case UpdateState.UpdateAvailable: message = "Update Available!"; break;
                 case UpdateState.DownloadingFile: message = "Downloading File..."; break;
                 case UpdateState.UpdateInProgress: message = "Update In Progress..."; break;
+            }
+
+            return message;
+        }
+
+        private string FormatStatusMessage(CloudConnectionState state)
+        {
+            string message = string.Empty;
+
+            switch (state)
+            {
+                case CloudConnectionState.Disconnected: message = "Disconnected"; break;
+                case CloudConnectionState.Authenticating: message = "Authenticating..."; break;
+                case CloudConnectionState.Connecting: message = "Connecting..."; break;
+                case CloudConnectionState.Connected: message = "Connected!"; break;
             }
 
             return message;
