@@ -1,13 +1,11 @@
 ﻿using Meadow;
 using Meadow.Foundation.Leds;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Led_Sample;
+namespace DigitalOutputs_Sample;
 
 public class MeadowApp : LinuxApp<RaspberryPi>
 {
-    private List<Led> leds;
+    private List<Led>? leds;
 
     public override Task Initialize()
     {
@@ -47,58 +45,27 @@ public class MeadowApp : LinuxApp<RaspberryPi>
 
     public override async Task Run()
     {
-        Resolver.Log.Error("Error level message");
-        Resolver.Log.Warn("Warn level message");
-
         Resolver.Log.Info("TestLeds...");
 
         while (true)
         {
             Resolver.Log.Error("Turning on each led every 100ms");
-            foreach (var led in leds)
+            for (int i = 0; i < leds.Count; i++)
             {
-                led.IsOn = true;
+                leds[i].IsOn = true;
                 await Task.Delay(100);
             }
 
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
             Resolver.Log.Info("Turning off each led every 100ms");
-            foreach (var led in leds)
+            for (int i = leds.Count - 1; i >= 0; i--)
             {
-                led.IsOn = false;
+                leds[i].IsOn = false;
                 await Task.Delay(100);
             }
 
-            await Task.Delay(1000);
-
-            //Resolver.Log.Info("Blinking the LEDs for a second each");
-            //foreach (var led in leds)
-            //{
-            //    await led.StartBlink();
-            //    await Task.Delay(3000);
-            //    await led.StopAnimation();
-            //}
-
-            //Resolver.Log.Info("Blinking the LEDs for a second each with on (1s) and off (1s)");
-            //foreach (var led in leds)
-            //{
-            //    await led.StartBlink(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
-            //    await Task.Delay(3000);
-            //    await led.StopAnimation();
-            //}
-
-            //await Task.Delay(3000);
+            await Task.Delay(500);
         }
     }
 }
-
-/*
- * SAMPLE WIRING
- * 
-      5V |
-      5V |
-Pi4  GND |----------(LED)-------------
-     ... |                            |
-      40 |-----[resistor]-------------
-*/

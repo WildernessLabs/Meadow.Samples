@@ -59,6 +59,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.TftSpi", "..\..\..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.Gtk", "..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Gtk\Driver\Displays.Gtk.csproj", "{BF63512A-DCFF-4F15-9972-BA37C75A558D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistanceMeter", "DistanceMeter\DistanceMeter.csproj", "{9A849A28-5ED2-4EBF-9F44-0CF8B99F7A74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Distance.Vl53l0x", "..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Distance.Vl53l0x\Driver\Sensors.Distance.Vl53l0x.csproj", "{B122048D-A08F-4839-A4AD-379AF74ADD53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +197,16 @@ Global
 		{BF63512A-DCFF-4F15-9972-BA37C75A558D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF63512A-DCFF-4F15-9972-BA37C75A558D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF63512A-DCFF-4F15-9972-BA37C75A558D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A849A28-5ED2-4EBF-9F44-0CF8B99F7A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A849A28-5ED2-4EBF-9F44-0CF8B99F7A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A849A28-5ED2-4EBF-9F44-0CF8B99F7A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A849A28-5ED2-4EBF-9F44-0CF8B99F7A74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B122048D-A08F-4839-A4AD-379AF74ADD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B122048D-A08F-4839-A4AD-379AF74ADD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B122048D-A08F-4839-A4AD-379AF74ADD53}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B122048D-A08F-4839-A4AD-379AF74ADD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B122048D-A08F-4839-A4AD-379AF74ADD53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B122048D-A08F-4839-A4AD-379AF74ADD53}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -224,6 +238,8 @@ Global
 		{37AB6A6F-F23D-4795-B98A-BA4CBA5228E9} = {22C32C2E-F0DB-4970-B742-395FEBF34C22}
 		{FE666D6C-9035-4739-A685-50213BA05BC0} = {22C32C2E-F0DB-4970-B742-395FEBF34C22}
 		{BF63512A-DCFF-4F15-9972-BA37C75A558D} = {22C32C2E-F0DB-4970-B742-395FEBF34C22}
+		{9A849A28-5ED2-4EBF-9F44-0CF8B99F7A74} = {17BB45E4-7B9D-4A90-84B4-E37260E362B2}
+		{B122048D-A08F-4839-A4AD-379AF74ADD53} = {22C32C2E-F0DB-4970-B742-395FEBF34C22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
