@@ -9,6 +9,8 @@ public class MeadowApp : LinuxApp<RaspberryPi>
 
     public override Task Initialize()
     {
+        Resolver.Log.Info("Initialize...");
+
         leds = new List<Led>
             {
                 new Led(Device.Pins.GPIO2),
@@ -45,7 +47,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
 
     public override async Task Run()
     {
-        Resolver.Log.Info("TestLeds...");
+        Resolver.Log.Info("Run...");
 
         while (true)
         {
@@ -67,5 +69,10 @@ public class MeadowApp : LinuxApp<RaspberryPi>
 
             await Task.Delay(500);
         }
+    }
+
+    public static async Task Main(string[] args)
+    {
+        await MeadowOS.Start(args);
     }
 }
