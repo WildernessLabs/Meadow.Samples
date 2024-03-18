@@ -77,6 +77,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudSample.Desktop", "Mult
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudSample.RasPi", "MultiPlatform\CloudSample.RasPi\CloudSample.RasPi.csproj", "{DCA5AD0B-63DB-45AC-B2CC-2CB839EA2478}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.WinForms", "..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.WinForms\Driver\Displays.WinForms.csproj", "{C93A9298-73C1-4370-8B15-5C2561D62840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -271,6 +273,10 @@ Global
 		{DCA5AD0B-63DB-45AC-B2CC-2CB839EA2478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA5AD0B-63DB-45AC-B2CC-2CB839EA2478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA5AD0B-63DB-45AC-B2CC-2CB839EA2478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C93A9298-73C1-4370-8B15-5C2561D62840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C93A9298-73C1-4370-8B15-5C2561D62840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C93A9298-73C1-4370-8B15-5C2561D62840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C93A9298-73C1-4370-8B15-5C2561D62840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -304,6 +310,7 @@ Global
 		{3EF5F931-CFDA-46CA-9DB6-D2BA25C01681} = {616BD094-9357-49EE-AAFA-B5D82EEF769B}
 		{2E075DE0-5879-42E4-B960-18BB5B82DEB6} = {6A3C5792-B81E-4021-958E-AC2B53B94325}
 		{DCA5AD0B-63DB-45AC-B2CC-2CB839EA2478} = {6A3C5792-B81E-4021-958E-AC2B53B94325}
+		{C93A9298-73C1-4370-8B15-5C2561D62840} = {616BD094-9357-49EE-AAFA-B5D82EEF769B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F17526E-EAAE-451F-B293-1384266E1FFC}

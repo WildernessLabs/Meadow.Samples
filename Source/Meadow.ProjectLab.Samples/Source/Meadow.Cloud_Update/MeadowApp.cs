@@ -96,7 +96,7 @@ namespace Meadow.Cloud_Update
             //var svc = Resolver.Services.Get<IUpdateService>() as Meadow.Update.UpdateService;
             Resolver.UpdateService.ClearUpdates(); // comment to preserve persisted info
 
-            Resolver.UpdateService.OnUpdateAvailable += (updateService, info) =>
+            Resolver.UpdateService.UpdateAvailable += (updateService, info) =>
             {
                 Resolver.Log.Info($"Update available!");
                 displayController.Notification = "Update Available!";
@@ -111,7 +111,7 @@ namespace Meadow.Cloud_Update
                 });
             };
 
-            Resolver.UpdateService.OnUpdateRetrieved += (updateService, info) =>
+            Resolver.UpdateService.UpdateRetrieved += (updateService, info) =>
             {
                 Resolver.Log.Info("Update retrieved!");
                 displayController.Notification = "Applying update!";

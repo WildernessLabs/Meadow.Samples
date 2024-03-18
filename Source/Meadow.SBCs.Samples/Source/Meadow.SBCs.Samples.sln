@@ -63,7 +63,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistanceMeter", "DistanceMe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Distance.Vl53l0x", "..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Distance.Vl53l0x\Driver\Sensors.Distance.Vl53l0x.csproj", "{B122048D-A08F-4839-A4AD-379AF74ADD53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalOutputs_Sample", "DigitalOutputs_Sample\DigitalOutputs_Sample.csproj", "{31847732-5F45-4314-9F2A-78D24658EF8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalOutputs_Sample", "DigitalOutputs_Sample\DigitalOutputs_Sample.csproj", "{31847732-5F45-4314-9F2A-78D24658EF8F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Atmospheric.Bmx280", "..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Atmospheric.Bmx280\Driver\Sensors.Atmospheric.Bmx280.csproj", "{026E5C9C-C0C5-4038-A018-1969C988678F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -213,6 +215,12 @@ Global
 		{31847732-5F45-4314-9F2A-78D24658EF8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31847732-5F45-4314-9F2A-78D24658EF8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31847732-5F45-4314-9F2A-78D24658EF8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026E5C9C-C0C5-4038-A018-1969C988678F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026E5C9C-C0C5-4038-A018-1969C988678F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026E5C9C-C0C5-4038-A018-1969C988678F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{026E5C9C-C0C5-4038-A018-1969C988678F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026E5C9C-C0C5-4038-A018-1969C988678F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026E5C9C-C0C5-4038-A018-1969C988678F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -247,6 +255,7 @@ Global
 		{9A849A28-5ED2-4EBF-9F44-0CF8B99F7A74} = {17BB45E4-7B9D-4A90-84B4-E37260E362B2}
 		{B122048D-A08F-4839-A4AD-379AF74ADD53} = {22C32C2E-F0DB-4970-B742-395FEBF34C22}
 		{31847732-5F45-4314-9F2A-78D24658EF8F} = {17BB45E4-7B9D-4A90-84B4-E37260E362B2}
+		{026E5C9C-C0C5-4038-A018-1969C988678F} = {22C32C2E-F0DB-4970-B742-395FEBF34C22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
