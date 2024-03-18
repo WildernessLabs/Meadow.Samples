@@ -21,12 +21,8 @@ Logging:
         Default: Trace
 
 # Meadow.Cloud configuration.
-Update:
-
+MeadowCloud:
     # Enable Meadow.Cloud features
-    Enabled: true
-
-Cloud:
     Enabled: true
 
 # Meadow.Cloud Health Metrics.

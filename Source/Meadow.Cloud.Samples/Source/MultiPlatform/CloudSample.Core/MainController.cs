@@ -113,8 +113,3 @@ public class CommandController
         Resolver.Log.Info($"Command received: Data = {command.Data}");
     }
 }
-
-public class SampleCommand : IMeadowCommand
-{
-    public int Data { get; set; }
-}
