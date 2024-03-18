@@ -26,25 +26,23 @@ namespace Meadow.Cloud_OTA.Controllers
 
         public Task Run()
         {
-            var cloudService = Resolver.MeadowCloudService;
             var updateService = Resolver.UpdateService;
 
             updateService.ClearUpdates(); // uncomment to clear persisted info
 
             updateService.StateChanged += OnUpdateStateChanged;
 
-            updateService.RetrieveProgress += SvcOnUpdateProgress;
+            updateService.RetrieveProgress += OnUpdateProgress;
 
-            updateService.UpdateAvailable += SvcOnUpdateAvailable;
+            updateService.UpdateAvailable += OnUpdateAvailable;
 
-            updateService.UpdateRetrieved += SvcOnUpdateRetrieved;
+            updateService.UpdateRetrieved += OnUpdateRetrieved;
+
+            var cloudService = Resolver.MeadowCloudService;
+
+            cloudService.ConnectionStateChanged += OnCloudStateChanged;
 
             return Task.CompletedTask;
-        }
-
-        private void OnCloudStateChanged(object sender, CloudConnectionState e)
-        {
-            displayController.UpdateStatus($"{FormatStatusMessage(e)}");
         }
 
         private void OnUpdateStateChanged(object sender, UpdateState e)
@@ -52,14 +50,14 @@ namespace Meadow.Cloud_OTA.Controllers
             displayController.UpdateStatus($"{FormatStatusMessage(e)}");
         }
 
-        private void SvcOnUpdateProgress(IUpdateService updateService, UpdateInfo info)
+        private void OnUpdateProgress(IUpdateService updateService, UpdateInfo info)
         {
             short percentage = (short)(((double)info.DownloadProgress / info.FileSize) * 100);
 
             displayController.UpdateDownloadProgress(percentage);
         }
 
-        private async void SvcOnUpdateAvailable(IUpdateService updateService, UpdateInfo info)
+        private async void OnUpdateAvailable(IUpdateService updateService, UpdateInfo info)
         {
             _ = hardware.RgbPwmLed.StartBlink(Color.Magenta);
             displayController.UpdateStatus("Update available!");
@@ -68,13 +66,18 @@ namespace Meadow.Cloud_OTA.Controllers
             updateService.RetrieveUpdate(info);
         }
 
-        private async void SvcOnUpdateRetrieved(IUpdateService updateService, UpdateInfo info)
+        private async void OnUpdateRetrieved(IUpdateService updateService, UpdateInfo info)
         {
             _ = hardware.RgbPwmLed.StartBlink(Color.Cyan);
             displayController.UpdateStatus("Update retrieved!");
 
             await Task.Delay(5000);
             updateService.ApplyUpdate(info);
+        }
+
+        private void OnCloudStateChanged(object sender, CloudConnectionState e)
+        {
+            displayController.UpdateStatus($"{FormatStatusMessage(e)}");
         }
 
         private string FormatStatusMessage(UpdateState state)
