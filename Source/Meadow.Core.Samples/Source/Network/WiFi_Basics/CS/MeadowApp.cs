@@ -5,163 +5,171 @@ using Meadow.Hardware;
 using System;
 using System.Net.Http;
 using System.Net.NetworkInformation;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace WiFi_Basics
+namespace WiFi_Basics;
+
+public class CoreComputeApp : MeadowApp<F7CoreComputeV2> { }
+public class F7FeatherV2App : MeadowApp<F7FeatherV2> { }
+public class F7FeatherV1App : MeadowApp<F7FeatherV1> { }
+
+public class MeadowApp<T> : App<T>
+    where T : F7MicroBase
 {
-    public class MeadowApp : App<F7CoreComputeV2>
+    private const string WIFI_NAME = "LORA-LAN";
+    private const string WIFI_PASSWORD = "1234567890";
+
+    public override async Task Run()
     {
-        private const string WIFI_NAME = "WildernessLabs.HS";
-        private const string WIFI_PASSWORD = "meadowiot";
+        Resolver.Log.Info("Run...");
 
-        public override async Task Run()
+        var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+
+        // connected event test.
+        wifi.NetworkConnected += WiFiAdapter_NetworkConnected;
+        wifi.NetworkDisconnected += Wifi_NetworkDisconnected;
+
+        // enumerate the public WiFi channels
+        await ScanForAccessPoints(wifi);
+
+        try
         {
-            Resolver.Log.Info("Run...");
+            // connect to the wifi network.
+            Resolver.Log.Info($"Connecting to WiFi Network {WIFI_NAME}");
 
-            var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+            await wifi.Connect(WIFI_NAME, WIFI_PASSWORD, TimeSpan.FromSeconds(45));
+        }
+        catch (Exception ex)
+        {
+            Resolver.Log.Error($"Failed to Connect: {ex.Message}");
+        }
 
-            // connected event test.
-            wifi.NetworkConnected += WiFiAdapter_NetworkConnected;
+        if (wifi.IsConnected)
+        {
+            DisplayNetworkInformation();
 
-            // enumerate the public WiFi channels
-            await ScanForAccessPoints(wifi);
+            //while (true)
+            //{
+            //    await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
+            //}
+        }
+    }
 
-            try
+    private void Wifi_NetworkDisconnected(INetworkAdapter sender, NetworkDisconnectionEventArgs args)
+    {
+        Resolver.Log.Info($"Network disconnected: {args.Reason}");
+    }
+
+    private void WiFiAdapter_NetworkConnected(INetworkAdapter networkAdapter, NetworkConnectionEventArgs e)
+    {
+        Resolver.Log.Info($"Network connected. Device address: {e.IpAddress}");
+    }
+
+    private async Task ScanForAccessPoints(IWiFiNetworkAdapter wifi)
+    {
+        Resolver.Log.Info("Getting list of access points");
+        var networks = await wifi.Scan(TimeSpan.FromSeconds(60));
+
+        if (networks.Count > 0)
+        {
+            Resolver.Log.Info("|-------------------------------------------------------------|---------|");
+            Resolver.Log.Info("|         Network Name             | RSSI |       BSSID       | Channel |");
+            Resolver.Log.Info("|-------------------------------------------------------------|---------|");
+
+            foreach (WifiNetwork accessPoint in networks)
             {
-                // connect to the wifi network.
-                Resolver.Log.Info($"Connecting to WiFi Network {WIFI_NAME}");
-
-                await wifi.Connect(WIFI_NAME, WIFI_PASSWORD, TimeSpan.FromSeconds(45));
+                Resolver.Log.Info($"| {accessPoint.Ssid,-32} | {accessPoint.SignalDbStrength,4} | {accessPoint.Bssid,17} |   {accessPoint.ChannelCenterFrequency,3}   |");
             }
-            catch (Exception ex)
-            {
-                Resolver.Log.Error($"Failed to Connect: {ex.Message}");
-            }
+        }
+        else
+        {
+            Resolver.Log.Info($"No access points detected");
+        }
+    }
 
-            if (wifi.IsConnected)
-            {
-                DisplayNetworkInformation();
+    public void DisplayNetworkInformation()
+    {
+        NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
 
-                while (true)
+        if (adapters.Length == 0)
+        {
+            Resolver.Log.Warn("No adapters available");
+        }
+        else
+        {
+            foreach (NetworkInterface adapter in adapters)
+            {
+                IPInterfaceProperties properties = adapter.GetIPProperties();
+                Resolver.Log.Info("");
+                Resolver.Log.Info(adapter.Description);
+                Resolver.Log.Info(string.Empty.PadLeft(adapter.Description.Length, '='));
+                Resolver.Log.Info($"  Adapter name: {adapter.Name}");
+                Resolver.Log.Info($"  Interface type .......................... : {adapter.NetworkInterfaceType}");
+                Resolver.Log.Info($"  Physical Address ........................ : {adapter.GetPhysicalAddress()}");
+                Resolver.Log.Info($"  Operational status ...................... : {adapter.OperationalStatus}");
+
+                string versions = string.Empty;
+
+                if (adapter.Supports(NetworkInterfaceComponent.IPv4))
                 {
-                    await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
+                    versions = "IPv4";
                 }
-            }
-        }
 
-        void WiFiAdapter_NetworkConnected(INetworkAdapter networkAdapter, NetworkConnectionEventArgs e)
-        {
-            Resolver.Log.Info("Connection request completed");
-        }
-
-        async Task ScanForAccessPoints(IWiFiNetworkAdapter wifi)
-        {
-            Resolver.Log.Info("Getting list of access points");
-            var networks = await wifi.Scan(TimeSpan.FromSeconds(60));
-
-            if (networks.Count > 0)
-            {
-                Resolver.Log.Info("|-------------------------------------------------------------|---------|");
-                Resolver.Log.Info("|         Network Name             | RSSI |       BSSID       | Channel |");
-                Resolver.Log.Info("|-------------------------------------------------------------|---------|");
-
-                foreach (WifiNetwork accessPoint in networks)
+                if (adapter.Supports(NetworkInterfaceComponent.IPv6))
                 {
-                    Resolver.Log.Info($"| {accessPoint.Ssid,-32} | {accessPoint.SignalDbStrength,4} | {accessPoint.Bssid,17} |   {accessPoint.ChannelCenterFrequency,3}   |");
-                }
-            }
-            else
-            {
-                Resolver.Log.Info($"No access points detected");
-            }
-        }
-
-        public void DisplayNetworkInformation()
-        {
-            NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
-
-            if (adapters.Length == 0)
-            {
-                Resolver.Log.Warn("No adapters available");
-            }
-            else
-            {
-                foreach (NetworkInterface adapter in adapters)
-                {
-                    IPInterfaceProperties properties = adapter.GetIPProperties();
-                    Resolver.Log.Info("");
-                    Resolver.Log.Info(adapter.Description);
-                    Resolver.Log.Info(string.Empty.PadLeft(adapter.Description.Length, '='));
-                    Resolver.Log.Info($"  Adapter name: {adapter.Name}");
-                    Resolver.Log.Info($"  Interface type .......................... : {adapter.NetworkInterfaceType}");
-                    Resolver.Log.Info($"  Physical Address ........................ : {adapter.GetPhysicalAddress()}");
-                    Resolver.Log.Info($"  Operational status ...................... : {adapter.OperationalStatus}");
-
-                    string versions = string.Empty;
-
-                    if (adapter.Supports(NetworkInterfaceComponent.IPv4))
+                    if (versions.Length > 0)
                     {
-                        versions = "IPv4";
+                        versions += " ";
                     }
+                    versions += "IPv6";
+                }
 
-                    if (adapter.Supports(NetworkInterfaceComponent.IPv6))
+                Resolver.Log.Info($"  IP version .............................. : {versions}");
+
+                if (adapter.Supports(NetworkInterfaceComponent.IPv4))
+                {
+                    IPv4InterfaceProperties ipv4 = properties.GetIPv4Properties();
+                    Resolver.Log.Info($"  MTU ..................................... : {ipv4.Mtu}");
+                }
+
+                if ((adapter.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) || (adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet))
+                {
+                    foreach (UnicastIPAddressInformation ip in adapter.GetIPProperties().UnicastAddresses)
                     {
-                        if (versions.Length > 0)
+                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                         {
-                            versions += " ";
-                        }
-                        versions += "IPv6";
-                    }
-
-                    Resolver.Log.Info($"  IP version .............................. : {versions}");
-
-                    if (adapter.Supports(NetworkInterfaceComponent.IPv4))
-                    {
-                        IPv4InterfaceProperties ipv4 = properties.GetIPv4Properties();
-                        Resolver.Log.Info($"  MTU ..................................... : {ipv4.Mtu}");
-                    }
-
-                    if ((adapter.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) || (adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet))
-                    {
-                        foreach (UnicastIPAddressInformation ip in adapter.GetIPProperties().UnicastAddresses)
-                        {
-                            if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                            {
-                                Resolver.Log.Info($"  IP address .............................. : {ip.Address}");
-                                Resolver.Log.Info($"  Subnet mask ............................. : {ip.IPv4Mask}");
-                            }
+                            Resolver.Log.Info($"  IP address .............................. : {ip.Address}");
+                            Resolver.Log.Info($"  Subnet mask ............................. : {ip.IPv4Mask}");
                         }
                     }
                 }
             }
         }
+    }
 
-        public async Task GetWebPageViaHttpClient(string uri)
+    public async Task GetWebPageViaHttpClient(string uri)
+    {
+        try
         {
             Resolver.Log.Info($"Requesting {uri} - {DateTime.Now}");
 
-            using (HttpClient client = new HttpClient())
-            {
-                client.Timeout = new TimeSpan(0, 5, 0);
+            using HttpClient client = new HttpClient();
+            client.Timeout = new TimeSpan(0, 5, 0);
 
-                HttpResponseMessage response = await client.GetAsync(uri);
+            HttpResponseMessage response = await client.GetAsync(uri);
 
-                try
-                {
-                    response.EnsureSuccessStatusCode();
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    Resolver.Log.Info(responseBody);
-                }
-                catch (TaskCanceledException)
-                {
-                    Resolver.Log.Info("Request time out.");
-                }
-                catch (Exception e)
-                {
-                    Resolver.Log.Info($"Request went sideways: {e.Message}");
-                }
-            }
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            Resolver.Log.Info(responseBody);
+        }
+        catch (TaskCanceledException)
+        {
+            Resolver.Log.Info("Request time out.");
+        }
+        catch (Exception e)
+        {
+            Resolver.Log.Info($"Request went sideways: {e.Message}");
+            await Task.Delay(5000);
         }
     }
 }
