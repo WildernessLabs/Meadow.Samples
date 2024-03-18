@@ -87,5 +87,11 @@ jobs:
         dotnet-version:
           7.0.x
 
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version:
+          8.0.x
+
     - name: Build Meadow.Samples
       run: dotnet build -c Release Meadow.Samples/Source/Meadow.Cloud.Samples/Source/Meadow.Cloud.Samples.sln
