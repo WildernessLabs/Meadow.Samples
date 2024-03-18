@@ -138,6 +138,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graphics.MicroGraphics", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell_Basics", "Network\Cell_Basics\Cell_Basics.csproj", "{C93602C3-1F35-4AE6-B498-E2307FE81EA8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroJson", "..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Serialization.MicroJson\Driver\MicroJson.csproj", "{918E66E4-DB19-4963-B33F-4B0DEA1F39C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -430,6 +432,10 @@ Global
 		{C93602C3-1F35-4AE6-B498-E2307FE81EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C93602C3-1F35-4AE6-B498-E2307FE81EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C93602C3-1F35-4AE6-B498-E2307FE81EA8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{918E66E4-DB19-4963-B33F-4B0DEA1F39C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{918E66E4-DB19-4963-B33F-4B0DEA1F39C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{918E66E4-DB19-4963-B33F-4B0DEA1F39C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{918E66E4-DB19-4963-B33F-4B0DEA1F39C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -495,6 +501,7 @@ Global
 		{CD3C0CFC-4DD9-406A-B712-4B1F5DE8D2CD} = {8B57A569-DA8B-4023-AAC3-5151466EA79F}
 		{BFD7B7C6-85C2-4298-A4E4-69381E3DD17D} = {8B57A569-DA8B-4023-AAC3-5151466EA79F}
 		{C93602C3-1F35-4AE6-B498-E2307FE81EA8} = {DD274BA7-34B7-40E2-B650-4CA6245CCBCA}
+		{918E66E4-DB19-4963-B33F-4B0DEA1F39C3} = {8B57A569-DA8B-4023-AAC3-5151466EA79F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3E6AE55-DFFB-4B7B-8143-96D0D1AA8CD9}

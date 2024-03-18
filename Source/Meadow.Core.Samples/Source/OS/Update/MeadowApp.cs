@@ -21,7 +21,7 @@ namespace Update_Sample
 
         public override Task Initialize()
         {
-            Resolver.UpdateService.OnUpdateAvailable += (s, e) =>
+            Resolver.UpdateService.UpdateAvailable += (s, e) =>
             {
                 Resolver.Log.Info($"An {e.UpdateType} update is available! Version: {e.Version} Size: {e.FileSize}");
 
@@ -30,7 +30,7 @@ namespace Update_Sample
                 Resolver.UpdateService.RetrieveUpdate(e);
             };
 
-            Resolver.UpdateService.OnUpdateRetrieved += async (s, e) =>
+            Resolver.UpdateService.UpdateRetrieved += async (s, e) =>
             {
                 _stopWatch.Stop();
                 Resolver.Log.Info($"Update {e.Version} has been retrieved, which took {_stopWatch.Elapsed.TotalSeconds} seconds.");
