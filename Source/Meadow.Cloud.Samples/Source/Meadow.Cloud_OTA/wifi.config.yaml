@@ -6,7 +6,7 @@
 Credentials:
 
     # WiFi SSID
-    Ssid: Solution-Family
+    Ssid: YourSSID
 
     # WiFi Password
-    Password: 1234567890
+    Password: SSIDPassword
