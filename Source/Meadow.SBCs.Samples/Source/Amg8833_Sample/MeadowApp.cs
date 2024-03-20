@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Amg8833_Sample;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private IPixelDisplay? _display;
     private DisplayScreen? _screen;

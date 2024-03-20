@@ -1,13 +1,12 @@
 ﻿using Meadow;
 using Meadow.Foundation.Sensors.Distance;
-using Meadow.Hardware;
 using Meadow.Units;
 
 namespace DistanceMeter;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
-    Vl53l0x sensor;
+    private Vl53l0x sensor;
 
     public override Task Initialize()
     {
@@ -41,7 +40,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         }
     }
 
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         await MeadowOS.Start(args);
     }

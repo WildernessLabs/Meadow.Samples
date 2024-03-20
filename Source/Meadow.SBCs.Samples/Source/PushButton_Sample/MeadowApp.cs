@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PushButton_Sample;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private List<PushButton>? _pushButtons;
 

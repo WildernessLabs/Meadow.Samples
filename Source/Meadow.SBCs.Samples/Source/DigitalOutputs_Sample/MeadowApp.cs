@@ -3,7 +3,7 @@ using Meadow.Foundation.Leds;
 
 namespace DigitalOutputs_Sample;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private List<Led>? leds;
 

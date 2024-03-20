@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ST7789_Sample;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private St7789 _display;
     private MicroGraphics _graphics;
@@ -122,7 +122,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         }
     }
 
-    void PathTest()
+    private void PathTest()
     {
         var pathSin = new GraphicsPath();
         var pathCos = new GraphicsPath();
@@ -150,7 +150,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void FontAlignmentTest()
+    private void FontAlignmentTest()
     {
         _graphics.Clear();
 
@@ -165,7 +165,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void InvertTest()
+    private void InvertTest()
     {
         _graphics.CurrentFont = new Font12x16();
         _graphics.Clear();
@@ -200,7 +200,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         }
     }
 
-    void LineTest()
+    private void LineTest()
     {
         Resolver.Log.Info("Horizonal lines");
 
@@ -209,7 +209,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         for (int i = 1; i < 10; i++)
         {
             _graphics.Stroke = i;
-            _graphics.DrawHorizontalLine(5, 20 * i, (int)(_graphics.Width - 10), Color.Red);
+            _graphics.DrawHorizontalLine(5, 20 * i, _graphics.Width - 10, Color.Red);
         }
         _graphics.Show();
         Thread.Sleep(1500);
@@ -219,7 +219,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         for (int i = 1; i < 10; i++)
         {
             _graphics.Stroke = i;
-            _graphics.DrawHorizontalLine((int)_graphics.Width - 5, 20 * i, (int)(10 - _graphics.Width), Color.Green);
+            _graphics.DrawHorizontalLine(_graphics.Width - 5, 20 * i, 10 - _graphics.Width, Color.Green);
         }
         _graphics.Show();
         Thread.Sleep(1500);
@@ -232,7 +232,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         for (int i = 1; i < 10; i++)
         {
             _graphics.Stroke = i;
-            _graphics.DrawVerticalLine(20 * i, 5, (int)(_graphics.Height - 10), Color.Orange);
+            _graphics.DrawVerticalLine(20 * i, 5, _graphics.Height - 10, Color.Orange);
         }
         _graphics.Show();
         Thread.Sleep(1500);
@@ -242,13 +242,13 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         for (int i = 1; i < 10; i++)
         {
             _graphics.Stroke = i;
-            _graphics.DrawVerticalLine(20 * i, (int)(_graphics.Height - 5), (int)(10 - _graphics.Width), Color.Blue);
+            _graphics.DrawVerticalLine(20 * i, _graphics.Height - 5, 10 - _graphics.Width, Color.Blue);
         }
         _graphics.Show();
         Thread.Sleep(1500);
     }
 
-    void PolarLineTest()
+    private void PolarLineTest()
     {
         _graphics.Clear();
         _graphics.Stroke = 3;
@@ -261,7 +261,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void RoundRectTest()
+    private void RoundRectTest()
     {
         _graphics.Clear();
 
@@ -276,7 +276,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void QuadrantTest()
+    private void QuadrantTest()
     {
         _graphics.Clear();
 
@@ -288,7 +288,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void CircleTest()
+    private void CircleTest()
     {
         _graphics.Clear();
 
@@ -316,7 +316,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void ShapeTest()
+    private void ShapeTest()
     {
         _graphics.Clear();
 
@@ -333,7 +333,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void StrokeTest()
+    private void StrokeTest()
     {
         _graphics.Clear();
 
@@ -371,12 +371,12 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.DrawLine(85, 125, 195, 235, Color.Silver);
 
         _graphics.Stroke = 2;
-        _graphics.DrawRectangle(2, 2, (int)(_graphics.Width - 4), (int)(_graphics.Height - 4), Color.DimGray, false);
+        _graphics.DrawRectangle(2, 2, _graphics.Width - 4, _graphics.Height - 4, Color.DimGray, false);
 
         _graphics.Show();
     }
 
-    void FontScaleTest()
+    private void FontScaleTest()
     {
         _graphics.CurrentFont = new Font12x20();
 
@@ -399,7 +399,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         _graphics.Show();
     }
 
-    void ColorFontTest()
+    private void ColorFontTest()
     {
         _graphics.CurrentFont = new Font8x12();
 
