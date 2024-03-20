@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Bme280_Sample;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private Bme280? _bme;
 

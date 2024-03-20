@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace WifiWeather;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
-    MainController mainController;
+    private MainController mainController;
 
     public override Task Initialize()
     {

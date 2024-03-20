@@ -1,23 +1,20 @@
 ﻿using Meadow;
 using Meadow.Foundation.Leds;
-using Meadow.Peripherals.Leds;
-using System;
+using Meadow.Hardware;
 using System.Threading.Tasks;
 
 namespace Blinky;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
-    RgbLed? rgbLed;
+    private RgbLed? rgbLed;
+    private IDigitalOutputPort onboardLed = default;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        rgbLed = new RgbLed(
-            Device.Pins.GPIO16,
-            Device.Pins.GPIO20,
-            Device.Pins.GPIO21);
+        onboardLed = Device.Pins.ACT_LED.CreateDigitalOutputPort();
 
         return base.Initialize();
     }
@@ -26,36 +23,14 @@ public class MeadowApp : LinuxApp<RaspberryPi>
     {
         Resolver.Log.Info("Run...");
 
+        var state = false;
+
         while (true)
         {
-            Resolver.Log.Info("Going through each color...");
-            for (int i = 0; i < (int)RgbLedColors.count; i++)
-            {
-                rgbLed.SetColor((RgbLedColors)i);
-                await Task.Delay(500);
-            }
-
-            await Task.Delay(1000);
-
-            Resolver.Log.Info("Blinking through each color (on 500ms / off 500ms)...");
-            for (int i = 0; i < (int)RgbLedColors.count; i++)
-            {
-                await rgbLed.StartBlink((RgbLedColors)i);
-                await Task.Delay(3000);
-                await rgbLed.StopAnimation();
-                rgbLed.IsOn = false;
-            }
-
-            await Task.Delay(1000);
-
-            Resolver.Log.Info("Blinking through each color (on 1s / off 1s)...");
-            for (int i = 0; i < (int)RgbLedColors.count; i++)
-            {
-                await rgbLed.StartBlink((RgbLedColors)i, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
-                await Task.Delay(3000);
-                await rgbLed.StopAnimation();
-                rgbLed.IsOn = false;
-            }
+            state = !state;
+            Resolver.Log.Info($"Set State = {state}");
+            onboardLed.State = state;
+            Resolver.Log.Info($"Read State = {onboardLed.State}");
 
             await Task.Delay(1000);
         }

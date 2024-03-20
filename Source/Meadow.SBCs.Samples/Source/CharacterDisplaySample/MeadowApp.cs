@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterDisplaySample;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private CharacterDisplay? display;
 
@@ -30,7 +30,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         return Task.CompletedTask;
     }
 
-    void UpdateCountdown()
+    private void UpdateCountdown()
     {
         var today = DateTime.Now;
 

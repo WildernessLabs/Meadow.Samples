@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ads1015_Sample;
 
-public class MeadowApp : LinuxApp<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private Ads1015 _adc;
 
@@ -30,7 +30,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         await TakeMeasurements();
     }
 
-    async Task TestSpeed()
+    private async Task TestSpeed()
     {
         var totalSamples = 1000;
 
@@ -48,7 +48,7 @@ public class MeadowApp : LinuxApp<RaspberryPi>
         Resolver.Log.Info($"{totalSamples} reads in {end - start} ticks gave a raw mean of {mean:0.00}");
     }
 
-    async Task TakeMeasurements()
+    private async Task TakeMeasurements()
     {
         var i = 0;
 
