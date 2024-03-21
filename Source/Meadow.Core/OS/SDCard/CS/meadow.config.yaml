@@ -1,0 +1,5 @@
+﻿MonoControl:
+    Options: --jit
+Device:
+    # Enable if your Meadow build is using SD card hardware.
+    SdStorageSupported: true

@@ -1,0 +1,34 @@
+﻿# Acceptable values for true: true, 1, yes
+# Acceptable values for false: false, 0, no
+
+#===============================================================================
+# main device config
+
+MonoControl:
+    Options: --jit
+
+Device:
+    # Name of the device on the network.
+    Name: MeadowMapleTemperature
+
+#===============================================================================
+# Network configuration.
+Network:
+
+    # Automatically attempt to get the time at startup?
+    GetNetworkTimeAtStartup: 1
+
+    # Time synchronization period in seconds.
+    NtpRefreshPeriod: 600
+
+    # Name of the NTP servers.
+    NtpServers:
+        - 0.pool.ntp.org
+        - 1.pool.ntp.org
+        - 2.pool.ntp.org
+        - 3.pool.ntp.org
+
+    # IP addresses of the DNS servers.
+    DnsServers:
+        - 1.1.1.1
+        - 8.8.8.8

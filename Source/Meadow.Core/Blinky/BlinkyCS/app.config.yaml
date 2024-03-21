@@ -1,0 +1,12 @@
+﻿Logging:
+  LogLevel:
+    Default: Trace
+Lifecycle:
+  ResetOnAppFailure: false
+Update:
+  UpdateServer: https://staging.meadowcloud.dev
+  UpdatePort: 443
+  ContentServer: mqtt.meadowcloud.co
+  ContentPort: 8883
+  Enabled: true
+  Organization: Default organization

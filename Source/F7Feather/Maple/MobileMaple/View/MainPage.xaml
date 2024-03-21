@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileMaple.View.MainPage"
+    BackgroundColor="White"
+    Title="Maple Devices">
+
+    <Grid Margin="20">
+        <VerticalStackLayout Spacing="10" VerticalOptions="StartAndExpand">
+            <Label Text="Select a device:" TextColor="Black" FontSize="Medium" Margin="0,0,0,10" />
+
+            <Button x:Name="btnLed" Text="RGB LED Controller" Clicked="BtnLedClicked" HeightRequest="60"
+                FontSize="Medium" TextColor="White" BackgroundColor="{StaticResource ButtonActive}" />
+
+            <Button x:Name="btnServo" Text="Servo Controller" Clicked="BtnServoClicked" HeightRequest="60"
+                FontSize="Medium" TextColor="White" BackgroundColor="{StaticResource ButtonActive}" />
+
+            <Button x:Name="btnAnalogTemperature" Text="Temperature Controller" Clicked="BtnTemperatureClicked" HeightRequest="60"
+                FontSize="Medium" TextColor="White" BackgroundColor="{StaticResource ButtonActive}" />
+        </VerticalStackLayout>
+
+        <Label Text="By Wilderness Labs" TextColor="Black" 
+            HorizontalOptions="Center" VerticalOptions="End" />
+    </Grid>
+</ContentPage>

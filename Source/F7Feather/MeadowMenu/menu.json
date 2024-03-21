@@ -1,0 +1,39 @@
+[
+  {
+    "text": "Value 1: {value}",
+    "id": "displayValue1",
+    "value": 77
+  },
+  {
+    "text": "Edit Value 1",
+    "id": "myValue1",
+    "type": "value1",
+    "value": 77
+  },
+  {
+    "text": "Value 2: {value}",
+    "id": "displayValue2",
+    "value": 25
+  },
+  {
+    "text": "Edit Value 2",
+    "id": "myValue2",
+    "type": "value2",
+    "value": 25
+  },
+  {
+    "text": "Submenu 1",
+    "sub": [
+      { "text": "Sub Item A" },
+      { "text": "Sub Item B" },
+      {
+        "text": "Submenu 2",
+        "sub": [
+          { "text": "Sub Item C" },
+          { "text": "Sub Item D" },
+          { "text": "Sub Item E" }
+        ]
+      }
+    ]
+  }
+]

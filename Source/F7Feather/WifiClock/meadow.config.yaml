@@ -1,0 +1,35 @@
+﻿# Acceptable values for true: true, 1, yes
+# Acceptable values for false: false, 0, no
+
+#===============================================================================
+# main device config
+
+MonoControl:
+    Options: --jit
+
+Device:
+    # Name of the device on the network.
+    Name: WifiClock
+
+#===============================================================================
+
+# Network configuration.
+Network:
+
+    # Automatically attempt to get the time at startup?
+    GetNetworkTimeAtStartup: true
+
+    # Time synchronization period in seconds.
+    NtpRefreshPeriod: 600
+
+    # Name of the NTP servers.
+    NtpServers:
+        - time.google.com
+        - time1.google.com
+        - time2.google.com
+        - time3.google.com
+
+    # IP addresses of the DNS servers.
+    DnsServers:
+        - 142.103.1.1
+        - 65.39.139.53
