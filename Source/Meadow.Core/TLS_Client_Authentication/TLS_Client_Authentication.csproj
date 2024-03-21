@@ -8,7 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-    <PackageReference Include="Meadow.MQTT" Version="*" />
+    <ProjectReference Include="..\..\..\..\MQTTnet\Source\MQTTnet\MQTTnet.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">
