@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 
 namespace SerialMessagePort;
 
-/// <summary>
-/// TODO: someone should really break these out into proper tests and whatnot.
-/// </summary>
 public class MeadowApp : App<F7FeatherV2>
 {
     ISerialMessagePort serialPort;
