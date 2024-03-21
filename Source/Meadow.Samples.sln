@@ -123,13 +123,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsMeadow", "Meadow.De
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowAzureIoTHub", "F7Feather\AzureIoTHub\MeadowAzureIoTHub.csproj", "{32AA1C7A-9D4E-4A29-92E1-9BD9E2B675BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowBleLed", "F7Feather\Bluetooth\MeadowBleLed\MeadowBleLed.csproj", "{3F5BE72A-8BFB-4861-A92C-93F0DEA2FDA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowBleLed", "F7Feather\MeadowBleLed\MeadowBleLed.csproj", "{3F5BE72A-8BFB-4861-A92C-93F0DEA2FDA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowBleServo", "F7Feather\Bluetooth\MeadowBleServo\MeadowBleServo.csproj", "{A2440495-141B-4EC9-AB4F-9660BBA44476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowBleServo", "F7Feather\MeadowBleServo\MeadowBleServo.csproj", "{A2440495-141B-4EC9-AB4F-9660BBA44476}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowBleTemperature", "F7Feather\Bluetooth\MeadowBleTemperature\MeadowBleTemperature.csproj", "{6A0856DC-782E-432F-9FBA-3C357D2C82DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowBleTemperature", "F7Feather\MeadowBleTemperature\MeadowBleTemperature.csproj", "{6A0856DC-782E-432F-9FBA-3C357D2C82DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileBle", "F7Feather\Bluetooth\MobileBle\MobileBle.csproj", "{72BB1D95-4E70-4FFA-A167-0AD3D5FDB483}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileBle", "F7Feather\MobileBle\MobileBle.csproj", "{72BB1D95-4E70-4FFA-A167-0AD3D5FDB483}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristmasCountdown", "F7Feather\ChristmasCountdown\ChristmasCountdown.csproj", "{ED47CF76-6766-4731-89B4-4D1BCFECBACE}"
 EndProject
@@ -147,13 +147,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bluetooth", "Bluetooth", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure", "Azure", "{B45CD890-39F5-4876-A6C8-453DC0557895}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowMapleLed", "F7Feather\Maple\MeadowMapleLed\MeadowMapleLed.csproj", "{7014B3F4-F301-4CE5-8F52-8FD64AA381DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowMapleLed", "F7Feather\MeadowMapleLed\MeadowMapleLed.csproj", "{7014B3F4-F301-4CE5-8F52-8FD64AA381DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowMapleServo", "F7Feather\Maple\MeadowMapleServo\MeadowMapleServo.csproj", "{332BD6C7-8652-4BE3-92F6-48AB90BCEB33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowMapleServo", "F7Feather\MeadowMapleServo\MeadowMapleServo.csproj", "{332BD6C7-8652-4BE3-92F6-48AB90BCEB33}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowMapleTemperature", "F7Feather\Maple\MeadowMapleTemperature\MeadowMapleTemperature.csproj", "{BDD63974-BA0C-4743-B787-495FA6E39339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowMapleTemperature", "F7Feather\MeadowMapleTemperature\MeadowMapleTemperature.csproj", "{BDD63974-BA0C-4743-B787-495FA6E39339}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileMaple", "F7Feather\Maple\MobileMaple\MobileMaple.csproj", "{252875AF-3F5E-43B4-B2C5-22EED35173A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileMaple", "F7Feather\MobileMaple\MobileMaple.csproj", "{252875AF-3F5E-43B4-B2C5-22EED35173A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maple", "Maple", "{293C3BB0-BB23-490B-9076-3F02E55A991C}"
 EndProject
@@ -189,11 +189,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RotationDetector", "F7Feath
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rover", "Rover", "{A83E1762-15FA-4C64-88C8-B0FC4FD1A684}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowBleRover", "F7Feather\Rover\MeadowBleRover\MeadowBleRover.csproj", "{76FC98C8-F6AD-4426-BB42-EE37A5C587BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowRoverBle", "F7Feather\MeadowRoverBle\MeadowRoverBle.csproj", "{76FC98C8-F6AD-4426-BB42-EE37A5C587BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowLedRover", "F7Feather\Rover\MeadowLedRover\MeadowLedRover.csproj", "{A11605E0-DE49-4411-8401-51F1007ED0AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowRoverLeds", "F7Feather\MeadowRoverLeds\MeadowRoverLeds.csproj", "{A11605E0-DE49-4411-8401-51F1007ED0AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileRover", "F7Feather\Rover\MobileRover\MobileRover.csproj", "{27DE6A77-98AC-4DA0-9B8F-37BAEFD1AAFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileRover", "F7Feather\MobileRover\MobileRover.csproj", "{27DE6A77-98AC-4DA0-9B8F-37BAEFD1AAFB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiftRegisterLeds", "F7Feather\ShiftRegisterLeds\ShiftRegisterLeds.csproj", "{EBF4397F-6C92-4089-A391-42FA01E1A4F2}"
 EndProject
@@ -209,9 +209,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TouchKeypad", "F7Feather\To
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WiFiSetup", "WiFiSetup", "{181B30FF-38CE-4554-8107-E0597B45882B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowWifi", "F7Feather\Wifi\MeadowWifi\MeadowWifi.csproj", "{8E57E1BF-1205-4315-AE8F-333B24FBD510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowWifi", "F7Feather\MeadowWifi\MeadowWifi.csproj", "{8E57E1BF-1205-4315-AE8F-333B24FBD510}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileWifi", "F7Feather\Wifi\MobileWifi\MobileWifi.csproj", "{3B4C8D40-4B88-41E2-99F2-63EE734110A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileWifi", "F7Feather\MobileWifi\MobileWifi.csproj", "{3B4C8D40-4B88-41E2-99F2-63EE734110A0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiClock", "F7Feather\WifiClock\WifiClock.csproj", "{934E669F-88E7-4B84-B539-86D0D2707C7A}"
 EndProject
