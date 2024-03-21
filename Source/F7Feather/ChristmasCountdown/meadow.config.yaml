@@ -3,10 +3,6 @@
 
 #===============================================================================
 # main device config
-
-MonoControl:
-    Options: --jit
-
 Device:
     # Name of the device on the network.
     Name: ChristmasCountdown

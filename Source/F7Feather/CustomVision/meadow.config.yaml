@@ -1,7 +1,4 @@
-﻿MonoControl:
-    Options: --jit
-
-# Network configuration.
+﻿# Network configuration.
 Network:
 
     # Automatically attempt to get the time at startup?
