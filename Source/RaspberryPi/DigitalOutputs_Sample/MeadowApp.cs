@@ -28,14 +28,14 @@ public class MeadowApp : App<RaspberryPi>
                 new Led(Device.Pins.GPIO19),
                 new Led(Device.Pins.GPIO26),
 
-                //new Led(Device.Pins.GPIO14), // Not Available
-                //new Led(Device.Pins.GPIO15), // Not Available
+                new Led(Device.Pins.GPIO14),
+                new Led(Device.Pins.GPIO15),
                 new Led(Device.Pins.GPIO18),
                 new Led(Device.Pins.GPIO23),
                 new Led(Device.Pins.GPIO24),
                 new Led(Device.Pins.GPIO25),
-                new Led(Device.Pins.GPIO8), // Throws Exception
-                //new Led(Device.Pins.GPIO7), // Throws Exception 
+                //new Led(Device.Pins.GPIO8), // SPI needs to be disabled to use this pin
+                //new Led(Device.Pins.GPIO7), // SPI needs to be disabled to use this pin
                 new Led(Device.Pins.GPIO12),
                 new Led(Device.Pins.GPIO16),
                 new Led(Device.Pins.GPIO20),

@@ -14,7 +14,6 @@ public class MeadowApp : App<F7FeatherV1>
 
         while (true)
         {
-            // This is F7-specific
             var memoryInfo = (Device.PlatformOS as F7PlatformOS)?.GetMemoryAllocationInfo();
             var gcAlloc = GC.GetTotalMemory(false);
 

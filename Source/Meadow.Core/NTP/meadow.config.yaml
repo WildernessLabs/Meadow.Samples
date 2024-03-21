@@ -8,11 +8,6 @@ Device:
     SdStorageSupported: false
 #===============================================================================
 
-# Control how the .NET runtime executes your Meadow application, optionally enabling just-in-time (JIT) compilation instead of interpretation mode.
-MonoControl:
-  # Options to pass to Mono via the command line.
-  Options: --jit
-
 # Control how the ESP coprocessor will start and operate.
 Coprocessor:
 

@@ -1,19 +1,18 @@
 ﻿using Meadow;
 
-namespace Threading_Basics
+namespace ResolverServices;
+
+public class InjectedPropertyService : IService
 {
-    public class InjectedPropertyService : IService
+    public IOutputService OutputService { get; set; }
+
+    public void SetOutputState(bool state)
     {
-        public IOutputService OutputService { get; set; }
+        OutputService.OutputPort.State = state;
+    }
 
-        public void SetOutputState(bool state)
-        {
-            OutputService.OutputPort.State = state;
-        }
-
-        public InjectedPropertyService()
-        {
-            Resolver.Log.Info($"InjectedPropertyService constructor has been called.");
-        }
+    public InjectedPropertyService()
+    {
+        Resolver.Log.Info($"InjectedPropertyService constructor has been called.");
     }
 }

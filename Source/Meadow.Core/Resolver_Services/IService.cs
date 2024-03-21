@@ -1,7 +1,6 @@
-﻿namespace Threading_Basics
+﻿namespace ResolverServices;
+
+public interface IService
 {
-    public interface IService
-    {
-        public void SetOutputState(bool state);
-    }
+    public void SetOutputState(bool state);
 }

@@ -3,44 +3,43 @@ using Meadow.Foundation.Graphics;
 using Meadow.Logging;
 using Meadow.Peripherals.Displays;
 
-namespace MeadowApp
+namespace CoreComputeBreakout;
+
+public abstract class DisplayBase
 {
-    public abstract class DisplayBase
+    private MicroGraphics _canvas;
+    private RotationType _rotation;
+
+    protected Logger Logger { get; private set; }
+    protected abstract IPixelDisplay Display { get; }
+
+    public DisplayBase(Logger logger, RotationType rotation = RotationType.Default)
     {
-        private MicroGraphics _canvas;
-        private RotationType _rotation;
+        Logger = logger;
+        _rotation = rotation;
+    }
 
-        protected Logger Logger { get; private set; }
-        protected abstract IPixelDisplay Display { get; }
-
-        public DisplayBase(Logger logger, RotationType rotation = RotationType.Default)
+    private void CheckCanvas()
+    {
+        if (_canvas == null)
         {
-            Logger = logger;
-            _rotation = rotation;
+            _canvas = new MicroGraphics(Display);
+            _canvas.Clear(true);
+            _canvas.CurrentFont = new Font12x20();
+            _canvas.Rotation = _rotation;
         }
+    }
 
-        private void CheckCanvas()
-        {
-            if (_canvas == null)
-            {
-                _canvas = new MicroGraphics(Display);
-                _canvas.Clear(true);
-                _canvas.CurrentFont = new Font12x20();
-                _canvas.Rotation = _rotation;
-            }
-        }
+    public void ShowText(string text, int line = 1)
+    {
+        CheckCanvas();
 
-        public void ShowText(string text, int line = 1)
-        {
-            CheckCanvas();
+        var lineheight = 20;
 
-            var lineheight = 20;
+        var y = 5 + (line * lineheight);
 
-            var y = 5 + (line * lineheight);
-
-            _canvas.DrawRectangle(0, y, _canvas.Width, 20, Color.Black, true);
-            _canvas.DrawText(5, y, text, Color.White);
-            _canvas.Show();
-        }
+        _canvas.DrawRectangle(0, y, _canvas.Width, 20, Color.Black, true);
+        _canvas.DrawText(5, y, text, Color.White);
+        _canvas.Show();
     }
 }

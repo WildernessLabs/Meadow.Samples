@@ -1,9 +1,8 @@
 ﻿using Meadow.Hardware;
 
-namespace Threading_Basics
+namespace ResolverServices;
+
+public interface IOutputService
 {
-    public interface IOutputService
-    {
-        public IDigitalOutputPort OutputPort { get; }
-    }
+    public IDigitalOutputPort OutputPort { get; }
 }
