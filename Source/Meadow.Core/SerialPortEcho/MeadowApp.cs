@@ -5,7 +5,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SerialPort_Echo;
+namespace SerialPortEcho;
 
 public class MeadowApp : App<F7FeatherV2>
 {
