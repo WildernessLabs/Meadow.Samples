@@ -11,146 +11,145 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
-namespace Update_Sample
+namespace Update_Sample;
+
+public class MeadowApp : App<F7FeatherV2>
 {
-    public class MeadowApp : App<F7FeatherV2>
+    private Stopwatch _stopWatch;
+
+    private IDigitalOutputPort green;
+
+    public override Task Initialize()
     {
-        private Stopwatch _stopWatch;
-
-        private IDigitalOutputPort green;
-
-        public override Task Initialize()
+        Resolver.UpdateService.UpdateAvailable += (s, e) =>
         {
-            Resolver.UpdateService.UpdateAvailable += (s, e) =>
-            {
-                Resolver.Log.Info($"An {e.UpdateType} update is available! Version: {e.Version} Size: {e.FileSize}");
+            Resolver.Log.Info($"An {e.UpdateType} update is available! Version: {e.Version} Size: {e.FileSize}");
 
-                Resolver.Log.Info("Retrieving update...");
-                _stopWatch = Stopwatch.StartNew();
-                Resolver.UpdateService.RetrieveUpdate(e);
-            };
+            Resolver.Log.Info("Retrieving update...");
+            _stopWatch = Stopwatch.StartNew();
+            Resolver.UpdateService.RetrieveUpdate(e);
+        };
 
-            Resolver.UpdateService.UpdateRetrieved += async (s, e) =>
-            {
-                _stopWatch.Stop();
-                Resolver.Log.Info($"Update {e.Version} has been retrieved, which took {_stopWatch.Elapsed.TotalSeconds} seconds.");
+        Resolver.UpdateService.UpdateRetrieved += async (s, e) =>
+        {
+            _stopWatch.Stop();
+            Resolver.Log.Info($"Update {e.Version} has been retrieved, which took {_stopWatch.Elapsed.TotalSeconds} seconds.");
 
-                // wait a little while to allow us to see output, etc.
-                await Task.Delay(TimeSpan.FromSeconds(5));
+            // wait a little while to allow us to see output, etc.
+            await Task.Delay(TimeSpan.FromSeconds(5));
 
-                Resolver.Log.Info("Applying update...");
-                Resolver.UpdateService.ApplyUpdate(e);
-            };
+            Resolver.Log.Info("Applying update...");
+            Resolver.UpdateService.ApplyUpdate(e);
+        };
 
-            green = Device.Pins.OnboardLedGreen.CreateDigitalOutputPort();
+        green = Device.Pins.OnboardLedGreen.CreateDigitalOutputPort();
 
-            return Task.CompletedTask;
+        return Task.CompletedTask;
+    }
+
+    public override async Task Run()
+    {
+        var wifi = Resolver.Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+
+        wifi.NetworkConnected += (s, e) =>
+        {
+            Resolver.Log.Info($"Network connected! (IP is {wifi.IpAddress})");
+
+            //                green.State = true;
+
+            //Task.Run(() => DirectMqttTest());
+            //                Task.Run(() => ServerPingProc());
+        };
+
+        Resolver.Log.Info("Connecting to the network...");
+        await wifi.Connect("BOBS_YOUR_UNCLE", "1234567890");
+
+        while (true)
+        {
+            green.State = !green.State;
+            await Task.Delay(1000);
         }
 
-        public override async Task Run()
+    }
+
+    private async Task DirectMqttTest()
+    {
+        while (!await IsInternetAvailable())
         {
-            var wifi = Resolver.Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
-
-            wifi.NetworkConnected += (s, e) =>
-            {
-                Resolver.Log.Info($"Network connected! (IP is {wifi.IpAddress})");
-
-                //                green.State = true;
-
-                //Task.Run(() => DirectMqttTest());
-                //                Task.Run(() => ServerPingProc());
-            };
-
-            Resolver.Log.Info("Connecting to the network...");
-            await wifi.Connect("BOBS_YOUR_UNCLE", "1234567890");
-
-            while (true)
-            {
-                green.State = !green.State;
-                await Task.Delay(1000);
-            }
-
+            await Task.Delay(TimeSpan.FromSeconds(5));
         }
 
-        private async Task DirectMqttTest()
+        Resolver.Log.Info("Running MQTT test...");
+
+        var opts = new MqttClientOptionsBuilder()
+                        .WithClientId("Test_Client")
+                        .WithTcpServer("20.253.228.77", 1883)
+                        //.WithCleanSession()
+                        .Build();
+
+        var factory = new MqttFactory();
+        var client = factory.CreateMqttClient();
+
+        client.ConnectedHandler = new MqttClientConnectedHandlerDelegate((f) =>
         {
-            while (!await IsInternetAvailable())
-            {
-                await Task.Delay(TimeSpan.FromSeconds(5));
-            }
+            Resolver.Log.Info("MQTT connected");
+        });
 
-            Resolver.Log.Info("Running MQTT test...");
+        try
+        {
+            await client.ConnectAsync(opts);
+        }
+        catch (Exception ex)
+        {
+            Resolver.Log.Debug($"MQTT exception: {ex.Message}");
+        }
+    }
 
-            var opts = new MqttClientOptionsBuilder()
-                            .WithClientId("Test_Client")
-                            .WithTcpServer("20.253.228.77", 1883)
-                            //.WithCleanSession()
-                            .Build();
+    public async Task<bool> IsInternetAvailable()
+    {
+        try
+        {
+            Resolver.Log.Info("Querying google.com...");
 
-            var factory = new MqttFactory();
-            var client = factory.CreateMqttClient();
+            var client = new HttpClient();
+            var response = await client.GetStringAsync("http://google.com");
+            Resolver.Log.Debug($"Google responded with: {response}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Resolver.Log.Debug($"Error checking internet connection: {ex.Message}");
+        }
 
-            client.ConnectedHandler = new MqttClientConnectedHandlerDelegate((f) =>
-            {
-                Resolver.Log.Info("MQTT connected");
-            });
+        return false;
+    }
 
+    private async Task ServerPingProc()
+    {
+        var ping = new Ping();
+
+        while (true)
+        {
             try
             {
-                await client.ConnectAsync(opts);
-            }
-            catch (Exception ex)
-            {
-                Resolver.Log.Debug($"MQTT exception: {ex.Message}");
-            }
-        }
+                var result = ping.Send("192.168.1.133");
 
-        public async Task<bool> IsInternetAvailable()
-        {
-            try
-            {
-                Resolver.Log.Info("Querying google.com...");
-
-                var client = new HttpClient();
-                var response = await client.GetStringAsync("http://google.com");
-                Resolver.Log.Debug($"Google responded with: {response}");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Resolver.Log.Debug($"Error checking internet connection: {ex.Message}");
-            }
-
-            return false;
-        }
-
-        private async Task ServerPingProc()
-        {
-            var ping = new Ping();
-
-            while (true)
-            {
-                try
+                switch (result.Status)
                 {
-                    var result = ping.Send("192.168.1.133");
-
-                    switch (result.Status)
-                    {
-                        case IPStatus.Success:
-                            Resolver.Log.Info($"Ping response in: {result.RoundtripTime} ms");
-                            break;
-                        default:
-                            Resolver.Log.Info($"Ping failed: {result.Status}");
-                            break;
-                    }
+                    case IPStatus.Success:
+                        Resolver.Log.Info($"Ping response in: {result.RoundtripTime} ms");
+                        break;
+                    default:
+                        Resolver.Log.Info($"Ping failed: {result.Status}");
+                        break;
                 }
-                catch (Exception e)
-                {
-                    Resolver.Log.Warn($"Ping failed: {e.Message}");
-                }
-
-                await Task.Delay(TimeSpan.FromSeconds(5));
             }
+            catch (Exception e)
+            {
+                Resolver.Log.Warn($"Ping failed: {e.Message}");
+            }
+
+            await Task.Delay(TimeSpan.FromSeconds(5));
         }
     }
 }

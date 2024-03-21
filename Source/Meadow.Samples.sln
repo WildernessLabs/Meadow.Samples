@@ -407,7 +407,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks_Basics", "Meadow.Core
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLS_Client_Authentication", "Meadow.Core\TLS_Client_Authentication\TLS_Client_Authentication.csproj", "{1ADE4D12-E789-4D90-81CC-D92FF1DFF180}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Update", "Meadow.Core\Update\Update.csproj", "{96E9E1A7-CDF4-49BB-B81A-BBEE15B8C028}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Update_Sample", "Meadow.Core\Update\Update_Sample.csproj", "{96E9E1A7-CDF4-49BB-B81A-BBEE15B8C028}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakeOnInterrupt", "Meadow.Core\WakeOnInterrupt\WakeOnInterrupt.csproj", "{081BA6ED-3FC1-499D-9652-BBF389F9C60A}"
 EndProject
