@@ -12,6 +12,13 @@ namespace SDCard
     {
         public override Task Run()
         {
+            if (!Device.PlatformOS.SdStorageSupported)
+            {
+                Resolver.Log.Error($"SD card support is not enabled in 'meadow.config.yaml'");
+                return Task.CompletedTask;
+            }
+
+
             Device.PlatformOS.FileSystem.ExternalStorageEvent += PlatformOS_ExternalStorageEvent;
 
             var drive = Device.PlatformOS.FileSystem.Drives.FirstOrDefault(d => d is IExternalStorage);
