@@ -195,7 +195,7 @@ Public project samples for [Single-Board-Computers (SBCs)](https://developer.wil
 
 Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to push a new version of a Meadow application to a device in the field over the network. Before running any of the project samples below, make sure to go through the [Meadow.Cloud basics](https://developer.wildernesslabs.co/Meadow/Meadow.Cloud/) guides showing you how to provision your device, how to download and apply an update from Meadow, and make/publish a package. 
 
-## Meadow.Cloud Samples
+### Meadow.Cloud Samples
 
 <table>
     </tr>
@@ -251,9 +251,13 @@ Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to pu
     </tr>
 </table>
 
+## F7 Feather
+
 [![Meadow.Project.Samples](Design/wildernesslabs-meadow-project-samples.jpg)](/Source/Meadow.Project.Samples/)
 
 Public project samples for Meadow and Meadow.Foundation. Click on any of the projects below to go to the Hackster projects and learn how to build them.
+
+### F7 Feather Samples
 
 <table>
     <tr>
@@ -456,8 +460,84 @@ Public project samples for Meadow and Meadow.Foundation. Click on any of the pro
     </tr>
 </table>
 
-[![Meadow.Desktop.Samples](Source/Meadow.Desktop.Samples/Design/wildernesslabs-meadow-desktop-samples.jpg)](/Source/Meadow.Desktop.Samples/)
+## Meadow.Desktop
 
----
+[![Meadow.Desktop.Samples](Design/wildernesslabs-meadow-desktop-samples.jpg)](/Source/Meadow.Desktop.Samples/)
+
+Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/Getting_Started_Windows/) and [Meadow.Linux](http://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/Getting_Started_Linux/). Click on any of these sample project to learn how they work and run them straight from your Windows machine or Linux device.
+
+### Windows
+
+#### Pre-Requisites
+
+To run these samples, make sure:
+
+1. Your development environment is [properly configured](https://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/) to run Meadow apps on your dev machine.
+2. [Optional] If the sample you wish to run uses a physical peripheral or sensor, add the native library (`libmpsse.dll`) of the FT232H IO Expander depending on your CPU's architecture ([Win32 or x64](/Support%20Files/Windows/FT232H%20Native%20Library/))  to that project and set the **Copy to Output Directory** to `Copy if newer` or `Copy always`
+
+<p align="center">
+    <img src="Design/wildernesslabs-meadow-desktop-build-action.png" style="width:50%" />
+</p>
+
+Also check the pinout to make sure to connect the peripheral or sensor on the right pins:
+
+<p align="center">
+    <img src="Design/wildernesslabs-meadow-desktop-pinout-ft232h.png" style="width:50%" />
+</p>
+
+3. Rebuild and right-click the project and click on **Set as Startup Project** 
+4. Click **Debug** to run see a Meadow App running on Windows!
+
+### Meadow.Windows Samples
+
+<table>
+    <tr>
+        <td>
+            <img src="Design/wildernesslabs-meadow-desktop-winforms.jpg"/><br/>
+            Build HMI Screens using Meadow.WinForms</br>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-micrographics-on-winforms-directly-from-your-pc-db875b">Hackster</a> | <a href="Source/Meadow.Desktop/WinForms/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-desktop-maui.png"/><br/>
+            Build hardware apps using Meadow in a MAUI app</br>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-within-a-maui-windows-application-196d8d">Hackster</a> | <a href="Source/Meadow.Desktop/MauiMeadow/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-desktop-avalonia.png"/><br/>
+            Build hardware apps using Meadow in an Avalonia app</br>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-within-an-avalonia-application-68371e">Hackster</a> | <a href="Source/Meadow.Desktop/AvaloniaMeadow/">Source Code</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="Design/wildernesslabs-meadow-desktop-blinky.png"/><br/>
+            Running Blinky app with an FT232H IO Expander</br>
+            <a href="https://www.hackster.io/wilderness-labs/run-meadow-apps-directly-from-your-pc-using-meadow-windows-dab4bf">Hackster</a> | <a href="Source/Meadow.Desktop/Blinky/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-desktop-characterdisplay.png"/><br/>
+            Using a Character Display with an FT232H IO Expander</br>
+            <a href="https://www.hackster.io/wilderness-labs/control-an-lcd-display-with-your-pc-using-meadow-windows-186c6d">Hackster</a> | <a href="Source/Meadow.Desktop/CharacterDisplaySample/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-desktop-graphics.png"/><br/>
+            Show weather data on a display with an FT232H IO Expander</br>
+            <a href="https://www.hackster.io/wilderness-labs/build-this-weather-widget-running-directly-from-your-pc-57c69f">Hackster</a> | <a href="Source/Meadow.Desktop/WifiWeather/">Source Code</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+    </tr>
+</table>
+
+## Project Lab
 
 [![Meadow.ProjectLab.Samples](Source/Meadow.ProjectLab.Samples/Design/wildernesslabs-meadow-projectlab-samples.jpg)](/Source/Meadow.ProjectLab.Samples/)
