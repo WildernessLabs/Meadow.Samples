@@ -540,4 +540,119 @@ Also check the pinout to make sure to connect the peripheral or sensor on the ri
 
 ## Project Lab
 
-[![Meadow.ProjectLab.Samples](Source/Meadow.ProjectLab.Samples/Design/wildernesslabs-meadow-projectlab-samples.jpg)](/Source/Meadow.ProjectLab.Samples/)
+[![Meadow.ProjectLab.Samples](Design/wildernesslabs-meadow-projectlab-samples.jpg)](/Source/Meadow.ProjectLab.Samples/)
+
+This repo contains code samples for the Wilderness Labs Meadow [Project Lab](https://github.com/WildernessLabs/Meadow.Project.Lab) board. Project Lab is a hardware development and prototyping board designed to enable rapid prototyping and IoT software development with [Meadow](http://developer.wildernesslabs.co/Meadow/) and [Meadow.Foundation](http://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
+
+## Project Lab Samples
+
+<table>
+    <tr>
+        <td>
+            <a href="https://github.com/WildernessLabs/Meadow.ProjectLab/tree/main/Source/ProjectLab_Demo"><img src="Design/wildernesslabs-projectlab-samples-getting-started.png"/></a><br/>
+            Getting started with Project Lab running a diagnostics app</br>
+            <a href="https://www.hackster.io/wilderness-labs/getting-started-with-meadow-s-project-lab-eeb569">Hackster</a> | 
+            <a href="https://github.com/WildernessLabs/Meadow.ProjectLab/tree/main/Source/ProjectLab_Demo">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/MeadowAzureIoTHub/MeadowAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub.png"/></a><br/>
+            Send anvironmental data from a BME688 to Azure IoT Hub<br/>
+            <a href="https://www.hackster.io/wildernesslabs/send-environmental-data-from-projectlab-to-azure-w-iot-hub-7d3d07">Hackster</a> | 
+            <a href="Source/MeadowAzureIoTHub/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/MeadowAzureIoTHub/WebAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub-web.png"/></a><br/>
+            Visualize environmental data on a Web App from Azure IoT Hub</br>
+            <a href="https://www.hackster.io/wilderness-labs/visualize-azure-iot-hub-data-with-a-net-web-app-6288e3">Hackster</a> | 
+            <a href="Source/MagicEightMeadow/">Source Code</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="Source/ProjectLab/MicroLayoutMenu/"><img src="Design/wildernesslabs-projectlab-samples-microlayout-menu.png"/></a><br/>
+            Build HMI screens with MicroLayout for Meadow</br>
+            <a href="https://www.hackster.io/wilderness-labs/build-hmi-screens-with-microlayout-for-your-meadow-apps-b87702">Hackster</a> |
+            <a href="Source/ProjectLab/MicroLayoutMenu/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/MoistureMeter/"><img src="Design/wildernesslabs-projectlab-samples-grove-moisture-meter.png"/></a><br/>
+            Use a Grove Soil Moisture sensor and graph its value on the display<br/>
+            <a href="https://www.hackster.io/wilderness-labs/moisturemeter-with-projectlab-and-grove-soil-moisture-sensor-d478fd">Hackster</a> |
+            <a href="Source/ProjectLab/MoistureMeter/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/MagicEightMeadow/"><img src="Design/wildernesslabs-projectlab-samples-magic-eight-meadow.png"/></a><br/>
+            Make a Magic Eight ball with Project Lab</br>
+            <a href="https://www.hackster.io/wilderness-labs/build-your-own-magic-eight-ball-with-a-projectlab-28044f">Hackster</a> | 
+            <a href="Source/ProjectLab/MagicEightMeadow/">Source Code</a>
+        </td> 
+    </tr>
+    </tr>
+        <td>
+            <a href="Source/ProjectLab/Connectivity/"><img src="Design/wildernesslabs-projectlab-samples-maple.png"/></a><br/>
+            Control a Project Lab over Wi-Fi with a MAUI app</br>
+            <a href="Source/ProjectLab/Connectivity/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/Connectivity/"><img src="Design/wildernesslabs-projectlab-samples-bluetooth.png"/></a><br/>
+            Control a Project Lab over Bluetooth with a MAUI app<br/>
+            <a href="Source/ProjectLab/Connectivity/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/AnalogClockFace/"><img src="Design/wildernesslabs-projectlab-samples-micrographics.png"/></a><br/>
+            Draw a working analog clock watch face using MicroGraphics<br/>
+            <a href="Source/ProjectLab/AnalogClockFace/">Source Code</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="Source/ProjectLab/GalleryViewer/"><img src="Design/wildernesslabs-projectlab-samples-galleryviewer.png"/></a><br/>
+            Run an Image Gallery with a Project Lab v3 using MicroGraphics<br/>
+            <a href="Source/ProjectLab/GalleryViewer/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/WifiWeather/"><img src="Design/wildernesslabs-projectlab-samples-wifiweather.png"/></a><br/>
+            Weather Station using public web service on a Project Lab v3<br/>
+            <a href="Source/ProjectLab/WifiWeather/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/MorseCodeTrainer/"><img src="Design/wildernesslabs-projectlab-samples-morse-code-trainer.png"/></a><br/>
+            Train your Morse Code spelling skills with Meadow<br/>
+            <a href="Source/ProjectLab/MorseCodeTrainer/">Source Code</a>
+        </td>
+    </tr>
+    <!--<tr>
+        <td>
+            <a href="Source/AmbientRoomMonitor/"><img src="Design/wildernesslabs-projectlab-ambient-room-monitor.png"/></a><br/>
+            Room ambient monitor with a BME688 on a Project Lab<br/>
+            <a href="Source/AmbientRoomMonitor/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/Simon/"><img src="Design/wildernesslabs-projectlab-simon.png"/></a><br/>
+            Run a Simon Game on a display and push button d-pad</br>
+            <a href="Source/Simon/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/MorseCodeTrainer/"><img src="Design/wildernesslabs-projectlab-samples-morse-code-trainer.png"/></a><br/>
+            Train your Morse Code spelling skills with Meadow<br/>
+            <a href="Source/MorseCodeTrainer/">Source Code</a>
+        </td>
+    </tr>-->
+    <tr>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+    </tr>
+</table>
+
+## Support
+
+Having trouble building/running these projects? 
+* File an [issue](https://github.com/WildernessLabs/Meadow.Desktop.Samples/issues) with a repro case to investigate, and/or
+* Join our [public Slack](http://slackinvite.wildernesslabs.co/), where we have an awesome community helping, sharing and building amazing things using Meadow.
