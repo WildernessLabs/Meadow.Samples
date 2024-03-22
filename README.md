@@ -113,7 +113,7 @@ A collection of samples for the Wilderness Labs [Juego IoT Accelerator](https://
 
 Public project samples for [Single-Board-Computers (SBCs)](https://developer.wildernesslabs.co/Meadow/Getting_Started/SBCs/). Click on any of these sample project to learn how they work and run them on a Raspberry Pi, SeeedStudio reTerminal and/or Nvidia Jetson Nano.
 
-### Single-Board-Computers Samples
+### Single-Board-Computer Samples
 
 <table>
     <tr>
@@ -163,9 +163,67 @@ Public project samples for [Single-Board-Computers (SBCs)](https://developer.wil
     </tr>
 </table>
 
-[![Meadow.Cloud.Samples](Source/Meadow.Cloud.Samples/Design/wildernesslabs-meadow-cloud-samples.jpg)](/Source/Meadow.Cloud.Samples/)
+## Meadow.Cloud
 
----
+[![Meadow.Cloud.Samples](Design/wildernesslabs-meadow-cloud-samples.jpg)](/Source/Meadow.Cloud.Samples/)
+
+Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to push a new version of a Meadow application to a device in the field over the network. Before running any of the project samples below, make sure to go through the [Meadow.Cloud basics](https://developer.wildernesslabs.co/Meadow/Meadow.Cloud/) guides showing you how to provision your device, how to download and apply an update from Meadow, and make/publish a package. 
+
+## Meadow.Cloud Samples
+
+<table>
+    </tr>
+        <tr>
+        <td>
+            <img src="Design/wildernesslabs-meadow-cloud-begginer.jpg" alt="iot, dotnet, meadow, led, dice, buttons"/><br/>
+            Send an over-the-air update to change colors on an RGB LED</br>
+            <a href="Source/RgbLedUpdateSample/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-cloud-log.jpg" alt="iot, dotnet, meadow, game, memory"/><br/>
+            Send diagnostics logs from Meadow to Meadow.Cloud</br>
+            <a href="Source/CloudLogging/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-cloud-health-metrics.jpg" alt="iot, dotnet, meadow, morse-code, graphics"/><br/>
+            Check your Meadow's Health Metrics on Meadow.Cloud</br>
+            <a href="Source/HealthMetricsMonitoring/">Source Code</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="Source/Meadow.Cloud_Logging/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-logging.jpg"/></a><br/>
+            Send environmental data to Meadow.Cloud using Log Event</br>
+            <a href="Source/Meadow.Cloud_Logging/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/Meadow.Cloud_OTA/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-ota-update.jpg"/></a><br/>
+            Use Meadow.Cloud to push Over-the-air Updates<br/>
+            <a href="Source/Meadow.Cloud_OTA/">Source Code</a>
+        </td>
+        <!--<td>
+            <a href="Source/Meadow.Cloud_Client/"><img src="Design/wildernesslabs-projectlab-meadow-cloud-client.png"/></a><br/>
+            Get log event data from Meadow.Cloud using its client API<br/>
+            <a href="Source/Meadow.Cloud_Client/">Source Code</a>
+        </td>-->
+        <td>
+            <a href="Source/Meadow.Cloud_Command/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-relay-command.png"/></a><br/>
+            Use Meadow.Cloud commands to control a four channel relay</br>
+            <a href="Source/Meadow.Cloud_Command/">Source Code</a>
+        </td> 
+    </tr>
+    <tr>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+        <td>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+    </tr>
+</table>
 
 [![Meadow.Project.Samples](Source/Meadow.Project.Samples/Design/wildernesslabs-meadow-project-samples.jpg)](/Source/Meadow.Project.Samples/)
 
