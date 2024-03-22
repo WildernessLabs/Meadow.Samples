@@ -22,29 +22,46 @@ A collection of samples for the Wilderness Labs [Juego IoT Accelerator](https://
         <td>
             <img src="Design/wildernesslabs-meadow-juego-froggit.jpg" alt="dotnet, meadow, juego, graphics, 2D, frogger"/><br/>
             Run/play frogger on a Juego</br>
-            <a href="Source/Froggit/">Source Code</a>
+            <a href="Source/Juego/Froggit/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-juego-tetraminos.jpg" alt="dotnet, meadow, juego, graphics, 2D, tetris"/><br/>
             Run/play Tetraminoes on a Juego<br/>
-            <a href="Source/Tetraminoes/">Source Code</a>
+            <a href="Source/Juego/Tetraminoes/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
             <img src="Design/wildernesslabs-meadow-juego-span-four.jpg" alt="dotnet, meadow, juego, graphics, 2D, span 4"/><br/>
             Run/play a 2-player Span4</br>
-            <a href="Source/Span4/">Source Code</a>
+            <a href="Source/Juego/Span4/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-juego-eyeball.jpg" alt="dotnet, meadow, juego, graphics, 2D, eyeball"/><br/>
             Halloween Eye Ball animation</br>
-            <a href="Source/Eyeball/">Source Code</a>
+            <a href="Source/Juego/Eyeball/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-juego-snake.jpg" alt="dotnet, meadow, juego, graphics, 2D, snake"/><br/>
             Run/play snake on a Juego</br>
-            <a href="Source/Snake/">Source Code</a>
+            <a href="Source/Juego/Snake/">Source Code</a>
+        </td> 
+    </tr>
+    <tr>
+        <td>
+            <img src="Design/wildernesslabs-meadow-template-green.jpg" alt="dotnet, meadow, juego, graphics, 2D, span 4"/><br/>
+            Falling Sand particles with motion sensor</br>
+            <a href="Source/Juego/FallingSand/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-template-blue.jpg" alt="dotnet, meadow, juego, graphics, 2D, eyeball"/><br/>
+            Run a Particle's Game Of Life simulator</br>
+            <a href="Source/Juego/GameOfLife/">Source Code</a>
+        </td>
+        <td>
+            <img src="Design/wildernesslabs-meadow-template-orange.jpg" alt="dotnet, meadow, juego, graphics, 2D, snake"/><br/>
+            Play this traveling through space effect</br>
+            <a href="Source/Juego/Starfield/">Source Code</a>
         </td> 
     </tr>
     <tr>
