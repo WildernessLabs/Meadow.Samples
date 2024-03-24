@@ -53,7 +53,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.Gtk", "..\..\Meado
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelDisplay_Sample", "Meadow.Desktop.Samples\Source\PixelDisplay\PixelDisplay_Sample.csproj", "{A89CEEBB-EE79-4F7E-8F13-0DA976B9A749}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroJson", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Serialization.MicroJson\Driver\MicroJson.csproj", "{AD6F7189-E379-42B2-8A94-33ED0AE45D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization.MicroJson", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Serialization.MicroJson\Driver\Serialization.MicroJson.csproj", "{B337200A-EAD1-4501-AE65-942DBDD7B57D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -184,12 +184,12 @@ Global
 		{A89CEEBB-EE79-4F7E-8F13-0DA976B9A749}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A89CEEBB-EE79-4F7E-8F13-0DA976B9A749}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{A89CEEBB-EE79-4F7E-8F13-0DA976B9A749}.Simulation|Any CPU.Build.0 = Debug|Any CPU
-		{AD6F7189-E379-42B2-8A94-33ED0AE45D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD6F7189-E379-42B2-8A94-33ED0AE45D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD6F7189-E379-42B2-8A94-33ED0AE45D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD6F7189-E379-42B2-8A94-33ED0AE45D90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD6F7189-E379-42B2-8A94-33ED0AE45D90}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD6F7189-E379-42B2-8A94-33ED0AE45D90}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{B337200A-EAD1-4501-AE65-942DBDD7B57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B337200A-EAD1-4501-AE65-942DBDD7B57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B337200A-EAD1-4501-AE65-942DBDD7B57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B337200A-EAD1-4501-AE65-942DBDD7B57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B337200A-EAD1-4501-AE65-942DBDD7B57D}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{B337200A-EAD1-4501-AE65-942DBDD7B57D}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,7 +214,7 @@ Global
 		{7493E09D-D009-4D33-8EB2-88AC246E5B58} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 		{45F3C458-3C90-4D03-970D-1C348CE23313} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 		{A89CEEBB-EE79-4F7E-8F13-0DA976B9A749} = {5F778622-158A-49D8-B9DC-8B814E1CFD71}
-		{AD6F7189-E379-42B2-8A94-33ED0AE45D90} = {A809F07D-DD94-4375-8776-23FBE73591A5}
+		{B337200A-EAD1-4501-AE65-942DBDD7B57D} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
