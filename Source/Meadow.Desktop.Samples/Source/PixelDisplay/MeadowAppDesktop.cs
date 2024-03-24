@@ -42,6 +42,14 @@ public class MeadowAppDesktop : App<Desktop>
         return Task.CompletedTask;
     }
 
+    public override Task OnShutdown()
+    {
+#if WINDOWS
+        System.Windows.Forms.Application.Exit();
+#endif     
+        return Task.CompletedTask;
+    }
+
     private void ExecutePlatformDisplayRunner()
     {
 #if WINDOWS
