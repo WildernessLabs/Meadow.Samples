@@ -24,7 +24,7 @@ internal class DisplayController
             BackgroundColor = backgroundColor
         };
 
-        var logo = Image.LoadFromResource("Meadow.Cloud_OTA.Resources.img_meadow.bmp");
+        var logo = Image.LoadFromResource("ProjectLab_OTA.Resources.img_meadow.bmp");
         displayScreen.Controls.Add(new Picture(95, 33, logo.Width, logo.Height, logo));
 
         displayScreen.Controls.Add(new Label(0, 127, displayScreen.Width, font12X16.Height * 2)

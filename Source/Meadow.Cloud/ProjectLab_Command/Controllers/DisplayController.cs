@@ -15,8 +15,8 @@ internal class DisplayController
     private Font12x20 font12X20 = new Font12x20();
     private Font6x8 font6x8 = new Font6x8();
 
-    Image relayOn = Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_relay_on.bmp");
-    Image relayOff = Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_relay_off.bmp");
+    Image relayOn = Image.LoadFromResource("ProjectLab_Command.Resources.img_relay_on.bmp");
+    Image relayOff = Image.LoadFromResource("ProjectLab_Command.Resources.img_relay_off.bmp");
 
     protected DisplayScreen DisplayScreen { get; set; }
 
@@ -61,7 +61,7 @@ internal class DisplayController
             IsVisible = false
         };
 
-        var image = Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_meadow.bmp");
+        var image = Image.LoadFromResource("ProjectLab_Command.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, DisplayScreen.Width, DisplayScreen.Height, image)
         {
             BackColor = Meadow.Color.FromHex("#B35E2C"),
@@ -84,7 +84,7 @@ internal class DisplayController
             ForeColor = Meadow.Color.FromHex("844936")
         });
 
-        var wifiImage = Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_wifi_connecting.bmp");
+        var wifiImage = Image.LoadFromResource("ProjectLab_Command.Resources.img_wifi_connecting.bmp");
         WifiStatus = new Picture(DisplayScreen.Width - wifiImage.Width - rowMargin, 0, wifiImage.Width, rowHeight, wifiImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
@@ -92,7 +92,7 @@ internal class DisplayController
         };
         DataLayout.Controls.Add(WifiStatus);
 
-        var syncImage = Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_refreshed.bmp");
+        var syncImage = Image.LoadFromResource("ProjectLab_Command.Resources.img_refreshed.bmp");
         SyncStatus = new Picture(DisplayScreen.Width - syncImage.Width - wifiImage.Width - 10 - rowMargin, 0, syncImage.Width, rowHeight, syncImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
@@ -287,16 +287,16 @@ internal class DisplayController
     public void UpdateWiFiStatus(bool isConnected)
     {
         var imageWiFi = isConnected
-            ? Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_wifi_connected.bmp")
-            : Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_wifi_connecting.bmp");
+            ? Image.LoadFromResource("ProjectLab_Command.Resources.img_wifi_connected.bmp")
+            : Image.LoadFromResource("ProjectLab_Command.Resources.img_wifi_connecting.bmp");
         WifiStatus.Image = imageWiFi;
     }
 
     public void UpdateSyncStatus(bool isSyncing)
     {
         var imageSync = isSyncing
-            ? Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_refreshing.bmp")
-            : Image.LoadFromResource("Meadow.Cloud_Command.Resources.img_refreshed.bmp");
+            ? Image.LoadFromResource("ProjectLab_Command.Resources.img_refreshing.bmp")
+            : Image.LoadFromResource("ProjectLab_Command.Resources.img_refreshed.bmp");
         SyncStatus.Image = imageSync;
     }
 

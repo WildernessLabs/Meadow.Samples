@@ -22,8 +22,11 @@ Logging:
 
 # Meadow.Cloud configuration.
 MeadowCloud:
+    
     # Enable Meadow.Cloud features
     Enabled: true
+
+    # Enable OTA updates
     EnableUpdates: true
 
 # Meadow.Cloud Health Metrics.
