@@ -20,11 +20,16 @@ Logging:
         # Trace, Debug, Information, Warning, or Error
         Default: Trace
 
-# Meadow.Cloud configuration.
-Update:
 
+
+# Meadow.Cloud configuration.
+MeadowCloud:
+    
     # Enable Meadow.Cloud features
     Enabled: true
+
+    # Enable OTA updates
+    EnableUpdates: false
 
 # Meadow.Cloud Health Metrics.
 HealthMetrics:
