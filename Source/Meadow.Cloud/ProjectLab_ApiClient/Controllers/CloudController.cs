@@ -1,9 +1,9 @@
 ﻿using Meadow;
+using Meadow.Foundation.Serialization;
 using ProjectLab_ApiClient.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ProjectLab_ApiClient.Controllers;
@@ -31,7 +31,7 @@ internal class CloudController
                     //Resolver.Log.Trace("Response: " + jsonString);
 
                     Resolver.Log.Trace($"Deserializing response...");
-                    var root = JsonSerializer.Deserialize<Root>(jsonString);
+                    var root = MicroJson.Deserialize<Root>(jsonString);
                     Resolver.Log.Trace($"Deserializing complete!");
 
                     return root?.data?.queryResponses;
