@@ -15,13 +15,7 @@
     <PackageReference Include="SimpleJpegDecoder" Version="0.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="app.config.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="meadow.config.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="wifi.config.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
