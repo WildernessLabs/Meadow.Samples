@@ -16,16 +16,23 @@ public class MeadowApp : App<F7CoreComputeV2>
 
         var ethernet = Device.NetworkAdapters.Primary<IWiredNetworkAdapter>();
 
-        // connected event test.
-        ethernet.NetworkConnected += EthernetAdapterNetworkConnected;
-
-        if (ethernet.IsConnected)
+        if (ethernet == null)
         {
-            DisplayNetworkInformation();
+            Resolver.Log.Error("Wired network adapters not found");
+        }
+        else
+        {
+            // connected event test.
+            ethernet.NetworkConnected += EthernetAdapterNetworkConnected;
 
-            while (true)
+            if (ethernet.IsConnected)
             {
-                await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
+                DisplayNetworkInformation();
+
+                while (true)
+                {
+                    await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
+                }
             }
         }
     }
