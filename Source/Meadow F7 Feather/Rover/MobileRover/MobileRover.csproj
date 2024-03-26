@@ -1,19 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android</TargetFrameworks>		
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
-		<RootNamespace>MobileBle</RootNamespace>
+		<RootNamespace>MobileRover</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Bluetooth</ApplicationTitle>
+		<ApplicationTitle>Rover</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mobileble</ApplicationId>
+		<ApplicationId>com.companyname.MobileRover</ApplicationId>
 		<ApplicationIdGuid>2750A062-72A3-4E67-A82F-AAC0A348C7B4</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -41,17 +41,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\img_ble_pair.svg" />
-	  <None Remove="Resources\Images\img_ble_paired.svg" />
-	  <None Remove="Resources\Images\img_search.svg" />
+	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+	  <None Remove="Resources\Images\img_dpad.png" />
+	  <None Remove="Resources\Images\img_meadow.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Plugin.BLE" Version="2.1.2" />
+    <ProjectReference Include="..\..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Plugin.BLE" Version="2.1.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
+	  <MauiImage Update="Resources\Images\img_dpad.png">
+	    <Generator></Generator>
+	  </MauiImage>
 	</ItemGroup>
 
 </Project>
