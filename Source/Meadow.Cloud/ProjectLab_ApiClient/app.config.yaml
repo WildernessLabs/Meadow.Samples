@@ -21,16 +21,16 @@ Logging:
         Default: Trace
 
 # Meadow.Cloud configuration.
-Update:
+MeadowCloud:
 
-    # Enable Meadow.Cloud features
-#    Enabled: true
+    # Enable Logging, Events, Command + Control
+    Enabled: true
 
-# Meadow.Cloud Health Metrics.
-HealthMetrics:
+    # Enable Over-the-air Updates
+#    EnableUpdates: false
 
     # Enable Health Metrics
-#    Enabled: true
+#    EnableHealthMetrics: false
 
-    # How often to send metrics to Meadow.Cloud (in minutes)
-#    Interval: 15
+    # How often to send metrics to Meadow.Cloud
+#    HealthMetricsIntervalMinutes: 60

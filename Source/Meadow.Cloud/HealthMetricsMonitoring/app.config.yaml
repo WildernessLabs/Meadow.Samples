@@ -23,14 +23,14 @@ Logging:
 # Meadow.Cloud configuration.
 Update:
 
-    # Enable Meadow.Cloud features
+    # Enable Logging, Events, Command + Control
     Enabled: true
 
-# Meadow.Cloud Health Metrics.
-HealthMetrics:
+    # Enable Over-the-air Updates
+#    EnableUpdates: false
 
     # Enable Health Metrics
-    Enabled: true
+    EnableHealthMetrics: true
 
-    # How often to send metrics to Meadow.Cloud (in minutes)
-    Interval: 1
+    # How often to send metrics to Meadow.Cloud
+    HealthMetricsIntervalMinutes: 1

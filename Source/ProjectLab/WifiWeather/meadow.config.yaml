@@ -3,11 +3,17 @@
 
 # Main Device Config
 Device:
+
     # Name of the device on the network.
-    Name: WifiWeather
+    Name: MeadowDevice
+
+    # Uncomment if SD card hardware present on this hardware 
+    # (e.g., Core-Compute module with SD add-on)? Optional; default value is `false`.
+#    SdStorageSupported: true
 
 # Control how the ESP coprocessor will start and operate.
 Coprocessor:
+
     # Should the ESP32 automatically attempt to connect to an access point at startup?
     # If set to true, wifi.yaml credentials must be stored in the device.
     AutomaticallyStartNetwork: true
@@ -20,11 +26,22 @@ Coprocessor:
 
 # Network configuration.
 Network:
+
+    # Network Interface (Default value is WiFi with DHCP)
+    Interfaces:
+#        - Name: Ethernet
+#          UseDHCP: false
+#          IPAddress: 192.168.1.60
+#          NetMask: 255.255.255.0
+#          Gateway: 192.168.1.254
+        - Name: WiFi
+          UseDHCP: true
+
     # Default Interface
     DefaultInterface: Wifi
 
     # Automatically attempt to get the time at startup?
-    GetNetworkTimeAtStartup: 1
+    GetNetworkTimeAtStartup: true
 
     # Time synchronization period in seconds.
     NtpRefreshPeriod: 600
