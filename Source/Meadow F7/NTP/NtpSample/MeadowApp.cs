@@ -20,8 +20,9 @@ public class MeadowApp : App<F7CoreComputeV2>
         Resolver.Log.Info($"connecting to network");
 
         var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
-        _ = wifi.Connect("Solution-Family", "1234567890");
         wifi.NetworkConnected += OnNetworkConnected;
+
+        _ = wifi.Connect("YourSSID", "SSIDPassword");
 
         while (!_ntpTimeArrived)
         {

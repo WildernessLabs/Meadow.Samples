@@ -6,7 +6,7 @@ open System.Threading
 
 
 type OutputApp() =
-    inherit App<F7Micro, OutputApp>()  
+    inherit App<F7FeatherV2>()  
     
     let outs = [OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.OnboardLedRed
                 OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.OnboardLedGreen
