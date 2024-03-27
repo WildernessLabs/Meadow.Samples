@@ -585,37 +585,15 @@ This repo contains code samples for the Wilderness Labs Meadow [Project Lab](htt
             <a href="https://github.com/WildernessLabs/Meadow.ProjectLab/tree/main/Source/ProjectLab_Demo">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/MeadowAzureIoTHub/MeadowAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub.png"/></a><br/>
-            Send anvironmental data from a BME688 to Azure IoT Hub<br/>
-            <a href="https://www.hackster.io/wildernesslabs/send-environmental-data-from-projectlab-to-azure-w-iot-hub-7d3d07">Hackster</a> | 
-            <a href="Source/MeadowAzureIoTHub/">Source Code</a>
+            <a href="Source/ProjectLab/AnalogClockFace/"><img src="Design/wildernesslabs-projectlab-samples-micrographics.png"/></a><br/>
+            Draw a working analog clock watch face using MicroGraphics<br/>
+            <a href="Source/ProjectLab/AnalogClockFace/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/MeadowAzureIoTHub/WebAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub-web.png"/></a><br/>
-            Visualize environmental data on a Web App from Azure IoT Hub</br>
-            <a href="https://www.hackster.io/wilderness-labs/visualize-azure-iot-hub-data-with-a-net-web-app-6288e3">Hackster</a> | 
-            <a href="Source/MagicEightMeadow/">Source Code</a>
+            <a href="Source/ProjectLab/WifiWeather/"><img src="Design/wildernesslabs-projectlab-samples-wifiweather.png"/></a><br/>
+            Weather Station using public web service on a Project Lab v3<br/>
+            <a href="Source/ProjectLab/WifiWeather/">Source Code</a>
         </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="Source/ProjectLab/MicroLayoutMenu/"><img src="Design/wildernesslabs-projectlab-samples-microlayout-menu.png"/></a><br/>
-            Build HMI screens with MicroLayout for Meadow</br>
-            <a href="https://www.hackster.io/wilderness-labs/build-hmi-screens-with-microlayout-for-your-meadow-apps-b87702">Hackster</a> |
-            <a href="Source/ProjectLab/MicroLayoutMenu/">Source Code</a>
-        </td>
-        <td>
-            <a href="Source/ProjectLab/MoistureMeter/"><img src="Design/wildernesslabs-projectlab-samples-grove-moisture-meter.png"/></a><br/>
-            Use a Grove Soil Moisture sensor and graph its value on the display<br/>
-            <a href="https://www.hackster.io/wilderness-labs/moisturemeter-with-projectlab-and-grove-soil-moisture-sensor-d478fd">Hackster</a> |
-            <a href="Source/ProjectLab/MoistureMeter/">Source Code</a>
-        </td>
-        <td>
-            <a href="Source/ProjectLab/MagicEightMeadow/"><img src="Design/wildernesslabs-projectlab-samples-magic-eight-meadow.png"/></a><br/>
-            Make a Magic Eight ball with Project Lab</br>
-            <a href="https://www.hackster.io/wilderness-labs/build-your-own-magic-eight-ball-with-a-projectlab-28044f">Hackster</a> | 
-            <a href="Source/ProjectLab/MagicEightMeadow/">Source Code</a>
-        </td> 
     </tr>
     </tr>
         <td>
@@ -629,21 +607,41 @@ This repo contains code samples for the Wilderness Labs Meadow [Project Lab](htt
             <a href="Source/ProjectLab/Connectivity/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/AnalogClockFace/"><img src="Design/wildernesslabs-projectlab-samples-micrographics.png"/></a><br/>
-            Draw a working analog clock watch face using MicroGraphics<br/>
-            <a href="Source/ProjectLab/AnalogClockFace/">Source Code</a>
+            <a href="Source/ProjectLab/MoistureMeter/"><img src="Design/wildernesslabs-projectlab-samples-grove-moisture-meter.png"/></a><br/>
+            Use a Grove Soil Moisture sensor and graph its value on the display<br/>
+            <a href="https://www.hackster.io/wilderness-labs/moisturemeter-with-projectlab-and-grove-soil-moisture-sensor-d478fd">Hackster</a> |
+            <a href="Source/ProjectLab/MoistureMeter/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
+            <a href="Source/ProjectLab/MicroLayoutMenu/"><img src="Design/wildernesslabs-projectlab-samples-microlayout-menu.png"/></a><br/>
+            Build HMI screens with MicroLayout for Meadow</br>
+            <a href="https://www.hackster.io/wilderness-labs/build-hmi-screens-with-microlayout-for-your-meadow-apps-b87702">Hackster</a> |
+            <a href="Source/ProjectLab/MicroLayoutMenu/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/AmbientRoomMonitor/"><img src="Design/wildernesslabs-projectlab-samples-ambient-room-monitor.png"/></a><br/>
+            Display ambient sensor data with MicroLayout<br/>
+            <a href="Source/ProjectLab/AmbientRoomMonitor/">Source Code</a>
+        </td>
+        <td>
+            <a href="Source/ProjectLab/MagicEightMeadow/"><img src="Design/wildernesslabs-projectlab-samples-magic-eight-meadow.png"/></a><br/>
+            Make a Magic Eight ball with Project Lab</br>
+            <a href="https://www.hackster.io/wilderness-labs/build-your-own-magic-eight-ball-with-a-projectlab-28044f">Hackster</a> | 
+            <a href="Source/ProjectLab/MagicEightMeadow/">Source Code</a>
+        </td> 
+    </tr>
+    <tr>
+        <td>
             <a href="Source/ProjectLab/GalleryViewer/"><img src="Design/wildernesslabs-projectlab-samples-galleryviewer.png"/></a><br/>
-            Run an Image Gallery with a Project Lab v3 using MicroGraphics<br/>
+            Draw JPEG image files using MicroGraphics<br/>
             <a href="Source/ProjectLab/GalleryViewer/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/WifiWeather/"><img src="Design/wildernesslabs-projectlab-samples-wifiweather.png"/></a><br/>
-            Weather Station using public web service on a Project Lab v3<br/>
-            <a href="Source/ProjectLab/WifiWeather/">Source Code</a>
+            <a href="Source/ProjectLab/WifiWeather/"><img src="Design/wildernesslabs-projectlab-samples-simon.png"/></a><br/>
+            Run a game of Simon on your Project Lab<br/>
+            <a href="Source/ProjectLab/Simon/">Source Code</a>
         </td>
         <td>
             <a href="Source/ProjectLab/MorseCodeTrainer/"><img src="Design/wildernesslabs-projectlab-samples-morse-code-trainer.png"/></a><br/>
