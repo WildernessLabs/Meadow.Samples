@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0-windows'">
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+    
+    <ItemGroup>
+    <PackageReference Include="Meadow.Desktop" Version="*" />
+    </ItemGroup>
+</Project>

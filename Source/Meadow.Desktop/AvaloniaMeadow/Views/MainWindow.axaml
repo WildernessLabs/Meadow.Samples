@@ -1,0 +1,111 @@
+<Window 
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:AvaloniaMeadow.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    d:DesignWidth="500" 
+    d:DesignHeight="600"
+    x:Class="AvaloniaMeadow.Views.MainWindow"
+    Icon="/Assets/avalonia-logo.ico"
+    Title="Meadow in Avalonia">
+
+    <Border
+        Background="#B35E2C"
+        BorderBrush="White"
+        BorderThickness="5">
+        <StackPanel
+            Spacing="30"
+            Margin="30"
+            Orientation="Vertical"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+
+            <Border 
+                BorderThickness="0" 
+                HorizontalAlignment="Center"
+                BoxShadow="-5 5 20 0 #40000000">
+                <Image
+                    Source="/Assets/meadow.png"
+                    Height="200" />
+            </Border>
+
+            <TextBlock 
+                Text="Meadow on Avalonia" 
+                HorizontalAlignment="Center" 
+                Foreground="White"
+                FontSize="32" />
+
+            <TextBlock
+                Text="Atmospheric readings from a BME688"
+                HorizontalAlignment="Center"
+                Foreground="White"
+                FontSize="22" />
+
+            <Border 
+                Background="#EF7D3B"
+                BorderThickness="2"
+                CornerRadius="5"
+                Padding="4"
+                BoxShadow="-5 5 20 0 #40000000"
+                HorizontalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Text="Temperature:"
+                        Foreground="White"
+                        FontSize="18"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5" />
+                    <TextBlock
+                        Text="Pressure:"
+                        Foreground="White"
+                        FontSize="18"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5" />
+                    <TextBlock
+                        Text="Humidity:"
+                        Foreground="White"
+                        FontSize="18"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="5" />
+
+                    <TextBlock
+                        Text="{Binding TemperatureValue}"
+                        Foreground="White"
+                        FontSize="18"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="20,5,5,5" />
+                    <TextBlock
+                        Text="{Binding HumidityValue}"
+                        Foreground="White"
+                        FontSize="18"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="20,5,5,5" />
+                    <TextBlock
+                        Text="{Binding PressureValue}"
+                        Foreground="White"
+                        FontSize="18"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="20,5,5,5" />
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Border>
+</Window>
