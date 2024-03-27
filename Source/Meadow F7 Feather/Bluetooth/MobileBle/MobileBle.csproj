@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android</TargetFrameworks>		
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
@@ -51,7 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
+    <PackageReference Include="Meadow.Foundation.Web.Maple.Client" Version="*" />
 	</ItemGroup>
 
 </Project>

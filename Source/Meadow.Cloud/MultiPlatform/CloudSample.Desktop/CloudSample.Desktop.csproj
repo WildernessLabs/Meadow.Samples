@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
+    <PackageReference Include="Meadow.Desktop" Version="*" />
     <ProjectReference Include="..\..\MultiPlatform\CloudSample.Core\CloudSample.Core.csproj" />
   </ItemGroup>
 
