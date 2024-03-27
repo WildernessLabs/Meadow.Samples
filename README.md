@@ -530,7 +530,7 @@ Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to pu
 
 ## Azure
 
-[![Meadow.SBCs.Samples](Design/wildernesslabs-meadow-sbcs-samples.jpg)](/Source/RaspberryPi/)
+[![Meadow.SBCs.Samples](Design/wildernesslabs-meadow-azure-banner.jpg)](/Source/RaspberryPi/)
 
 Meadow project samples using Microsoft Azure. Click on any of these sample project to learn how they work.
 
