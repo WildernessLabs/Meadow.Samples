@@ -478,29 +478,29 @@ Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to pu
         <td>
             <img src="Design/wildernesslabs-meadow-cloud-begginer.jpg" alt="iot, dotnet, meadow, led, dice, buttons"/><br/>
             Send an over-the-air update to change colors on an RGB LED</br>
-            <a href="Source/RgbLedUpdateSample/">Source Code</a>
+            <a href="Source/Meadow.Cloud/RgbLedUpdateSample/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-cloud-log.jpg" alt="iot, dotnet, meadow, game, memory"/><br/>
             Send diagnostics logs from Meadow to Meadow.Cloud</br>
-            <a href="Source/CloudLogging/">Source Code</a>
+            <a href="Source/Meadow.Cloud/CloudLogging/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-cloud-health-metrics.jpg" alt="iot, dotnet, meadow, morse-code, graphics"/><br/>
             Check your Meadow's Health Metrics on Meadow.Cloud</br>
-            <a href="Source/HealthMetricsMonitoring/">Source Code</a>
+            <a href="Source/Meadow.Cloud/HealthMetricsMonitoring/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
             <a href="Source/Meadow.Cloud_Logging/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-logging.jpg"/></a><br/>
             Send environmental data to Meadow.Cloud using Log Event</br>
-            <a href="Source/Meadow.Cloud_Logging/">Source Code</a>
+            <a href="Source/Meadow.Cloud/ProjectLab_Logging/">Source Code</a>
         </td>
         <td>
             <a href="Source/Meadow.Cloud_OTA/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-ota-update.jpg"/></a><br/>
             Use Meadow.Cloud to push Over-the-air Updates<br/>
-            <a href="Source/Meadow.Cloud_OTA/">Source Code</a>
+            <a href="Source/Meadow.Cloud/ProjectLab_OTA/">Source Code</a>
         </td>
         <!--<td>
             <a href="Source/Meadow.Cloud_Client/"><img src="Design/wildernesslabs-projectlab-meadow-cloud-client.png"/></a><br/>
@@ -510,7 +510,7 @@ Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to pu
         <td>
             <a href="Source/Meadow.Cloud_Command/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-relay-command.png"/></a><br/>
             Use Meadow.Cloud commands to control a four channel relay</br>
-            <a href="Source/Meadow.Cloud_Command/">Source Code</a>
+            <a href="Source/Meadow.Cloud/ProjectLab_Command/">Source Code</a>
         </td> 
     </tr>
     <tr>
