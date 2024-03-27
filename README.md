@@ -10,12 +10,12 @@ Contents:
 
 * Meadow
     * [Meadow.Desktop](#meadowdesktop)
-    * [Meadow F7](#meadowf7)
-    * [Meadow F7 Feather](#f7-feather)
+    * [Meadow F7](#meadow-f7)
+    * [Meadow F7 Feather](#meadow-f7-feather)
     * [Raspberry Pi](#raspberry-pi)
 * Cloud
     * [Meadow.Cloud](#meadowcloud)
-    * [Azure](#meadowcloud)
+    * [Azure](#azure)
 * IoT Accelerators
     * [Project Lab](#project-lab)
     * [Juego](#juego)
