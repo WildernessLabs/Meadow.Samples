@@ -177,10 +177,10 @@ Public project samples for Meadow and Meadow.Foundation. Click on any of the pro
 <table>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-azure-iot-hub.png" alt="iot, dotnet, meadow, azure, iot-hub"/><br/>
-            Send environmental data to Azure IoT Hub via AMQP or MQTT</br>
-            <a href="https://www.hackster.io/wilderness-labs/send-temperature-humidity-data-from-meadow-to-azure-iot-hub-340b39">Hackster</a> | 
-            <a href="Source/Azure/F7Feather_AzureIoTHub/">Source Code</a>
+            <img src="Design/wildernesslabs-meadow-project-samples-wifi-weather.png" alt="iot, dotnet, meadow, wifi, weather"/><br/>
+            Weather Station Using Public Web Service using Meadow</br>
+            <a href="https://www.hackster.io/wilderness-labs/weather-station-using-public-web-service-using-meadow-e47765">Hackster</a> | 
+            <a href="Source/Meadow F7 Feather/WifiWeather/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-project-samples-rover-ble.png" alt="iot, dotnet, meadow, rover"/><br/>
@@ -237,10 +237,10 @@ Public project samples for Meadow and Meadow.Foundation. Click on any of the pro
     </tr>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-project-samples-wifi-weather.png" alt="iot, dotnet, meadow, wifi, weather"/><br/>
-            Weather Station Using Public Web Service using Meadow</br>
-            <a href="https://www.hackster.io/wilderness-labs/weather-station-using-public-web-service-using-meadow-e47765">Hackster</a> | 
-            <a href="Source/Meadow F7 Feather/WifiWeather/">Source Code</a>
+            <img src="Design/wildernesslabs-meadow-project-samples-stopwatch.png" alt="iot, dotnet, meadow, led, dice, buttons"/><br/>
+            Build a Stopwatch using buttons and display with Meadow</br>
+            <a href="https://www.hackster.io/wilderness-labs/build-a-stopwatch-using-buttons-and-display-with-meadow-168011">Hackster</a> | 
+            <a href="Source/Hackster/LedDice/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-project-samples-analog-watch-face.png" alt="iot, dotnet, meadow, st7789, graphics"/><br/>
@@ -375,24 +375,24 @@ Public project samples for Meadow and Meadow.Foundation. Click on any of the pro
             <a href="Source/Meadow F7 Feather/LedJoystick/">Source Code</a>
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-project-samples-stopwatch.png" alt="iot, dotnet, meadow, led, dice, buttons"/><br/>
-            Build a Stopwatch using buttons and display with Meadow</br>
-            <a href="https://www.hackster.io/wilderness-labs/build-a-stopwatch-using-buttons-and-display-with-meadow-168011">Hackster</a> | 
-            <a href="Source/Hackster/LedDice/">Source Code</a>
+            <img src="Design/wildernesslabs-meadow-project-samples-plant-monitor.png" alt="iot, dotnet, meadow, led, dice, buttons"/><br/>
+            Build Your Own Plant Monitor Using Meadow</br>
+            <a href="https://www.hackster.io/wilderness-labs/build-your-own-plant-monitor-using-meadow-5a4b6c">Hackster</a> | 
+            <a href="Source/Meadow F7 Feather/PlantMonitor/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-project-samples-memory-game.png" alt="iot, dotnet, meadow, game, memory"/><br/>
             Build your own Memory Game with Meadow</br>
             <a href="https://www.hackster.io/wilderness-labs/build-your-own-memory-game-with-meadow-a40933">Hackster</a> | 
-            <a href="Source/Hackster/MemoryGame/">Source Code</a>
+            <a href="Source/Meadow F7 Feather/MemoryGame/">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-project-samples-morse-code.png" alt="iot, dotnet, meadow, morse-code, graphics"/><br/>
             Train your Morse Code spelling skills with Meadow</br>
             <a href="https://www.hackster.io/wilderness-labs/train-your-morse-code-spelling-skills-with-meadow-3f2d9e">Hackster</a> | 
-            <a href="Source/Hackster/MorseCodeTrainer/">Source Code</a>
+            <a href="Source/Meadow F7 Feather/MorseCodeTrainer/">Source Code</a>
         </td>
     </tr>
     <tr>
