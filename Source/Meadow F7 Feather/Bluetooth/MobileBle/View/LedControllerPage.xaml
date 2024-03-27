@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Maui.ColorPicker;assembly=Maui.ColorPicker"
+    x:Class="MobileBle.View.LedControllerPage"
+    BackgroundColor="White"
+    Title="Led Controller">
+
+    <Grid>
+        <Grid RowSpacing="10" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Bluetooth devices:" FontSize="Medium" TextColor="Black" />
+
+            <Frame Grid.Row="1" BackgroundColor="#23ABE3" HasShadow="False" CornerRadius="5" BorderColor="Transparent" Padding="10,0,0,0">
+                <Grid ColumnDefinitions="*, Auto, 1, Auto" ColumnSpacing="0">
+                    <Grid Grid.Column="0">
+                        <Picker TextColor="White" FontSize="Medium" BackgroundColor="Transparent" Margin="0,4,0,0"
+                            ItemsSource="{Binding DeviceList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding DeviceSelected}"/>
+                        <Label IsVisible="{Binding IsDeviceListEmpty}" Text="Pick a device" 
+                            FontSize="Medium" TextColor="White" VerticalOptions="Center" />
+                    </Grid>
+
+                    <Grid Grid.Column="1" WidthRequest="50" HeightRequest="50">
+                        <Button Command="{Binding CmdToggleConnection}" BackgroundColor="Transparent" CornerRadius="5" />
+                        <Image Margin="10" HorizontalOptions="Center">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsDeviceListEmpty}" Value="True">
+                                    <Setter Property="Opacity" Value="0.5" />
+                                    <Setter Property="InputTransparent" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsDeviceListEmpty}" Value="False">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Setter Property="InputTransparent" Value="True" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsScanning}" Value="True">
+                                    <Setter Property="IsVisible" Value="False" />
+                                    <Setter Property="InputTransparent" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsScanning}" Value="False">
+                                    <Setter Property="IsVisible" Value="True" />
+                                    <Setter Property="InputTransparent" Value="True" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsConnected}" Value="True">
+                                    <Setter Property="Source" Value="img_ble_paired" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsConnected}" Value="False">
+                                    <Setter Property="Source" Value="img_ble_pair" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <ActivityIndicator Color="White" IsRunning="True" IsVisible="{Binding IsScanning}" Margin="7" />
+                    </Grid>
+
+                    <BoxView Grid.Column="2" Color="White" />
+
+                    <Grid Grid.Column="3" WidthRequest="50" HeightRequest="50">
+                        <Button Command="{Binding CmdSearchForDevices}" BackgroundColor="Transparent" CornerRadius="5" />
+                        <Image Source="img_search" Margin="10" InputTransparent="True" HorizontalOptions="Center" />
+                    </Grid>
+                </Grid>
+            </Frame>
+
+            <Label Grid.Row="2" Text="Choose a command:" TextColor="Black" FontSize="Medium" Margin="0,5" />
+
+            <Button Grid.Row="3" Text="Turn On" Style="{StaticResource ButtonStyle}" BackgroundColor="Red"
+                Command="{Binding SendCommand}" CommandParameter="TurnOn">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsOn}" Value="true">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonActive}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsOn}" Value="false">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonInactive}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button Grid.Row="4" Text="Turn Off" Style="{StaticResource ButtonStyle}"
+                Command="{Binding SendCommand}" CommandParameter="TurnOff" >
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsOff}" Value="true">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonActive}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsOff}" Value="false">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonInactive}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button Grid.Row="5" Text="Start Blink" Style="{StaticResource ButtonStyle}"
+                Command="{Binding SendCommand}" CommandParameter="StartBlink">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsBlinking}" Value="true">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonActive}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsBlinking}" Value="false">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonInactive}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button Grid.Row="6" Text="Start Pulse" Style="{StaticResource ButtonStyle}"
+                Command="{Binding SendCommand}" CommandParameter="StartPulse">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsPulsing}" Value="true">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonActive}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsPulsing}" Value="false">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonInactive}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button Grid.Row="7" Text="Start Running Colors" Style="{StaticResource ButtonStyle}"
+                Command="{Binding SendCommand}" CommandParameter="StartRunningColors">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsRunningColors}" Value="true">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonActive}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsRunningColors}" Value="false">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonInactive}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Label Grid.Row="9" Text="By Wilderness Labs" TextColor="Black" 
+                HorizontalOptions="Center" VerticalOptions="EndAndExpand" />
+        </Grid>
+    </Grid>
+</ContentPage>

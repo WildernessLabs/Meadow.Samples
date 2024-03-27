@@ -1,0 +1,144 @@
+name: Develop Build
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ develop ]
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout Meadow.Logging
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Logging
+        path: Meadow.Logging
+        ref: develop
+        
+    - name: Checkout Meadow.Units
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Units
+        path: Meadow.Units
+        ref: develop
+
+    - name: Checkout Meadow.Contracts
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Contracts
+        path: Meadow.Contracts
+        ref: develop
+    
+    - name: Checkout Meadow.Core
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Core
+        path: Meadow.Core
+        ref: develop
+        
+    - name: Checkout MQTTnet
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/MQTTnet
+        path: MQTTnet
+        ref: develop
+        
+    - name: Checkout Meadow.Modbus
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Modbus
+        path: Meadow.Modbus
+        ref: develop
+        
+    - name: Checkout Meadow.Foundation
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Foundation
+        path: Meadow.Foundation
+        ref: develop
+
+    - name: Checkout Meadow.Foundation.FeatherWings
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Foundation.FeatherWings
+        path: Meadow.Foundation.FeatherWings
+        ref: develop
+
+    - name: Checkout Meadow.Foundation.Grove
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Foundation.Grove
+        path: Meadow.Foundation.Grove
+        ref: develop
+
+    - name: Checkout Meadow.Foundation.mikroBUS
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Foundation.mikroBUS
+        path: Meadow.Foundation.mikroBUS
+        ref: develop
+
+    - name: Checkout Maple
+      uses: actions/checkout@v3
+      with:
+          repository: WildernessLabs/Maple
+          path: Maple
+          ref: develop
+
+    - name: Checkout amqpnetlite
+      uses: actions/checkout@v3
+      with:
+          repository: WildernessLabs/amqpnetlite
+          path: amqpnetlite
+          ref: v2.4.5-meadow
+
+    - name: Checkout Juego
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Juego
+        path: Juego
+        ref: develop
+
+    - name: Checkout Meadow.ProjectLab
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.ProjectLab
+        path: Meadow.ProjectLab
+        ref: develop
+
+    - name: Checkout Meadow.Samples
+      uses: actions/checkout@v3
+      with:
+        path: Meadow.Samples
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 
+          6.x
+
+    - name: Install Java SDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version:
+          8.0.x
+
+    - name: Install MAUI Workload
+      run: dotnet workload install maui --ignore-failed-sources
+
+    - name: Install MAUI Android Workload
+      run: dotnet workload install maui-android --ignore-failed-sources
+    
+    - name: Build Meadow.ProjectLab.Samples
+      run: dotnet build -c Release Meadow.Samples/Source/Meadow.Samples.sln
