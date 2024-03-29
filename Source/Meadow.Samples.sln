@@ -489,6 +489,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Walking_DigitalOutputs", "M
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Walking_DigitalOutputs_Fs", "Meadow F7\Utilities\WalkingDigitalOutputs_F#\Walking_DigitalOutputs_Fs.fsproj", "{DB444522-6F37-4AC0-83B1-70C693395CD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatherF7_OTA", "Meadow.Cloud\FeatherF7_OTA\FeatherF7_OTA.csproj", "{5F901575-0744-4A27-B2BE-AE868D361817}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2280,6 +2282,15 @@ Global
 		{DB444522-6F37-4AC0-83B1-70C693395CD4}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB444522-6F37-4AC0-83B1-70C693395CD4}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 		{DB444522-6F37-4AC0-83B1-70C693395CD4}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{5F901575-0744-4A27-B2BE-AE868D361817}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2515,6 +2526,7 @@ Global
 		{8BC5FD06-80AB-4975-9964-EF1DA973D7BF} = {EED6D7A7-9653-4B55-924B-A56C58982CA6}
 		{435CD7FA-15FF-43A3-AA1B-3EFCF8859DDA} = {8BC5FD06-80AB-4975-9964-EF1DA973D7BF}
 		{DB444522-6F37-4AC0-83B1-70C693395CD4} = {8BC5FD06-80AB-4975-9964-EF1DA973D7BF}
+		{5F901575-0744-4A27-B2BE-AE868D361817} = {0F5B8EEF-8895-42C6-9E93-A9152EDEEDDB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
