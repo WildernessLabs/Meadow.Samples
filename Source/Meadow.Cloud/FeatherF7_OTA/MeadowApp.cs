@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FeatherF7_OTA;
 
-public class MeadowApp : App<F7FeatherV1>
+public class MeadowApp : App<F7FeatherV2>
 {
     /*
     
