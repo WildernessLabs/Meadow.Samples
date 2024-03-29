@@ -25,7 +25,7 @@ public class MeadowApp : App<F7FeatherV2>
 
     4. Go to Meadow.Cloud (https://www.meadowcloud.co/) -> Packages, click Publish on the .mpak uploaded
 
-    5. If/When Project Lab resets, you can still check its console output with the command:
+    5. If/When Meadow device resets, you can still check its console output with the command:
 
         meadow listen
 
