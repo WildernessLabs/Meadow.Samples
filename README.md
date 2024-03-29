@@ -473,42 +473,36 @@ Public project samples for [Single-Board-Computers (SBCs)](https://developer.wil
 Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to push a new version of a Meadow application to a device in the field over the network. Before running any of the project samples below, make sure to go through the [Meadow.Cloud basics](https://developer.wildernesslabs.co/Meadow/Meadow.Cloud/) guides showing you how to provision your device, how to download and apply an update from Meadow, and make/publish a package. 
 
 <table>
-    </tr>
-        <tr>
+    <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-cloud-begginer.jpg" alt="iot, dotnet, meadow, led, dice, buttons"/><br/>
+            <a href="Source/Meadow.Cloud/FeatherF7_OTA/"><img src="Design/wildernesslabs-meadow-cloud-begginer.jpg"/></a><br/>
             Send an over-the-air update to change colors on an RGB LED</br>
-            <a href="Source/Meadow.Cloud/RgbLedUpdateSample/">Source Code</a>
+            <a href="Source/Meadow.Cloud/FeatherF7_OTA/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-cloud-log.jpg" alt="iot, dotnet, meadow, game, memory"/><br/>
+            <a href="Source/Meadow.Cloud/CloudLogging/"><img src="Design/wildernesslabs-meadow-cloud-log.jpg"/></a><br/>
             Send diagnostics logs from Meadow to Meadow.Cloud</br>
             <a href="Source/Meadow.Cloud/CloudLogging/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-cloud-health-metrics.jpg" alt="iot, dotnet, meadow, morse-code, graphics"/><br/>
+            <a href="Source/Meadow.Cloud/HealthMetricsMonitoring/"><img src="Design/wildernesslabs-meadow-cloud-health-metrics.jpg"/></a><br/>
             Check your Meadow's Health Metrics on Meadow.Cloud</br>
             <a href="Source/Meadow.Cloud/HealthMetricsMonitoring/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
-            <a href="Source/Meadow.Cloud_Logging/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-logging.jpg"/></a><br/>
+            <a href="Source/Meadow.Cloud/ProjectLab_Logging/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-logging.jpg"/></a><br/>
             Send environmental data to Meadow.Cloud using Log Event</br>
             <a href="Source/Meadow.Cloud/ProjectLab_Logging/">Source Code</a>
         </td>
         <td>
-            <a href="Source/Meadow.Cloud_OTA/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-ota-update.jpg"/></a><br/>
+            <a href="Source/Meadow.Cloud/ProjectLab_OTA/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-ota-update.jpg"/></a><br/>
             Use Meadow.Cloud to push Over-the-air Updates<br/>
             <a href="Source/Meadow.Cloud/ProjectLab_OTA/">Source Code</a>
         </td>
-        <!--<td>
-            <a href="Source/Meadow.Cloud_Client/"><img src="Design/wildernesslabs-projectlab-meadow-cloud-client.png"/></a><br/>
-            Get log event data from Meadow.Cloud using its client API<br/>
-            <a href="Source/Meadow.Cloud_Client/">Source Code</a>
-        </td>-->
         <td>
-            <a href="Source/Meadow.Cloud_Command/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-relay-command.png"/></a><br/>
+            <a href="Source/Meadow.Cloud/ProjectLab_Command/"><img src="Design/wildernesslabs-meadow-cloud-projectlab-relay-command.png"/></a><br/>
             Use Meadow.Cloud commands to control a four channel relay</br>
             <a href="Source/Meadow.Cloud/ProjectLab_Command/">Source Code</a>
         </td> 
@@ -537,22 +531,22 @@ Meadow project samples using Microsoft Azure. Click on any of these sample proje
 <table>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-azure-iot-hub.png" alt="iot, dotnet, meadow, azure, iot-hub"/><br/>
+            <a href="Source/Azure/F7Feather_AzureIoTHub/"><img src="Design/wildernesslabs-meadow-azure-iot-hub.png" /></a><br/>
             Send environmental data to Azure IoT Hub via AMQP or MQTT</br>
             <a href="https://www.hackster.io/wilderness-labs/send-temperature-humidity-data-from-meadow-to-azure-iot-hub-340b39">Hackster</a> | 
             <a href="Source/Azure/F7Feather_AzureIoTHub/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/MeadowAzureIoTHub/MeadowAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub.png"/></a><br/>
+            <a href="Source/Azure/MeadowAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub.png"/></a><br/>
             Send anvironmental data from a BME688 to Azure IoT Hub<br/>
             <a href="https://www.hackster.io/wildernesslabs/send-environmental-data-from-projectlab-to-azure-w-iot-hub-7d3d07">Hackster</a> | 
-            <a href="Source/MeadowAzureIoTHub/">Source Code</a>
+            <a href="Source/Azure/MeadowAzureIoTHub/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/MeadowAzureIoTHub/WebAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub-web.png"/></a><br/>
+            <a href="Source/Azure/Web_AzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub-web.png"/></a><br/>
             Visualize environmental data on a Web App from Azure IoT Hub</br>
             <a href="https://www.hackster.io/wilderness-labs/visualize-azure-iot-hub-data-with-a-net-web-app-6288e3">Hackster</a> | 
-            <a href="Source/MagicEightMeadow/">Source Code</a>
+            <a href="Source/Azure/Web_AzureIoTHub/">Source Code</a>
         </td>
     </tr>
     <tr>
