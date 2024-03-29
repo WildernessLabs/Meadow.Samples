@@ -419,34 +419,34 @@ Public project samples for [Single-Board-Computers (SBCs)](https://developer.wil
 <table>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-linux-blinky.jpg"/><br/>
+            <a href="Source/RaspberryPi/Blinky/"><img src="Design/wildernesslabs-meadow-linux-blinky.jpg"/></a><br/>
             Getting started with a Blinky app on a Raspberry Pi</br>
             <a href="Source/RaspberryPi/Blinky/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-linux-character-display.jpg"/><br/>
+            <a href="Source/RaspberryPi/CharacterDisplaySample/"><img src="Design/wildernesslabs-meadow-linux-character-display.jpg"/></a><br/>
             Using a 20x4 LCD Character Display on a Raspberry Pi</br>
             <a href="Source/RaspberryPi/CharacterDisplaySample/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-linux-st7789.jpg"/><br/>
+            <a href="Source/RaspberryPi/ST7789_Sample/"><img src="Design/wildernesslabs-meadow-linux-st7789.jpg"/></a><br/>
             Using MicroGraphics on a ST7789 display on a Raspberry Pi</br>
             <a href="Source/RaspberryPi/ST7789_Sample/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-linux-wifiweather.jpg"/><br/>
+            <a href="Source/RaspberryPi/WifiWeather/"><img src="Design/wildernesslabs-meadow-linux-wifiweather.jpg"/></a><br/>
             Build a weather widget using MicroLayout on a Raspberry Pi</br>
             <a href="Source/RaspberryPi/WifiWeather/">Source Code</a>
         </td>
         <td>
-            <img src="Design/template-blue.png"/><br/>
+            <a href="Source/RaspberryPi/Bme280_Sample/"><img src="Design/template-blue.png"/></a><br/>
             Using a BME280 atmospheric sensor on a Raspberry Pi</br>
             <a href="Source/RaspberryPi/Bme280_Sample/">Source Code</a>
         </td>
         <td>
-            <img src="Design/template-orange.png"/><br/>
+            <a href="Source/RaspberryPi/WifiWeather/"><img src="Design/template-orange.png"/></a><br/>
             Working with push button events on a Rapsberry Pi</br>
             <a href="Source/RaspberryPi/WifiWeather/">Source Code</a>
         </td>
@@ -591,14 +591,14 @@ This repo contains code samples for the Wilderness Labs Meadow [Project Lab](htt
     </tr>
     </tr>
         <td>
-            <a href="Source/ProjectLab/Connectivity/"><img src="Design/wildernesslabs-projectlab-samples-maple.png"/></a><br/>
+            <a href="Source/ProjectLab/ProjectLabWiFiBle/"><img src="Design/wildernesslabs-projectlab-samples-maple.png"/></a><br/>
             Control a Project Lab over Wi-Fi with a MAUI app</br>
-            <a href="Source/ProjectLab/Connectivity/">Source Code</a>
+            <a href="Source/ProjectLab/ProjectLabWiFiBle/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/Connectivity/"><img src="Design/wildernesslabs-projectlab-samples-bluetooth.png"/></a><br/>
+            <a href="Source/ProjectLab/ProjectLabWiFiBle/"><img src="Design/wildernesslabs-projectlab-samples-bluetooth.png"/></a><br/>
             Control a Project Lab over Bluetooth with a MAUI app<br/>
-            <a href="Source/ProjectLab/Connectivity/">Source Code</a>
+            <a href="Source/ProjectLab/ProjectLabWiFiBle/">Source Code</a>
         </td>
         <td>
             <a href="Source/ProjectLab/MoistureMeter/"><img src="Design/wildernesslabs-projectlab-samples-grove-moisture-meter.png"/></a><br/>
@@ -633,7 +633,7 @@ This repo contains code samples for the Wilderness Labs Meadow [Project Lab](htt
             <a href="Source/ProjectLab/GalleryViewer/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/WifiWeather/"><img src="Design/wildernesslabs-projectlab-samples-simon.png"/></a><br/>
+            <a href="Source/ProjectLab/Simon/"><img src="Design/wildernesslabs-projectlab-samples-simon.png"/></a><br/>
             Run a game of Simon on your Project Lab<br/>
             <a href="Source/ProjectLab/Simon/">Source Code</a>
         </td>
@@ -643,23 +643,6 @@ This repo contains code samples for the Wilderness Labs Meadow [Project Lab](htt
             <a href="Source/ProjectLab/MorseCodeTrainer/">Source Code</a>
         </td>
     </tr>
-    <!--<tr>
-        <td>
-            <a href="Source/AmbientRoomMonitor/"><img src="Design/wildernesslabs-projectlab-ambient-room-monitor.png"/></a><br/>
-            Room ambient monitor with a BME688 on a Project Lab<br/>
-            <a href="Source/AmbientRoomMonitor/">Source Code</a>
-        </td>
-        <td>
-            <a href="Source/Simon/"><img src="Design/wildernesslabs-projectlab-simon.png"/></a><br/>
-            Run a Simon Game on a display and push button d-pad</br>
-            <a href="Source/Simon/">Source Code</a>
-        </td>
-        <td>
-            <a href="Source/MorseCodeTrainer/"><img src="Design/wildernesslabs-projectlab-samples-morse-code-trainer.png"/></a><br/>
-            Train your Morse Code spelling skills with Meadow<br/>
-            <a href="Source/MorseCodeTrainer/">Source Code</a>
-        </td>
-    </tr>-->
     <tr>
         <td>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -675,7 +658,6 @@ This repo contains code samples for the Wilderness Labs Meadow [Project Lab](htt
 
 [Back to top](#meadowsamples)
 
-
 ## Juego
 
 [![Juego.Samples](/Design/wildernesslabs-meadow-juego-samples.jpg)](/Source/Juego/)
@@ -685,51 +667,51 @@ A collection of samples for the Wilderness Labs [Juego IoT Accelerator](https://
 <table>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-juego-getting-started.jpg" alt="juego, dotnet, meadow, dice, buttons"/><br/>
+            <a href="https://github.com/WildernessLabs/Juego/tree/main/Source/Juego_Demo"><img src="Design/wildernesslabs-meadow-juego-getting-started.jpg" alt="juego, dotnet, meadow, dice, buttons"/></a><br/>
             Getting started with Juego</br>
             <a href="https://github.com/WildernessLabs/Juego/tree/main/Source/Juego_Demo">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-juego-froggit.jpg" alt="dotnet, meadow, juego, graphics, 2D, frogger"/><br/>
+            <a href="Source/Juego/Froggit/"><img src="Design/wildernesslabs-meadow-juego-froggit.jpg" alt="dotnet, meadow, juego, graphics, 2D, frogger"/></a><br/>
             Run/play frogger on a Juego</br>
             <a href="Source/Juego/Froggit/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-juego-tetraminos.jpg" alt="dotnet, meadow, juego, graphics, 2D, tetris"/><br/>
+            <a href="Source/Juego/Tetraminoes/"><img src="Design/wildernesslabs-meadow-juego-tetraminos.jpg" alt="dotnet, meadow, juego, graphics, 2D, tetris"/></a><br/>
             Run/play Tetraminoes on a Juego<br/>
             <a href="Source/Juego/Tetraminoes/">Source Code</a>
         </td>
     </tr>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-juego-span-four.jpg" alt="dotnet, meadow, juego, graphics, 2D, span 4"/><br/>
+            <a href="Source/Juego/Span4/"><img src="Design/wildernesslabs-meadow-juego-span-four.jpg" alt="dotnet, meadow, juego, graphics, 2D, span 4"/></a><br/>
             Run/play a 2-player Span4</br>
             <a href="Source/Juego/Span4/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-juego-eyeball.jpg" alt="dotnet, meadow, juego, graphics, 2D, eyeball"/><br/>
+            <a href="Source/Juego/Eyeball/"><img src="Design/wildernesslabs-meadow-juego-eyeball.jpg" alt="dotnet, meadow, juego, graphics, 2D, eyeball"/></a><br/>
             Halloween Eye Ball animation</br>
             <a href="Source/Juego/Eyeball/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-juego-snake.jpg" alt="dotnet, meadow, juego, graphics, 2D, snake"/><br/>
+            <a href="Source/Juego/Snake/"><img src="Design/wildernesslabs-meadow-juego-snake.jpg" alt="dotnet, meadow, juego, graphics, 2D, snake"/></a><br/>
             Run/play snake on a Juego</br>
             <a href="Source/Juego/Snake/">Source Code</a>
         </td> 
     </tr>
     <tr>
         <td>
-            <img src="Design/wildernesslabs-meadow-template-green.jpg" alt="dotnet, meadow, juego, graphics, 2D, span 4"/><br/>
+            <a href="Source/Juego/FallingSand/"><img src="Design/wildernesslabs-meadow-template-green.jpg" alt="dotnet, meadow, juego, graphics, 2D, span 4"/></a><br/>
             Falling Sand particles with motion sensor</br>
             <a href="Source/Juego/FallingSand/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-template-blue.jpg" alt="dotnet, meadow, juego, graphics, 2D, eyeball"/><br/>
+            <a href="Source/Juego/GameOfLife/"><img src="Design/wildernesslabs-meadow-template-blue.jpg" alt="dotnet, meadow, juego, graphics, 2D, eyeball"/></a><br/>
             Run a Particle's Game Of Life simulator</br>
             <a href="Source/Juego/GameOfLife/">Source Code</a>
         </td>
         <td>
-            <img src="Design/wildernesslabs-meadow-template-orange.jpg" alt="dotnet, meadow, juego, graphics, 2D, snake"/><br/>
+            <a href="Source/Juego/Starfield/"><img src="Design/wildernesslabs-meadow-template-orange.jpg" alt="dotnet, meadow, juego, graphics, 2D, snake"/></a><br/>
             Play this traveling through space effect</br>
             <a href="Source/Juego/Starfield/">Source Code</a>
         </td> 
