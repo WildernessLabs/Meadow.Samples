@@ -18,7 +18,7 @@ public class MeadowApp : App<RaspberryPi>
     {
         Resolver.Log.Info("Creating Outputs");
 
-        _display = new AsciiConsoleDisplay(8 * 4, 8 * 3); // each "pixel" will be 4x3
+        _display = new AsciiConsole(8 * 4, 8 * 3); // each "pixel" will be 4x3
 
         var i2c = Device.CreateI2cBus();
         _camera = new Amg8833(i2c);
