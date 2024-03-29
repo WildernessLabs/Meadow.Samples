@@ -537,10 +537,10 @@ Meadow project samples using Microsoft Azure. Click on any of these sample proje
             <a href="Source/Azure/F7Feather_AzureIoTHub/">Source Code</a>
         </td>
         <td>
-            <a href="Source/Azure/MeadowAzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub.png"/></a><br/>
+            <a href="Source/Azure/ProjectLab_AzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub.png"/></a><br/>
             Send anvironmental data from a BME688 to Azure IoT Hub<br/>
             <a href="https://www.hackster.io/wildernesslabs/send-environmental-data-from-projectlab-to-azure-w-iot-hub-7d3d07">Hackster</a> | 
-            <a href="Source/Azure/MeadowAzureIoTHub/">Source Code</a>
+            <a href="Source/Azure/ProjectLab_AzureIoTHub/">Source Code</a>
         </td>
         <td>
             <a href="Source/Azure/Web_AzureIoTHub/"><img src="Design/wildernesslabs-projectlab-samples-azure-iot-hub-web.png"/></a><br/>
