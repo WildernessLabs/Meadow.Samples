@@ -1,4 +1,4 @@
-﻿using Meadow.Foundation.Sensors.Accelerometers;
+﻿using Meadow.Foundation.Sensors.Motion;
 using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
 

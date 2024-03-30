@@ -9,7 +9,7 @@ Lifecycle:
     RestartOnAppFailure: false
 
     # When app set to restart automatically on app failure, 
-#    AppFailureRestartDelaySeconds: 15
+    AppFailureRestartDelaySeconds: 15
 
 # Logging configuration.
 Logging:
@@ -21,16 +21,16 @@ Logging:
         Default: Trace
 
 # Meadow.Cloud configuration.
-Update:
+MeadowCloud:
+    
+    # Enable Logging, Events, Command + Control
+    Enabled: true
 
-    # Enable Meadow.Cloud features
-#    Enabled: true
-
-# Meadow.Cloud Health Metrics.
-HealthMetrics:
+    # Enable Over-the-air Updates
+    EnableUpdates: true
 
     # Enable Health Metrics
-#    Enabled: true
+#    EnableHealthMetrics: false
 
-    # How often to send metrics to Meadow.Cloud (in minutes)
-#    Interval: 15
+    # How often to send metrics to Meadow.Cloud
+#    HealthMetricsIntervalMinutes: 60

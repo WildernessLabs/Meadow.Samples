@@ -1,7 +1,7 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.Sensors.Accelerometers;
 using Meadow.Foundation.Sensors.Atmospheric;
+using Meadow.Foundation.Sensors.Motion;
 using Meadow.Peripherals.Sensors.Light;
 using Meadow.Units;
 using MeadowConnectedSample.Connectivity;
