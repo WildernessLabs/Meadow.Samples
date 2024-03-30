@@ -1,7 +1,7 @@
 ﻿using MagicEightMeadow.Controllers;
 using MagicEightMeadow.Hardware;
 using Meadow;
-using Meadow.Foundation.Sensors.Accelerometers;
+using Meadow.Foundation.Sensors.Motion;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
