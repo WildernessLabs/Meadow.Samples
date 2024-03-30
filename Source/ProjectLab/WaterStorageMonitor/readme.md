@@ -12,7 +12,7 @@ Currently, the application supports two hardware setups:
  * **Bench Prototype** - Utilizes a VL53L0X Time-of-Flight (ToF) sensor to model a real world water storage sensor.
  * **Lab Prototype** - Utilizes a MaxBotix sensor and a rain barrel.
 
-To switch between the two configurations, edit the [`MeadowApp.cs` file, line 24](https://github.com/WildernessLabs/Meadow.Samples/blob/f13631946644c052c5cb41044de6c0e28eb85440/Source/ProjectLab/WaterStorageMonitor/Source/MeadowApp.cs#L23):
+To switch between the two configurations, edit the [`MeadowApp.cs` file, line 24](https://github.com/WildernessLabs/Meadow.Samples/blob/main/Source/ProjectLab/WaterStorageMonitor/Source/MeadowApp.cs#L23):
 
 ```csharp
 HardwareConfigTypes currentHardwareConfig = HardwareConfigTypes.LabProto;
