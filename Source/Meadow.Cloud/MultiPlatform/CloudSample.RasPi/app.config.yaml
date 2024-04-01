@@ -6,10 +6,5 @@ Logging:
 MeadowCloud:
     Enabled: true
     EnableUpdates: true
-
-HealthMetrics:
-    # Enable Health Metrics
-#    Enabled: true
-
-    # How often to send metrics to Meadow.Cloud (in minutes)
-#    Interval: 15
+    EnableHealthMetrics: true
+    HealthMetricsIntervalMinutes: 1
