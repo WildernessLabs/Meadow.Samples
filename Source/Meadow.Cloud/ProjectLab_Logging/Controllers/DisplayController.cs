@@ -71,8 +71,8 @@ internal class DisplayController
 
         displayScreen.Controls.Add(new GradientBox(0, 0, displayScreen.Width, displayScreen.Height)
         {
-            StartColor = Meadow.Color.FromHex("#CADC32"),
-            EndColor = Meadow.Color.FromHex("#E5EE9B")
+            StartColor = Color.FromHex("#CADC32"),
+            EndColor = Color.FromHex("#E5EE9B")
         });
 
         var wifiImage = Image.LoadFromResource("ProjectLab_Logging.Resources.img_wifi_connecting.bmp");

@@ -7,49 +7,35 @@ namespace AmbientRoomMonitor.Services
 {
     internal class DisplayController
     {
-        readonly int rowHeight = 60;
-        readonly int rowMargin = 15;
+        private readonly int rowHeight = 60;
+        private readonly int rowMargin = 15;
 
-        protected DisplayScreen DisplayScreen { get; set; }
+        private Color backgroundColor = Color.FromHex("#F3F7FA");
+        private Color foregroundColor = Color.Black;
 
-        protected Label Light { get; set; }
+        private readonly Font12x20 font12X20 = new Font12x20();
 
-        protected Label Pressure { get; set; }
+        private DisplayScreen displayScreen;
 
-        protected Label Humidity { get; set; }
-
-        protected Label Temperature { get; set; }
-
-        Color backgroundColor = Color.FromHex("#F3F7FA");
-        Color foregroundColor = Color.Black;
-
-        readonly Font12x20 font12X20 = new Font12x20();
+        private Label light;
+        private Label pressure;
+        private Label humidity;
+        private Label temperature;
 
         public DisplayController(IPixelDisplay display)
         {
-            DisplayScreen = new DisplayScreen(display, RotationType._270Degrees)
+            displayScreen = new DisplayScreen(display, RotationType._270Degrees)
             {
                 BackgroundColor = backgroundColor
             };
 
-            DisplayScreen.Controls.Add(new Box(0, 0, display.Width, rowHeight)
+            displayScreen.Controls.Add(new GradientBox(0, 0, displayScreen.Width, displayScreen.Height)
             {
-                ForeColor = Color.FromHex("#5AC0EA")
-            });
-            DisplayScreen.Controls.Add(new Box(0, rowHeight, display.Width, rowHeight)
-            {
-                ForeColor = Color.FromHex("#84D0EF")
-            });
-            DisplayScreen.Controls.Add(new Box(0, rowHeight * 2, display.Width, rowHeight)
-            {
-                ForeColor = Color.FromHex("#A3DCF3")
-            });
-            DisplayScreen.Controls.Add(new Box(0, rowHeight * 3, display.Width, rowHeight)
-            {
-                ForeColor = Color.FromHex("#B8E4F6")
+                StartColor = Color.FromHex("#5AC0EA"),
+                EndColor = Color.FromHex("#B8E4F6")
             });
 
-            DisplayScreen.Controls.Add(new Label(rowMargin, 0, DisplayScreen.Width / 2, rowHeight)
+            displayScreen.Controls.Add(new Label(rowMargin, 0, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"LUMINANCE",
                 TextColor = foregroundColor,
@@ -57,7 +43,7 @@ namespace AmbientRoomMonitor.Services
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left
             });
-            DisplayScreen.Controls.Add(new Label(rowMargin, rowHeight, DisplayScreen.Width / 2, rowHeight)
+            displayScreen.Controls.Add(new Label(rowMargin, rowHeight, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"PRESSURE",
                 TextColor = foregroundColor,
@@ -65,7 +51,7 @@ namespace AmbientRoomMonitor.Services
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left
             });
-            DisplayScreen.Controls.Add(new Label(rowMargin, rowHeight * 2, DisplayScreen.Width / 2, rowHeight)
+            displayScreen.Controls.Add(new Label(rowMargin, rowHeight * 2, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"HUMIDITY",
                 TextColor = foregroundColor,
@@ -73,7 +59,7 @@ namespace AmbientRoomMonitor.Services
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left
             });
-            DisplayScreen.Controls.Add(new Label(rowMargin, rowHeight * 3, DisplayScreen.Width / 2, rowHeight)
+            displayScreen.Controls.Add(new Label(rowMargin, rowHeight * 3, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"TEMPERATURE",
                 TextColor = foregroundColor,
@@ -82,7 +68,7 @@ namespace AmbientRoomMonitor.Services
                 HorizontalAlignment = HorizontalAlignment.Left
             });
 
-            Light = new Label(DisplayScreen.Width / 2 - rowMargin, 0, DisplayScreen.Width / 2, rowHeight)
+            light = new Label(displayScreen.Width / 2 - rowMargin, 0, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"- Lx",
                 TextColor = foregroundColor,
@@ -90,9 +76,9 @@ namespace AmbientRoomMonitor.Services
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Right
             };
-            DisplayScreen.Controls.Add(Light);
+            displayScreen.Controls.Add(light);
 
-            Pressure = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight, DisplayScreen.Width / 2, rowHeight)
+            pressure = new Label(displayScreen.Width / 2 - rowMargin, rowHeight, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"- Mb",
                 TextColor = foregroundColor,
@@ -100,9 +86,9 @@ namespace AmbientRoomMonitor.Services
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Right
             };
-            DisplayScreen.Controls.Add(Pressure);
+            displayScreen.Controls.Add(pressure);
 
-            Humidity = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight * 2, DisplayScreen.Width / 2, rowHeight)
+            humidity = new Label(displayScreen.Width / 2 - rowMargin, rowHeight * 2, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"- % ",
                 TextColor = foregroundColor,
@@ -110,9 +96,9 @@ namespace AmbientRoomMonitor.Services
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Right
             };
-            DisplayScreen.Controls.Add(Humidity);
+            displayScreen.Controls.Add(humidity);
 
-            Temperature = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight * 3, DisplayScreen.Width / 2, rowHeight)
+            temperature = new Label(displayScreen.Width / 2 - rowMargin, rowHeight * 3, displayScreen.Width / 2, rowHeight)
             {
                 Text = $"- °C",
                 TextColor = foregroundColor,
@@ -120,19 +106,19 @@ namespace AmbientRoomMonitor.Services
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Right
             };
-            DisplayScreen.Controls.Add(Temperature);
+            displayScreen.Controls.Add(temperature);
         }
 
         public void UpdateAtmosphericConditions(string light, string pressure, string humidity, string temperature)
         {
-            DisplayScreen.BeginUpdate();
+            displayScreen.BeginUpdate();
 
-            Light.Text = $"{light} Lx";
-            Pressure.Text = $"{pressure} mb";
-            Humidity.Text = $"{humidity} % ";
-            Temperature.Text = $"{temperature} °C";
+            this.light.Text = $"{light} Lx";
+            this.pressure.Text = $"{pressure} mb";
+            this.humidity.Text = $"{humidity} % ";
+            this.temperature.Text = $"{temperature} °C";
 
-            DisplayScreen.EndUpdate();
+            displayScreen.EndUpdate();
         }
     }
 }
