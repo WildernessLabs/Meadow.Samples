@@ -4,8 +4,6 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <OutputType>Library</OutputType>
     <AssemblyName>App</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>

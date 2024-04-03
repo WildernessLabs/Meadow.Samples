@@ -1,14 +1,13 @@
 ﻿using Meadow.Units;
 using System.Threading.Tasks;
 
-namespace MeadowAzureIoTHub.Controllers
+namespace ProjectLab_AzureIoTHub.Controllers;
+
+internal interface IIoTHubController
 {
-    internal interface IIoTHubController
-    {
-        bool isAuthenticated { get; }
+    bool isAuthenticated { get; }
 
-        Task<bool> Initialize();
+    Task<bool> Initialize();
 
-        Task SendEnvironmentalReading((Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance) reading);
-    }
+    Task SendEnvironmentalReading((Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance) reading);
 }
