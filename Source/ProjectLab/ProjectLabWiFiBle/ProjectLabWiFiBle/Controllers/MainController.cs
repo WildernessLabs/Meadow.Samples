@@ -60,55 +60,72 @@ public class MainController
 
         if (useWifi)
         {
-            wifi.NetworkConnected += WifiNetworkConnected;
-            await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
+            await SetupWiFiNetwork();
         }
         else
         {
-            bluetoothServer = new BluetoothServer();
-
-            bluetoothServer.PairingValueSet += (s, e) =>
-            {
-                Resolver.Log.Info("PairingValueSet");
-                displayController.ShowBluetoothPaired();
-            };
-            bluetoothServer.LedToggleValueSet += (s, e) =>
-            {
-                Resolver.Log.Info("LedToggleValueSet");
-                _ = ledController.Toggle();
-            };
-            bluetoothServer.LedBlinkValueSet += (s, e) =>
-            {
-                Resolver.Log.Info("LedBlinkValueSet");
-                _ = ledController.StartBlink();
-            };
-            bluetoothServer.LedPulseValueSet += (s, e) =>
-            {
-                Resolver.Log.Info("LedPulseValueSet");
-                _ = ledController.StartPulse();
-            };
-
-            var definition = bluetoothServer.GetDefinition();
-            bluetooth.StartBluetoothServer(definition);
-
-            _ = StartUpdating(TimeSpan.FromSeconds(15));
-
-            ledController.SetColor(Color.Green);
+            SetupBluetooth();
         }
     }
 
-    private void WifiNetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
+    private void SetupBluetooth()
     {
-        displayController.StopConnectingAnimation();
+        bluetoothServer = new BluetoothServer();
+
+        bluetoothServer.PairingValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("PairingValueSet");
+
+            if (e)
+            {
+                displayController.ShowBluetoothPaired();
+            }
+            else
+            {
+                _ = displayController.StartConnectingAnimation(false);
+            }
+        };
+        bluetoothServer.LedToggleValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedToggleValueSet");
+            _ = ledController.Toggle();
+        };
+        bluetoothServer.LedBlinkValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedBlinkValueSet");
+            _ = ledController.StartBlink();
+        };
+        bluetoothServer.LedPulseValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedPulseValueSet");
+            _ = ledController.StartPulse();
+        };
+
+        var definition = bluetoothServer.GetDefinition();
+        bluetooth.StartBluetoothServer(definition);
 
         _ = StartUpdating(TimeSpan.FromSeconds(15));
 
-        var mapleServer = new MapleServer(sender.IpAddress, 5417, advertise: true, logger: Resolver.Log);
-        mapleServer.Start();
-
-        displayController.ShowMapleReady(sender.IpAddress.ToString());
-
         ledController.SetColor(Color.Green);
+    }
+
+    private async Task SetupWiFiNetwork()
+    {
+        wifi.NetworkConnected += (s, e) =>
+        {
+            displayController.StopConnectingAnimation();
+
+            _ = StartUpdating(TimeSpan.FromSeconds(15));
+
+            var mapleServer = new MapleServer(s.IpAddress, 5417, advertise: true, logger: Resolver.Log);
+            mapleServer.Start();
+
+            displayController.ShowMapleReady(s.IpAddress.ToString());
+
+            ledController.SetColor(Color.Green);
+        };
+
+        await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
     }
 
     public async Task StartUpdating(TimeSpan updateInterval)
