@@ -2,82 +2,76 @@
 using Connectivity.Common.Models;
 using Meadow.Foundation.Web.Maple;
 using Meadow.Foundation.Web.Maple.Routing;
-using MeadowConnectedSample.Controller;
 using MeadowConnectedSample.Controllers;
 using System.Threading.Tasks;
 
-namespace MeadowConnectedSample.Connectivity
+namespace MeadowConnectedSample.Connectivity;
+
+public class MapleRequestHandler : RequestHandlerBase
 {
-    public class MapleRequestHandler : RequestHandlerBase
+    public MapleRequestHandler() { }
+
+    [HttpPost("/toggle")]
+    public async Task<IActionResult> Toggle()
     {
-        public MapleRequestHandler() { }
+        //await LedController.Instance.Toggle();
+        return new OkResult();
+    }
 
-        [HttpPost("/toggle")]
-        public async Task<IActionResult> Toggle()
+    [HttpPost("/blink")]
+    public async Task<IActionResult> Blink()
+    {
+        //await LedController.Instance.StartBlink();
+        return new OkResult();
+    }
+
+    [HttpPost("/pulse")]
+    public async Task<IActionResult> Pulse()
+    {
+        //await LedController.Instance.StartPulse();
+        return new OkResult();
+    }
+
+    [HttpGet("/getEnvironmentalData")]
+    public IActionResult GetEnvironmentalData()
+    {
+        var data = new ClimateModel()
         {
-            await LedController.Instance.Toggle();
-            return new OkResult();
-        }
+            Temperature = $"{AtmosphericConditions.Temperature.Celsius:N1}",
+            Humidity = $"{AtmosphericConditions.Humidity.Percent:N1}",
+            Pressure = $"{AtmosphericConditions.Pressure.Millibar:N1}"
+        };
 
-        [HttpPost("/blink")]
-        public async Task<IActionResult> Blink()
+        Context.Response.ContentType = ContentTypes.Application_Json;
+        return new JsonResult(data);
+    }
+
+    [HttpGet("/getLightData")]
+    public IActionResult GetLightData()
+    {
+        var data = new IlluminanceModel()
         {
-            await LedController.Instance.StartBlink();
-            return new OkResult();
-        }
+            Illuminance = $"{LightConditions.Illuminance.Lux:N1}"
+        };
 
-        [HttpPost("/pulse")]
-        public async Task<IActionResult> Pulse()
+        Context.Response.ContentType = ContentTypes.Application_Json;
+        return new JsonResult(data);
+    }
+
+    [HttpGet("/getMotionData")]
+    public IActionResult GetMotionData()
+    {
+        var data = new MotionModel()
         {
-            await LedController.Instance.StartPulse();
-            return new OkResult();
-        }
+            Acceleration3dX = $"{MotionConditions.Acceleration3D.X.CentimetersPerSecondSquared:N2}",
+            Acceleration3dY = $"{MotionConditions.Acceleration3D.Y.CentimetersPerSecondSquared:N2}",
+            Acceleration3dZ = $"{MotionConditions.Acceleration3D.Z.CentimetersPerSecondSquared:N2}",
+            AngularVelocity3dX = $"{MotionConditions.AngularVelocity3D.X.DegreesPerSecond:N2}",
+            AngularVelocity3dY = $"{MotionConditions.AngularVelocity3D.Y.DegreesPerSecond:N2}",
+            AngularVelocity3dZ = $"{MotionConditions.AngularVelocity3D.Z.DegreesPerSecond:N2}",
+        };
 
-        [HttpGet("/getLightData")]
-        public IActionResult GetLightData()
-        {
-            var reading = MainController.Instance.LightReading;
-            var data = new IlluminanceModel()
-            {
-                Illuminance = $"{(int)reading?.Lux}"
-            };
-
-            Context.Response.ContentType = ContentTypes.Application_Json;
-            return new JsonResult(data);
-        }
-
-        [HttpGet("/getMotionData")]
-        public IActionResult GetMotionData()
-        {
-            var reading = MainController.Instance.MotionReading;
-            var data = new MotionModel()
-            {
-                Acceleration3dX = $"{reading.acceleration3D.Value.X.CentimetersPerSecondSquared:N2}",
-                Acceleration3dY = $"{reading.acceleration3D.Value.Y.CentimetersPerSecondSquared:N2}",
-                Acceleration3dZ = $"{reading.acceleration3D.Value.Z.CentimetersPerSecondSquared:N2}",
-                AngularVelocity3dX = $"{reading.angularVelocity3D.Value.X.DegreesPerSecond:N2}",
-                AngularVelocity3dY = $"{reading.angularVelocity3D.Value.Y.DegreesPerSecond:N2}",
-                AngularVelocity3dZ = $"{reading.angularVelocity3D.Value.Z.DegreesPerSecond:N2}",
-                Temperature = $"{reading.temperature.Value.Celsius:N2}"
-            };
-
-            Context.Response.ContentType = ContentTypes.Application_Json;
-            return new JsonResult(data);
-        }
-
-        [HttpGet("/getEnvironmentalData")]
-        public IActionResult GetEnvironmentalData()
-        {
-            var reading = MainController.Instance.EnvironmentalReading;
-            var data = new ClimateModel()
-            {
-                Temperature = $"{(int)reading.Temperature.Value.Celsius}",
-                Humidity = $"{(int)reading.Humidity.Value.Percent}",
-                Pressure = $"{(int)reading.Pressure.Value.Millibar}"
-            };
-
-            Context.Response.ContentType = ContentTypes.Application_Json;
-            return new JsonResult(data);
-        }
+        Context.Response.ContentType = ContentTypes.Application_Json;
+        return new JsonResult(data);
     }
 }
