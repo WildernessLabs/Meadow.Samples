@@ -26,14 +26,6 @@ public class BluetoothServer
     private void PairingCharacteristicValueSet(ICharacteristic c, object data)
     {
         PairingValueSet?.Invoke(this, (bool)data);
-        //if ((bool)data)
-        //{
-        //    DisplayController.Instance.ShowBluetoothPaired();
-        //}
-        //else
-        //{
-        //    _ = DisplayController.Instance.StartConnectingAnimation(false);
-        //}
     }
 
     private void LedToggleCharacteristicValueSet(ICharacteristic c, object data)
