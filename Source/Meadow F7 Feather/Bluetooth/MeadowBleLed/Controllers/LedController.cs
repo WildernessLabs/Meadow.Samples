@@ -94,7 +94,7 @@ namespace MeadowBleLed.Controller
         protected Color GetRandomColor()
         {
             var random = new Random();
-            return Color.FromHsba(random.NextDouble(), 1, 1);
+            return Color.FromHsba((float)random.NextDouble(), 1, 1);
         }
     }
 }

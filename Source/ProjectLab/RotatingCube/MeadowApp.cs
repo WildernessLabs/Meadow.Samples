@@ -68,7 +68,7 @@ namespace RotatingCube
 
                     graphics.Show();
 
-                    cubeColor = cubeColor.WithHue(cubeColor.Hue + 0.001);
+                    cubeColor = cubeColor.WithHue((float)(cubeColor.Hue + 0.001));
                 }
             });
         }
