@@ -12,7 +12,7 @@ namespace MeadowConnectedSample.Controllers;
 public class MainController
 {
     // Connect via Maple (WiFi) or Bluetooth? 
-    private bool useWifi = false;
+    private bool useWifi = true;
 
     private IProjectLabHardware hardware;
     private IWiFiNetworkAdapter wifi;
