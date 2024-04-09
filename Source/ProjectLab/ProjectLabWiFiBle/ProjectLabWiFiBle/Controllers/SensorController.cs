@@ -12,16 +12,20 @@ namespace MeadowConnectedSample.Controllers;
 
 public class SensorController
 {
-    public event EventHandler<AtmosphericConditions> AtmosphericConditionsChanged = default!;
-    public event EventHandler<LightConditions> LightConditionsChanged = default!;
-    public event EventHandler<MotionConditions> MotionConditionsChanged = default!;
-
     private ITemperatureSensor temperatureSensor;
     private IBarometricPressureSensor pressureSensor;
     private IHumiditySensor humiditySensor;
     private ILightSensor lightSensor;
     private IGyroscope gyroscope;
     private IAccelerometer accelerometer;
+
+    public AtmosphericConditions AtmosphericConditions { get; set; }
+    public LightConditions LightConditions { get; set; }
+    public MotionConditions MotionConditions { get; set; }
+
+    public event EventHandler<AtmosphericConditions> AtmosphericConditionsChanged = default!;
+    public event EventHandler<LightConditions> LightConditionsChanged = default!;
+    public event EventHandler<MotionConditions> MotionConditionsChanged = default!;
 
     public SensorController(IProjectLabHardware hardware)
     {
@@ -31,6 +35,8 @@ public class SensorController
         lightSensor = hardware.LightSensor;
         gyroscope = hardware.Gyroscope;
         accelerometer = hardware.Accelerometer;
+
+        Resolver.Services.Add(this);
     }
 
     public async Task StartUpdating(TimeSpan updateInterval)
@@ -52,26 +58,26 @@ public class SensorController
                 $"Acceleration3D: ({acceleration3DReading.X.CentimetersPerSecondSquared:N1}, {acceleration3DReading.Y.CentimetersPerSecondSquared:N1}, {acceleration3DReading.Z.CentimetersPerSecondSquared:N1}) | " +
                 $"AngularVelocity3D: ({angularVelocityReading.X.RevolutionsPerMinute:N1},{angularVelocityReading.Y.RevolutionsPerMinute:N1},{angularVelocityReading.Z.RevolutionsPerMinute:N1}) ");
 
-            var atmosphericConditions = new AtmosphericConditions()
+            AtmosphericConditions = new AtmosphericConditions()
             {
                 Temperature = temperature,
                 Pressure = pressure,
                 Humidity = humidity
             };
-            AtmosphericConditionsChanged?.Invoke(this, atmosphericConditions);
+            AtmosphericConditionsChanged?.Invoke(this, AtmosphericConditions);
 
-            var lightConditions = new LightConditions()
+            LightConditions = new LightConditions()
             {
                 Illuminance = illuminance
             };
-            LightConditionsChanged?.Invoke(this, lightConditions);
+            LightConditionsChanged?.Invoke(this, LightConditions);
 
-            var motionConditions = new MotionConditions()
+            MotionConditions = new MotionConditions()
             {
                 Acceleration3D = acceleration3DReading,
                 AngularVelocity3D = angularVelocityReading
             };
-            MotionConditionsChanged?.Invoke(this, motionConditions);
+            MotionConditionsChanged?.Invoke(this, MotionConditions);
 
             await Task.Delay(updateInterval);
         }

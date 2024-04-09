@@ -3,12 +3,13 @@ using Meadow;
 using Meadow.Gateways.Bluetooth;
 using MeadowConnectedSample.Controllers;
 using MeadowConnectedSample.Models;
-using System;
 
 namespace MeadowConnectedSample.Connectivity;
 
-public class BluetoothServer : ICommandController
+public class BluetoothServer
 {
+    private CommandController commandController;
+
     private ICharacteristic pairingCharacteristic;
     private ICharacteristic ledToggleCharacteristic;
     private ICharacteristic ledBlinkCharacteristic;
@@ -18,14 +19,9 @@ public class BluetoothServer : ICommandController
     private ICharacteristic motionAccelerationDataCharacteristic;
     private ICharacteristic motionAngularVelocityDataCharacteristic;
 
-    public event EventHandler<bool> PairingValueSet = default!;
-    public event EventHandler<bool> LedToggleValueSet = default!;
-    public event EventHandler<bool> LedBlinkValueSet = default!;
-    public event EventHandler<bool> LedPulseValueSet = default!;
-
     public BluetoothServer()
     {
-        Resolver.Services.Add<ICommandController>(this);
+        commandController = Resolver.Services.Get<CommandController>();
 
         var sensorController = Resolver.Services.Get<SensorController>();
         sensorController.AtmosphericConditionsChanged += UpdateAtmosphericConditions;
@@ -35,22 +31,22 @@ public class BluetoothServer : ICommandController
 
     private void PairingCharacteristicValueSet(ICharacteristic c, object data)
     {
-        PairingValueSet?.Invoke(this, (bool)data);
+        commandController.FirePairing();
     }
 
     private void LedToggleCharacteristicValueSet(ICharacteristic c, object data)
     {
-        LedToggleValueSet.Invoke(this, (bool)data);
+        commandController.FireLedToggle();
     }
 
     private void LedBlinkCharacteristicValueSet(ICharacteristic c, object data)
     {
-        LedBlinkValueSet.Invoke(this, (bool)data);
+        commandController.FireLedBlink();
     }
 
     private void LedPulseCharacteristicValueSet(ICharacteristic c, object data)
     {
-        LedPulseValueSet.Invoke(this, (bool)data);
+        commandController.FireLedPulse();
     }
 
     public void UpdateAtmosphericConditions(object sender, AtmosphericConditions atmosphericConditions)

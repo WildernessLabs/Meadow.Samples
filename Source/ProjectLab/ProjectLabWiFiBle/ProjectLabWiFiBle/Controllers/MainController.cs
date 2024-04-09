@@ -19,6 +19,7 @@ public class MainController
     private IBluetoothAdapter bluetooth;
 
     private SensorController sensorController;
+    private CommandController commandController;
     private BluetoothServer bluetoothServer;
 
     private DisplayController displayController;
@@ -34,29 +35,13 @@ public class MainController
     public async Task Initialize()
     {
         sensorController = new SensorController(hardware);
-        Resolver.Services.Add(sensorController);
+        commandController = new CommandController();
+        SubscribeLedCommands();
 
         displayController = new DisplayController(hardware.Display);
         displayController.ShowSplashScreen();
 
         ledController = new LedController(hardware.RgbLed);
-
-        var commandController = Resolver.Services.Get<ICommandController>();
-        commandController.LedToggleValueSet += (s, e) =>
-        {
-            Resolver.Log.Info("LedToggleValueSet");
-            _ = ledController.Toggle();
-        };
-        commandController.LedBlinkValueSet += (s, e) =>
-        {
-            Resolver.Log.Info("LedBlinkValueSet");
-            _ = ledController.StartBlink();
-        };
-        commandController.LedPulseValueSet += (s, e) =>
-        {
-            Resolver.Log.Info("LedPulseValueSet");
-            _ = ledController.StartPulse();
-        };
 
         _ = displayController.StartConnectingAnimation(useWifi);
 
@@ -93,7 +78,7 @@ public class MainController
     {
         bluetoothServer = new BluetoothServer();
 
-        bluetoothServer.PairingValueSet += (s, e) =>
+        commandController.PairingValueSet += (s, e) =>
         {
             Resolver.Log.Info("PairingValueSet");
 
@@ -113,5 +98,25 @@ public class MainController
         _ = sensorController.StartUpdating(TimeSpan.FromSeconds(15));
 
         ledController.SetColor(Color.Green);
+    }
+
+    private void SubscribeLedCommands()
+    {
+        var commandController = Resolver.Services.Get<CommandController>();
+        commandController.LedToggleValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedToggleValueSet");
+            _ = ledController.Toggle();
+        };
+        commandController.LedBlinkValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedBlinkValueSet");
+            _ = ledController.StartBlink();
+        };
+        commandController.LedPulseValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedPulseValueSet");
+            _ = ledController.StartPulse();
+        };
     }
 }
