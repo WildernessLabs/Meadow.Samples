@@ -1,17 +1,14 @@
 ﻿using CommonContracts.Bluetooth;
+using Meadow;
 using Meadow.Gateways.Bluetooth;
 using MeadowConnectedSample.Controllers;
+using MeadowConnectedSample.Models;
 using System;
 
 namespace MeadowConnectedSample.Connectivity;
 
-public class BluetoothServer
+public class BluetoothServer : ICommandController
 {
-    public EventHandler<bool> PairingValueSet = default!;
-    public EventHandler<bool> LedToggleValueSet = default!;
-    public EventHandler<bool> LedBlinkValueSet = default!;
-    public EventHandler<bool> LedPulseValueSet = default!;
-
     private ICharacteristic pairingCharacteristic;
     private ICharacteristic ledToggleCharacteristic;
     private ICharacteristic ledBlinkCharacteristic;
@@ -21,7 +18,20 @@ public class BluetoothServer
     private ICharacteristic motionAccelerationDataCharacteristic;
     private ICharacteristic motionAngularVelocityDataCharacteristic;
 
-    public BluetoothServer() { }
+    public event EventHandler<bool> PairingValueSet = default!;
+    public event EventHandler<bool> LedToggleValueSet = default!;
+    public event EventHandler<bool> LedBlinkValueSet = default!;
+    public event EventHandler<bool> LedPulseValueSet = default!;
+
+    public BluetoothServer()
+    {
+        Resolver.Services.Add<ICommandController>(this);
+
+        var sensorController = Resolver.Services.Get<SensorController>();
+        sensorController.AtmosphericConditionsChanged += UpdateAtmosphericConditions;
+        sensorController.LightConditionsChanged += UpdateLightConditions;
+        sensorController.MotionConditionsChanged += UpdateMotionConditions;
+    }
 
     private void PairingCharacteristicValueSet(ICharacteristic c, object data)
     {
@@ -43,34 +53,34 @@ public class BluetoothServer
         LedPulseValueSet.Invoke(this, (bool)data);
     }
 
-    public void UpdateAtmosphericConditions()
+    public void UpdateAtmosphericConditions(object sender, AtmosphericConditions atmosphericConditions)
     {
         string stringValue = $"" +
-            $"{AtmosphericConditions.Temperature.Celsius:N1};" +
-            $"{AtmosphericConditions.Pressure.StandardAtmosphere:N1};" +
-            $"{AtmosphericConditions.Humidity.Percent:N1}";
+            $"{atmosphericConditions.Temperature.Celsius:N1};" +
+            $"{atmosphericConditions.Pressure.StandardAtmosphere:N1};" +
+            $"{atmosphericConditions.Humidity.Percent:N1}";
         environmentalDataCharacteristic.SetValue(stringValue);
     }
 
-    public void UpdateLightConditions()
+    public void UpdateLightConditions(object sender, LightConditions lightConditions)
     {
         string stringValue = $"" +
-            $"{LightConditions.Illuminance.Lux:N1}";
+            $"{lightConditions.Illuminance.Lux:N1}";
         lightDataCharacteristic.SetValue($"{stringValue}");
     }
 
-    public void UpdateMotionConditions()
+    public void UpdateMotionConditions(object sender, MotionConditions motionConditions)
     {
         string accelerationValue = $"" +
-            $"{MotionConditions.Acceleration3D.X.CentimetersPerSecondSquared:N2};" +
-            $"{MotionConditions.Acceleration3D.Y.CentimetersPerSecondSquared:N2};" +
-            $"{MotionConditions.Acceleration3D.Z.CentimetersPerSecondSquared:N2}";
+            $"{motionConditions.Acceleration3D.X.CentimetersPerSecondSquared:N2};" +
+            $"{motionConditions.Acceleration3D.Y.CentimetersPerSecondSquared:N2};" +
+            $"{motionConditions.Acceleration3D.Z.CentimetersPerSecondSquared:N2}";
         motionAccelerationDataCharacteristic.SetValue(accelerationValue);
 
         string angularVelocityValue = $"" +
-            $"{MotionConditions.AngularVelocity3D.X.DegreesPerSecond:N2};" +
-            $"{MotionConditions.AngularVelocity3D.Y.DegreesPerSecond:N2};" +
-            $"{MotionConditions.AngularVelocity3D.Z.DegreesPerSecond:N2}";
+            $"{motionConditions.AngularVelocity3D.X.DegreesPerSecond:N2};" +
+            $"{motionConditions.AngularVelocity3D.Y.DegreesPerSecond:N2};" +
+            $"{motionConditions.AngularVelocity3D.Z.DegreesPerSecond:N2}";
         motionAngularVelocityDataCharacteristic.SetValue(angularVelocityValue);
     }
 
@@ -129,9 +139,8 @@ public class BluetoothServer
             permissions: CharacteristicPermission.Read,
             properties: CharacteristicProperty.Read);
 
-        var service = new Service(
-            name: "Service",
-            uuid: 253,
+        ICharacteristic[] characteristics =
+        {
             pairingCharacteristic,
             ledToggleCharacteristic,
             ledBlinkCharacteristic,
@@ -140,6 +149,12 @@ public class BluetoothServer
             lightDataCharacteristic,
             motionAccelerationDataCharacteristic,
             motionAngularVelocityDataCharacteristic
+        };
+
+        var service = new Service(
+            name: "Service",
+            uuid: 253,
+            characteristics
         );
 
         return new Definition("ProjectLab", service);
