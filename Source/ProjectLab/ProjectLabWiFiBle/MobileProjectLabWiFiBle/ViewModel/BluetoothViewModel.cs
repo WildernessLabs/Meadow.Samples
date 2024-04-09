@@ -27,7 +27,6 @@ namespace MobileProjectLab.ViewModel
         ICharacteristic lightDataCharacteristic;
         ICharacteristic motionAccelerationDataCharacteristic;
         ICharacteristic motionAngularVelocityDataCharacteristic;
-        ICharacteristic motionTemperatureDataCharacteristic;
 
         public ObservableCollection<IDevice> DeviceList { get; set; }
 
@@ -139,12 +138,7 @@ namespace MobileProjectLab.ViewModel
             set { angularVelocity3dZ = value; OnPropertyChanged(nameof(AngularVelocity3dZ)); }
         }
         string angularVelocity3dZ = "0";
-        public string MotionTemperature
-        {
-            get => motionTemperature;
-            set { motionTemperature = value; OnPropertyChanged(nameof(MotionTemperature)); }
-        }
-        string motionTemperature = "0";
+
         public ICommand CmdGetMotionData { get; private set; }
 
         public BluetoothViewModel()
@@ -200,7 +194,6 @@ namespace MobileProjectLab.ViewModel
             lightDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LIGHT_DATA));
             motionAccelerationDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_ACCELERATION));
             motionAngularVelocityDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_ANGULAR_VELOCITY));
-            motionTemperatureDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_TEMPERATURE));
 
             await SetPairingStatus();
             await GetEnvironmentalData();
@@ -335,10 +328,6 @@ namespace MobileProjectLab.ViewModel
             AngularVelocity3dX = angularVelocityValue[0];
             AngularVelocity3dY = angularVelocityValue[1];
             AngularVelocity3dZ = angularVelocityValue[2];
-
-            var mTDC = await motionTemperatureDataCharacteristic.ReadAsync();
-            var temperatureValue = Encoding.Default.GetString(mTDC.data).Split(';');
-            MotionTemperature = temperatureValue[0];
         }
 
         async Task SetPairingStatus()
