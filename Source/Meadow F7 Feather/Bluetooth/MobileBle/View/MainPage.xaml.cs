@@ -7,6 +7,14 @@
             InitializeComponent();
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            PermissionStatus location = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            PermissionStatus mearby = await Permissions.RequestAsync<Permissions.Bluetooth>();
+        }
+
         void BtnLedClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new LedControllerPage());

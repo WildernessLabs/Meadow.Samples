@@ -12,7 +12,8 @@ namespace MeadowConnectedSample.Controllers;
 public class MainController
 {
     // Connect via Maple (WiFi) or Bluetooth? 
-    private ConnectionType connectionType = ConnectionType.WiFi;
+    private ConnectionType connectionType = ConnectionType.Bluetooth;
+    //private ConnectionType connectionType = ConnectionType.WiFi;
 
     private IProjectLabHardware hardware;
     private IWiFiNetworkAdapter wifi;
@@ -114,10 +115,4 @@ public class MainController
             _ = ledController.StartPulse();
         };
     }
-}
-
-public enum ConnectionType
-{
-    WiFi,
-    Bluetooth
 }
