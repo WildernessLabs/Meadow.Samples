@@ -31,7 +31,7 @@ public class BluetoothServer
 
     private void PairingCharacteristicValueSet(ICharacteristic c, object data)
     {
-        commandController.FirePairing();
+        commandController.FirePairing((bool)data);
     }
 
     private void LedToggleCharacteristicValueSet(ICharacteristic c, object data)

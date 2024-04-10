@@ -12,7 +12,7 @@ namespace MeadowConnectedSample.Controllers;
 public class MainController
 {
     // Connect via Maple (WiFi) or Bluetooth? 
-    private bool useWifi = true;
+    private ConnectionType connectionType = ConnectionType.WiFi;
 
     private IProjectLabHardware hardware;
     private IWiFiNetworkAdapter wifi;
@@ -35,6 +35,8 @@ public class MainController
     public async Task Initialize()
     {
         sensorController = new SensorController(hardware);
+        _ = sensorController.StartUpdating(TimeSpan.FromSeconds(15));
+
         commandController = new CommandController();
         SubscribeLedCommands();
 
@@ -43,9 +45,7 @@ public class MainController
 
         ledController = new LedController(hardware.RgbLed);
 
-        _ = displayController.StartConnectingAnimation(useWifi);
-
-        if (useWifi)
+        if (connectionType == ConnectionType.WiFi)
         {
             await StartMapleServer();
         }
@@ -57,12 +57,10 @@ public class MainController
 
     private async Task StartMapleServer()
     {
+        _ = displayController.StartConnectingMapleAnimation();
+
         wifi.NetworkConnected += (s, e) =>
         {
-            displayController.StopConnectingAnimation();
-
-            _ = sensorController.StartUpdating(TimeSpan.FromSeconds(15));
-
             var mapleServer = new MapleServer(s.IpAddress, 5417, advertise: true, logger: Resolver.Log);
             mapleServer.Start();
 
@@ -76,33 +74,30 @@ public class MainController
 
     private void StartBluetoothServer()
     {
+        _ = displayController.StartConnectingBluetoothAnimation();
+
         bluetoothServer = new BluetoothServer();
 
         commandController.PairingValueSet += (s, e) =>
         {
-            Resolver.Log.Info("PairingValueSet");
-
             if (e)
             {
                 displayController.ShowBluetoothPaired();
             }
             else
             {
-                _ = displayController.StartConnectingAnimation(false);
+                _ = displayController.StartConnectingBluetoothAnimation();
             }
         };
 
         var definition = bluetoothServer.GetDefinition();
         bluetooth.StartBluetoothServer(definition);
 
-        _ = sensorController.StartUpdating(TimeSpan.FromSeconds(15));
-
         ledController.SetColor(Color.Green);
     }
 
     private void SubscribeLedCommands()
     {
-        var commandController = Resolver.Services.Get<CommandController>();
         commandController.LedToggleValueSet += (s, e) =>
         {
             Resolver.Log.Info("LedToggleValueSet");
@@ -119,4 +114,10 @@ public class MainController
             _ = ledController.StartPulse();
         };
     }
+}
+
+public enum ConnectionType
+{
+    WiFi,
+    Bluetooth
 }

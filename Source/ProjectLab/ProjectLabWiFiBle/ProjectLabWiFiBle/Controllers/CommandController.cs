@@ -15,9 +15,9 @@ public class CommandController
         Resolver.Services.Add(this);
     }
 
-    public void FirePairing()
+    public void FirePairing(bool pairing)
     {
-        PairingValueSet?.Invoke(this, true);
+        PairingValueSet?.Invoke(this, pairing);
     }
 
     public void FireLedToggle()
