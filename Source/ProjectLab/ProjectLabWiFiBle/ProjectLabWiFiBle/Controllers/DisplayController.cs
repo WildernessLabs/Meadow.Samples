@@ -9,7 +9,6 @@ namespace MeadowConnectedSample.Controllers;
 
 public class DisplayController
 {
-    private bool useWiFi = true;
     private CancellationTokenSource token;
 
     private Image logo = Image.LoadFromResource("MeadowConnectedSample.Resources.img_meadow.bmp");
@@ -95,17 +94,6 @@ public class DisplayController
         };
     }
 
-    private void StopConnectingAnimation()
-    {
-        token.Cancel();
-
-        var connected = useWiFi
-            ? Image.LoadFromResource("MeadowConnectedSample.Resources.img_wifi.bmp")
-            : Image.LoadFromResource("MeadowConnectedSample.Resources.img_ble.bmp");
-
-        connectionImage.Image = connected;
-    }
-
     public async Task StartConnectingMapleAnimation()
     {
         splashLayout.IsVisible = false;
@@ -176,7 +164,11 @@ public class DisplayController
 
     public void ShowMapleReady(string ipAddress)
     {
-        StopConnectingAnimation();
+        token.Cancel();
+
+        var connected = Image.LoadFromResource("MeadowConnectedSample.Resources.img_wifi.bmp");
+
+        connectionImage.Image = connected;
 
         subtitle.Text = ipAddress;
         status.Text = "READY";
@@ -184,7 +176,11 @@ public class DisplayController
 
     public void ShowBluetoothPaired()
     {
-        StopConnectingAnimation();
+        token.Cancel();
+
+        var connected = Image.LoadFromResource("MeadowConnectedSample.Resources.img_ble.bmp");
+
+        connectionImage.Image = connected;
 
         subtitle.Text = "PAIRED";
         status.Text = "READY";
