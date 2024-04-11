@@ -1,6 +1,5 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation;
 using Meadow.Gateways.Bluetooth;
 using MeadowBleLed.Controller;
 using System.Threading.Tasks;
@@ -10,6 +9,8 @@ namespace MeadowBleLed
     // public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
     public class MeadowApp : App<F7FeatherV2>
     {
+        LedController ledController;
+
         readonly string ON = "73cfbc6f61fa4d80a92feec2a90f8a3e";
         readonly string OFF = "6315119dd61949bba21def9e99941948";
         readonly string PULSING = "d755180131fc435da9941e7f15e17baf";
@@ -26,18 +27,20 @@ namespace MeadowBleLed
 
         public override Task Initialize()
         {
-            LedController.Instance.SetColor(Color.Red);
+            ledController = new LedController();
+
+            ledController.SetColor(Color.Red);
 
             bleTreeDefinition = GetDefinition();
             Device.BluetoothAdapter.StartBluetoothServer(bleTreeDefinition);
 
-            On.ValueSet += (s,e) => { LedController.Instance.TurnOn(); };
-            Off.ValueSet += (s, e) => { LedController.Instance.TurnOff(); };
-            StartPulse.ValueSet += (s, e) => { LedController.Instance.StartPulse(); };
-            StartBlink.ValueSet += (s, e) => { LedController.Instance.StartBlink(); };
-            StartRunningColors.ValueSet += (s, e) => { LedController.Instance.StartRunningColors(); };
+            On.ValueSet += (s, e) => { ledController.TurnOn(); };
+            Off.ValueSet += (s, e) => { ledController.TurnOff(); };
+            StartPulse.ValueSet += (s, e) => { ledController.StartPulse(); };
+            StartBlink.ValueSet += (s, e) => { ledController.StartBlink(); };
+            StartRunningColors.ValueSet += (s, e) => { ledController.StartRunningColors(); };
 
-            LedController.Instance.SetColor(Color.Green);
+            ledController.SetColor(Color.Green);
 
             return base.Initialize();
         }
@@ -51,7 +54,7 @@ namespace MeadowBleLed
                     name: nameof(On),
                     uuid: ON,
                     permissions: CharacteristicPermission.Read | CharacteristicPermission.Write,
-                    properties: CharacteristicProperty.Read | CharacteristicProperty.Write), 
+                    properties: CharacteristicProperty.Read | CharacteristicProperty.Write),
                 Off = new CharacteristicBool(
                     name: nameof(Off),
                     uuid: OFF,

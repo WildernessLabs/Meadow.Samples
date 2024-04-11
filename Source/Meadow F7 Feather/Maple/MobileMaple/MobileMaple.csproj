@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android</TargetFrameworks>
+		<TargetFrameworks>net8.0-android</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -19,8 +19,6 @@
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
-
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -48,12 +46,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <ProjectReference Include="..\..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.7" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Platforms\Windows\" />
-	</ItemGroup>
-
 </Project>

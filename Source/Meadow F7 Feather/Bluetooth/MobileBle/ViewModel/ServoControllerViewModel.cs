@@ -75,12 +75,12 @@ namespace MobileBle.ViewModel
         async Task ServoToggle()
         {
             IsRotateTo = false;
-            
+
             byte[] array = new byte[1];
             array[0] = IsSweeping ? (byte)1 : (byte)0;
 
             var result = await toggleServo.WriteAsync(array);
-            if (result)
+            if (result == 0)
             {
                 IsSweeping = !IsSweeping;
             }
