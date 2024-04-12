@@ -1,7 +1,7 @@
 ﻿using Meadow;
 using System.Threading.Tasks;
 
-namespace WinFormsMeadow;
+namespace HMI_Views;
 
 public class Program
 {
