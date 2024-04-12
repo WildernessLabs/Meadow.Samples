@@ -1,66 +1,118 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.Sensors.Atmospheric;
-using Meadow.Foundation.Sensors.Motion;
-using Meadow.Peripherals.Sensors.Light;
-using Meadow.Units;
+using Meadow.Foundation.Web.Maple;
+using Meadow.Gateways;
+using Meadow.Hardware;
 using MeadowConnectedSample.Connectivity;
 using System;
 using System.Threading.Tasks;
 
-namespace MeadowConnectedSample.Controller
+namespace MeadowConnectedSample.Controllers;
+
+public class MainController
 {
-    public class MainController
+    // Connect via Maple (WiFi) or Bluetooth? 
+    private ConnectionType connectionType = ConnectionType.Bluetooth;
+    //private ConnectionType connectionType = ConnectionType.WiFi;
+
+    private IProjectLabHardware hardware;
+    private IWiFiNetworkAdapter wifi;
+    private IBluetoothAdapter bluetooth;
+
+    private SensorController sensorController;
+    private CommandController commandController;
+    private BluetoothServer bluetoothServer;
+
+    private DisplayController displayController;
+    private LedController ledController;
+
+    public MainController(IProjectLabHardware hardware, IWiFiNetworkAdapter wifi, IBluetoothAdapter bluetooth)
     {
-        private static readonly Lazy<MainController> instance =
-            new Lazy<MainController>(() => new MainController());
-        public static MainController Instance => instance.Value;
+        this.hardware = hardware;
+        this.wifi = wifi;
+        this.bluetooth = bluetooth;
+    }
 
-        private Bme688 environmentalSensor;
+    public async Task Initialize()
+    {
+        sensorController = new SensorController(hardware);
+        _ = sensorController.StartUpdating(TimeSpan.FromSeconds(15));
 
-        private ILightSensor lightSensor;
+        commandController = new CommandController();
+        SubscribeLedCommands();
 
-        private Bmi270 motionSensor;
+        displayController = new DisplayController(hardware.Display);
+        displayController.ShowSplashScreen();
 
-        public bool UseWiFi { get; set; } = true;
+        ledController = new LedController(hardware.RgbLed);
 
-        public (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance) EnvironmentalReading { get; private set; }
-
-        public Illuminance? LightReading { get; private set; }
-
-        public (Acceleration3D? acceleration3D, AngularVelocity3D? angularVelocity3D, Temperature? temperature) MotionReading { get; private set; }
-
-        public MainController() { }
-
-        public void Initialize(IProjectLabHardware hardware)
+        if (connectionType == ConnectionType.WiFi)
         {
-            lightSensor = hardware.LightSensor;
-            motionSensor = (hardware as ProjectLabHardwareBase).MotionSensor;
-            environmentalSensor = (hardware as ProjectLabHardwareBase).AtmosphericSensor;
+            await StartMapleServer();
         }
-
-        public async Task StartUpdating(TimeSpan updateInterval)
+        else
         {
-            while (true)
+            StartBluetoothServer();
+        }
+    }
+
+    private async Task StartMapleServer()
+    {
+        _ = displayController.StartConnectingMapleAnimation();
+
+        wifi.NetworkConnected += (s, e) =>
+        {
+            var mapleServer = new MapleServer(s.IpAddress, 5417, advertise: true, logger: Resolver.Log);
+            mapleServer.Start();
+
+            displayController.ShowMapleReady(s.IpAddress.ToString());
+
+            ledController.SetColor(Color.Green);
+        };
+
+        await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
+    }
+
+    private void StartBluetoothServer()
+    {
+        _ = displayController.StartConnectingBluetoothAnimation();
+
+        bluetoothServer = new BluetoothServer();
+
+        commandController.PairingValueSet += (s, e) =>
+        {
+            if (e)
             {
-                EnvironmentalReading = await environmentalSensor.Read();
-                LightReading = await lightSensor.Read();
-                MotionReading = await motionSensor.Read();
-
-                Resolver.Log.Info($"" +
-                    $"Temperature: {EnvironmentalReading.Temperature.Value.Celsius} | " +
-                    $"Light: {LightReading.Value.Lux} | " +
-                    $"Motion: ({MotionReading.angularVelocity3D.Value.X},{MotionReading.angularVelocity3D.Value.Y},{MotionReading.angularVelocity3D.Value.Z}) ");
-
-                if (!UseWiFi)
-                {
-                    BluetoothServer.Instance.SetEnvironmentalCharacteristicValue(EnvironmentalReading);
-                    BluetoothServer.Instance.SetLightCharacteristicValue(LightReading);
-                    BluetoothServer.Instance.SetMotionCharacteristicValue(MotionReading);
-                }
-
-                await Task.Delay(updateInterval);
+                displayController.ShowBluetoothPaired();
             }
-        }
+            else
+            {
+                _ = displayController.StartConnectingBluetoothAnimation();
+            }
+        };
+
+        var definition = bluetoothServer.GetDefinition();
+        bluetooth.StartBluetoothServer(definition);
+
+        ledController.SetColor(Color.Green);
+    }
+
+    private void SubscribeLedCommands()
+    {
+        commandController.LedToggleValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedToggleValueSet");
+            _ = ledController.Toggle();
+        };
+        commandController.LedBlinkValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedBlinkValueSet");
+            _ = ledController.StartBlink();
+        };
+        commandController.LedPulseValueSet += (s, e) =>
+        {
+            Resolver.Log.Info("LedPulseValueSet");
+            _ = ledController.StartPulse();
+        };
     }
 }

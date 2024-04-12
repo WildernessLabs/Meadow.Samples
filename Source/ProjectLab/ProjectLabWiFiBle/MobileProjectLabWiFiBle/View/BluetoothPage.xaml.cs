@@ -10,11 +10,17 @@ namespace MobileProjectLab.View
         {
             InitializeComponent();
             BindingContext = vm = new BluetoothViewModel();
+
+
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
+
+            PermissionStatus location = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            PermissionStatus mearby = await Permissions.RequestAsync<Permissions.Bluetooth>();
+
             vm.CmdSearchForDevices.Execute(null);
         }
 

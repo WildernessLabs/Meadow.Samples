@@ -10,90 +10,89 @@ using System.Reflection;
 using System.Threading.Tasks;
 
 //https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/use-prediction-api
-namespace BostonDetector
+namespace BostonDetector;
+
+// Change F7MicroV2 to F7Micro for V1.x boards
+public class MeadowApp : App<F7FeatherV2>
 {
-    // Change F7MicroV2 to F7Micro for V1.x boards
-    public class MeadowApp : App<F7FeatherV2>
+    string endpoint = ""; //typically "https://[yourproject]-prediction.cognitiveservices.azure.com/";
+    string projectId = ""; //from customvision.ai portal project url 
+    string iterationId = "Iteration1"; //change as needed
+
+    string url => $"{endpoint}/customvision/v3.0/Prediction/{projectId}/classify/iterations/{iterationId}/image";
+
+    public override Task Initialize()
     {
-        string endpoint = ""; //typically "https://[yourproject]-prediction.cognitiveservices.azure.com/";
-        string projectId = ""; //from customvision.ai portal project url 
-        string iterationId = "Iteration1"; //change as needed
+        return InitNetwork();
+    }
 
-        string url => $"{endpoint}/customvision/v3.0/Prediction/{projectId}/classify/iterations/{iterationId}/image";
+    async Task InitNetwork()
+    {
+        Console.WriteLine($"Connecting to WiFi Network {Secrets.WIFI_NAME}");
 
-        public override Task Initialize()
+        var wiFiAdapter = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+
+        wiFiAdapter.NetworkConnected += (s, e) =>
         {
-            return InitNetwork();
-        }
+            Console.WriteLine($"IP Address: {wiFiAdapter.IpAddress}");
+            Console.WriteLine($"Subnet mask: {wiFiAdapter.SubnetMask}");
+            Console.WriteLine($"Gateway: {wiFiAdapter.Gateway}");
+        };
 
-        async Task InitNetwork()
-        {
-            Console.WriteLine($"Connecting to WiFi Network {Secrets.WIFI_NAME}");
+        await wiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
+    }
 
-            var wiFiAdapter = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+    public override async Task Run()
+    {
+        string response = await PostImage("60-pup.jpg");
+        var probability = GetAccuracyFromResponse(response);
 
-            wiFiAdapter.NetworkConnected += (s, e) =>
-            {
-                Console.WriteLine($"IP Address: {wiFiAdapter.IpAddress}");
-                Console.WriteLine($"Subnet mask: {wiFiAdapter.SubnetMask}");
-                Console.WriteLine($"Gateway: {wiFiAdapter.Gateway}");
-            };
+        var msg2 = $"{probability * 100:0}% probability";
 
-            await wiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
-        }
+        Console.Write($"Boston detected: {msg2}");
+    }
 
-        public override async Task Run()
-        {
-            string response = await PostImage("60-pup.jpg");
-            var probability = GetAccuracyFromResponse(response);
+    async Task<string> PostImage(string imageFileName)
+    {
+        var startTime = DateTime.Now;
 
-            var msg2 = $"{probability * 100:0}% probability";
+        byte[] byteData = LoadResource(imageFileName);
 
-            Console.Write($"Boston detected: {msg2}");
-        }
+        Console.WriteLine($"LoadResource took: {(DateTime.Now - startTime).TotalSeconds}");
 
-        async Task<string> PostImage(string imageFileName)
-        {
-            var startTime = DateTime.Now;
+        using var content = new ByteArrayContent(byteData);
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
-            byte[] byteData = LoadResource(imageFileName);
+        using var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("Prediction-Key", Secrets.PREDICTION_KEY);
 
-            Console.WriteLine($"LoadResource took: {(DateTime.Now - startTime).TotalSeconds}");
+        var response = await client.PostAsync(url, content);
 
-            using var content = new ByteArrayContent(byteData);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+        Console.WriteLine($"PostImage took: {(DateTime.Now - startTime).TotalSeconds}");
 
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Prediction-Key", Secrets.PREDICTION_KEY);
+        return await response.Content.ReadAsStringAsync();
+    }
 
-            var response = await client.PostAsync(url, content);
+    double GetAccuracyFromResponse(string response)
+    {
+        var resp = SimpleJsonSerializer.JsonSerializer.DeserializeString(response) as Hashtable;
 
-            Console.WriteLine($"PostImage took: {(DateTime.Now - startTime).TotalSeconds}");
+        var items = (ArrayList)resp["predictions"];
 
-            return await response.Content.ReadAsStringAsync();
-        }
+        var bostonPrediction = (double)(items[0] as Hashtable)["probability"];
 
-        double GetAccuracyFromResponse(string response)
-        {
-            var resp = SimpleJsonSerializer.JsonSerializer.DeserializeString(response) as Hashtable;
+        return bostonPrediction;
+    }
 
-            var items = (ArrayList)resp["predictions"];
+    byte[] LoadResource(string filename)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        var resourceName = $"BostonDetector.{filename}";
 
-            var bostonPrediction = (double)(items[0] as Hashtable)["probability"];
+        using Stream stream = assembly.GetManifestResourceStream(resourceName);
+        using var ms = new MemoryStream();
 
-            return bostonPrediction;
-        }
-
-        byte[] LoadResource(string filename)
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = $"BostonDetector.{filename}";
-
-            using Stream stream = assembly.GetManifestResourceStream(resourceName);
-            using var ms = new MemoryStream();
-
-            stream.CopyTo(ms);
-            return ms.ToArray();
-        }
+        stream.CopyTo(ms);
+        return ms.ToArray();
     }
 }

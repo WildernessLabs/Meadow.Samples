@@ -149,7 +149,7 @@ public partial class EyeballController
 
     void FadeRetina()
     {
-        double step = 1 / (double)FadeSteps;
+        float step = 1 / (float)FadeSteps;
 
         for (int i = 0; i < FadeSteps; i++)
         {
@@ -293,7 +293,7 @@ public partial class EyeballController
         graphics.Show();
     }
 
-    void DrawRetinaWithFade(double ratio)
+    void DrawRetinaWithFade(float ratio)
     {
         graphics.DrawCircle(xLast, yLast, 40, currentColor.CoronaDark.Blend(EyeWhiteColor, ratio), true, true);
         graphics.DrawCircle(xLast, yLast, 32, currentColor.CoronaLight.Blend(EyeWhiteColor, ratio), true, true);

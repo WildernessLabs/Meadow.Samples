@@ -1,19 +1,20 @@
-<Project Sdk="Meadow.Sdk/1.1.0">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <OutputType>Library</OutputType>
-    <AssemblyName>App</AssemblyName>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="7.0.1" />
-    <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Maple\Source\Web.Maple.Server\Web.Maple.Server.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="meadow.config.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <OutputType>Library</OutputType>
+        <AssemblyName>App</AssemblyName>
+        <LangVersion>10.0</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Text.Json" Version="7.0.1" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
+        <ProjectReference Include="..\..\..\..\..\Maple\Source\Web.Maple.Server\Web.Maple.Server.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="meadow.config.yaml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

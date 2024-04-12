@@ -1,9 +1,8 @@
-﻿namespace MeadowMapleTemperature
-{
-    public class TemperatureModel
-    {
-        public string Temperature { get; set; }
+﻿namespace MeadowMapleTemperature;
 
-        public string DateTime { get; set; }
-    }
+public class TemperatureModel
+{
+    public string Temperature { get; set; }
+
+    public string DateTime { get; set; }
 }

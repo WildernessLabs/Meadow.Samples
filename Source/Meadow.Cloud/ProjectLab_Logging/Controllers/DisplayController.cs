@@ -13,32 +13,26 @@ internal class DisplayController
     private Color backgroundColor = Color.FromHex("#F3F7FA");
     private Color foregroundColor = Color.Black;
 
-    private Font12x20 font12X20 = new Font12x20();
     private Font6x8 font6x8 = new Font6x8();
+    private Font12x20 font12X20 = new Font12x20();
 
-    protected DisplayScreen DisplayScreen { get; set; }
+    private DisplayScreen displayScreen;
 
-    protected AbsoluteLayout SplashLayout { get; set; }
+    private AbsoluteLayout splashLayout;
+    private AbsoluteLayout dataLayout;
 
-    protected AbsoluteLayout DataLayout { get; set; }
+    private Picture wifiStatus;
+    private Picture syncStatus;
 
-    protected Picture WifiStatus { get; set; }
-
-    protected Picture SyncStatus { get; set; }
-
-    protected Label Status { get; set; }
-
-    protected Label LastUpdated { get; set; }
-
-    protected Label Temperature { get; set; }
-
-    protected Label Pressure { get; set; }
-
-    protected Label Humidity { get; set; }
+    private Label status;
+    private Label lastUpdated;
+    private Label temperature;
+    private Label pressure;
+    private Label humidity;
 
     public DisplayController(IPixelDisplay display)
     {
-        DisplayScreen = new DisplayScreen(display, RotationType._270Degrees)
+        displayScreen = new DisplayScreen(display, RotationType._270Degrees)
         {
             BackgroundColor = backgroundColor
         };
@@ -47,86 +41,75 @@ internal class DisplayController
 
         LoadDataLayout();
 
-        DisplayScreen.Controls.Add(SplashLayout, DataLayout);
+        displayScreen.Controls.Add(splashLayout, dataLayout);
     }
 
     void LoadSplashLayout()
     {
-        SplashLayout = new AbsoluteLayout(DisplayScreen, 0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        splashLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };
 
         var image = Image.LoadFromResource("ProjectLab_Logging.Resources.img_meadow.bmp");
-        var displayImage = new Picture(0, 0, DisplayScreen.Width, DisplayScreen.Height, image)
+        var displayImage = new Picture(0, 0, displayScreen.Width, displayScreen.Height, image)
         {
             BackColor = Color.FromHex("#C9DB31"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
 
-        SplashLayout.Controls.Add(displayImage);
+        splashLayout.Controls.Add(displayImage);
     }
 
     void LoadDataLayout()
     {
-        DataLayout = new AbsoluteLayout(DisplayScreen, 0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };
 
-        DataLayout.Controls.Add(new Box(0, 0, DisplayScreen.Width, rowHeight)
+        displayScreen.Controls.Add(new GradientBox(0, 0, displayScreen.Width, displayScreen.Height)
         {
-            ForeColor = Color.FromHex("#CADC32")
-        });
-        DataLayout.Controls.Add(new Box(0, rowHeight, DisplayScreen.Width, rowHeight)
-        {
-            ForeColor = Color.FromHex("#D3E255")
-        });
-        DataLayout.Controls.Add(new Box(0, rowHeight * 2, DisplayScreen.Width, rowHeight)
-        {
-            ForeColor = Color.FromHex("#DCE878")
-        });
-        DataLayout.Controls.Add(new Box(0, rowHeight * 3, DisplayScreen.Width, rowHeight)
-        {
-            ForeColor = Color.FromHex("#E5EE9B")
+            StartColor = Color.FromHex("#CADC32"),
+            EndColor = Color.FromHex("#E5EE9B")
         });
 
         var wifiImage = Image.LoadFromResource("ProjectLab_Logging.Resources.img_wifi_connecting.bmp");
-        WifiStatus = new Picture(DisplayScreen.Width - wifiImage.Width - rowMargin, 0, wifiImage.Width, rowHeight, wifiImage)
+        wifiStatus = new Picture(displayScreen.Width - wifiImage.Width - rowMargin, 0, wifiImage.Width, rowHeight, wifiImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
-        DataLayout.Controls.Add(WifiStatus);
+        dataLayout.Controls.Add(wifiStatus);
 
         var syncImage = Image.LoadFromResource("ProjectLab_Logging.Resources.img_refreshed.bmp");
-        SyncStatus = new Picture(DisplayScreen.Width - syncImage.Width - wifiImage.Width - 10 - rowMargin, 0, syncImage.Width, rowHeight, syncImage)
+        syncStatus = new Picture(displayScreen.Width - syncImage.Width - wifiImage.Width - 10 - rowMargin, 0, syncImage.Width, rowHeight, syncImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
-        DataLayout.Controls.Add(SyncStatus);
+        dataLayout.Controls.Add(syncStatus);
 
-        Status = new Label(rowMargin, 15, DisplayScreen.Width / 2, 20)
+        status = new Label(rowMargin, 15, displayScreen.Width / 2, 20)
         {
             Text = $"--:-- -- --/--/--",
             TextColor = foregroundColor,
             Font = font12X20,
             HorizontalAlignment = HorizontalAlignment.Left
         };
-        DataLayout.Controls.Add(Status);
+        dataLayout.Controls.Add(status);
 
-        LastUpdated = new Label(rowMargin, 37, DisplayScreen.Width / 2, 8)
+        lastUpdated = new Label(rowMargin, 37, displayScreen.Width / 2, 8)
         {
             Text = $"Last updated: --:-- -- --/--/--",
             TextColor = foregroundColor,
             Font = font6x8,
             HorizontalAlignment = HorizontalAlignment.Left
         };
-        DataLayout.Controls.Add(LastUpdated);
+        dataLayout.Controls.Add(lastUpdated);
 
-        DataLayout.Controls.Add(new Label(rowMargin, rowHeight, DisplayScreen.Width / 2, rowHeight)
+        dataLayout.Controls.Add(new Label(rowMargin, rowHeight, displayScreen.Width / 2, rowHeight)
         {
             Text = $"TEMPERATURE",
             TextColor = foregroundColor,
@@ -134,7 +117,7 @@ internal class DisplayController
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Left
         });
-        DataLayout.Controls.Add(new Label(rowMargin, rowHeight * 2, DisplayScreen.Width / 2, rowHeight)
+        dataLayout.Controls.Add(new Label(rowMargin, rowHeight * 2, displayScreen.Width / 2, rowHeight)
         {
             Text = $"PRESSURE",
             TextColor = foregroundColor,
@@ -142,7 +125,7 @@ internal class DisplayController
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Left
         });
-        DataLayout.Controls.Add(new Label(rowMargin, rowHeight * 3, DisplayScreen.Width / 2, rowHeight)
+        dataLayout.Controls.Add(new Label(rowMargin, rowHeight * 3, displayScreen.Width / 2, rowHeight)
         {
             Text = $"HUMIDITY",
             TextColor = foregroundColor,
@@ -151,7 +134,7 @@ internal class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        Temperature = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight, DisplayScreen.Width / 2, rowHeight)
+        temperature = new Label(displayScreen.Width / 2 - rowMargin, rowHeight, displayScreen.Width / 2, rowHeight)
         {
             Text = $"- °C",
             TextColor = foregroundColor,
@@ -159,9 +142,9 @@ internal class DisplayController
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right
         };
-        DataLayout.Controls.Add(Temperature);
+        dataLayout.Controls.Add(temperature);
 
-        Pressure = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight * 2, DisplayScreen.Width / 2, rowHeight)
+        pressure = new Label(displayScreen.Width / 2 - rowMargin, rowHeight * 2, displayScreen.Width / 2, rowHeight)
         {
             Text = $"- mb",
             TextColor = foregroundColor,
@@ -169,9 +152,9 @@ internal class DisplayController
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right
         };
-        DataLayout.Controls.Add(Pressure);
+        dataLayout.Controls.Add(pressure);
 
-        Humidity = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight * 3, DisplayScreen.Width / 2, rowHeight)
+        humidity = new Label(displayScreen.Width / 2 - rowMargin, rowHeight * 3, displayScreen.Width / 2, rowHeight)
         {
             Text = $"- % ",
             TextColor = foregroundColor,
@@ -179,29 +162,29 @@ internal class DisplayController
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right
         };
-        DataLayout.Controls.Add(Humidity);
+        dataLayout.Controls.Add(humidity);
     }
 
     public void ShowSplashScreen()
     {
-        DataLayout.IsVisible = false;
-        SplashLayout.IsVisible = true;
+        dataLayout.IsVisible = false;
+        splashLayout.IsVisible = true;
     }
 
     public void ShowDataScreen()
     {
-        SplashLayout.IsVisible = false;
-        DataLayout.IsVisible = true;
+        splashLayout.IsVisible = false;
+        dataLayout.IsVisible = true;
     }
 
     public void UpdateStatus(string status)
     {
-        Status.Text = status;
+        this.status.Text = status;
     }
 
     public void UpdateLastUpdated(string lastUpdated)
     {
-        LastUpdated.Text = $"Last Updated: {lastUpdated}";
+        this.lastUpdated.Text = $"Last Updated: {lastUpdated}";
     }
 
     public void UpdateWiFiStatus(bool isConnected)
@@ -209,7 +192,7 @@ internal class DisplayController
         var imageWiFi = isConnected
             ? Image.LoadFromResource("ProjectLab_Logging.Resources.img_wifi_connected.bmp")
             : Image.LoadFromResource("ProjectLab_Logging.Resources.img_wifi_connecting.bmp");
-        WifiStatus.Image = imageWiFi;
+        wifiStatus.Image = imageWiFi;
     }
 
     public void UpdateSyncStatus(bool isSyncing)
@@ -217,17 +200,17 @@ internal class DisplayController
         var imageSync = isSyncing
             ? Image.LoadFromResource("ProjectLab_Logging.Resources.img_refreshing.bmp")
             : Image.LoadFromResource("ProjectLab_Logging.Resources.img_refreshed.bmp");
-        SyncStatus.Image = imageSync;
+        syncStatus.Image = imageSync;
     }
 
     public void UpdateAtmosphericConditions(string temperature, string pressure, string humidity)
     {
-        DisplayScreen.BeginUpdate();
+        displayScreen.BeginUpdate();
 
-        Temperature.Text = $"{temperature} °C";
-        Pressure.Text = $"{pressure} mb";
-        Humidity.Text = $"{humidity} % ";
+        this.temperature.Text = $"{temperature} °C";
+        this.pressure.Text = $"{pressure} mb";
+        this.humidity.Text = $"{humidity} % ";
 
-        DisplayScreen.EndUpdate();
+        displayScreen.EndUpdate();
     }
 }

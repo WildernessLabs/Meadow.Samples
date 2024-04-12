@@ -121,7 +121,8 @@ namespace MobileWifi.ViewModel
 
             await CharacteristicIsBlePaired.WriteAsync(TRUE);
 
-            HasJoinedWifi = (await CharacteristicHasJoinedWifi.ReadAsync())[0] == 1;
+            var wifi = await CharacteristicHasJoinedWifi.ReadAsync();
+            HasJoinedWifi = wifi.data[0] == 1;
         }
     }
 }

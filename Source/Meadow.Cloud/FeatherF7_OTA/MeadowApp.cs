@@ -13,7 +13,7 @@ public class MeadowApp : App<F7FeatherV2>
     
     OTA instructions:
 
-    1. Bump VERSION value below
+    1. Change color value below
 
     2. Open a Terminal (VS2022 - View -> Terminal) and create an mpak file: 
 
@@ -23,7 +23,11 @@ public class MeadowApp : App<F7FeatherV2>
 
         meadow cloud package upload bin\Release\netstandard2.1\mpak\<filename>.mpak
 
-    4. Go to Meadow.Cloud (https://www.meadowcloud.co/) -> Packages, click Publish on the .mpak uploaded
+    4. Publish the mpak uploaded to roll out an OTA Update:
+
+        meadow cloud package publish <package Id> --collectionId <collection Id>, or
+    
+        Go to Meadow.Cloud (https://www.meadowcloud.co/) -> Packages, click Publish on the .mpak uploaded
 
     5. If/When Meadow device resets, you can still check its console output with the command:
 

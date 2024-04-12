@@ -4,74 +4,73 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MeadowBleServo.Controllers
+namespace MeadowBleServo.Controllers;
+
+public class ServoController
 {
-    public class ServoController
+    private static readonly Lazy<ServoController> instance =
+        new Lazy<ServoController>(() => new ServoController());
+    public static ServoController Instance => instance.Value;
+
+    Servo servo;
+
+    Task animationTask = null;
+    CancellationTokenSource cancellationTokenSource = null;
+
+    protected int _rotationAngle;
+
+    private ServoController()
     {
-        private static readonly Lazy<ServoController> instance =
-            new Lazy<ServoController>(() => new ServoController());
-        public static ServoController Instance => instance.Value;
+        Initialize();
+    }
 
-        Servo servo;
+    public void Initialize()
+    {
+        servo = new Servo(pwmPin: MeadowApp.Device.Pins.D10,
+            config: NamedServoConfigs.SG90);
+    }
 
-        Task animationTask = null;
-        CancellationTokenSource cancellationTokenSource = null;
+    public void RotateTo(Angle angle)
+    {
+        servo.RotateTo(new Angle(angle));
+    }
 
-        protected int _rotationAngle;
+    public void StopSweep()
+    {
+        cancellationTokenSource?.Cancel();
+    }
 
-        private ServoController() 
+    public void StartSweep()
+    {
+        animationTask = new Task(async () =>
         {
-            Initialize();
-        }
+            cancellationTokenSource = new CancellationTokenSource();
+            await StartSweep(cancellationTokenSource.Token);
+        });
+        animationTask.Start();
+    }
+    protected async Task StartSweep(CancellationToken cancellationToken)
+    {
+        while (true)
+        {
+            if (cancellationToken.IsCancellationRequested) { break; }
 
-        public void Initialize()
-        {
-            servo = new Servo(pwmPin: MeadowApp.Device.Pins.D10,
-                config: NamedServoConfigs.SG90);
-        }
-
-        public void RotateTo(Angle angle)
-        {
-            servo.RotateTo(new Angle(angle));
-        }
-
-        public void StopSweep()
-        {
-            cancellationTokenSource?.Cancel();
-        }
-
-        public void StartSweep()
-        {
-            animationTask = new Task(async () =>
-            {
-                cancellationTokenSource = new CancellationTokenSource();
-                await StartSweep(cancellationTokenSource.Token);
-            });
-            animationTask.Start();
-        }
-        protected async Task StartSweep(CancellationToken cancellationToken)
-        {
-            while (true)
+            while (_rotationAngle < 180)
             {
                 if (cancellationToken.IsCancellationRequested) { break; }
 
-                while (_rotationAngle < 180)
-                {
-                    if (cancellationToken.IsCancellationRequested) { break; }
+                _rotationAngle++;
+                servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
+                await Task.Delay(50);
+            }
 
-                    _rotationAngle++;
-                    servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
-                    await Task.Delay(50);
-                }
+            while (_rotationAngle > 0)
+            {
+                if (cancellationToken.IsCancellationRequested) { break; }
 
-                while (_rotationAngle > 0)
-                {
-                    if (cancellationToken.IsCancellationRequested) { break; }
-
-                    _rotationAngle--;
-                    servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
-                    await Task.Delay(50);
-                }
+                _rotationAngle--;
+                servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
+                await Task.Delay(50);
             }
         }
     }

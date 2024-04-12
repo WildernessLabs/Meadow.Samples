@@ -54,7 +54,8 @@ namespace MobileBle.ViewModel
         {
             try
             {
-                TemperatureValue = Encoding.Default.GetString(await tempCharacteristic.ReadAsync()).Split(';')[0];
+                var temperature = await tempCharacteristic.ReadAsync();
+                TemperatureValue = Encoding.Default.GetString(temperature.data).Split(';')[0];
             }
             catch (Exception ex)
             {

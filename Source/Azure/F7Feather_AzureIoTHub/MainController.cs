@@ -1,112 +1,111 @@
-﻿using Meadow;
+﻿using F7Feather_AzureIoTHub.Controllers;
+using Meadow;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Sensors.Atmospheric;
 using Meadow.Hardware;
 using Meadow.Units;
-using MeadowAzureIoTHub.Controllers;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MeadowAzureIoTHub
+namespace F7Feather_AzureIoTHub;
+
+internal class MainController
 {
-    internal class MainController
+    bool useMQTT = true;
+
+    Htu21d atmosphericSensor;
+    DisplayController displayController;
+
+    IWiFiNetworkAdapter network;
+    IIoTHubController iotHubController;
+
+    public MainController(IWiFiNetworkAdapter network)
     {
-        bool useMQTT = true;
+        this.network = network;
+    }
 
-        Htu21d atmosphericSensor;
-        DisplayController displayController;
+    public async Task Initialize()
+    {
+        var display = new St7789
+        (
+            spiBus: MeadowApp.Device.CreateSpiBus(),
+            chipSelectPin: MeadowApp.Device.Pins.D02,
+            dcPin: MeadowApp.Device.Pins.D01,
+            resetPin: MeadowApp.Device.Pins.D00,
+            width: 240, height: 240
+        );
 
-        IWiFiNetworkAdapter network;
-        IIoTHubController iotHubController;
+        displayController = new DisplayController(display);
+        displayController.ShowSplashScreen();
+        Thread.Sleep(5000);
+        displayController.ShowDataScreen();
 
-        public MainController(IWiFiNetworkAdapter network)
+        if (useMQTT)
         {
-            this.network = network;
+            displayController.UpdateTitle("MQTT");
+            iotHubController = new IoTHubMqttController();
+        }
+        else
+        {
+            displayController.UpdateTitle("AMQP");
+            iotHubController = new IoTHubAmqpController();
         }
 
-        public async Task Initialize()
-        {
-            var display = new St7789
-            (
-                spiBus: MeadowApp.Device.CreateSpiBus(),
-                chipSelectPin: MeadowApp.Device.Pins.D02,
-                dcPin: MeadowApp.Device.Pins.D01,
-                resetPin: MeadowApp.Device.Pins.D00,
-                width: 240, height: 240
-            );
+        await InitializeIoTHub();
 
-            displayController = new DisplayController(display);
-            displayController.ShowSplashScreen();
-            Thread.Sleep(5000);
-            displayController.ShowDataScreen();
+        atmosphericSensor = new Htu21d(MeadowApp.Device.CreateI2cBus());
+        atmosphericSensor.Updated += AtmosphericSensorUpdated;
+    }
 
-            if (useMQTT)
-            {
-                displayController.UpdateTitle("MQTT");
-                iotHubController = new IoTHubMqttController();
-            }
-            else
-            {
-                displayController.UpdateTitle("AMQP");
-                iotHubController = new IoTHubAmqpController();
-            }
-
-            await InitializeIoTHub();
-
-            atmosphericSensor = new Htu21d(MeadowApp.Device.CreateI2cBus());
-            atmosphericSensor.Updated += AtmosphericSensorUpdated;
-        }
-
-        private async Task InitializeIoTHub()
-        {
-            while (!iotHubController.isAuthenticated)
-            {
-                displayController.UpdateWiFiStatus(network.IsConnected);
-
-                if (network.IsConnected)
-                {
-                    bool authenticated = await iotHubController.Initialize();
-
-                    if (authenticated)
-                    {
-                        Resolver.Log.Info("Authenticated");
-
-                    }
-                    else
-                    {
-                        Resolver.Log.Info("Not Authenticated");
-                    }
-                }
-                else
-                {
-                    Resolver.Log.Info("Offline");
-                }
-
-                await Task.Delay(TimeSpan.FromSeconds(5));
-            }
-        }
-
-        private async void AtmosphericSensorUpdated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity)> e)
+    private async Task InitializeIoTHub()
+    {
+        while (!iotHubController.isAuthenticated)
         {
             displayController.UpdateWiFiStatus(network.IsConnected);
 
-            if (network.IsConnected && iotHubController.isAuthenticated)
+            if (network.IsConnected)
             {
-                displayController.UpdateSyncStatus(true);
+                bool authenticated = await iotHubController.Initialize();
 
-                await iotHubController.SendEnvironmentalReading(e.New);
-                displayController.UpdateReadings(e.New);
+                if (authenticated)
+                {
+                    Resolver.Log.Info("Authenticated");
 
-                displayController.UpdateSyncStatus(false);
+                }
+                else
+                {
+                    Resolver.Log.Info("Not Authenticated");
+                }
             }
-        }
+            else
+            {
+                Resolver.Log.Info("Offline");
+            }
 
-        public Task Run()
+            await Task.Delay(TimeSpan.FromSeconds(5));
+        }
+    }
+
+    private async void AtmosphericSensorUpdated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity)> e)
+    {
+        displayController.UpdateWiFiStatus(network.IsConnected);
+
+        if (network.IsConnected && iotHubController.isAuthenticated)
         {
-            atmosphericSensor.StartUpdating(TimeSpan.FromSeconds(15));
+            displayController.UpdateSyncStatus(true);
 
-            return Task.CompletedTask;
+            await iotHubController.SendEnvironmentalReading(e.New);
+            displayController.UpdateReadings(e.New);
+
+            displayController.UpdateSyncStatus(false);
         }
+    }
+
+    public Task Run()
+    {
+        atmosphericSensor.StartUpdating(TimeSpan.FromSeconds(15));
+
+        return Task.CompletedTask;
     }
 }

@@ -3,27 +3,26 @@ using Meadow.Foundation.Sensors.Atmospheric;
 using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
 
-namespace MeadowAzureIoTHub.Hardware
+namespace ProjectLab_AzureIoTHub.Hardware;
+
+internal class MeadowAzureIoTHubHardware : IMeadowAzureIoTHubHardware
 {
-    internal class MeadowAzureIoTHubHardware : IMeadowAzureIoTHubHardware
+    protected IProjectLabHardware ProjLab { get; private set; }
+
+    public IPixelDisplay Display { get; set; }
+
+    public Bme68x EnvironmentalSensor { get; set; }
+
+    public IRgbPwmLed RgbPwmLed { get; set; }
+
+    public void Initialize()
     {
-        protected IProjectLabHardware ProjLab { get; private set; }
+        ProjLab = ProjectLab.Create();
 
-        public IPixelDisplay Display { get; set; }
+        Display = ProjLab.Display;
 
-        public Bme68x EnvironmentalSensor { get; set; }
+        RgbPwmLed = ProjLab.RgbLed;
 
-        public IRgbPwmLed RgbPwmLed { get; set; }
-
-        public void Initialize()
-        {
-            ProjLab = ProjectLab.Create();
-
-            Display = ProjLab.Display;
-
-            RgbPwmLed = ProjLab.RgbLed;
-
-            EnvironmentalSensor = (ProjLab as ProjectLabHardwareBase).AtmosphericSensor;
-        }
+        EnvironmentalSensor = (ProjLab as ProjectLabHardwareBase).AtmosphericSensor;
     }
 }

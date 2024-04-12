@@ -2,16 +2,15 @@
 using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
 
-namespace MeadowAzureIoTHub.Hardware
+namespace ProjectLab_AzureIoTHub.Hardware;
+
+internal interface IMeadowAzureIoTHubHardware
 {
-    internal interface IMeadowAzureIoTHubHardware
-    {
-        public IPixelDisplay Display { get; }
+    public IPixelDisplay Display { get; }
 
-        public Bme68x EnvironmentalSensor { get; }
+    public Bme68x EnvironmentalSensor { get; }
 
-        public IRgbPwmLed RgbPwmLed { get; }
+    public IRgbPwmLed RgbPwmLed { get; }
 
-        public void Initialize();
-    }
+    public void Initialize();
 }

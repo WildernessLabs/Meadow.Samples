@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OS_Telemetry;
 
-public class MeadowApp : App<F7FeatherV1>
+public class MeadowApp : App<F7FeatherV2>
 {
     public override async Task Run()
     {

@@ -33,21 +33,10 @@ namespace WinFormsMeadow.Views
                 BackgroundColor = backgroundColor
             };
 
-            DisplayScreen.Controls.Add(new Box(0, 0, display.Width, rowHeight)
+            DisplayScreen.Controls.Add(new GradientBox(0, 0, display.Width, display.Height)
             {
-                ForeColor = Meadow.Color.FromHex("#5AC0EA")
-            });
-            DisplayScreen.Controls.Add(new Box(0, rowHeight, display.Width, rowHeight)
-            {
-                ForeColor = Meadow.Color.FromHex("#84D0EF")
-            });
-            DisplayScreen.Controls.Add(new Box(0, rowHeight * 2, display.Width, rowHeight)
-            {
-                ForeColor = Meadow.Color.FromHex("#A3DCF3")
-            });
-            DisplayScreen.Controls.Add(new Box(0, rowHeight * 3, display.Width, rowHeight)
-            {
-                ForeColor = Meadow.Color.FromHex("#B8E4F6")
+                StartColor = Meadow.Color.FromHex("#5AC0EA"),
+                EndColor = Meadow.Color.FromHex("#B8E4F6")
             });
 
             DisplayScreen.Controls.Add(new Label(rowMargin, 0, DisplayScreen.Width / 2, rowHeight)

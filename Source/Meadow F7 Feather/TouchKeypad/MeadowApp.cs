@@ -8,89 +8,88 @@ using Meadow.Hardware;
 using Meadow.Peripherals.Displays;
 using System.Threading.Tasks;
 
-namespace TouchKeypad
+namespace TouchKeypad;
+
+// public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
+public class MeadowApp : App<F7FeatherV2>
 {
-    // public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
-    public class MeadowApp : App<F7FeatherV2>
+    Mpr121 sensor;
+    MicroGraphics graphics;
+
+    public override Task Initialize()
     {
-        Mpr121 sensor;
-        MicroGraphics graphics;
+        var onboardLed = new RgbPwmLed(
+            redPwmPin: Device.Pins.OnboardLedRed,
+            greenPwmPin: Device.Pins.OnboardLedGreen,
+            bluePwmPin: Device.Pins.OnboardLedBlue);
+        onboardLed.SetColor(Color.Red);
 
-        public override Task Initialize()
+        var display = new St7789(
+            spiBus: Device.CreateSpiBus(),
+            chipSelectPin: Device.Pins.D02,
+            dcPin: Device.Pins.D01,
+            resetPin: Device.Pins.D00,
+            width: 240, height: 240);
+
+        graphics = new MicroGraphics(display)
         {
-            var onboardLed = new RgbPwmLed(
-                redPwmPin: Device.Pins.OnboardLedRed,
-                greenPwmPin: Device.Pins.OnboardLedGreen,
-                bluePwmPin: Device.Pins.OnboardLedBlue);
-            onboardLed.SetColor(Color.Red);
+            Stroke = 2,
+            Rotation = RotationType._180Degrees,
+            CurrentFont = new Font12x16(),
+        };
 
-            var display = new St7789(
-                spiBus: Device.CreateSpiBus(),
-                chipSelectPin: Device.Pins.D02,
-                dcPin: Device.Pins.D01,
-                resetPin: Device.Pins.D00,
-                width: 240, height: 240);
+        sensor = new Mpr121(Device.CreateI2cBus(I2cBusSpeed.Standard), 90, 100);
+        sensor.ChannelStatusesChanged += SensorChannelStatusesChanged;
 
-            graphics = new MicroGraphics(display)
+        onboardLed.SetColor(Color.Green);
+
+        return base.Initialize();
+    }
+
+    void DrawGrid()
+    {
+        graphics.Clear();
+        for (int columns = 0; columns < 3; columns++)
+        {
+            for (int rows = 3; rows >= 0; rows--)
             {
-                Stroke = 2,
-                Rotation = RotationType._180Degrees,
-                CurrentFont = new Font12x16(),
-            };
-
-            sensor = new Mpr121(Device.CreateI2cBus(I2cBusSpeed.Standard), 90, 100);
-            sensor.ChannelStatusesChanged += SensorChannelStatusesChanged;
-
-            onboardLed.SetColor(Color.Green);
-
-            return base.Initialize();
+                graphics.DrawRectangle(columns * 57 + 38, rows * 57 + 10, 51, 51, Color.Cyan);
+            }
         }
+        graphics.Show();
+    }
 
-        void DrawGrid()
+    void SensorChannelStatusesChanged(object sender, ChannelStatusChangedEventArgs e)
+    {
+        graphics.Clear();
+        graphics.Stroke = 1;
+
+        for (int i = 0; i < e.ChannelStatus.Count; i++)
         {
-            graphics.Clear();
+            int numpadIndex = 0;
             for (int columns = 0; columns < 3; columns++)
             {
                 for (int rows = 3; rows >= 0; rows--)
                 {
-                    graphics.DrawRectangle(columns * 57 + 38, rows * 57 + 10, 51, 51, Color.Cyan);
-                }
-            }
-            graphics.Show();
-        }
-
-        void SensorChannelStatusesChanged(object sender, ChannelStatusChangedEventArgs e)
-        {
-            graphics.Clear();
-            graphics.Stroke = 1;
-
-            for (int i = 0; i < e.ChannelStatus.Count; i++)
-            {
-                int numpadIndex = 0;
-                for (int columns = 0; columns < 3; columns++)
-                {
-                    for (int rows = 3; rows >= 0; rows--)
+                    if (numpadIndex == i)
                     {
-                        if (numpadIndex == i)
-                        {
-                            if (e.ChannelStatus[(Mpr121.Channels)i])
-                                graphics.DrawRectangle(columns * 57 + 38, rows * 57 + 10, 51, 51, Color.Cyan, true);
-                            else
-                                graphics.DrawRectangle(columns * 57 + 38, rows * 57 + 10, 51, 51, Color.Cyan);
-                        }
-                        numpadIndex++;
+                        if (e.ChannelStatus[(Mpr121.Channels)i])
+                            graphics.DrawRectangle(columns * 57 + 38, rows * 57 + 10, 51, 51, Color.Cyan, true);
+                        else
+                            graphics.DrawRectangle(columns * 57 + 38, rows * 57 + 10, 51, 51, Color.Cyan);
                     }
+                    numpadIndex++;
                 }
             }
-
-            graphics.Show();
         }
 
-        public override Task Run()
-        {
-            DrawGrid();
+        graphics.Show();
+    }
 
-            return base.Run();
-        }
+    public override Task Run()
+    {
+        DrawGrid();
+
+        return base.Run();
     }
 }
