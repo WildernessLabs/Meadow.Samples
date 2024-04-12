@@ -1,24 +1,22 @@
 ﻿using Meadow.Units;
-using System;
 using WifiWeather.Models;
 
-namespace WifiWeather.ViewModels
+namespace WifiWeather.ViewModels;
+
+public class WeatherViewModel
 {
-    public class WeatherViewModel
+    public int WeatherCode { get; set; }
+
+    public int OutdoorTemperature { get; set; }
+
+    public int IndoorTemperature { get; set; }
+
+    public WeatherViewModel(WeatherReading outdoorConditions, Temperature indoorTemperature)
     {
-        public int WeatherCode { get; set; }
+        WeatherCode = outdoorConditions.weather[0].id;
 
-        public int OutdoorTemperature { get; set; }
+        OutdoorTemperature = (int)(outdoorConditions.main.temp - 273);
 
-        public int IndoorTemperature { get; set; }
-
-        public WeatherViewModel(WeatherReading outdoorConditions, Temperature indoorTemperature)
-        {
-            WeatherCode = outdoorConditions.weather[0].id;
-
-            OutdoorTemperature = (int) (outdoorConditions.main.temp - 273);
-
-            IndoorTemperature = (int) indoorTemperature.Celsius;
-        }
+        IndoorTemperature = (int)indoorTemperature.Celsius;
     }
 }
