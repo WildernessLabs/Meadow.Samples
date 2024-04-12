@@ -3,31 +3,30 @@ using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
 using Meadow.Peripherals.Sensors.Buttons;
 
-namespace GalleryViewer.Hardware
+namespace GalleryViewer.Hardware;
+
+internal class GalleryViewerHardware : IGalleryViewerHardware
 {
-    internal class GalleryViewerHardware : IGalleryViewerHardware
+    protected IProjectLabHardware ProjLab { get; private set; }
+
+    public IPixelDisplay Display { get; set; }
+
+    public IButton RightButton { get; set; }
+
+    public IButton LeftButton { get; set; }
+
+    public IRgbPwmLed RgbPwmLed { get; set; }
+
+    public void Initialize()
     {
-        protected IProjectLabHardware ProjLab { get; private set; }
+        ProjLab = ProjectLab.Create();
 
-        public IPixelDisplay Display { get; set; }
+        Display = ProjLab.Display;
 
-        public IButton RightButton { get; set; }
+        RightButton = ProjLab.RightButton;
 
-        public IButton LeftButton { get; set; }
+        LeftButton = ProjLab.LeftButton;
 
-        public IRgbPwmLed RgbPwmLed { get; set; }
-
-        public void Initialize()
-        {
-            ProjLab = ProjectLab.Create();
-
-            Display = ProjLab.Display;
-
-            RightButton = ProjLab.RightButton;
-
-            LeftButton = ProjLab.LeftButton;
-
-            RgbPwmLed = ProjLab.RgbLed;
-        }
+        RgbPwmLed = ProjLab.RgbLed;
     }
 }

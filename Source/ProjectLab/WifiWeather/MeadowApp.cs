@@ -4,30 +4,29 @@ using Meadow.Hardware;
 using System.Threading.Tasks;
 using WifiWeather.Hardware;
 
-namespace WifiWeather
+namespace WifiWeather;
+
+public class MeadowApp : App<F7CoreComputeV2>
 {
-    public class MeadowApp : App<F7CoreComputeV2>
+    MainController mainController;
+
+    public override Task Initialize()
     {
-        MainController mainController;
+        Resolver.Log.Info("Initialize...");
 
-        public override Task Initialize()
-        {
-            Resolver.Log.Info("Initialize...");
+        var hardware = new WifiWeatherHardware();
+        var network = Device.NetworkAdapters.Primary<INetworkAdapter>();
 
-            var hardware = new WifiWeatherHardware();
-            var network = Device.NetworkAdapters.Primary<INetworkAdapter>();
+        mainController = new MainController(hardware, network);
+        mainController.Initialize();
 
-            mainController = new MainController(hardware, network);
-            mainController.Initialize();
+        return Task.CompletedTask;
+    }
 
-            return Task.CompletedTask;
-        }
+    public override async Task Run()
+    {
+        Resolver.Log.Info("Run...");
 
-        public override async Task Run()
-        {
-            Resolver.Log.Info("Run...");
-
-            await mainController.Run();
-        }
+        await mainController.Run();
     }
 }

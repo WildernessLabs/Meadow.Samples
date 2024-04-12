@@ -56,5 +56,4 @@
     </ItemGroup>
 
     <Import Project="..\ProjectLabWiFiBle.Common\CommonContracts.projitems" Label="Shared" />
-
 </Project>

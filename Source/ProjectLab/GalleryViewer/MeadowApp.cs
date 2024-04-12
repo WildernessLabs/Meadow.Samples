@@ -3,32 +3,31 @@ using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
 
-namespace GalleryViewer
+namespace GalleryViewer;
+
+// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
+public class MeadowApp : App<F7CoreComputeV2>
 {
-    // Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-    public class MeadowApp : App<F7CoreComputeV2>
+    MainController mainController;
+
+    public override Task Initialize()
     {
-        MainController mainController;
+        Resolver.Log.Info("Initialize...");
 
-        public override Task Initialize()
-        {
-            Resolver.Log.Info("Initialize...");
+        var hardware = new GalleryViewerHardware();
 
-            var hardware = new GalleryViewerHardware();
+        mainController = new MainController(hardware);
+        mainController.Initialize();
 
-            mainController = new MainController(hardware);
-            mainController.Initialize();
+        return Task.CompletedTask;
+    }
 
-            return Task.CompletedTask;
-        }
+    public override Task Run()
+    {
+        Resolver.Log.Info("Run...");
 
-        public override Task Run()
-        {
-            Resolver.Log.Info("Run...");
+        mainController.Run();
 
-            mainController.Run();
-
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }

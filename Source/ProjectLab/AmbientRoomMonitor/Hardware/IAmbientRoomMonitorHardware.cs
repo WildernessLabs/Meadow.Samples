@@ -3,18 +3,17 @@ using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
 using Meadow.Peripherals.Sensors.Light;
 
-namespace AmbientRoomMonitor.Hardware
+namespace AmbientRoomMonitor.Hardware;
+
+internal interface IAmbientRoomMonitorHardware
 {
-    internal interface IAmbientRoomMonitorHardware
-    {
-        public IPixelDisplay Display { get; }
+    public IPixelDisplay Display { get; }
 
-        public ILightSensor LightSensor { get; }
+    public ILightSensor LightSensor { get; }
 
-        public Bme68x EnvironmentalSensor { get; }
+    public Bme68x EnvironmentalSensor { get; }
 
-        public IRgbPwmLed RgbPwmLed { get; }
+    public IRgbPwmLed RgbPwmLed { get; }
 
-        public void Initialize();
-    }
+    public void Initialize();
 }
