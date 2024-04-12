@@ -1,21 +1,20 @@
-﻿namespace MeadowWifi
-{
-    public class WifiConfigFile
-    {
-        public Credentials Credentials { get; set; }
+﻿namespace MeadowWifi;
 
-        public WifiConfigFile(string ssid, string password)
-        {
-            Credentials = new Credentials()
-            {
-                Ssid = ssid,
-                Password = password
-            };
-        }
-    }
-    public class Credentials
+public class WifiConfigFile
+{
+    public Credentials Credentials { get; set; }
+
+    public WifiConfigFile(string ssid, string password)
     {
-        public string Ssid { get; set; }
-        public string Password { get; set; }
+        Credentials = new Credentials()
+        {
+            Ssid = ssid,
+            Password = password
+        };
     }
+}
+public class Credentials
+{
+    public string Ssid { get; set; }
+    public string Password { get; set; }
 }
