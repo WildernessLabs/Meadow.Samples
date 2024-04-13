@@ -14,7 +14,7 @@ public class MeadowApp : App<F7FeatherV2>
 
         var ble = Device.BluetoothAdapter;
 
-        var mainController = new MainController();
+        var mainController = new MainController(Device, ble);
 
         return base.Initialize();
     }
