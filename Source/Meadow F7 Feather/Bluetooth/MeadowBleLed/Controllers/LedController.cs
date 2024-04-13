@@ -1,24 +1,23 @@
 ﻿using Meadow;
 using Meadow.Foundation.Leds;
+using Meadow.Hardware;
+using Meadow.Peripherals.Leds;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MeadowBleLed.Controller;
+namespace MeadowBleLed.Controllers;
 
 public class LedController
 {
-    RgbPwmLed rgbPwmLed;
+    IRgbPwmLed rgbPwmLed;
 
     Task animationTask = null;
     CancellationTokenSource cancellationTokenSource = null;
 
-    public LedController()
+    public LedController(IPin redPwmPin, IPin greenPwmPin, IPin bluePwmPin)
     {
-        rgbPwmLed = new RgbPwmLed(
-            redPwmPin: MeadowApp.Device.Pins.D12,
-            greenPwmPin: MeadowApp.Device.Pins.D11,
-            bluePwmPin: MeadowApp.Device.Pins.D10);
+        rgbPwmLed = new RgbPwmLed(redPwmPin, greenPwmPin, bluePwmPin);
     }
 
     void Stop()
