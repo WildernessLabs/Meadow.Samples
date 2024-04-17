@@ -10,6 +10,6 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
+    <PackageReference Include="Meadow.Desktop" Version="*" />
     </ItemGroup>
 </Project>
