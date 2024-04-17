@@ -1,30 +1,30 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <OutputType>Library</OutputType>
-    <AssemblyName>App</AssemblyName>
-  </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="level_0.jpg" />
-    <EmbeddedResource Include="level_1.jpg" />
-    <EmbeddedResource Include="level_2.jpg" />
-    <EmbeddedResource Include="level_3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <OutputType>Library</OutputType>
+        <AssemblyName>App</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="level_0.jpg" />
+        <EmbeddedResource Include="level_1.jpg" />
+        <EmbeddedResource Include="level_2.jpg" />
+        <EmbeddedResource Include="level_3.jpg" />
+    </ItemGroup>
+    <ItemGroup>
     <PackageReference Include="Meadow.ProjectLab" Version="*" />
     <PackageReference Include="Meadow.Foundation.Grove.Sensors.Moisture.MoistureSensor" Version="*" />
-    <PackageReference Include="SimpleJpegDecoder" Version="0.*" />
-  </ItemGroup>
-  <PropertyGroup>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Update="app.config.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="wifi.config.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+        <PackageReference Include="SimpleJpegDecoder" Version="0.*" />
+    </ItemGroup>
+    <PropertyGroup>
+        <LangVersion>10.0</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Update="app.config.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="wifi.config.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

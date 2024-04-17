@@ -2,18 +2,17 @@
 using Meadow.Peripherals.Leds;
 using Meadow.Peripherals.Sensors.Buttons;
 
-namespace GalleryViewer.Hardware
+namespace GalleryViewer.Hardware;
+
+internal interface IGalleryViewerHardware
 {
-    internal interface IGalleryViewerHardware
-    {
-        public IPixelDisplay Display { get; }
+    public IPixelDisplay Display { get; }
 
-        public IButton RightButton { get; }
+    public IButton RightButton { get; }
 
-        public IButton LeftButton { get; }
+    public IButton LeftButton { get; }
 
-        public IRgbPwmLed RgbPwmLed { get; }
+    public IRgbPwmLed RgbPwmLed { get; }
 
-        public void Initialize();
-    }
+    public void Initialize();
 }

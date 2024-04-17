@@ -1,48 +1,47 @@
 ﻿using Meadow.Foundation.Motors;
 
-namespace MeadowBleRover
+namespace MeadowBleRover;
+
+public class CarController
 {
-    public class CarController
+    float SPEED = 1.00f;
+
+    HBridgeMotor motorLeft;
+    HBridgeMotor motorRight;
+
+    public CarController(HBridgeMotor motorLeft, HBridgeMotor motorRight)
     {
-        float SPEED = 1.00f;
+        this.motorLeft = motorLeft;
+        this.motorRight = motorRight;
+    }
 
-        HBridgeMotor motorLeft;
-        HBridgeMotor motorRight;
+    public void Stop()
+    {
+        motorLeft.Power = 0f;
+        motorRight.Power = 0f;
+    }
 
-        public CarController(HBridgeMotor motorLeft, HBridgeMotor motorRight)
-        {
-            this.motorLeft = motorLeft;
-            this.motorRight = motorRight;
-        }
+    public void TurnLeft()
+    {
+        motorLeft.Power = SPEED;
+        motorRight.Power = -SPEED;
+    }
 
-        public void Stop()
-        {
-            motorLeft.Power = 0f;
-            motorRight.Power = 0f;
-        }
+    public void TurnRight()
+    {
+        motorLeft.Power = -SPEED;
+        motorRight.Power = SPEED;
+    }
 
-        public void TurnLeft()
-        {
-            motorLeft.Power = SPEED;
-            motorRight.Power = -SPEED;
-        }
+    public void MoveForward()
+    {
+        motorLeft.Power = -SPEED;
+        motorRight.Power = -SPEED;
+    }
 
-        public void TurnRight()
-        {
-            motorLeft.Power = -SPEED;
-            motorRight.Power = SPEED;
-        }
-
-        public void MoveForward()
-        {
-            motorLeft.Power = -SPEED;
-            motorRight.Power = -SPEED;
-        }
-
-        public void MoveBackward()
-        {
-            motorLeft.Power = SPEED;
-            motorRight.Power = SPEED;
-        }
+    public void MoveBackward()
+    {
+        motorLeft.Power = SPEED;
+        motorRight.Power = SPEED;
     }
 }

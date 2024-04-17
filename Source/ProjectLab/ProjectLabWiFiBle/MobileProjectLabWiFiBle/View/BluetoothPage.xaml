@@ -166,7 +166,7 @@
                             <VerticalStackLayout Spacing="10">
                                 <Label Text="BMI270 Motion Sensor" TextColor="White" FontAttributes="Bold" FontSize="Medium" />
 
-                                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="*,*,*" RowSpacing="10">
+                                <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*,*,*" RowSpacing="10">
                                     <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Acceleration 3D (cm/s²)" TextColor="White" FontSize="Medium" />
                                     <Label Grid.Row="1" Grid.Column="0" TextColor="White" FontAttributes="Bold" FontSize="Medium">
                                         <Label.FormattedText>
@@ -215,16 +215,6 @@
                                             <FormattedString>
                                                 <Span Text="Z: " />
                                                 <Span Text="{Binding AngularVelocity3dZ}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-
-                                    <Label Grid.Row="4" Grid.ColumnSpan="3" Text="Temperature" TextColor="White" FontSize="Medium" />
-                                    <Label Grid.Row="5" Grid.Column="0" TextColor="White" FontAttributes="Bold" FontSize="Medium">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding MotionTemperature}" />
-                                                <Span Text=" °C" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>

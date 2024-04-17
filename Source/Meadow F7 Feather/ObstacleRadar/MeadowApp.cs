@@ -14,114 +14,113 @@ using System.Threading.Tasks;
 using AU = Meadow.Units.Angle.UnitType;
 using LU = Meadow.Units.Length.UnitType;
 
-namespace ObstacleRadar
+namespace ObstacleRadar;
+
+// public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
+public class MeadowApp : App<F7FeatherV2>
 {
-    // public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
-    public class MeadowApp : App<F7FeatherV2>
+    MicroGraphics graphics;
+    Vl53l0x sensor;
+    Servo servo;
+
+    float[] radarData = new float[181];
+
+    public override async Task Initialize()
     {
-        MicroGraphics graphics;
-        Vl53l0x sensor;
-        Servo servo;
+        var onboardLed = new RgbPwmLed(
+            redPwmPin: Device.Pins.OnboardLedRed,
+            greenPwmPin: Device.Pins.OnboardLedGreen,
+            bluePwmPin: Device.Pins.OnboardLedBlue);
+        onboardLed.SetColor(Color.Red);
 
-        float[] radarData = new float[181];
+        var display = new St7789(
+            spiBus: Device.CreateSpiBus(),
+            chipSelectPin: Device.Pins.D02,
+            dcPin: Device.Pins.D01,
+            resetPin: Device.Pins.D00,
+            width: 240, height: 240);
 
-        public override async Task Initialize()
+        graphics = new MicroGraphics(display);
+        graphics.CurrentFont = new Font12x20();
+        graphics.Rotation = RotationType._270Degrees;
+
+        var i2cBus = Device.CreateI2cBus(I2cBusSpeed.FastPlus);
+        sensor = new Vl53l0x(i2cBus);
+        sensor.StartUpdating(TimeSpan.FromMilliseconds(200));
+
+        servo = new Servo(Device.Pins.D05, NamedServoConfigs.SG90);
+        await servo.RotateTo(new Angle(0, AU.Degrees));
+
+        onboardLed.SetColor(Color.Green);
+    }
+
+    void Draw()
+    {
+        int angle = 160;
+        int increment = 4;
+        int x, y = 0;
+
+        while (true)
         {
-            var onboardLed = new RgbPwmLed(
-                redPwmPin: Device.Pins.OnboardLedRed,
-                greenPwmPin: Device.Pins.OnboardLedGreen,
-                bluePwmPin: Device.Pins.OnboardLedBlue);
-            onboardLed.SetColor(Color.Red);
+            graphics.Clear();
 
-            var display = new St7789(
-                spiBus: Device.CreateSpiBus(),
-                chipSelectPin: Device.Pins.D02,
-                dcPin: Device.Pins.D01,
-                resetPin: Device.Pins.D00,
-                width: 240, height: 240);
+            DrawRadar();
 
-            graphics = new MicroGraphics(display);
-            graphics.CurrentFont = new Font12x20();
-            graphics.Rotation = RotationType._270Degrees;
+            graphics.DrawLine(120, 170, 105, (float)(angle * Math.PI / 180), Color.Yellow);
 
-            var i2cBus = Device.CreateI2cBus(I2cBusSpeed.FastPlus);
-            sensor = new Vl53l0x(i2cBus);
-            sensor.StartUpdating(TimeSpan.FromMilliseconds(200));
+            if (angle >= 180) { increment = -4; }
+            if (angle <= 0) { increment = 4; }
 
-            servo = new Servo(Device.Pins.D05, NamedServoConfigs.SG90);
-            await servo.RotateTo(new Angle(0, AU.Degrees));
+            angle += increment;
+            servo.RotateTo(new Angle(angle, AU.Degrees));
 
-            onboardLed.SetColor(Color.Green);
-        }
+            graphics.DrawText(0, 0, $"{180 - angle}°", Color.Yellow);
 
-        void Draw()
-        {
-            int angle = 160;
-            int increment = 4;
-            int x, y = 0;
-
-            while (true)
+            if (sensor.Distance != null && sensor.Distance >= new Length(0, LU.Millimeters))
             {
-                graphics.Clear();
-
-                DrawRadar();
-
-                graphics.DrawLine(120, 170, 105, (float)(angle * Math.PI / 180), Color.Yellow);
-
-                if (angle >= 180) { increment = -4; }
-                if (angle <= 0) { increment = 4; }
-
-                angle += increment;
-                servo.RotateTo(new Angle(angle, AU.Degrees));
-
-                graphics.DrawText(0, 0, $"{180 - angle}°", Color.Yellow);
-
-                if (sensor.Distance != null && sensor.Distance >= new Length(0, LU.Millimeters))
-                {
-                    graphics.DrawText(170, 0, $"{sensor.Distance?.Millimeters}mm", Color.Yellow);
-                    radarData[angle] = (float)(sensor.Distance?.Millimeters / 2);
-                }
-                else
-                {
-                    radarData[angle] = 0;
-                }
-
-                for (int i = 0; i < 180; i++)
-                {
-                    x = 120 + (int)(radarData[i] * MathF.Cos(i * MathF.PI / 180f));
-                    y = 170 - (int)(radarData[i] * MathF.Sin(i * MathF.PI / 180f));
-                    graphics.DrawCircle(x, y, 2, Color.Yellow, true);
-                }
-
-                graphics.Show();
-                Thread.Sleep(100);
+                graphics.DrawText(170, 0, $"{sensor.Distance?.Millimeters}mm", Color.Yellow);
+                radarData[angle] = (float)(sensor.Distance?.Millimeters / 2);
             }
-        }
-
-        void DrawRadar()
-        {
-            int xCenter = 120;
-            int yCenter = 170;
-
-            var radarColor = Color.LawnGreen;
-
-            for (int i = 1; i < 5; i++)
+            else
             {
-                graphics.DrawCircleQuadrant(xCenter, yCenter, 25 * i, 0, radarColor);
-                graphics.DrawCircleQuadrant(xCenter, yCenter, 25 * i, 1, radarColor);
+                radarData[angle] = 0;
             }
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 180; i++)
             {
-                graphics.DrawLine(xCenter, yCenter, 105, (float)(i * Math.PI / 6), radarColor);
+                x = 120 + (int)(radarData[i] * MathF.Cos(i * MathF.PI / 180f));
+                y = 170 - (int)(radarData[i] * MathF.Sin(i * MathF.PI / 180f));
+                graphics.DrawCircle(x, y, 2, Color.Yellow, true);
             }
-        }
 
-        public override Task Run()
+            graphics.Show();
+            Thread.Sleep(100);
+        }
+    }
+
+    void DrawRadar()
+    {
+        int xCenter = 120;
+        int yCenter = 170;
+
+        var radarColor = Color.LawnGreen;
+
+        for (int i = 1; i < 5; i++)
         {
-            Draw();
-
-            return base.Run();
+            graphics.DrawCircleQuadrant(xCenter, yCenter, 25 * i, 0, radarColor);
+            graphics.DrawCircleQuadrant(xCenter, yCenter, 25 * i, 1, radarColor);
         }
+
+        for (int i = 0; i < 7; i++)
+        {
+            graphics.DrawLine(xCenter, yCenter, 105, (float)(i * Math.PI / 6), radarColor);
+        }
+    }
+
+    public override Task Run()
+    {
+        Draw();
+
+        return base.Run();
     }
 }

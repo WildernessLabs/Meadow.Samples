@@ -1,171 +1,188 @@
 ﻿using Meadow;
 using Meadow.Foundation.Graphics;
+using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MeadowConnectedSample.Controllers
+namespace MeadowConnectedSample.Controllers;
+
+public class DisplayController
 {
-    public class DisplayController
+    private CancellationTokenSource token;
+
+    private Image logo = Image.LoadFromResource("MeadowConnectedSample.Resources.img_meadow.bmp");
+
+    private Color backgroundColor = Color.FromHex("23ABE3");
+    private Color foregroundColor = Color.Black;
+
+    private readonly Font12x16 font12X16 = new Font12x16();
+
+    private DisplayScreen displayScreen;
+
+    private AbsoluteLayout splashLayout;
+    private AbsoluteLayout dataLayout;
+
+    private Picture connectionImage;
+    private Label title;
+    private Label subtitle;
+    private Label status;
+
+    public DisplayController(IPixelDisplay display)
     {
-        private static readonly Lazy<DisplayController> instance =
-            new Lazy<DisplayController>(() => new DisplayController());
-        public static DisplayController Instance => instance.Value;
-
-        static Color backgroundColor = Color.FromHex("#23ABE3");
-
-        CancellationTokenSource token;
-
-        protected Image imgConnecting, imgConnected;
-        protected MicroGraphics graphics;
-
-        private DisplayController() { }
-
-        public void Initialize(IPixelDisplay display)
+        displayScreen = new DisplayScreen(display, RotationType._270Degrees)
         {
-            graphics = new MicroGraphics(display)
-            {
-                CurrentFont = new Font12x20(),
-                Stroke = 3,
-            };
+            BackgroundColor = backgroundColor
+        };
 
-            graphics.Clear(true);
-        }
+        LoadSplashLayout();
+        displayScreen.Controls.Add(splashLayout);
 
-        void DrawBackground()
+        Thread.Sleep(3000);
+
+        LoadDataLayout();
+        displayScreen.Controls.Add(dataLayout);
+    }
+
+    private void LoadSplashLayout()
+    {
+        splashLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height);
+
+        var image = Image.LoadFromResource("MeadowConnectedSample.Resources.img_meadow.bmp");
+        var displayImage = new Picture(0, 0, splashLayout.Width, splashLayout.Height, image)
         {
-            var logo = Image.LoadFromResource("MeadowConnectedSample.Resources.img_meadow.bmp");
+            BackColor = backgroundColor,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
 
-            graphics.Clear(backgroundColor);
+        splashLayout.Controls.Add(displayImage);
+    }
 
-            graphics.DrawImage(
-                x: graphics.Width / 2 - logo.Width / 2,
-                y: 34,
-                image: logo);
-
-            graphics.DrawCircle(
-                centerX: graphics.Width / 2,
-                centerY: graphics.Height / 2,
-                radius: graphics.Width / 2 - 10,
-                color: Color.Black,
-                filled: false);
-        }
-
-        public void ShowSplashScreen()
+    private void LoadDataLayout()
+    {
+        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
         {
-            DrawBackground();
+            IsVisible = false
+        };
 
-            graphics.Show();
-        }
-
-        public async Task StartConnectingAnimation(bool isWiFi)
+        dataLayout.Controls.Add(new Circle(dataLayout.Width / 2, dataLayout.Height / 2, 150)
         {
-            imgConnected = Image.LoadFromResource(isWiFi
-                ? "MeadowConnectedSample.Resources.img_wifi_connected.bmp"
-                : "MeadowConnectedSample.Resources.img_ble_paired.bmp");
-            imgConnecting = Image.LoadFromResource(isWiFi
-                ? "MeadowConnectedSample.Resources.img_wifi_connecting.bmp"
-                : "MeadowConnectedSample.Resources.img_ble_pairing.bmp");
+            IsFilled = false
+        });
 
-            token = new CancellationTokenSource();
+        var image = Image.LoadFromResource("MeadowConnectedSample.Resources.img_wifi.bmp");
+        connectionImage = new Picture(117, 35, 86, 74, image);
+        dataLayout.Controls.Add(connectionImage);
 
-            graphics.DrawRectangle(
-                x: (graphics.Width - 140) / 2,
-                y: 115,
-                width: 140,
-                height: 85,
-                color: backgroundColor,
-                filled: true);
+        title = CreateLabel(0, 125, dataLayout.Width, font12X16.Height * 2, "MAPLE", ScaleFactor.X2);
+        subtitle = CreateLabel(0, 168, dataLayout.Width, font12X16.Height, "STARTING", ScaleFactor.X1);
+        status = CreateLabel(0, 193, dataLayout.Width, font12X16.Height, "-", ScaleFactor.X1);
 
-            bool alternateImg = false;
-            while (!token.IsCancellationRequested)
-            {
-                alternateImg = !alternateImg;
+        dataLayout.Controls.Add(new[] { title, subtitle, status });
+    }
 
-                graphics.DrawImage(
-                    x: graphics.Width / 2 - imgConnecting.Width / 2,
-                    y: 130,
-                    image: alternateImg ? imgConnecting : imgConnected);
-                graphics.Show();
-
-                await Task.Delay(500);
-            }
-        }
-
-        public void StopConnectingAnimation()
+    private Label CreateLabel(int x, int y, int width, int height, string text, ScaleFactor scaleFactor)
+    {
+        return new Label(x, y, width, height)
         {
-            token.Cancel();
-        }
+            Text = text,
+            TextColor = foregroundColor,
+            Font = font12X16,
+            ScaleFactor = scaleFactor,
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
+    }
 
-        public void ShowMapleReady(string ipAddress)
+    public async Task StartConnectingMapleAnimation()
+    {
+        splashLayout.IsVisible = false;
+        dataLayout.IsVisible = true;
+
+        token = new CancellationTokenSource();
+
+        var connecting = Image.LoadFromResource("MeadowConnectedSample.Resources.img_wifi_fade.bmp");
+        var connected = Image.LoadFromResource("MeadowConnectedSample.Resources.img_wifi.bmp");
+
+        title.Text = "MAPLE";
+        subtitle.Text = "STARTING";
+        status.Text = "-";
+
+        bool alternateImg = false;
+
+        while (!token.IsCancellationRequested)
         {
-            graphics.DrawRectangle(
-                x: (graphics.Width - 140) / 2,
-                y: 120,
-                width: 140,
-                height: 85,
-                color: backgroundColor,
-                filled: true);
+            alternateImg = !alternateImg;
 
-            graphics.CurrentFont = new Font12x16();
-            graphics.DrawText(
-                x: graphics.Width / 2,
-                y: 128,
-                text: "MAPLE",
-                color: Color.Black,
-                scaleFactor: ScaleFactor.X2,
-                alignmentH: HorizontalAlignment.Center);
+            connectionImage.Image = alternateImg
+                ? connecting
+                : connected;
 
-            graphics.DrawText(
-                x: graphics.Width / 2,
-                y: 171,
-                text: $"{ipAddress}",
-                color: Color.Black,
-                scaleFactor: ScaleFactor.X1,
-                alignmentH: HorizontalAlignment.Center);
-
-            graphics.DrawText(
-                x: graphics.Width / 2,
-                y: 197,
-                text: $"READY",
-                color: Color.Black,
-                scaleFactor: ScaleFactor.X1,
-                alignmentH: HorizontalAlignment.Center);
-
-            graphics.Show();
+            await Task.Delay(500);
         }
+    }
 
-        public void ShowBluetoothPaired()
+    public async Task StartConnectingBluetoothAnimation()
+    {
+        splashLayout.IsVisible = false;
+        dataLayout.IsVisible = true;
+
+        token = new CancellationTokenSource();
+
+        var connecting = Image.LoadFromResource("MeadowConnectedSample.Resources.img_ble_fade.bmp");
+        var connected = Image.LoadFromResource("MeadowConnectedSample.Resources.img_ble.bmp");
+
+        title.Text = "BLE";
+        subtitle.Text = "DISCOVERABLE";
+        status.Text = "-";
+
+        bool alternateImg = false;
+
+        while (!token.IsCancellationRequested)
         {
-            StopConnectingAnimation();
+            alternateImg = !alternateImg;
 
-            graphics.DrawRectangle(
-                x: (graphics.Width - 140) / 2,
-                y: 120,
-                width: 140,
-                height: 85,
-                color: backgroundColor,
-                filled: true);
+            connectionImage.Image = alternateImg
+                ? connecting
+                : connected;
 
-            graphics.CurrentFont = new Font12x16();
-            graphics.DrawText(
-                x: graphics.Width / 2,
-                y: 130,
-                text: "BLUETOOTH",
-                color: Color.Black,
-                scaleFactor: ScaleFactor.X1,
-                alignmentH: HorizontalAlignment.Center);
-
-            graphics.DrawText(
-                x: graphics.Width / 2,
-                y: 160,
-                text: "PAIRED",
-                color: Color.Black,
-                scaleFactor: ScaleFactor.X2,
-                alignmentH: HorizontalAlignment.Center);
-
-            graphics.Show();
+            await Task.Delay(500);
         }
+    }
+
+    public void ShowSplashScreen()
+    {
+        dataLayout.IsVisible = false;
+        splashLayout.IsVisible = true;
+    }
+
+    public void ShowDataScreen()
+    {
+        splashLayout.IsVisible = false;
+        dataLayout.IsVisible = true;
+    }
+
+    public void ShowMapleReady(string ipAddress)
+    {
+        token.Cancel();
+
+        var connected = Image.LoadFromResource("MeadowConnectedSample.Resources.img_wifi.bmp");
+
+        connectionImage.Image = connected;
+
+        subtitle.Text = ipAddress;
+        status.Text = "READY";
+    }
+
+    public void ShowBluetoothPaired()
+    {
+        token.Cancel();
+
+        var connected = Image.LoadFromResource("MeadowConnectedSample.Resources.img_ble.bmp");
+
+        connectionImage.Image = connected;
+
+        subtitle.Text = "PAIRED";
+        status.Text = "READY";
     }
 }

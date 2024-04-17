@@ -1,8 +1,6 @@
 ﻿using Meadow;
-using Meadow.Cloud;
 using Meadow.Logging;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace CloudSample;
@@ -71,45 +69,8 @@ public class MainController
 
     private void ControlTimerProc(object o)
     {
-        telemetryController.LogTelemetry();
+        //        telemetryController.LogTelemetry();
 
         controlTimer.Change(10000, -1);
-    }
-}
-
-public class TelemetryController
-{
-    private const int DataEventId = 2000;
-
-    private Random random = new();
-    private IMeadowCloudService cloudService;
-
-    public TelemetryController(IMeadowCloudService cloudService)
-    {
-        this.cloudService = cloudService;
-    }
-
-    public void LogTelemetry()
-    {
-        var data = new Dictionary<string, object>
-        {
-            { "Int Value", random.Next(43) },
-            { "String Value", BitConverter.ToString(BitConverter.GetBytes(random.NextDouble())) }
-        };
-
-        cloudService.SendEvent(DataEventId, "CloudSample Data", data);
-    }
-}
-
-public class CommandController
-{
-    public CommandController(ICommandService commandService)
-    {
-        commandService.Subscribe<SampleCommand>(OnSampleCommandRecevied);
-    }
-
-    private void OnSampleCommandRecevied(SampleCommand command)
-    {
-        Resolver.Log.Info($"Command received: Data = {command.Data}");
     }
 }

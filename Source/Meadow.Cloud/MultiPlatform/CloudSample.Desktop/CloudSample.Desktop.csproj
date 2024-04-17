@@ -1,21 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <ItemGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
     <PackageReference Include="Meadow.Desktop" Version="*" />
-    <ProjectReference Include="..\..\MultiPlatform\CloudSample.Core\CloudSample.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="app.config.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
+        <ProjectReference Include="..\..\MultiPlatform\CloudSample.Core\CloudSample.Core.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="app.config.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

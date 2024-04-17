@@ -2,38 +2,37 @@
 using Meadow.Units;
 using System;
 
-namespace MeadowBleTemperature.Controllers
+namespace MeadowBleTemperature.Controllers;
+
+public class TemperatureController
 {
-    public class TemperatureController
+    private static readonly Lazy<TemperatureController> instance =
+        new Lazy<TemperatureController>(() => new TemperatureController());
+    public static TemperatureController Instance => instance.Value;
+
+    public event EventHandler<Temperature> TemperatureUpdated = delegate { };
+
+    AnalogTemperature analogTemperature;
+
+    private TemperatureController()
     {
-        private static readonly Lazy<TemperatureController> instance =
-            new Lazy<TemperatureController>(() => new TemperatureController());
-        public static TemperatureController Instance => instance.Value;
+        Initialize();
+    }
 
-        public event EventHandler<Temperature> TemperatureUpdated = delegate { };
+    private void Initialize()
+    {
+        analogTemperature = new AnalogTemperature(MeadowApp.Device.Pins.A01,
+            AnalogTemperature.KnownSensorType.LM35);
+        analogTemperature.Updated += AnalogTemperatureUpdated;
+    }
 
-        AnalogTemperature analogTemperature;
+    void AnalogTemperatureUpdated(object sender, Meadow.IChangeResult<Temperature> e)
+    {
+        TemperatureUpdated.Invoke(this, e.New);
+    }
 
-        private TemperatureController()
-        {
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            analogTemperature = new AnalogTemperature(MeadowApp.Device.Pins.A01,
-                AnalogTemperature.KnownSensorType.LM35);
-            analogTemperature.Updated += AnalogTemperatureUpdated;
-        }
-
-        void AnalogTemperatureUpdated(object sender, Meadow.IChangeResult<Temperature> e)
-        {
-            TemperatureUpdated.Invoke(this, e.New);
-        }
-
-        public void StartUpdating(TimeSpan timeSpan)
-        {
-            analogTemperature.StartUpdating(timeSpan);
-        }
+    public void StartUpdating(TimeSpan timeSpan)
+    {
+        analogTemperature.StartUpdating(timeSpan);
     }
 }

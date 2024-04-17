@@ -5,43 +5,42 @@ using Meadow.Units;
 using System;
 using System.Collections.ObjectModel;
 
-namespace MeadowMapleTemperature.Controllers
+namespace MeadowMapleTemperature.Controllers;
+
+public class TemperatureController
 {
-    public class TemperatureController
+    ITemperatureSensor analogTemperature;
+
+    private static readonly Lazy<TemperatureController> instance =
+        new Lazy<TemperatureController>(() => new TemperatureController());
+    public static TemperatureController Instance => instance.Value;
+
+    public ObservableCollection<TemperatureModel> TemperatureLogs { get; private set; }
+
+    private TemperatureController() { }
+
+    public void Initialize()
     {
-        ITemperatureSensor analogTemperature;
+        TemperatureLogs = new ObservableCollection<TemperatureModel>();
 
-        private static readonly Lazy<TemperatureController> instance =
-            new Lazy<TemperatureController>(() => new TemperatureController());
-        public static TemperatureController Instance => instance.Value;
+        analogTemperature = new AnalogTemperature(MeadowApp.Device.Pins.A01,
+            AnalogTemperature.KnownSensorType.LM35);
+        analogTemperature.Updated += AnalogTemperatureUpdated;
+        analogTemperature.StartUpdating(TimeSpan.FromSeconds(30));
+    }
 
-        public ObservableCollection<TemperatureModel> TemperatureLogs { get; private set; }
+    private void AnalogTemperatureUpdated(object sender, Meadow.IChangeResult<Temperature> e)
+    {
+        int TIMEZONE_OFFSET = -8;
 
-        private TemperatureController() { }
+        LedController.Instance.SetColor(Color.Magenta);
 
-        public void Initialize()
+        TemperatureLogs.Add(new TemperatureModel()
         {
-            TemperatureLogs = new ObservableCollection<TemperatureModel>();
+            Temperature = e.New.Celsius.ToString("00"),
+            DateTime = DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("yyyy-MM-dd hh:mm:ss tt")
+        });
 
-            analogTemperature = new AnalogTemperature(MeadowApp.Device.Pins.A01,
-                AnalogTemperature.KnownSensorType.LM35);
-            analogTemperature.Updated += AnalogTemperatureUpdated;
-            analogTemperature.StartUpdating(TimeSpan.FromSeconds(30));
-        }
-
-        private void AnalogTemperatureUpdated(object sender, Meadow.IChangeResult<Temperature> e)
-        {
-            int TIMEZONE_OFFSET = -8;
-
-            LedController.Instance.SetColor(Color.Magenta);
-
-            TemperatureLogs.Add(new TemperatureModel()
-            {
-                Temperature = e.New.Celsius.ToString("00"),
-                DateTime = DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("yyyy-MM-dd hh:mm:ss tt")
-            });
-
-            LedController.Instance.SetColor(Color.Green);
-        }
+        LedController.Instance.SetColor(Color.Green);
     }
 }

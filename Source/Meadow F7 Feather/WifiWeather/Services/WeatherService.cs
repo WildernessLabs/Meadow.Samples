@@ -4,39 +4,38 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WifiWeather.Models;
 
-namespace WifiWeather.Services
+namespace WifiWeather.Services;
+
+public static class WeatherService
 {
-    public static class WeatherService
+    static string climateDataUri = "http://api.openweathermap.org/data/2.5/weather";
+
+    static WeatherService() { }
+
+    public static async Task<WeatherReading> GetWeatherForecast()
     {
-        static string climateDataUri = "http://api.openweathermap.org/data/2.5/weather";
-
-        static WeatherService() { }
-
-        public static async Task<WeatherReading> GetWeatherForecast()
+        using (HttpClient client = new HttpClient())
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                try
-                {
-                    client.Timeout = new TimeSpan(0, 5, 0);
+                client.Timeout = new TimeSpan(0, 5, 0);
 
-                    HttpResponseMessage response = await client.GetAsync($"{climateDataUri}?q={Secrets.WEATHER_CITY}&appid={Secrets.WEATHER_API_KEY}");
+                HttpResponseMessage response = await client.GetAsync($"{climateDataUri}?q={Secrets.WEATHER_CITY}&appid={Secrets.WEATHER_API_KEY}");
 
-                    response.EnsureSuccessStatusCode();
-                    string json = await response.Content.ReadAsStringAsync();
-                    var values = JsonSerializer.Deserialize<WeatherReading>(json);
-                    return values;
-                }
-                catch (TaskCanceledException)
-                {
-                    Console.WriteLine("Request timed out.");
-                    return null;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Request went sideways: {e.Message}");
-                    return null;
-                }
+                response.EnsureSuccessStatusCode();
+                string json = await response.Content.ReadAsStringAsync();
+                var values = JsonSerializer.Deserialize<WeatherReading>(json);
+                return values;
+            }
+            catch (TaskCanceledException)
+            {
+                Console.WriteLine("Request timed out.");
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Request went sideways: {e.Message}");
+                return null;
             }
         }
     }

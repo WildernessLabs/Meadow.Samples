@@ -1,63 +1,61 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Foundation.Leds;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace McpLeds
+namespace McpLeds;
+
+// public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
+public class MeadowApp : App<F7FeatherV2>
 {
-    // public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
-    public class MeadowApp : App<F7FeatherV2>
+    List<Led> leds;
+    Mcp23008 mcp;
+
+    public override Task Initialize()
     {
-        List<Led> leds;
-        Mcp23008 mcp;
+        var onboardLed = new RgbPwmLed(
+            redPwmPin: Device.Pins.OnboardLedRed,
+            greenPwmPin: Device.Pins.OnboardLedGreen,
+            bluePwmPin: Device.Pins.OnboardLedBlue);
+        onboardLed.SetColor(Color.Red);
 
-        public override Task Initialize()
+        mcp = new Mcp23008(Device.CreateI2cBus());
+
+        leds = new List<Led>
         {
-            var onboardLed = new RgbPwmLed(
-                redPwmPin: Device.Pins.OnboardLedRed,
-                greenPwmPin: Device.Pins.OnboardLedGreen,
-                bluePwmPin: Device.Pins.OnboardLedBlue);
-            onboardLed.SetColor(Color.Red);
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP0)),
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP1)),
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP2)),
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP3)),
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP4)),
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP5)),
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP6)),
+            new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP7))
+        };
 
-            mcp = new Mcp23008(Device.CreateI2cBus());
+        onboardLed.SetColor(Color.Green);
 
-            leds = new List<Led>
-            {
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP0)),
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP1)),
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP2)),
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP3)),
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP4)),
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP5)),
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP6)),
-                new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP7))
-            };
+        return base.Initialize();
+    }
 
-            onboardLed.SetColor(Color.Green);
-
-            return base.Initialize();
-        }
-
-        public override async Task Run()
+    public override async Task Run()
+    {
+        while (true)
         {
-            while (true)
+            foreach (var led in leds)
             {
-                foreach (var led in leds)
-                {
-                    led.IsOn = true;
-                    await Task.Delay(500);
-                }
+                led.IsOn = true;
+                await Task.Delay(500);
+            }
 
-                await Task.Delay(1000);
+            await Task.Delay(1000);
 
-                foreach (var led in leds)
-                {
-                    led.IsOn = false;
-                    await Task.Delay(500);
-                }
+            foreach (var led in leds)
+            {
+                led.IsOn = false;
+                await Task.Delay(500);
             }
         }
     }

@@ -67,9 +67,9 @@ internal class MainController
                 { "humidity", $"{hardware.HumiditySensor.Humidity.Value.Percent:N2}" },
             });
 
-            displayController.UpdateSyncStatus(false);
             displayController.UpdateStatus("Data sent!");
             Thread.Sleep(2000);
+            displayController.UpdateSyncStatus(false);
             displayController.UpdateStatus(DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("hh:mm tt dd/MM/yy"));
 
             displayController.UpdateLastUpdated(DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("hh:mm tt dd/MM/yy"));

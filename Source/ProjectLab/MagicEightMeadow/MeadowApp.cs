@@ -3,31 +3,30 @@ using Meadow;
 using Meadow.Devices;
 using System.Threading.Tasks;
 
-namespace MagicEightMeadow
+namespace MagicEightMeadow;
+
+public class MeadowApp : App<F7CoreComputeV2>
 {
-    public class MeadowApp : App<F7CoreComputeV2>
+    MainController mainController;
+
+    public override Task Initialize()
     {
-        MainController mainController;
+        Resolver.Log.Info("Initialize...");
 
-        public override Task Initialize()
-        {
-            Resolver.Log.Info("Initialize...");
+        var hardware = new MagicEightMeadowHardware();
 
-            var hardware = new MagicEightMeadowHardware();
+        mainController = new MainController(hardware);
+        mainController.Initialize();
 
-            mainController = new MainController(hardware);
-            mainController.Initialize();
+        return Task.CompletedTask;
+    }
 
-            return Task.CompletedTask;
-        }
+    public override Task Run()
+    {
+        Resolver.Log.Info("Run...");
 
-        public override Task Run()
-        {
-            Resolver.Log.Info("Run...");
+        mainController.Run();
 
-            mainController.Run();
-
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }

@@ -1,16 +1,4 @@
-# Uncomment additional options as needed.
-# To learn more about these config options, including custom application configuration settings, check out the Application Settings Configuration documentation.
-# http://developer.wildernesslabs.co/Meadow/Meadow.OS/Configuration/Application_Settings_Configuration/
-
-# App lifecycle configuration.
-Lifecycle:
-    
-    # Control whether Meadow will restart when an unhandled app exception occurs. Combine with Lifecycle > AppFailureRestartDelaySeconds to control restart timing.
-    RestartOnAppFailure: true
-
-    # When app set to restart automatically on app failure, 
-#    AppFailureRestartDelaySeconds: 15
-
+# Meadow.Cloud configuration.
 # Logging configuration.
 Logging:
 
@@ -20,18 +8,7 @@ Logging:
         # Trace, Debug, Information, Warning, or Error
         Default: Trace
 
-# Meadow.Cloud configuration.
 MeadowCloud:
-
     # Enable Meadow.Cloud features
     Enabled: true
     EnableUpdates: true
-
-# Meadow.Cloud Health Metrics.
-HealthMetrics:
-
-    # Enable Health Metrics
-#    Enabled: true
-
-    # How often to send metrics to Meadow.Cloud (in minutes)
-#    Interval: 15
