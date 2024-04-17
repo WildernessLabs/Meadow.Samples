@@ -21,10 +21,10 @@ Logging:
         Default: Trace
 
 # Meadow.Cloud configuration.
-MeadowCloud:
+#MeadowCloud:
 
     # Enable Logging, Events, Command + Control
-    Enabled: true
+#    Enabled: true
 
     # Enable Over-the-air Updates
 #    EnableUpdates: false

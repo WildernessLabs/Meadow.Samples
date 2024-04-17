@@ -3,17 +3,6 @@ using System.Collections.Generic;
 
 namespace ProjectLab_ApiClient.DTOs;
 
-public class GreenhouseModel
-{
-    public double TemperatureCelsius { get; set; }
-    public double HumidityPercentage { get; set; }
-    public double SoilMoisturePercentage { get; set; }
-    public bool IsLightOn { get; set; }
-    public bool IsHeaterOn { get; set; }
-    public bool IsSprinklerOn { get; set; }
-    public bool IsVentilationOn { get; set; }
-}
-
 public class MeasurementData
 {
     public string temperature { get; set; }
@@ -49,5 +38,5 @@ public class Root
 {
     public Data data { get; set; }
     public bool isSuccessful { get; set; }
-    public object errorMessage { get; set; }
+    public string errorMessage { get; set; }
 }
