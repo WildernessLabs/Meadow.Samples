@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace I2C;
 
-public class MeadowApp : App<F7FeatherV2>
+public class FeatherV1App : MeadowApp<F7FeatherV1> { }
+public class FeatherV2App : MeadowApp<F7FeatherV2> { }
+public class FeatherCcmV2App : MeadowApp<F7CoreComputeV2> { }
+
+public abstract class MeadowApp<T> : App<T>
+    where T : F7MicroBase
 {
-    II2cBus i2c;
-    GY521 gyro;
+    private II2cBus i2c;
+    private GY521 gyro;
 
     public override Task Initialize()
     {
@@ -60,7 +65,7 @@ public class MeadowApp : App<F7FeatherV2>
         }
     }
 
-    async Task GY521Test()
+    private async Task GY521Test()
     {
         var i2c = Device.CreateI2cBus();
 
@@ -82,7 +87,7 @@ public class MeadowApp : App<F7FeatherV2>
         }
     }
 
-    async Task BusScan(II2cBus i2c)
+    private async Task BusScan(II2cBus i2c)
     {
         byte addr = 0;
         while (true)

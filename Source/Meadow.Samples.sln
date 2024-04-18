@@ -493,6 +493,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowF7_Logging", "Meadow.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HMI_Views", "Meadow.Desktop\HMI_Views\HMI_Views.csproj", "{3F93415B-AEE8-4688-9B4A-7846816640AD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrashDetect", "Core\OS\CrashDetect\CrashDetect.csproj", "{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2303,6 +2305,12 @@ Global
 		{3F93415B-AEE8-4688-9B4A-7846816640AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3F93415B-AEE8-4688-9B4A-7846816640AD}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F93415B-AEE8-4688-9B4A-7846816640AD}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2540,6 +2548,7 @@ Global
 		{4786AC05-C4DD-48B8-AC09-FE95A3571068} = {0F5B8EEF-8895-42C6-9E93-A9152EDEEDDB}
 		{97528EA2-149F-40C6-AA7D-C3E36915AB54} = {0F5B8EEF-8895-42C6-9E93-A9152EDEEDDB}
 		{3F93415B-AEE8-4688-9B4A-7846816640AD} = {A5E391D4-541D-485D-9210-4EAC4E8A2FB0}
+		{F7CA80DE-875C-402A-96EA-DD99FBFCA5C8} = {3DEE2D90-13EB-4F48-AD44-E1FAD727E3DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
