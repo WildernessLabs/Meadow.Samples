@@ -14,8 +14,12 @@ namespace MeadowMapleServo;
 // public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
 public class MeadowApp : App<F7FeatherV2>
 {
-    RgbPwmLed onboardLed;
-    MapleServer mapleServer;
+    private RgbPwmLed onboardLed;
+
+    private IWiFiNetworkAdapter wifi;
+
+    private ServoController servoController;
+    private CommandController commandController;
 
     public override async Task Initialize()
     {
@@ -25,17 +29,38 @@ public class MeadowApp : App<F7FeatherV2>
             bluePwmPin: Device.Pins.OnboardLedBlue);
         onboardLed.SetColor(Color.Red);
 
-        ServoController.Instance.RotateTo(new Angle(NamedServoConfigs.SG90.MinimumAngle));
+        servoController = new ServoController();
+        servoController.RotateTo(new Angle(NamedServoConfigs.SG90.MinimumAngle));
 
-        var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        commandController = new CommandController();
+        commandController.ServoRotateTo += ServoRotateTo;
+        commandController.ServoStartSweep += ServoStartSweep;
+        commandController.ServoStopSweep += ServoStopSweep;
+
+        wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
         wifi.NetworkConnected += NetworkConnected;
 
         await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
     }
 
+    private void ServoRotateTo(object sender, int e)
+    {
+        servoController.RotateTo(new Angle(e));
+    }
+
+    private void ServoStartSweep(object sender, EventArgs e)
+    {
+        servoController.StartSweep();
+    }
+
+    private void ServoStopSweep(object sender, EventArgs e)
+    {
+        servoController.StopSweep();
+    }
+
     private void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
     {
-        mapleServer = new MapleServer(sender.IpAddress, 5417, true, logger: Resolver.Log);
+        var mapleServer = new MapleServer(sender.IpAddress, 5417, true, logger: Resolver.Log);
         mapleServer.Start();
 
         onboardLed.SetColor(Color.Green);

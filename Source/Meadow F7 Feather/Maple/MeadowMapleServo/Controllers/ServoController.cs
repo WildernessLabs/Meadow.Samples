@@ -1,6 +1,5 @@
 ﻿using Meadow.Foundation.Servos;
 using Meadow.Units;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,23 +7,14 @@ namespace MeadowMapleServo.Controllers;
 
 public class ServoController
 {
-    private static readonly Lazy<ServoController> instance =
-        new Lazy<ServoController>(() => new ServoController());
-    public static ServoController Instance => instance.Value;
+    private Servo servo;
 
-    Servo servo;
-
-    Task animationTask = null;
-    CancellationTokenSource cancellationTokenSource = null;
+    private Task animationTask = null;
+    private CancellationTokenSource cancellationTokenSource = null;
 
     protected int _rotationAngle;
 
-    private ServoController()
-    {
-        Initialize();
-    }
-
-    private void Initialize()
+    public ServoController()
     {
         servo = new Servo(
             pwmPin: MeadowApp.Device.Pins.D10,

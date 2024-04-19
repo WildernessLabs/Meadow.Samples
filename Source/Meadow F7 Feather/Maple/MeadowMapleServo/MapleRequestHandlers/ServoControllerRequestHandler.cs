@@ -1,6 +1,6 @@
-﻿using Meadow.Foundation.Web.Maple;
+﻿using Meadow;
+using Meadow.Foundation.Web.Maple;
 using Meadow.Foundation.Web.Maple.Routing;
-using Meadow.Units;
 using MeadowMapleServo.Controllers;
 
 namespace MeadowMapleServo.MapleRequestHandlers;
@@ -13,21 +13,21 @@ public class ServoControllerRequestHandler : RequestHandlerBase
     public IActionResult RotateTo()
     {
         int angle = int.Parse(Body);
-        ServoController.Instance.RotateTo(new Angle(angle, Angle.UnitType.Degrees));
+        Resolver.Services.Get<CommandController>().FireServoRotateTo(angle);
         return new OkResult();
     }
 
     [HttpPost("/startsweep")]
     public IActionResult StartSweep()
     {
-        ServoController.Instance.StartSweep();
+        Resolver.Services.Get<CommandController>().FireServoStartSweep();
         return new OkResult();
     }
 
     [HttpPost("/stopsweep")]
     public IActionResult StopSweep()
     {
-        ServoController.Instance.StopSweep();
+        Resolver.Services.Get<CommandController>().FireServoStopSweep();
         return new OkResult();
     }
 }
