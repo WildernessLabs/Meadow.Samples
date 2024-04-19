@@ -1,5 +1,6 @@
 ﻿using Meadow;
 using Meadow.Foundation.Leds;
+using Meadow.Peripherals.Leds;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace MeadowMapleLed.Controllers;
 
 public class LedController
 {
-    private RgbPwmLed rgbPwmLed;
+    private IRgbPwmLed rgbPwmLed;
 
     private Task animationTask = null;
     private CancellationTokenSource cancellationTokenSource = null;
