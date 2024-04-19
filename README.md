@@ -149,6 +149,7 @@ Also check the pinout to make sure to connect the peripheral or sensor on the ri
     * [Battery Level](./Source/Meadow%20F7/OS/BatteryLevel/)
     * [Charge State](./Source/Meadow%20F7/OS/ChargeState/)
     * [Config Files](./Source/Meadow%20F7/OS/ConfigFiles/)
+    * [Crash Detection](./Source/Meadow%20F7/OS/CrashDetect/)
     * [File System Basics](./Source/Meadow%20F7/OS/FileSystem_Basics/)
     * [Json Basics](./Source/Meadow%20F7/OS/Json_Basics/)
     * [Logging](./Source/Meadow%20F7/OS/Logging)
