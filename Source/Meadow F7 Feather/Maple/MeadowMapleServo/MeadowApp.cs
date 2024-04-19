@@ -19,7 +19,6 @@ public class MeadowApp : App<F7FeatherV2>
     private IWiFiNetworkAdapter wifi;
 
     private ServoController servoController;
-    private CommandController commandController;
 
     public override async Task Initialize()
     {
@@ -32,30 +31,10 @@ public class MeadowApp : App<F7FeatherV2>
         servoController = new ServoController();
         servoController.RotateTo(new Angle(NamedServoConfigs.SG90.MinimumAngle));
 
-        commandController = new CommandController();
-        commandController.ServoRotateTo += ServoRotateTo;
-        commandController.ServoStartSweep += ServoStartSweep;
-        commandController.ServoStopSweep += ServoStopSweep;
-
         wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
         wifi.NetworkConnected += NetworkConnected;
 
         await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
-    }
-
-    private void ServoRotateTo(object sender, int e)
-    {
-        servoController.RotateTo(new Angle(e));
-    }
-
-    private void ServoStartSweep(object sender, EventArgs e)
-    {
-        servoController.StartSweep();
-    }
-
-    private void ServoStopSweep(object sender, EventArgs e)
-    {
-        servoController.StopSweep();
     }
 
     private void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
