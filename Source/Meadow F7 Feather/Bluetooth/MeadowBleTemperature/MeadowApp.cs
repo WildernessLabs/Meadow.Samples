@@ -28,9 +28,4 @@ public class MeadowApp : App<F7FeatherV2>
 
         return base.Initialize();
     }
-
-    //private void TemperatureUpdated(object sender, Meadow.Units.Temperature e)
-    //{
-    //    temperatureCharacteristic.SetValue($"{e.Celsius:N2}°C;");
-    //}
 }
