@@ -509,6 +509,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GnssTrackerConnectivity", "
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GnssTrackerConnectivity.Common", "GnssTracker\Connectivity\GnssTrackerConnectivity.Common\GnssTrackerConnectivity.Common.shproj", "{B37359B9-3D61-42BD-B485-FC76275F0585}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileGnssTrackerConnectivity", "GnssTracker\Connectivity\MobileGnssTrackerConnectivity\MobileGnssTrackerConnectivity.csproj", "{5EE35697-6C30-432F-B675-24CE02F2CF9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2344,6 +2346,15 @@ Global
 		{1C110570-E3EF-400F-8B7A-F179908880C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C110570-E3EF-400F-8B7A-F179908880C3}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C110570-E3EF-400F-8B7A-F179908880C3}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2588,6 +2599,7 @@ Global
 		{C1C5E6D0-E1C6-4188-879F-C7C574C4AF13} = {4266E735-B42B-45AE-8601-6C8585BEDF19}
 		{1C110570-E3EF-400F-8B7A-F179908880C3} = {2AEF0D66-3B2E-418F-8C19-98F0B9CEE405}
 		{B37359B9-3D61-42BD-B485-FC76275F0585} = {2AEF0D66-3B2E-418F-8C19-98F0B9CEE405}
+		{5EE35697-6C30-432F-B675-24CE02F2CF9D} = {2AEF0D66-3B2E-418F-8C19-98F0B9CEE405}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
@@ -2595,6 +2607,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		GnssTracker\Connectivity\GnssTrackerConnectivity.Common\GnssTrackerConnectivity.Common.projitems*{1c110570-e3ef-400f-8b7a-f179908880c3}*SharedItemsImports = 5
 		ProjectLab\Connectivity\ProjectLabConnectivity.Common\ProjectLabConnectivity.Common.projitems*{2d6b532c-f8c2-4652-8d57-33d7146906a9}*SharedItemsImports = 5
+		GnssTracker\Connectivity\GnssTrackerConnectivity.Common\GnssTrackerConnectivity.Common.projitems*{5ee35697-6c30-432f-b675-24ce02f2cf9d}*SharedItemsImports = 5
 		ProjectLab\Connectivity\ProjectLabConnectivity.Common\ProjectLabConnectivity.Common.projitems*{b1475dd1-9d32-4b4d-b477-5d6776ae54c7}*SharedItemsImports = 5
 		GnssTracker\Connectivity\GnssTrackerConnectivity.Common\GnssTrackerConnectivity.Common.projitems*{b37359b9-3d61-42bd-b485-fc76275f0585}*SharedItemsImports = 13
 		ProjectLab\Connectivity\ProjectLabConnectivity.Common\ProjectLabConnectivity.Common.projitems*{c1c5e6d0-e1c6-4188-879f-c7c574c4af13}*SharedItemsImports = 13

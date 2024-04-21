@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileGnssTrackerConnectivity.View.MaplePage"
+    BackgroundColor="White"
+    Title="Maple Connection">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="TextColor">#555</Color>
+            <Style x:Key="ButtonNavStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BackgroundColor" Value="#14607F" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="10" Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0" BackgroundColor="#23ABE3" HasShadow="False" CornerRadius="5" Padding="10,0,0,0" BorderColor="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Picker TextColor="White" FontSize="Medium" BackgroundColor="Transparent"
+                                ItemsSource="{Binding HostList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedServer}"/>
+                            <Label IsVisible="{Binding IsServerListEmpty}" Text="Pick a server" 
+                                FontSize="Medium" TextColor="White" VerticalOptions="Center" />
+                        </Grid>
+
+                        <Grid Grid.Column="1" WidthRequest="50" HeightRequest="50">
+                            <Button Command="{Binding CmdSearchServers}" BackgroundColor="Transparent" CornerRadius="5" />
+                            <Image Source="icon_search.png" Margin="10" InputTransparent="True">
+                                <Image.Triggers>
+                                    <DataTrigger TargetType="Image" Binding="{Binding IsScanning}" Value="True">
+                                        <Setter Property="IsVisible" Value="False" />
+                                        <Setter Property="InputTransparent" Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding IsScanning}" Value="False">
+                                        <Setter Property="IsVisible" Value="True" />
+                                        <Setter Property="InputTransparent" Value="True" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                            <ActivityIndicator Color="White" IsRunning="True" IsVisible="{Binding IsScanning}" Margin="7" />
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <Frame Grid.Row="1" BackgroundColor="#EF7D3B" HasShadow="False" CornerRadius="5" Padding="10" BorderColor="Transparent">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="IP:" TextColor="White" FontSize="Medium"  FontAttributes="Bold" VerticalOptions="Center"/>
+
+                        <Entry Grid.Column="1" Text="{Binding IpAddress}" TextColor="White" FontSize="Medium" 
+                            BackgroundColor="#AB5D30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                        <Label Grid.Column="2" Text="Port:" TextColor="White" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"  />
+
+                        <Entry Grid.Column="3" Text="{Binding ServerPort}" TextColor="White" FontSize="Medium" Keyboard="Numeric"
+                            BackgroundColor="#AB5D30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Grid>
+                </Frame>
+
+                <ScrollView Grid.Row="2" >
+                    <VerticalStackLayout Spacing="10">
+                        <Frame BackgroundColor="#23ABE3" HasShadow="False" Padding="10" CornerRadius="5" BorderColor="Transparent">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Meadow Onboard RGB LED" TextColor="White" FontAttributes="Bold" FontSize="Medium" />
+
+                                <Label TextColor="White" FontSize="Medium">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Status: " />
+                                            <Span Text="{Binding LedStatus}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                    <Button Grid.Column="0" Text="On/off" Style="{StaticResource ButtonNavStyle}"
+                                        Command="{Binding CmdSetOnboardLed}" CommandParameter="toggle"/>
+                                    <Button Grid.Column="1" Text="Blink" Style="{StaticResource ButtonNavStyle}" 
+                                        Command="{Binding CmdSetOnboardLed}" CommandParameter="blink"/>
+                                    <Button Grid.Column="2" Text="Pulse" Style="{StaticResource ButtonNavStyle}"
+                                        Command="{Binding CmdSetOnboardLed}" CommandParameter="pulse"/>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Frame BackgroundColor="#23ABE3" HasShadow="False" Padding="10" CornerRadius="5" BorderColor="Transparent">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="BME688 Environmental Sensor" TextColor="White" FontAttributes="Bold" FontSize="Medium" />
+
+                                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*,*,*" RowSpacing="10">
+                                    <Label Grid.Row="0" Grid.Column="0" Text="Temp" TextColor="White" FontSize="Medium" HorizontalOptions="Start" />
+                                    <Label Grid.Row="0" Grid.Column="1" Text="Humidity" TextColor="White" FontSize="Medium" HorizontalOptions="Center" />
+                                    <Label Grid.Row="0" Grid.Column="2" Text="Pressure" TextColor="White" FontSize="Medium" HorizontalOptions="End" />
+
+                                    <Label Grid.Row="1" Grid.Column="0" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Medium">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Temperature}" />
+                                                <Span Text=" °C" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Medium">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Humidity}" />
+                                                <Span Text=" %" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="2" Grid.Column="2" TextColor="White" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Pressure}" />
+                                                <Span Text=" Mbar" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+
+                                <Button Text="Read Environmental Sensor" Command="{Binding CmdEnvironmentData}"
+                                    VerticalOptions="FillAndExpand" Style="{StaticResource ButtonNavStyle}" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Frame BackgroundColor="#23ABE3" HasShadow="False" Padding="10" CornerRadius="5" BorderColor="Transparent">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="BH1750 Light Sensor" TextColor="White" FontAttributes="Bold" FontSize="Medium" />
+
+                                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*,*,*" RowSpacing="10">
+                                    <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Luminance" TextColor="White" FontSize="Medium" />
+                                    <Label Grid.Row="1" Grid.Column="0" TextColor="White" FontAttributes="Bold" FontSize="Medium">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Illuminance}" />
+                                                <Span Text=" Lx" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+
+                                <Button Text="Read Light Sensor" Command="{Binding CmdGetLightData}"
+                                    VerticalOptions="FillAndExpand" Style="{StaticResource ButtonNavStyle}" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Frame BackgroundColor="#23ABE3" HasShadow="False" Padding="10" CornerRadius="5" BorderColor="Transparent">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="BMI270 Motion Sensor" TextColor="White" FontAttributes="Bold" FontSize="Medium" />
+
+                                <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*,*,*" RowSpacing="10">
+                                    <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Acceleration 3D (cm/s²)" TextColor="White" FontSize="Medium" />
+                                    <Label Grid.Row="1" Grid.Column="0" TextColor="White" FontAttributes="Bold" FontSize="Medium">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="X: " />
+                                                <Span Text="{Binding Acceleration3dX}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Y: " />
+                                                <Span Text="{Binding Acceleration3dY}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.Column="2" TextColor="White" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Z: " />
+                                                <Span Text="{Binding Acceleration3dZ}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label Grid.Row="2" Grid.ColumnSpan="3" Text="Angular Velocity 3D (°/s)" TextColor="White" FontSize="Medium" />
+                                    <Label Grid.Row="3" Grid.Column="0" TextColor="White" FontAttributes="Bold" FontSize="Medium">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="X: " />
+                                                <Span Text="{Binding AngularVelocity3dX}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="3" Grid.Column="1" TextColor="White" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Y: " />
+                                                <Span Text="{Binding AngularVelocity3dY}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="3" Grid.Column="2" TextColor="White" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Z: " />
+                                                <Span Text="{Binding AngularVelocity3dZ}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+
+                                <Button Text="Read Motion Sensor" Command="{Binding CmdGetMotionData}"
+                                    VerticalOptions="FillAndExpand" Style="{StaticResource ButtonNavStyle}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+                <Label Grid.Row="3" Text="By Wilderness Labs" TextColor="Black" 
+                    HorizontalOptions="Center" VerticalOptions="EndAndExpand" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

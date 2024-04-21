@@ -1,6 +1,6 @@
 namespace GnssTrackerConnectivity.Common.Models;
 
-public class ClimateModel
+public class AtmosphericReadingsDTO
 {
     public string? Temperature { get; set; }
 

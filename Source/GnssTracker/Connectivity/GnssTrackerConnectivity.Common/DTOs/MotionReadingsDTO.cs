@@ -1,6 +1,6 @@
 namespace GnssTrackerConnectivity.Common.Models;
 
-public class MotionModel
+public class MotionReadingsDTO
 {
     public string Acceleration3dX { get; set; }
     public string Acceleration3dY { get; set; }
