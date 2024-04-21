@@ -9,7 +9,7 @@ Lifecycle:
   #AppFailureRestartDelaySeconds: 15
 
 # # Adjust the level of logging detail.
-#Logging:
-#  LogLevel:
-#    Default: Trace
+Logging:
+  LogLevel:
+    Default: Trace
 

@@ -481,14 +481,14 @@ Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to pu
             <a href="Source/Meadow.Cloud/FeatherF7_OTA/">Source Code</a>
         </td>
         <td>
-            <a href="Source/Meadow.Cloud/CloudLogging/"><img src="Design/wildernesslabs-meadow-cloud-log.jpg"/></a><br/>
+            <a href="Source/Meadow.Cloud/MeadowF7_Logging/"><img src="Design/wildernesslabs-meadow-cloud-log.jpg"/></a><br/>
             Send diagnostics logs from Meadow to Meadow.Cloud</br>
-            <a href="Source/Meadow.Cloud/CloudLogging/">Source Code</a>
+            <a href="Source/Meadow.Cloud/MeadowF7_Logging/">Source Code</a>
         </td>
         <td>
-            <a href="Source/Meadow.Cloud/HealthMetricsMonitoring/"><img src="Design/wildernesslabs-meadow-cloud-health-metrics.jpg"/></a><br/>
+            <a href="Source/Meadow.Cloud/MeadowF7_HealthMetrics/"><img src="Design/wildernesslabs-meadow-cloud-health-metrics.jpg"/></a><br/>
             Check your Meadow's Health Metrics on Meadow.Cloud</br>
-            <a href="Source/Meadow.Cloud/HealthMetricsMonitoring/">Source Code</a>
+            <a href="Source/Meadow.Cloud/MeadowF7_HealthMetrics/">Source Code</a>
         </td>
     </tr>
     <tr>
@@ -525,7 +525,7 @@ Meadow.Cloud provides secure, Over-the-Air (OtA) updates, which enable you to pu
 
 ## Azure
 
-[![Meadow.SBCs.Samples](Design/wildernesslabs-meadow-azure-banner.jpg)](/Source/RaspberryPi/)
+[![Meadow.SBCs.Samples](Design/wildernesslabs-meadow-azure-banner.jpg)](/Source/Azure/)
 
 Meadow project samples using Microsoft Azure. Click on any of these sample project to learn how they work.
 

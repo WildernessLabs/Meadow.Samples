@@ -47,6 +47,6 @@
     <ItemGroup>
       <PackageReference Include="Plugin.BLE" Version="3.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-      <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.7" />
+      <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
     </ItemGroup>
 </Project>
