@@ -26,10 +26,16 @@ public class SensorController
     private IAnalogInputPort solarVoltageInput;
 
     public AtmosphericConditions AtmosphericConditions { get; set; }
+
     public MotionConditions MotionConditions { get; set; }
 
+    public VoltageReadings VoltageReadings { get; set; }
+
     public event EventHandler<AtmosphericConditions> AtmosphericConditionsChanged = default!;
+
     public event EventHandler<MotionConditions> MotionConditionsChanged = default!;
+
+    public event EventHandler<VoltageReadings> VoltageReadingsChanged = default!;
 
     public SensorController(IGnssTrackerHardware hardware)
     {
@@ -88,6 +94,13 @@ public class SensorController
                 AngularVelocity3D = angularVelocityReading
             };
             MotionConditionsChanged?.Invoke(this, MotionConditions);
+
+            VoltageReadings = new VoltageReadings()
+            {
+                BatteryVoltage = batteryVoltageReading,
+                SolarVoltage = solarVoltageReading
+            };
+            VoltageReadingsChanged?.Invoke(this, VoltageReadings);
 
             await Task.Delay(updateInterval);
         }
