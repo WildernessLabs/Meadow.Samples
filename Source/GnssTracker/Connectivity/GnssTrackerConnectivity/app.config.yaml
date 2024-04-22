@@ -18,7 +18,7 @@ Logging:
     LogLevel:
     
         # Trace, Debug, Information, Warning, or Error
-        Default: Trace
+        Default: Information
 
 # Meadow.Cloud configuration.
 MeadowCloud:

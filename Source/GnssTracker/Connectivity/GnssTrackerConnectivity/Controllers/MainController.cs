@@ -62,6 +62,7 @@ public class MainController
             var mapleServer = new MapleServer(s.IpAddress, 5417, advertise: true, logger: Resolver.Log);
             mapleServer.Start();
 
+            displayController.ShowMapleReady(e.IpAddress.ToString());
             ledController.SetColor(Color.Green);
         };
 
