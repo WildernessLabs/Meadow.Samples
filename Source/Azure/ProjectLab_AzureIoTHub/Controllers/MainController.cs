@@ -1,17 +1,16 @@
 ﻿using Meadow;
 using Meadow.Hardware;
 using Meadow.Units;
-using ProjectLab_AzureIoTHub.Controllers;
 using ProjectLab_AzureIoTHub.Hardware;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ProjectLab_AzureIoTHub;
+namespace ProjectLab_AzureIoTHub.Controllers;
 
 internal class MainController
 {
-    bool useMQTT = true;
+    bool useMQTT = false;
 
     int TIMEZONE_OFFSET = -8; // UTC-8
 
