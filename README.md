@@ -736,27 +736,24 @@ A collection of samples for the Wilderness Labs [Juego IoT Accelerator](https://
 
 [![Gnss Sensor Tracker](Design/wildernesslabs-meadow-gnss-sensor-tracker.jpg)](/Source/GnssTracker/)
 
-Meadow project samples using Microsoft Azure. Click on any of these sample project to learn how they work.
+Meadow project samples with a Gnss Sensor Tracker. Click on any of these sample project to learn how they work.
 
 <table>
     <tr>
         <td>
-            <a href="Source/Azure/F7Feather_AzureIoTHub/"><img src="Design/wildernesslabs-gnss-tracker-getting-started.png" /></a><br/>
-            Send environmental data to Azure IoT Hub via AMQP or MQTT</br>
-            <a href="https://www.hackster.io/wilderness-labs/send-temperature-humidity-data-from-meadow-to-azure-iot-hub-340b39">Hackster</a> | 
-            <a href="Source/Azure/F7Feather_AzureIoTHub/">Source Code</a>
+            <a href="https://github.com/WildernessLabs/GNSS_Sensor_Tracker/tree/main/Source/GnssTracker_Demo"><img src="Design/wildernesslabs-gnss-tracker-getting-started.png" /></a><br/>
+            Getting started with GNSS Tracker running a diagnostics app</br>
+            <a href="https://github.com/WildernessLabs/GNSS_Sensor_Tracker/tree/main/Source/GnssTracker_Demo">Source Code</a>
         </td>
         <td>
-            <a href="Source/Azure/ProjectLab_AzureIoTHub/"><img src="Design/wildernesslabs-gnss-tracker-bluetooth.png"/></a><br/>
-            Send anvironmental data from a BME688 to Azure IoT Hub<br/>
-            <a href="https://www.hackster.io/wildernesslabs/send-environmental-data-from-projectlab-to-azure-w-iot-hub-7d3d07">Hackster</a> | 
-            <a href="Source/Azure/ProjectLab_AzureIoTHub/">Source Code</a>
+            <a href="Source/GnssTracker/Connectivity/"><img src="Design/wildernesslabs-gnss-tracker-bluetooth.png"/></a><br/>
+            Control a GNSS Tracker over Bluetooth with a MAUI app<br/>
+            <a href="Source/GnssTracker/Connectivity/">Source Code</a>
         </td>
         <td>
-            <a href="Source/Azure/Web_AzureIoTHub/"><img src="Design/wildernesslabs-gnss-tracker-wifi.png"/></a><br/>
-            Visualize environmental data on a Web App from Azure IoT Hub</br>
-            <a href="https://www.hackster.io/wilderness-labs/visualize-azure-iot-hub-data-with-a-net-web-app-6288e3">Hackster</a> | 
-            <a href="Source/Azure/Web_AzureIoTHub/">Source Code</a>
+            <a href="Source/GnssTracker/Connectivity/"><img src="Design/wildernesslabs-gnss-tracker-wifi.png"/></a><br/>
+            Control a GNSS Tracker over WiFi with a MAUI app</br>
+            <a href="Source/GnssTracker/Connectivity/">Source Code</a>
         </td>
     </tr>
     <tr>
