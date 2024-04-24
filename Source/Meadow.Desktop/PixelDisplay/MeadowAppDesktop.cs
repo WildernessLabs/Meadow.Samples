@@ -52,12 +52,13 @@ public class MeadowAppDesktop : App<Desktop>
 
     private void ExecutePlatformDisplayRunner()
     {
+        (Device.Display as SilkDisplay).Run();
 #if WINDOWS
         System.Windows.Forms.Application.Run(Device.Display as System.Windows.Forms.Form);
 #endif
-        if (Device.Display is GtkDisplay gtk)
-        {
-            gtk.Run();
-        }
+        //        if (Device.Display is GtkDisplay gtk)
+        //        {
+        //            gtk.Run();
+        //        }
     }
 }
