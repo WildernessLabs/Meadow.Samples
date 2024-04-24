@@ -4,7 +4,6 @@
         <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
     </ItemGroup>
