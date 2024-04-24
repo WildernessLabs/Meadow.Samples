@@ -10,7 +10,15 @@ public class DisplayController
     // Screen height is 122 but buffer is 128
     private readonly int OFFSET_Y = 6;
 
+    private Image ble = Image.LoadFromResource("GnssTrackerConnectivity.Resources.img-ble.bmp");
+    private Image wifi = Image.LoadFromResource("GnssTrackerConnectivity.Resources.img-wifi.bmp");
+
     private DisplayScreen displayScreen;
+
+    private Picture connectivityIcon;
+    private Label Line1;
+    private Label Line2;
+    private Label Line3;
 
     public DisplayController(IPixelDisplay display)
     {
@@ -18,10 +26,7 @@ public class DisplayController
         {
             BackgroundColor = Color.White
         };
-    }
 
-    public void ShowMapleReady(string ipAddress)
-    {
         displayScreen.BeginUpdate();
 
         displayScreen.Controls.Add(new Box(
@@ -44,46 +49,64 @@ public class DisplayController
             ForeColor = Color.White
         });
 
-        var ble = Image.LoadFromResource("GnssTrackerConnectivity.Resources.img-wifi.bmp");
-        displayScreen.Controls.Add(new Picture(
+        connectivityIcon = new Picture(
             15,
             22 + OFFSET_Y,
             60,
             78,
-            ble));
+            wifi);
+        displayScreen.Controls.Add(connectivityIcon);
 
-        displayScreen.Controls.Add(new Label(
+        Line1 = new Label(
             84,
             22 + OFFSET_Y,
             151,
             16)
         {
-            Text = "WiFi (Maple)",
             TextColor = Color.Black,
             Font = new Font12x16()
-        });
+        };
+        displayScreen.Controls.Add(Line1);
 
-        displayScreen.Controls.Add(new Label(
+        Line2 = new Label(
             84,
             55 + OFFSET_Y,
             151,
             16)
         {
-            Text = $"{ipAddress}",
             TextColor = Color.Black,
             Font = new Font8x12()
-        });
+        };
+        displayScreen.Controls.Add(Line2);
 
-        displayScreen.Controls.Add(new Label(
+        Line3 = new Label(
             84,
             84 + OFFSET_Y,
             151,
             16)
         {
-            Text = "Ready",
             TextColor = Color.Black,
             Font = new Font12x16()
-        });
+        };
+        displayScreen.Controls.Add(Line3);
+    }
+
+    public void ShowBluetoothReady()
+    {
+        connectivityIcon.Image = ble;
+        Line1.Text = "Bluetooth";
+        Line2.Text = "Discoverable";
+        Line3.Text = "Ready";
+
+        displayScreen.EndUpdate();
+    }
+
+    public void ShowMapleReady(string ipAddress)
+    {
+        connectivityIcon.Image = wifi;
+        Line1.Text = "WiFi (Maple)";
+        Line2.Text = $"{ipAddress}";
+        Line3.Text = "Ready";
 
         displayScreen.EndUpdate();
     }

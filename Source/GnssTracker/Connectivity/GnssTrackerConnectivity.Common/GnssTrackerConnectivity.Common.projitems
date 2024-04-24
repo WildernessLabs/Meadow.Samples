@@ -16,5 +16,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)bluetooth\BluetoothConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DTOs\AtmosphericReadingsDTO.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DTOs\MotionReadingsDTO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)dtos\VoltageReadingsDTO.cs" />
   </ItemGroup>
 </Project>

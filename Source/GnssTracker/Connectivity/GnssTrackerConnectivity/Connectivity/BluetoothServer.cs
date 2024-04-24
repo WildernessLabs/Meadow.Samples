@@ -10,13 +10,13 @@ public class BluetoothServer
 {
     private CommandController commandController;
 
-    private ICharacteristic pairingCharacteristic;
+    private ICharacteristic ledPairingCharacteristic;
     private ICharacteristic ledToggleCharacteristic;
     private ICharacteristic ledBlinkCharacteristic;
     private ICharacteristic ledPulseCharacteristic;
-    private ICharacteristic environmentalDataCharacteristic;
-    private ICharacteristic motionAccelerationDataCharacteristic;
-    private ICharacteristic motionAngularVelocityDataCharacteristic;
+    private ICharacteristic atmosphericDataCharacteristic;
+    private ICharacteristic motionDataCharacteristic;
+    private ICharacteristic voltageDataCharacteristic;
 
     public BluetoothServer()
     {
@@ -25,6 +25,7 @@ public class BluetoothServer
         var sensorController = Resolver.Services.Get<SensorController>();
         sensorController.AtmosphericConditionsChanged += UpdateAtmosphericConditions;
         sensorController.MotionConditionsChanged += UpdateMotionConditions;
+        sensorController.VoltageReadingsChanged += UpdateVoltageReadings;
     }
 
     private void PairingCharacteristicValueSet(ICharacteristic c, object data)
@@ -53,84 +54,89 @@ public class BluetoothServer
             $"{atmosphericConditions.Temperature.Celsius:N1};" +
             $"{atmosphericConditions.Pressure.StandardAtmosphere:N1};" +
             $"{atmosphericConditions.Humidity.Percent:N1}";
-        environmentalDataCharacteristic.SetValue(stringValue);
+        atmosphericDataCharacteristic.SetValue(stringValue);
     }
 
     public void UpdateMotionConditions(object sender, MotionConditions motionConditions)
     {
         string accelerationValue = $"" +
-            $"{motionConditions.Acceleration3D.X.CentimetersPerSecondSquared:N2};" +
-            $"{motionConditions.Acceleration3D.Y.CentimetersPerSecondSquared:N2};" +
-            $"{motionConditions.Acceleration3D.Z.CentimetersPerSecondSquared:N2}";
-        motionAccelerationDataCharacteristic.SetValue(accelerationValue);
+            $"{motionConditions.Acceleration3D.X.CentimetersPerSecondSquared:N1};" +
+            $"{motionConditions.Acceleration3D.Y.CentimetersPerSecondSquared:N1};" +
+            $"{motionConditions.Acceleration3D.Z.CentimetersPerSecondSquared:N1};" +
+            $"{motionConditions.AngularVelocity3D.X.DegreesPerSecond:N1};" +
+            $"{motionConditions.AngularVelocity3D.Y.DegreesPerSecond:N1};" +
+            $"{motionConditions.AngularVelocity3D.Z.DegreesPerSecond:N1};";
+        motionDataCharacteristic.SetValue(accelerationValue);
+    }
 
-        string angularVelocityValue = $"" +
-            $"{motionConditions.AngularVelocity3D.X.DegreesPerSecond:N2};" +
-            $"{motionConditions.AngularVelocity3D.Y.DegreesPerSecond:N2};" +
-            $"{motionConditions.AngularVelocity3D.Z.DegreesPerSecond:N2}";
-        motionAngularVelocityDataCharacteristic.SetValue(angularVelocityValue);
+    private void UpdateVoltageReadings(object sender, VoltageReadings e)
+    {
+        string voltageValues = $"" +
+            $"{e.BatteryVoltage:N2};" +
+            $"{e.SolarVoltage:N2}";
+        voltageDataCharacteristic.SetValue(voltageValues);
     }
 
     public Definition GetDefinition()
     {
-        pairingCharacteristic = new CharacteristicBool(
-            name: "PAIRING",
-            uuid: CharacteristicsConstants.PAIRING,
+        ledPairingCharacteristic = new CharacteristicBool(
+            name: nameof(CharacteristicsConstants.LED_PAIRING),
+            uuid: CharacteristicsConstants.LED_PAIRING,
             permissions: CharacteristicPermission.Read | CharacteristicPermission.Write,
             properties: CharacteristicProperty.Read | CharacteristicProperty.Write);
-        pairingCharacteristic.ValueSet += PairingCharacteristicValueSet;
+        ledPairingCharacteristic.ValueSet += PairingCharacteristicValueSet;
 
         ledToggleCharacteristic = new CharacteristicBool(
-            name: "LED_TOGGLE",
+            name: nameof(CharacteristicsConstants.LED_TOGGLE),
             uuid: CharacteristicsConstants.LED_TOGGLE,
             permissions: CharacteristicPermission.Read | CharacteristicPermission.Write,
             properties: CharacteristicProperty.Read | CharacteristicProperty.Write);
         ledToggleCharacteristic.ValueSet += LedToggleCharacteristicValueSet;
 
         ledBlinkCharacteristic = new CharacteristicBool(
-            name: "LED_BLINK",
+            name: nameof(CharacteristicsConstants.LED_BLINK),
             uuid: CharacteristicsConstants.LED_BLINK,
             permissions: CharacteristicPermission.Read | CharacteristicPermission.Write,
             properties: CharacteristicProperty.Read | CharacteristicProperty.Write);
         ledBlinkCharacteristic.ValueSet += LedBlinkCharacteristicValueSet;
 
         ledPulseCharacteristic = new CharacteristicBool(
-            name: "LED_PULSE",
+            name: nameof(CharacteristicsConstants.LED_PULSE),
             uuid: CharacteristicsConstants.LED_PULSE,
             permissions: CharacteristicPermission.Read | CharacteristicPermission.Write,
             properties: CharacteristicProperty.Read | CharacteristicProperty.Write);
         ledPulseCharacteristic.ValueSet += LedPulseCharacteristicValueSet;
 
-        environmentalDataCharacteristic = new CharacteristicString(
-            name: "ENVIRONMENTAL_DATA",
-            uuid: CharacteristicsConstants.ENVIRONMENTAL_DATA,
+        atmosphericDataCharacteristic = new CharacteristicString(
+            name: nameof(CharacteristicsConstants.ATMOSPHERIC_DATA),
+            uuid: CharacteristicsConstants.ATMOSPHERIC_DATA,
             maxLength: 20,
             permissions: CharacteristicPermission.Read,
             properties: CharacteristicProperty.Read);
 
-        motionAccelerationDataCharacteristic = new CharacteristicString(
-            name: "MOTION_ACCELERATION",
-            uuid: CharacteristicsConstants.MOTION_ACCELERATION,
+        motionDataCharacteristic = new CharacteristicString(
+            name: nameof(CharacteristicsConstants.MOTION_DATA),
+            uuid: CharacteristicsConstants.MOTION_DATA,
             maxLength: 20,
             permissions: CharacteristicPermission.Read,
             properties: CharacteristicProperty.Read);
 
-        motionAngularVelocityDataCharacteristic = new CharacteristicString(
-            name: "MOTION_ANGULAR_VELOCITY",
-            uuid: CharacteristicsConstants.MOTION_ANGULAR_VELOCITY,
+        voltageDataCharacteristic = new CharacteristicString(
+            name: nameof(CharacteristicsConstants.VOLTAGE_DATA),
+            uuid: CharacteristicsConstants.VOLTAGE_DATA,
             maxLength: 20,
             permissions: CharacteristicPermission.Read,
             properties: CharacteristicProperty.Read);
 
         ICharacteristic[] characteristics =
         {
-            pairingCharacteristic,
+            ledPairingCharacteristic,
             ledToggleCharacteristic,
             ledBlinkCharacteristic,
             ledPulseCharacteristic,
-            environmentalDataCharacteristic,
-            motionAccelerationDataCharacteristic,
-            motionAngularVelocityDataCharacteristic
+            atmosphericDataCharacteristic,
+            motionDataCharacteristic,
+            voltageDataCharacteristic
         };
 
         var service = new Service(
@@ -139,6 +145,6 @@ public class BluetoothServer
             characteristics
         );
 
-        return new Definition("ProjectLab", service);
+        return new Definition("GnssTracker", service);
     }
 }

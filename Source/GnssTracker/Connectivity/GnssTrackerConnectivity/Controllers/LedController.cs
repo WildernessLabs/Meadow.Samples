@@ -15,8 +15,9 @@ public class LedController
         this.rgbPwmLed = rgbPwmLed;
     }
 
-    public void SetColor(Color color)
+    public async Task SetColor(Color color)
     {
+        await rgbPwmLed.StopAnimation();
         rgbPwmLed.SetColor(color);
     }
 

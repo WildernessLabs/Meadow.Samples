@@ -7,4 +7,8 @@ public class AtmosphericReadingsDTO
     public string? Pressure { get; set; }
 
     public string? Humidity { get; set; }
+
+    public string? GasResistance { get; set; }
+
+    public string? Co2Concentration { get; set; }
 }

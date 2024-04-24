@@ -14,16 +14,18 @@ namespace GnssTrackerConnectivity.Controllers;
 
 public class SensorController
 {
+    private TimeSpan SAMPLE_INTERVAL = TimeSpan.FromSeconds(15);
+
     private ITemperatureSensor temperatureSensor;
     private IBarometricPressureSensor pressureSensor;
     private IHumiditySensor humiditySensor;
     private IGasResistanceSensor gasResistanceSensor;
     private ICO2ConcentrationSensor co2ConcentrationSensor;
-    private IGnssSensor gnssSensor;
     private IGyroscope gyroscope;
     private IAccelerometer accelerometer;
     private IAnalogInputPort batteryVoltageInput;
     private IAnalogInputPort solarVoltageInput;
+    private IGnssSensor gnssSensor;
 
     public AtmosphericConditions AtmosphericConditions { get; set; }
 
@@ -44,11 +46,11 @@ public class SensorController
         humiditySensor = hardware.HumiditySensor;
         gasResistanceSensor = hardware.GasResistanceSensor;
         co2ConcentrationSensor = hardware.CO2ConcentrationSensor;
-        gnssSensor = hardware.Gnss;
         gyroscope = hardware.Gyroscope;
         accelerometer = hardware.Accelerometer;
         batteryVoltageInput = hardware.BatteryVoltageInput;
         solarVoltageInput = hardware.SolarVoltageInput;
+        gnssSensor = hardware.Gnss;
 
         Resolver.Services.Add(this);
     }
@@ -61,7 +63,7 @@ public class SensorController
             var pressure = await pressureSensor.Read();
             var humidity = await humiditySensor.Read();
             var gasResistance = await gasResistanceSensor.Read();
-            var co2Concentration = await co2ConcentrationSensor.Read();
+            //var co2Concentration = await co2ConcentrationSensor.Read();
             var angularVelocityReading = await gyroscope.Read();
             var acceleration3DReading = await accelerometer.Read();
             var batteryVoltageReading = await batteryVoltageInput.Read();
@@ -72,7 +74,7 @@ public class SensorController
                 $"Pressure: {pressure.StandardAtmosphere:N1} | " +
                 $"Humidity: {humidity.Percent:N1} | " +
                 $"Gas Resistance: {gasResistance.Megaohms:N1} | " +
-                $"CO2 Concentration: {co2Concentration.PartsPerMillion:N1} | " +
+                //$"CO2 Concentration: {co2Concentration.PartsPerMillion:N1} | " +
                 $"AngularVelocity3D: ({angularVelocityReading.X.RevolutionsPerMinute:N1},{angularVelocityReading.Y.RevolutionsPerMinute:N1},{angularVelocityReading.Z.RevolutionsPerMinute:N1}) | " +
                 $"Acceleration3D: ({acceleration3DReading.X.CentimetersPerSecondSquared:N1}, {acceleration3DReading.Y.CentimetersPerSecondSquared:N1}, {acceleration3DReading.Z.CentimetersPerSecondSquared:N1}) | " +
                 $"Battery Voltage: {batteryVoltageReading.Volts:N1} | " +
@@ -84,7 +86,7 @@ public class SensorController
                 Pressure = pressure,
                 Humidity = humidity,
                 GasResistance = gasResistance,
-                Co2Concentration = co2Concentration
+                //Co2Concentration = co2Concentration
             };
             AtmosphericConditionsChanged?.Invoke(this, AtmosphericConditions);
 

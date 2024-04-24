@@ -186,14 +186,14 @@ namespace MobileGnssTrackerConnectivity.ViewModel
                 }
             }
 
-            pairingCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.PAIRING));
+            pairingCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_PAIRING));
             ledToggleCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_TOGGLE));
             ledBlinkCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_BLINK));
             ledPulseCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_PULSE));
-            environmentalDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.ENVIRONMENTAL_DATA));
+            environmentalDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.ATMOSPHERIC_DATA));
             lightDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LIGHT_DATA));
-            motionAccelerationDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_ACCELERATION));
-            motionAngularVelocityDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_ANGULAR_VELOCITY));
+            motionAccelerationDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_DATA));
+            motionAngularVelocityDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.VOLTAGE_DATA));
 
             await SetPairingStatus();
             await GetEnvironmentalData();
@@ -209,7 +209,7 @@ namespace MobileGnssTrackerConnectivity.ViewModel
                 DeviceList.Add(e.Device);
             }
 
-            if (e.Device.Name == "ProjectLab")
+            if (e.Device.Name == "GnssTracker")
             {
                 await adapter.StopScanningForDevicesAsync();
                 IsDeviceListEmpty = false;

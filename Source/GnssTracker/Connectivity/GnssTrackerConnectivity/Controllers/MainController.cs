@@ -5,6 +5,7 @@ using Meadow.Foundation.Web.Maple;
 using Meadow.Gateways;
 using Meadow.Hardware;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GnssTrackerConnectivity.Controllers;
@@ -12,8 +13,8 @@ namespace GnssTrackerConnectivity.Controllers;
 public class MainController
 {
     // Connect via Maple (WiFi) or Bluetooth? 
-    //private ConnectionType connectionType = ConnectionType.Bluetooth;
-    private ConnectionType connectionType = ConnectionType.WiFi;
+    private ConnectionType connectionType = ConnectionType.Bluetooth;
+    //private ConnectionType connectionType = ConnectionType.WiFi;
 
     private IGnssTrackerHardware hardware;
     private IWiFiNetworkAdapter wifi;
@@ -75,18 +76,17 @@ public class MainController
 
         commandController.PairingValueSet += (s, e) =>
         {
-            if (e)
-            {
+            _ = ledController.StartBlink();
 
-            }
-            else
-            {
+            Thread.Sleep(300);
 
-            }
+            ledController.SetColor(Color.Green);
         };
 
         var definition = bluetoothServer.GetDefinition();
         bluetooth.StartBluetoothServer(definition);
+
+        displayController.ShowBluetoothReady();
 
         ledController.SetColor(Color.Green);
     }
