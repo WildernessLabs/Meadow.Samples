@@ -24,6 +24,7 @@ public class CircleDemo
     {
         _touchscreen = touchscreen;
         _display = display;
+        _display.BackgroundColor = Color.White;
     }
 
     public void Start()
@@ -60,6 +61,7 @@ public class CircleDemo
     {
         _inflateTimer?.Change(-1, -1);
         _currentCircle = null;
+        _display.Invalidate();
     }
 
     private Color GetRandomColor()

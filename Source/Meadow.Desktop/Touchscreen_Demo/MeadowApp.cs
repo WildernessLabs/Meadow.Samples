@@ -15,7 +15,7 @@ public class MeadowAppDesktop : App<Desktop>
         var touchscreen = Device.Display as ITouchScreen;
         var display = new DisplayScreen(
                     Device.Display,
-                    touchScreen: touchscreen);
+                   touchScreen: touchscreen);
 
         _demo = new CircleDemo(display, touchscreen);
 
@@ -34,6 +34,11 @@ public class MeadowAppDesktop : App<Desktop>
 
     private void ExecutePlatformDisplayRunner()
     {
-        (Device.Display as SilkDisplay).Run();
+        if (Device.Display is SilkDisplay sd)
+        {
+            sd.Run();
+        }
+        MeadowOS.TerminateRun();
+        System.Environment.Exit(0);
     }
 }
