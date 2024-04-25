@@ -24,9 +24,9 @@ public class MeadowApp : App<Desktop>
 
         // Screen size of a ILI9341 display
         //var views = new CultivarView(Device.Display);
-        //var views = new ProjectLabDemoView(Device.Display);
+        var views = new ProjectLabDemoView(Device.Display);
         //var views = new AtmosphericHMI(Device.Display);
-        var views = new WifiWeatherV2(Device.Display);
+        //var views = new WifiWeatherV2(Device.Display);
 
         _ = Task.Run(() =>
         {
@@ -47,12 +47,6 @@ public class MeadowApp : App<Desktop>
 
     private void ExecutePlatformDisplayRunner()
     {
-#if WINDOWS
-    System.Windows.Forms.Application.Run(Device.Display as System.Windows.Forms.Form);
-#endif
-        if (Device.Display is GtkDisplay gtk)
-        {
-            gtk.Run();
-        }
+        (Device.Display as SilkDisplay).Run();
     }
 }
