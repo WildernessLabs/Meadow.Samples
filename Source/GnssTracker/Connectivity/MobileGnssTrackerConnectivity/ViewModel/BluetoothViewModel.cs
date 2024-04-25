@@ -24,7 +24,6 @@ namespace MobileGnssTrackerConnectivity.ViewModel
         ICharacteristic ledBlinkCharacteristic;
         ICharacteristic ledPulseCharacteristic;
         ICharacteristic environmentalDataCharacteristic;
-        ICharacteristic lightDataCharacteristic;
         ICharacteristic motionAccelerationDataCharacteristic;
         ICharacteristic motionAngularVelocityDataCharacteristic;
 
@@ -92,15 +91,6 @@ namespace MobileGnssTrackerConnectivity.ViewModel
         string pressure = "0";
         public ICommand CmdEnvironmentData { get; private set; }
 
-        // Light Sensor
-        public string Illuminance
-        {
-            get => illuminance;
-            set { illuminance = value; OnPropertyChanged(nameof(Illuminance)); }
-        }
-        string illuminance = "0";
-        public ICommand CmdGetLightData { get; private set; }
-
         // Motion Sensor
         public string Acceleration3dX
         {
@@ -160,8 +150,6 @@ namespace MobileGnssTrackerConnectivity.ViewModel
 
             CmdEnvironmentData = new Command(async () => await GetEnvironmentalData());
 
-            CmdGetLightData = new Command(async () => await GetLightData());
-
             CmdGetMotionData = new Command(async () => await GetMotionData());
         }
 
@@ -191,13 +179,11 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             ledBlinkCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_BLINK));
             ledPulseCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_PULSE));
             environmentalDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.ATMOSPHERIC_DATA));
-            lightDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LIGHT_DATA));
             motionAccelerationDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_DATA));
             motionAngularVelocityDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.VOLTAGE_DATA));
 
             await SetPairingStatus();
             await GetEnvironmentalData();
-            await GetLightData();
             await GetMotionData();
         }
 
@@ -307,12 +293,6 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             Temperature = value[0];
             Humidity = value[1];
             Pressure = value[2];
-        }
-
-        async Task GetLightData()
-        {
-            var lDC = await lightDataCharacteristic.ReadAsync();
-            Illuminance = Encoding.Default.GetString(lDC.data).Split(';')[0];
         }
 
         async Task GetMotionData()

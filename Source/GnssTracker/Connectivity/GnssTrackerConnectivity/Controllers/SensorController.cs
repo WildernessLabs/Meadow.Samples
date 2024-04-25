@@ -41,6 +41,8 @@ public class SensorController
 
     public SensorController(IGnssTrackerHardware hardware)
     {
+        Resolver.Services.Add(this);
+
         temperatureSensor = hardware.TemperatureSensor;
         pressureSensor = hardware.BarometricPressureSensor;
         humiditySensor = hardware.HumiditySensor;
@@ -51,8 +53,6 @@ public class SensorController
         batteryVoltageInput = hardware.BatteryVoltageInput;
         solarVoltageInput = hardware.SolarVoltageInput;
         gnssSensor = hardware.Gnss;
-
-        Resolver.Services.Add(this);
     }
 
     public async Task StartUpdating(TimeSpan updateInterval)

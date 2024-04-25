@@ -15,7 +15,7 @@ public class MeadowApp : App<Desktop>
         //var views = new RotatingCube(_display);
 
         // Screen size of a ILI9488 display
-        Device.Display.Resize(122, 250);
+        Device.Display.Resize(250, 112);
         var views = new GnssTrackerConnectivityView(Device.Display);
 
         // Screen size of a EPD4IN2bV2 e-paper display
@@ -24,7 +24,7 @@ public class MeadowApp : App<Desktop>
 
         // Screen size of a ILI9341 display
         //var views = new CultivarView(Device.Display);
-        var views = new ProjectLabDemoView(Device.Display);
+        //var views = new ProjectLabDemoView(Device.Display);
         //var views = new AtmosphericHMI(Device.Display);
         //var views = new WifiWeatherV2(Device.Display);
 

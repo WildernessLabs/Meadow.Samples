@@ -54,27 +54,30 @@ public class BluetoothServer
             $"{atmosphericConditions.Temperature.Celsius:N1};" +
             $"{atmosphericConditions.Pressure.StandardAtmosphere:N1};" +
             $"{atmosphericConditions.Humidity.Percent:N1}";
+        Resolver.Log.Info($"{stringValue}");
         atmosphericDataCharacteristic.SetValue(stringValue);
     }
 
     public void UpdateMotionConditions(object sender, MotionConditions motionConditions)
     {
-        string accelerationValue = $"" +
+        string stringValue = $"" +
             $"{motionConditions.Acceleration3D.X.CentimetersPerSecondSquared:N1};" +
             $"{motionConditions.Acceleration3D.Y.CentimetersPerSecondSquared:N1};" +
             $"{motionConditions.Acceleration3D.Z.CentimetersPerSecondSquared:N1};" +
             $"{motionConditions.AngularVelocity3D.X.DegreesPerSecond:N1};" +
             $"{motionConditions.AngularVelocity3D.Y.DegreesPerSecond:N1};" +
             $"{motionConditions.AngularVelocity3D.Z.DegreesPerSecond:N1};";
-        motionDataCharacteristic.SetValue(accelerationValue);
+        Resolver.Log.Info($"{stringValue}");
+        motionDataCharacteristic.SetValue(stringValue);
     }
 
     private void UpdateVoltageReadings(object sender, VoltageReadings e)
     {
-        string voltageValues = $"" +
+        string stringValue = $"" +
             $"{e.BatteryVoltage:N2};" +
             $"{e.SolarVoltage:N2}";
-        voltageDataCharacteristic.SetValue(voltageValues);
+        Resolver.Log.Info($"{stringValue}");
+        voltageDataCharacteristic.SetValue(stringValue);
     }
 
     public Definition GetDefinition()
