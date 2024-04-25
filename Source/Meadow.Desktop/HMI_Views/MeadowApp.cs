@@ -47,6 +47,11 @@ public class MeadowApp : App<Desktop>
 
     private void ExecutePlatformDisplayRunner()
     {
-        (Device.Display as SilkDisplay).Run();
+        if (Device.Display is SilkDisplay sd)
+        {
+            sd.Run();
+        }
+        MeadowOS.TerminateRun();
+        System.Environment.Exit(0);
     }
 }
