@@ -19,13 +19,13 @@ namespace MobileGnssTrackerConnectivity.ViewModel
         IAdapter adapter;
         IService service;
 
-        ICharacteristic pairingCharacteristic;
+        ICharacteristic ledPairingCharacteristic;
         ICharacteristic ledToggleCharacteristic;
         ICharacteristic ledBlinkCharacteristic;
         ICharacteristic ledPulseCharacteristic;
-        ICharacteristic environmentalDataCharacteristic;
-        ICharacteristic motionAccelerationDataCharacteristic;
-        ICharacteristic motionAngularVelocityDataCharacteristic;
+        ICharacteristic atmosphericDataCharacteristic;
+        ICharacteristic motionDataCharacteristic;
+        ICharacteristic voltageDataCharacteristic;
 
         public ObservableCollection<IDevice> DeviceList { get; set; }
 
@@ -174,13 +174,13 @@ namespace MobileGnssTrackerConnectivity.ViewModel
                 }
             }
 
-            pairingCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_PAIRING));
+            ledPairingCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_PAIRING));
             ledToggleCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_TOGGLE));
             ledBlinkCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_BLINK));
             ledPulseCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.LED_PULSE));
-            environmentalDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.ATMOSPHERIC_DATA));
-            motionAccelerationDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_DATA));
-            motionAngularVelocityDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.VOLTAGE_DATA));
+            atmosphericDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.ATMOSPHERIC_DATA));
+            motionDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.MOTION_DATA));
+            voltageDataCharacteristic = await service.GetCharacteristicAsync(Guid.Parse(CharacteristicsConstants.VOLTAGE_DATA));
 
             await SetPairingStatus();
             await GetEnvironmentalData();
@@ -287,7 +287,7 @@ namespace MobileGnssTrackerConnectivity.ViewModel
 
         async Task GetEnvironmentalData()
         {
-            var eDC = await environmentalDataCharacteristic.ReadAsync();
+            var eDC = await atmosphericDataCharacteristic.ReadAsync();
             var value = Encoding.Default.GetString(eDC.data).Split(';');
 
             Temperature = value[0];
@@ -297,17 +297,14 @@ namespace MobileGnssTrackerConnectivity.ViewModel
 
         async Task GetMotionData()
         {
-            var mADC = await motionAccelerationDataCharacteristic.ReadAsync();
-            var accelerationValue = Encoding.Default.GetString(mADC.data).Split(';');
-            Acceleration3dX = accelerationValue[0];
-            Acceleration3dY = accelerationValue[1];
-            Acceleration3dZ = accelerationValue[2];
-
-            var mAVDC = await motionAngularVelocityDataCharacteristic.ReadAsync();
-            var angularVelocityValue = Encoding.Default.GetString(mAVDC.data).Split(';');
-            AngularVelocity3dX = angularVelocityValue[0];
-            AngularVelocity3dY = angularVelocityValue[1];
-            AngularVelocity3dZ = angularVelocityValue[2];
+            var mADC = await motionDataCharacteristic.ReadAsync();
+            var motionValues = Encoding.Default.GetString(mADC.data).Split(';');
+            Acceleration3dX = motionValues[0];
+            Acceleration3dY = motionValues[1];
+            Acceleration3dZ = motionValues[2];
+            AngularVelocity3dX = motionValues[3];
+            AngularVelocity3dY = motionValues[4];
+            AngularVelocity3dZ = motionValues[5];
         }
 
         async Task SetPairingStatus()
@@ -315,7 +312,7 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             byte[] array = new byte[1];
             array[0] = IsConnected ? (byte)1 : (byte)0;
 
-            await pairingCharacteristic.WriteAsync(array);
+            await ledPairingCharacteristic.WriteAsync(array);
         }
 
         protected int UuidToUshort(string uuid)
