@@ -13,7 +13,8 @@ public class DisplayController
     private Image ble = Image.LoadFromResource("GnssTrackerConnectivity.Resources.img-ble.bmp");
     private Image wifi = Image.LoadFromResource("GnssTrackerConnectivity.Resources.img-wifi.bmp");
 
-    private DisplayScreen displayScreen;
+    private readonly DisplayScreen displayScreen;
+    private readonly AbsoluteLayout dataLayout;
 
     private Picture connectivityIcon;
     private Label Line1;
@@ -22,12 +23,14 @@ public class DisplayController
 
     public DisplayController(IPixelDisplay display)
     {
-        displayScreen = new DisplayScreen(display, RotationType._90Degrees)
+        displayScreen = new DisplayScreen(display, RotationType._90Degrees);
+
+        displayScreen.BeginUpdate();
+
+        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
         {
             BackgroundColor = Color.White
         };
-
-        displayScreen.BeginUpdate();
 
         displayScreen.Controls.Add(new Box(
             0,
@@ -55,7 +58,7 @@ public class DisplayController
             60,
             78,
             wifi);
-        displayScreen.Controls.Add(connectivityIcon);
+        dataLayout.Controls.Add(connectivityIcon);
 
         Line1 = new Label(
             84,
@@ -63,10 +66,11 @@ public class DisplayController
             151,
             16)
         {
+            Text = "-",
             TextColor = Color.Black,
             Font = new Font12x16()
         };
-        displayScreen.Controls.Add(Line1);
+        dataLayout.Controls.Add(Line1);
 
         Line2 = new Label(
             84,
@@ -74,10 +78,11 @@ public class DisplayController
             151,
             16)
         {
+            Text = "-",
             TextColor = Color.Black,
             Font = new Font8x12()
         };
-        displayScreen.Controls.Add(Line2);
+        dataLayout.Controls.Add(Line2);
 
         Line3 = new Label(
             84,
@@ -85,10 +90,13 @@ public class DisplayController
             151,
             16)
         {
+            Text = "-",
             TextColor = Color.Black,
             Font = new Font12x16()
         };
-        displayScreen.Controls.Add(Line3);
+        dataLayout.Controls.Add(Line3);
+
+        displayScreen.Controls.Add(dataLayout);
     }
 
     public void ShowBluetoothReady()

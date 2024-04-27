@@ -43,7 +43,9 @@ public class MapleRequestHandler : RequestHandlerBase
         {
             Temperature = $"{sensorController.AtmosphericConditions.Temperature.Celsius:N1}",
             Humidity = $"{sensorController.AtmosphericConditions.Humidity.Percent:N1}",
-            Pressure = $"{sensorController.AtmosphericConditions.Pressure.Millibar:N1}"
+            Pressure = $"{sensorController.AtmosphericConditions.Pressure.StandardAtmosphere:N1}",
+            GasResistance = $"{sensorController.AtmosphericConditions.GasResistance.Megaohms:N1}",
+            Co2Concentration = $"{sensorController.AtmosphericConditions.Co2Concentration.PartsPerMillion:N1}"
         };
 
         Context.Response.ContentType = ContentTypes.Application_Json;
@@ -63,6 +65,21 @@ public class MapleRequestHandler : RequestHandlerBase
             AngularVelocity3dX = $"{sensorController.MotionConditions.AngularVelocity3D.X.DegreesPerSecond:N2}",
             AngularVelocity3dY = $"{sensorController.MotionConditions.AngularVelocity3D.Y.DegreesPerSecond:N2}",
             AngularVelocity3dZ = $"{sensorController.MotionConditions.AngularVelocity3D.Z.DegreesPerSecond:N2}",
+        };
+
+        Context.Response.ContentType = ContentTypes.Application_Json;
+        return new JsonResult(data);
+    }
+
+    [HttpGet("/getVoltageData")]
+    public IActionResult GetVoltageData()
+    {
+        var sensorController = Resolver.Services.Get<SensorController>();
+
+        var data = new VoltageReadingsDTO()
+        {
+            BatteryVoltage = $"{sensorController.VoltageReadings.BatteryVoltage:N1}",
+            SolarVoltage = $"{sensorController.VoltageReadings.SolarVoltage:N1}",
         };
 
         Context.Response.ContentType = ContentTypes.Application_Json;

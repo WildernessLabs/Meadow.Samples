@@ -9,6 +9,4 @@ public class MotionReadingsDTO
     public string AngularVelocity3dX { get; set; }
     public string AngularVelocity3dY { get; set; }
     public string AngularVelocity3dZ { get; set; }
-
-    public string Temperature { get; set; }
 }
