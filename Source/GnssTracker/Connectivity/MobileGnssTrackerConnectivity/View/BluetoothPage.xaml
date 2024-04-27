@@ -143,7 +143,7 @@
                                     <Label Grid.Row="1" Grid.Column="0" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Medium">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Temperature}" />
+                                                <Span Text="{Binding GasResistance}" />
                                                 <Span Text=" °C" />
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -151,7 +151,7 @@
                                     <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Medium">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Humidity}" />
+                                                <Span Text="{Binding Co2Concentration}" />
                                                 <Span Text=" %" />
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -237,7 +237,7 @@
                                     <Label Grid.Row="1" Grid.Column="0" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Medium">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Temperature}" />
+                                                <Span Text="{Binding BatteryVoltage}" />
                                                 <Span Text=" V" />
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -245,7 +245,7 @@
                                     <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Humidity}" />
+                                                <Span Text="{Binding SolarVoltage}" />
                                                 <Span Text=" V" />
                                             </FormattedString>
                                         </Label.FormattedText>

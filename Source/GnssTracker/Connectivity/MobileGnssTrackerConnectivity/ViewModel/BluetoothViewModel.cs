@@ -77,18 +77,35 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             set { temperature = value; OnPropertyChanged(nameof(Temperature)); }
         }
         string temperature = "0";
+
         public string Humidity
         {
             get => humidity;
             set { humidity = value; OnPropertyChanged(nameof(Humidity)); }
         }
         string humidity = "0";
+
         public string Pressure
         {
             get => pressure;
             set { pressure = value; OnPropertyChanged(nameof(Pressure)); }
         }
         string pressure = "0";
+
+        public string GasResistance
+        {
+            get => gasResistance;
+            set { gasResistance = value; OnPropertyChanged(nameof(GasResistance)); }
+        }
+        string gasResistance = "0";
+
+        public string Co2Concentration
+        {
+            get => cO2Concentration;
+            set { cO2Concentration = value; OnPropertyChanged(nameof(Co2Concentration)); }
+        }
+        string cO2Concentration = "0";
+
         public ICommand CmdEnvironmentData { get; private set; }
 
         // Motion Sensor
@@ -98,30 +115,35 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             set { acceleration3dX = value; OnPropertyChanged(nameof(Acceleration3dX)); }
         }
         string acceleration3dX = "0";
+
         public string Acceleration3dY
         {
             get => acceleration3dY;
             set { acceleration3dY = value; OnPropertyChanged(nameof(Acceleration3dY)); }
         }
         string acceleration3dY = "0";
+
         public string Acceleration3dZ
         {
             get => acceleration3dZ;
             set { acceleration3dZ = value; OnPropertyChanged(nameof(Acceleration3dZ)); }
         }
         string acceleration3dZ = "0";
+
         public string AngularVelocity3dX
         {
             get => angularVelocity3dX;
             set { angularVelocity3dX = value; OnPropertyChanged(nameof(AngularVelocity3dX)); }
         }
         string angularVelocity3dX = "0";
+
         public string AngularVelocity3dY
         {
             get => angularVelocity3dY;
             set { angularVelocity3dY = value; OnPropertyChanged(nameof(AngularVelocity3dY)); }
         }
         string angularVelocity3dY = "0";
+
         public string AngularVelocity3dZ
         {
             get => angularVelocity3dZ;
@@ -130,6 +152,23 @@ namespace MobileGnssTrackerConnectivity.ViewModel
         string angularVelocity3dZ = "0";
 
         public ICommand CmdGetMotionData { get; private set; }
+
+        // Voltages
+        public string BatteryVoltage
+        {
+            get => batteryVoltage;
+            set { batteryVoltage = value; OnPropertyChanged(nameof(BatteryVoltage)); }
+        }
+        string batteryVoltage = "0";
+
+        public string SolarVoltage
+        {
+            get => solarVoltage;
+            set { solarVoltage = value; OnPropertyChanged(nameof(SolarVoltage)); }
+        }
+        string solarVoltage = "0";
+
+        public ICommand CmdGetVoltageData { get; private set; }
 
         public BluetoothViewModel()
         {
@@ -151,6 +190,8 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             CmdEnvironmentData = new Command(async () => await GetEnvironmentalData());
 
             CmdGetMotionData = new Command(async () => await GetMotionData());
+
+            CmdGetVoltageData = new Command(async () => await GetVoltageData());
         }
 
         void AdapterDeviceDisconnected(object sender, DeviceEventArgs e)
@@ -293,6 +334,8 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             Temperature = value[0];
             Humidity = value[1];
             Pressure = value[2];
+            GasResistance = value[3];
+            Co2Concentration = value[4];
         }
 
         async Task GetMotionData()
@@ -305,6 +348,14 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             AngularVelocity3dX = motionValues[3];
             AngularVelocity3dY = motionValues[4];
             AngularVelocity3dZ = motionValues[5];
+        }
+
+        async Task GetVoltageData()
+        {
+            var vDC = await voltageDataCharacteristic.ReadAsync();
+            var values = Encoding.Default.GetString(vDC.data).Split(';');
+            BatteryVoltage = values[0];
+            SolarVoltage = values[1];
         }
 
         async Task SetPairingStatus()

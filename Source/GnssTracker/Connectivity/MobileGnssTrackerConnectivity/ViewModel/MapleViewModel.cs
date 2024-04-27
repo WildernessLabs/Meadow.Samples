@@ -2,6 +2,7 @@
 using Meadow.Foundation.Web.Maple;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Text.Json;
 using System.Windows.Input;
 
 namespace MobileGnssTrackerConnectivity.ViewModel
@@ -71,28 +72,36 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             set { temperature = value; OnPropertyChanged(nameof(Temperature)); }
         }
         string temperature = "0";
+
         public string Humidity
         {
             get => humidity;
             set { humidity = value; OnPropertyChanged(nameof(Humidity)); }
         }
         string humidity = "0";
+
         public string Pressure
         {
             get => pressure;
             set { pressure = value; OnPropertyChanged(nameof(Pressure)); }
         }
         string pressure = "0";
-        public ICommand CmdEnvironmentData { get; private set; }
 
-        // Light Sensor
-        public string Illuminance
+        public string GasResistance
         {
-            get => illuminance;
-            set { illuminance = value; OnPropertyChanged(nameof(Illuminance)); }
+            get => gasResistance;
+            set { gasResistance = value; OnPropertyChanged(nameof(GasResistance)); }
         }
-        string illuminance = "0";
-        public ICommand CmdGetLightData { get; private set; }
+        string gasResistance = "0";
+
+        public string Co2Concentration
+        {
+            get => cO2Concentration;
+            set { cO2Concentration = value; OnPropertyChanged(nameof(Co2Concentration)); }
+        }
+        string cO2Concentration = "0";
+
+        public ICommand CmdEnvironmentData { get; private set; }
 
         // Motion Sensor
         public string Acceleration3dX
@@ -101,43 +110,67 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             set { acceleration3dX = value; OnPropertyChanged(nameof(Acceleration3dX)); }
         }
         string acceleration3dX = "0";
+
         public string Acceleration3dY
         {
             get => acceleration3dY;
             set { acceleration3dY = value; OnPropertyChanged(nameof(Acceleration3dY)); }
         }
         string acceleration3dY = "0";
+
         public string Acceleration3dZ
         {
             get => acceleration3dZ;
             set { acceleration3dZ = value; OnPropertyChanged(nameof(Acceleration3dZ)); }
         }
         string acceleration3dZ = "0";
+
         public string AngularVelocity3dX
         {
             get => angularVelocity3dX;
             set { angularVelocity3dX = value; OnPropertyChanged(nameof(AngularVelocity3dX)); }
         }
         string angularVelocity3dX = "0";
+
         public string AngularVelocity3dY
         {
             get => angularVelocity3dY;
             set { angularVelocity3dY = value; OnPropertyChanged(nameof(AngularVelocity3dY)); }
         }
         string angularVelocity3dY = "0";
+
         public string AngularVelocity3dZ
         {
             get => angularVelocity3dZ;
             set { angularVelocity3dZ = value; OnPropertyChanged(nameof(AngularVelocity3dZ)); }
         }
         string angularVelocity3dZ = "0";
+
         public string MotionTemperature
         {
             get => motionTemperature;
             set { motionTemperature = value; OnPropertyChanged(nameof(MotionTemperature)); }
         }
         string motionTemperature = "0";
+
         public ICommand CmdGetMotionData { get; private set; }
+
+        // Voltages
+        public string BatteryVoltage
+        {
+            get => batteryVoltage;
+            set { batteryVoltage = value; OnPropertyChanged(nameof(BatteryVoltage)); }
+        }
+        string batteryVoltage = "0";
+
+        public string SolarVoltage
+        {
+            get => solarVoltage;
+            set { solarVoltage = value; OnPropertyChanged(nameof(SolarVoltage)); }
+        }
+        string solarVoltage = "0";
+
+        public ICommand CmdGetVoltageData { get; private set; }
 
         public MapleViewModel()
         {
@@ -154,9 +187,9 @@ namespace MobileGnssTrackerConnectivity.ViewModel
 
             CmdEnvironmentData = new Command(async () => await GetEnvironmentalData());
 
-            //CmdGetLightData = new Command(async () => await GetLightData());
-
             CmdGetMotionData = new Command(async () => await GetMotionData());
+
+            CmdGetVoltageData = new Command(async () => await GetVoltageData());
         }
 
         void ServersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -239,7 +272,9 @@ namespace MobileGnssTrackerConnectivity.ViewModel
         async Task GetEnvironmentalData()
         {
             if (SelectedServer == null && string.IsNullOrEmpty(IpAddress))
+            {
                 return;
+            }
 
             try
             {
@@ -250,11 +285,13 @@ namespace MobileGnssTrackerConnectivity.ViewModel
                     return;
                 }
 
-                var value = System.Text.Json.JsonSerializer.Deserialize<AtmosphericReadingsDTO>(response);
+                var value = JsonSerializer.Deserialize<AtmosphericReadingsDTO>(response);
 
                 Temperature = value.Temperature;
                 Humidity = value.Humidity;
                 Pressure = value.Pressure;
+                GasResistance = value.GasResistance;
+                Co2Concentration = value.Co2Concentration;
             }
             catch (Exception ex)
             {
@@ -265,7 +302,9 @@ namespace MobileGnssTrackerConnectivity.ViewModel
         async Task GetMotionData()
         {
             if (SelectedServer == null && string.IsNullOrEmpty(IpAddress))
+            {
                 return;
+            }
 
             try
             {
@@ -276,7 +315,7 @@ namespace MobileGnssTrackerConnectivity.ViewModel
                     return;
                 }
 
-                var value = System.Text.Json.JsonSerializer.Deserialize<MotionReadingsDTO>(response);
+                var value = JsonSerializer.Deserialize<MotionReadingsDTO>(response);
 
                 Acceleration3dX = value.Acceleration3dX;
                 Acceleration3dY = value.Acceleration3dY;
@@ -284,7 +323,33 @@ namespace MobileGnssTrackerConnectivity.ViewModel
                 AngularVelocity3dX = value.AngularVelocity3dX;
                 AngularVelocity3dY = value.AngularVelocity3dY;
                 AngularVelocity3dZ = value.AngularVelocity3dZ;
-                MotionTemperature = value.Temperature;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        async Task GetVoltageData()
+        {
+            if (SelectedServer == null && string.IsNullOrEmpty(IpAddress))
+            {
+                return;
+            }
+
+            try
+            {
+                var response = await client.GetAsync(SelectedServer != null ? SelectedServer.IpAddress : IpAddress, ServerPort, "getVoltageData");
+
+                if (response == null)
+                {
+                    return;
+                }
+
+                var value = JsonSerializer.Deserialize<VoltageReadingsDTO>(response);
+
+                BatteryVoltage = value.BatteryVoltage;
+                SolarVoltage = value.SolarVoltage;
             }
             catch (Exception ex)
             {
