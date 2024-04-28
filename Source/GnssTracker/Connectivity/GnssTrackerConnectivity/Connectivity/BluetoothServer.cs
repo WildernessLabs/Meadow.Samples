@@ -54,7 +54,7 @@ public class BluetoothServer
             $"{atmosphericConditions.Temperature.Celsius:N1};" +
             $"{atmosphericConditions.Pressure.StandardAtmosphere:N1};" +
             $"{atmosphericConditions.Humidity.Percent:N1};" +
-            $"{atmosphericConditions.GasResistance.Megaohms:N1}";
+            $"{atmosphericConditions.GasResistance.Megaohms:N1};";
         Resolver.Log.Info($"{stringValue}");
         atmosphericDataCharacteristic.SetValue(stringValue);
     }
@@ -75,8 +75,8 @@ public class BluetoothServer
     private void UpdateVoltageReadings(object sender, VoltageReadings e)
     {
         string stringValue = $"" +
-            $"{e.BatteryVoltage:N2};" +
-            $"{e.SolarVoltage:N2}";
+            $"{e.BatteryVoltage:N1};" +
+            $"{e.SolarVoltage:N1}";
         Resolver.Log.Info($"{stringValue}");
         voltageDataCharacteristic.SetValue(stringValue);
     }

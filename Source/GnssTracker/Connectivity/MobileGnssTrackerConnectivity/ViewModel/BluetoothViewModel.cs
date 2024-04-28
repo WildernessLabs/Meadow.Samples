@@ -226,6 +226,7 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             await SetPairingStatus();
             await GetEnvironmentalData();
             await GetMotionData();
+            await GetVoltageData();
         }
 
         async void AdapterDeviceDiscovered(object sender, DeviceEventArgs e)
@@ -335,7 +336,7 @@ namespace MobileGnssTrackerConnectivity.ViewModel
             Humidity = value[1];
             Pressure = value[2];
             GasResistance = value[3];
-            Co2Concentration = value[4];
+            Co2Concentration = "0";
         }
 
         async Task GetMotionData()
