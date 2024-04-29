@@ -76,7 +76,7 @@ public class BluetoothServer
     {
         string stringValue = $"" +
             $"{e.BatteryVoltage:N1};" +
-            $"{e.SolarVoltage:N1}";
+            $"{e.SolarVoltage:N1};";
         Resolver.Log.Info($"{stringValue}");
         voltageDataCharacteristic.SetValue(stringValue);
     }
@@ -114,21 +114,21 @@ public class BluetoothServer
         atmosphericDataCharacteristic = new CharacteristicString(
             name: nameof(CharacteristicsConstants.ATMOSPHERIC_DATA),
             uuid: CharacteristicsConstants.ATMOSPHERIC_DATA,
-            maxLength: 64,
+            maxLength: 32,
             permissions: CharacteristicPermission.Read,
             properties: CharacteristicProperty.Read);
 
         motionDataCharacteristic = new CharacteristicString(
             name: nameof(CharacteristicsConstants.MOTION_DATA),
             uuid: CharacteristicsConstants.MOTION_DATA,
-            maxLength: 64,
+            maxLength: 32,
             permissions: CharacteristicPermission.Read,
             properties: CharacteristicProperty.Read);
 
         voltageDataCharacteristic = new CharacteristicString(
             name: nameof(CharacteristicsConstants.VOLTAGE_DATA),
             uuid: CharacteristicsConstants.VOLTAGE_DATA,
-            maxLength: 64,
+            maxLength: 32,
             permissions: CharacteristicPermission.Read,
             properties: CharacteristicProperty.Read);
 
