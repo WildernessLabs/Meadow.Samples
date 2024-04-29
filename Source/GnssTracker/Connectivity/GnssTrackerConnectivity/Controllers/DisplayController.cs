@@ -27,10 +27,7 @@ public class DisplayController
 
         displayScreen.BeginUpdate();
 
-        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
-        {
-            BackgroundColor = Color.White
-        };
+        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height);
 
         displayScreen.Controls.Add(new Box(
             0,
