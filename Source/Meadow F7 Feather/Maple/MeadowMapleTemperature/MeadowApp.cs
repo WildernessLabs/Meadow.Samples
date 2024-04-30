@@ -11,15 +11,18 @@ namespace MeadowMapleTemperature;
 // public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
 public class MeadowApp : App<F7FeatherV2>
 {
-    MapleServer mapleServer;
+    private IWiFiNetworkAdapter wifi;
+
+    private LedController ledController;
 
     public override async Task Initialize()
     {
-        LedController.Instance.SetColor(Color.Red);
+        ledController = new LedController();
+        ledController.SetColor(Color.Red);
 
-        TemperatureController.Instance.Initialize();
+        var temperatureController = new TemperatureController();
 
-        var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
         wifi.NetworkConnected += NetworkConnected;
 
         await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
@@ -27,9 +30,9 @@ public class MeadowApp : App<F7FeatherV2>
 
     private void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
     {
-        mapleServer = new MapleServer(sender.IpAddress, 5417, true, logger: Resolver.Log);
+        var mapleServer = new MapleServer(sender.IpAddress, 5417, true, logger: Resolver.Log);
         mapleServer.Start();
 
-        LedController.Instance.SetColor(Color.Green);
+        ledController.SetColor(Color.Green);
     }
 }

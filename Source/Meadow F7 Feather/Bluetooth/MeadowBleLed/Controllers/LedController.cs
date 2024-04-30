@@ -1,6 +1,5 @@
 ﻿using Meadow;
 using Meadow.Foundation.Leds;
-using Meadow.Hardware;
 using Meadow.Peripherals.Leds;
 using System;
 using System.Threading;
@@ -10,26 +9,25 @@ namespace MeadowBleLed.Controllers;
 
 public class LedController
 {
-    IRgbPwmLed rgbPwmLed;
+    private IRgbPwmLed rgbPwmLed;
 
-    Task animationTask = null;
-    CancellationTokenSource cancellationTokenSource = null;
+    private Task animationTask = null;
+    private CancellationTokenSource cancellationTokenSource = null;
 
-    public LedController(IPin redPwmPin, IPin greenPwmPin, IPin bluePwmPin)
+    public LedController()
     {
-        rgbPwmLed = new RgbPwmLed(redPwmPin, greenPwmPin, bluePwmPin);
+        Resolver.Services.Add(this);
+
+        rgbPwmLed = new RgbPwmLed(
+            redPwmPin: MeadowApp.Device.Pins.D12,
+            greenPwmPin: MeadowApp.Device.Pins.D11,
+            bluePwmPin: MeadowApp.Device.Pins.D10);
     }
 
-    void Stop()
+    private void Stop()
     {
         rgbPwmLed.StopAnimation();
         cancellationTokenSource?.Cancel();
-    }
-
-    public void SetColor(Color color)
-    {
-        Stop();
-        rgbPwmLed.SetColor(color);
     }
 
     public void TurnOn()
@@ -45,13 +43,21 @@ public class LedController
         rgbPwmLed.IsOn = false;
     }
 
+    public void SetColor(Color color)
+    {
+        Stop();
+        rgbPwmLed.SetColor(color);
+    }
+
     public void StartBlink()
     {
+        Stop();
         rgbPwmLed.StartBlink(GetRandomColor());
     }
 
     public void StartPulse()
     {
+        Stop();
         rgbPwmLed.StartPulse(GetRandomColor());
     }
 

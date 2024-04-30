@@ -1,6 +1,7 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Hardware;
+using ProjectLab_AzureIoTHub.Controllers;
 using ProjectLab_AzureIoTHub.Hardware;
 using System.Threading.Tasks;
 

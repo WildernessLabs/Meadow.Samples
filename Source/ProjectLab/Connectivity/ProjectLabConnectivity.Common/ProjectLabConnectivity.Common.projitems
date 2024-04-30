@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c1c5e6d0-e1c6-4188-879f-c7c574c4af13</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ProjectLabConnectivity.Common</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Bluetooth\BluetoothConstants.cs" />
+    <Compile Include="..\ProjectLabConnectivity.Common\DTOs\AtmosphericReadingsDTO.cs" />
+    <Compile Include="..\ProjectLabConnectivity.Common\DTOs\IlluminanceReadingsDTO.cs" />
+    <Compile Include="..\ProjectLabConnectivity.Common\DTOs\MotionReadingsDTO.cs" />
+  </ItemGroup>
+</Project>
