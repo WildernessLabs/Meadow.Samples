@@ -111,6 +111,13 @@ jobs:
         path: Meadow.ProjectLab
         ref: develop
 
+    - name: Checkout Meadow.GnssTracker
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/GNSS_Sensor_Tracker
+        path: Meadow.GnssTracker
+        ref: develop
+
     - name: Checkout Meadow.Samples
       uses: actions/checkout@v3
       with:
