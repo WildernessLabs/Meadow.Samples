@@ -6,9 +6,9 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Distance.MaxBotix\Driver\Sensors.Distance.MaxBotix.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Distance.Vl53l0x\Driver\Sensors.Distance.Vl53l0x.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Distance.MaxBotix" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Distance.Vl53l0x" Version="*" />
+    <PackageReference Include="Meadow.ProjectLab" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">

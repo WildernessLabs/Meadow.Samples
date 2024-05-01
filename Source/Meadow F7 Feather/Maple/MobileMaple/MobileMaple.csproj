@@ -46,7 +46,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\..\..\Maple\Source\Web.Maple.Client\Web.Maple.Client.csproj" />
+    <PackageReference Include="Meadow.Foundation.Web.Maple.Client" Version="*" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
       <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
