@@ -1,4 +1,4 @@
-<Project Sdk="Meadow.Sdk/1.1.0">
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -26,9 +26,9 @@
         <EmbeddedResource Include="Resources\img_wifi_connecting.bmp" />
     </ItemGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
-    <PackageReference Include="Meadow.ProjectLab" Version="*" />
+        <ProjectReference Include="..\..\..\..\amqpnetlite\src\Amqp.csproj" />
+        <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Graphics.MicroLayout\Driver\Graphics.MicroLayout.csproj" />
+        <ProjectReference Include="..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Update="app.config.yaml">

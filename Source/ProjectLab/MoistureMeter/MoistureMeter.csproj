@@ -7,8 +7,8 @@
         <LangVersion>10.0</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Grove.Sensors.Moisture.MoistureSensor" Version="*" />
-    <PackageReference Include="Meadow.ProjectLab" Version="*" />
+        <ProjectReference Include="..\..\..\..\Meadow.Foundation.Grove\Source\MoistureSensor\Driver\MoistureSensor.csproj" />
+        <ProjectReference Include="..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
     </ItemGroup>
     <PropertyGroup>
         <LangVersion>10.0</LangVersion>
