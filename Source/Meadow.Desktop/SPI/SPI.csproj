@@ -1,19 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-    <PackageReference Include="Meadow.Desktop" Version="*" />
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
     <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <None Update="libmpsse.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+    <PackageReference Include="Meadow.Desktop" Version="*" />
     </ItemGroup>
 </Project>

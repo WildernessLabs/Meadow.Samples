@@ -12,11 +12,12 @@ public class MapleRequestHandler : RequestHandlerBase
     [HttpGet("/gettemperaturelogs")]
     public IActionResult GetTemperatureLogs()
     {
-        LedController.Instance.SetColor(Color.Cyan);
+        var ledController = Resolver.Services.Get<LedController>();
+        ledController.SetColor(Color.Cyan);
 
-        var data = TemperatureController.Instance.TemperatureLogs;
+        var data = Resolver.Services.Get<TemperatureController>().TemperatureLogs;
 
-        LedController.Instance.SetColor(Color.Green);
+        ledController.SetColor(Color.Green);
         return new JsonResult(data);
     }
 }

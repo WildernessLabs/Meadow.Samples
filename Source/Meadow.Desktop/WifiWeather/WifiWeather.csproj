@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
+        <TargetFrameworks>net8.0</TargetFrameworks>
         <Nullable>enable</Nullable>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0-windows'">
-        <UseWindowsForms>true</UseWindowsForms>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,10 +35,10 @@
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
     <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
     </ItemGroup>
-    
-    <ItemGroup>
-        <None Update="libmpsse.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
+
+
+
+
+
+
 </Project>

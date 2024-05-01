@@ -12,7 +12,7 @@ public class BluetoothServer
     readonly string BLINKING = "3a6cc4f2a6ab4709a9bfc9611c6bf892";
     readonly string RUNNING_COLORS = "30df1258f42b4788af2ea8ed9d0b932f";
 
-    private CommandController commandController;
+    private LedController ledController;
 
     ICharacteristic LedOn;
     ICharacteristic LedOff;
@@ -22,32 +22,32 @@ public class BluetoothServer
 
     public BluetoothServer()
     {
-        commandController = Resolver.Services.Get<CommandController>();
+        ledController = Resolver.Services.Get<LedController>();
     }
 
     private void LedOnCharacteristicValueSet(ICharacteristic c, object data)
     {
-        commandController.FireLedOn();
+        ledController.TurnOn();
     }
 
     private void LedOffCharacteristicValueSet(ICharacteristic c, object data)
     {
-        commandController.FireLedOff();
+        ledController.TurnOff();
     }
 
     private void LedBlinkCharacteristicValueSet(ICharacteristic c, object data)
     {
-        commandController.FireLedBlink();
+        ledController.StartBlink();
     }
 
     private void LedPulseCharacteristicValueSet(ICharacteristic c, object data)
     {
-        commandController.FireLedPulse();
+        ledController.StartPulse();
     }
 
     private void LedRunColorsCharacteristicValueSet(ICharacteristic c, object data)
     {
-        commandController.FireLedRunColors();
+        ledController.StartRunningColors();
     }
 
     public Definition GetDefinition()

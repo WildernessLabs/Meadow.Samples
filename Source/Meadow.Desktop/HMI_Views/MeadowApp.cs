@@ -15,18 +15,18 @@ public class MeadowApp : App<Desktop>
         //var views = new RotatingCube(_display);
 
         // Screen size of a ILI9488 display
-        //_display = new WinFormsDisplay(320, 480);
-        //var views = new WiFiWeather(_display);
+        Device.Display.Resize(250, 122);
+        var views = new GnssTrackerConnectivityView(Device.Display);
 
         // Screen size of a EPD4IN2bV2 e-paper display
-        //_display = new WinFormsDisplay(300, 400);
-        //var views = new HomeWidget(_display);
+        //Device.Display.Resize(300, 400);
+        //var views = new HomeWidget(Device.Display);
 
         // Screen size of a ILI9341 display
         //var views = new CultivarView(Device.Display);
         //var views = new ProjectLabDemoView(Device.Display);
         //var views = new AtmosphericHMI(Device.Display);
-        var views = new WifiWeatherV2(Device.Display);
+        //var views = new WifiWeatherV2(Device.Display);
 
         _ = Task.Run(() =>
         {
@@ -47,12 +47,11 @@ public class MeadowApp : App<Desktop>
 
     private void ExecutePlatformDisplayRunner()
     {
-#if WINDOWS
-    System.Windows.Forms.Application.Run(Device.Display as System.Windows.Forms.Form);
-#endif
-        if (Device.Display is GtkDisplay gtk)
+        if (Device.Display is SilkDisplay sd)
         {
-            gtk.Run();
+            sd.Run();
         }
+        MeadowOS.TerminateRun();
+        System.Environment.Exit(0);
     }
 }

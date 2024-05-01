@@ -10,6 +10,8 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Update="FSharp.Core" Version="4.7.2" />
+    </ItemGroup>
+    <ItemGroup>
         <PackageReference Include="Meadow.F7" Version="*" />
         <PackageReference Include="Meadow.Foundation" Version="*" />
     </ItemGroup>

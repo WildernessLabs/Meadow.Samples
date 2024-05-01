@@ -44,20 +44,16 @@ public class MeadowAppDesktop : App<Desktop>
 
     public override Task OnShutdown()
     {
-#if WINDOWS
-        System.Windows.Forms.Application.Exit();
-#endif     
         return Task.CompletedTask;
     }
 
     private void ExecutePlatformDisplayRunner()
     {
-#if WINDOWS
-        System.Windows.Forms.Application.Run(Device.Display as System.Windows.Forms.Form);
-#endif
-        if (Device.Display is GtkDisplay gtk)
+        if (Device.Display is SilkDisplay sd)
         {
-            gtk.Run();
+            sd.Run();
         }
+        MeadowOS.TerminateRun();
+        System.Environment.Exit(0);
     }
 }

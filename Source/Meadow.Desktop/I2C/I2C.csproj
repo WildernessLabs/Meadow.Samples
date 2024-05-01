@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0-windows'">
-        <UseWindowsForms>true</UseWindowsForms>
     </PropertyGroup>
     
     <ItemGroup>
@@ -14,11 +10,5 @@
     <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
     <PackageReference Include="Meadow.Foundation.Sensors.Motion.Bno055" Version="*" />
     <PackageReference Include="Meadow.Foundation.Sensors.Motion.Mpu6050" Version="*" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <None Update="libmpsse.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 </Project>

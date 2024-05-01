@@ -5,7 +5,6 @@
             <LangVersion>10</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.Contracts" Version="*" />
     <PackageReference Include="Meadow.Logging.LogProviders" Version="*" />
     </ItemGroup>
 </Project>

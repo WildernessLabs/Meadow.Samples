@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -31,15 +31,9 @@
     </ItemGroup>
 
     <ItemGroup>
-    <PackageReference Include="Meadow.Windows" Version="*" />
     <PackageReference Include="Meadow.Avalonia" Version="*" />
     <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
     <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Bme68x" Version="*" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="libmpsse.dll">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
+    <PackageReference Include="Meadow.Desktop" Version="*" />
     </ItemGroup>
 </Project>

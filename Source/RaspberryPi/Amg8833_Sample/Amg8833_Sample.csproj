@@ -10,11 +10,5 @@
     <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
     <PackageReference Include="Meadow.Foundation.Displays.AsciiConsole" Version="*" />
     <PackageReference Include="Meadow.Foundation.Sensors.Camera.Amg8833" Version="*" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <None Update="libmpsse.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
+    </ItemGroup>    
 </Project>

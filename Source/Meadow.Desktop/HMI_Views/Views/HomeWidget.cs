@@ -46,7 +46,7 @@ public class HomeWidget
     Font12x20 font12X20 = new Font12x20();
     Font6x8 font6x8 = new Font6x8();
 
-    public HomeWidget(IPixelDisplay display)
+    public HomeWidget(IResizablePixelDisplay display)
     {
         DisplayScreen = new DisplayScreen(display)
         {
