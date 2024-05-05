@@ -46,25 +46,25 @@ namespace WifiWeather.ViewModels
             switch (weatherCode)
             {
                 case int n when (n >= WeatherConstants.THUNDERSTORM_LIGHT_RAIN && n <= WeatherConstants.THUNDERSTORM_HEAVY_DRIZZLE):
-                    resourceName = $"WifiWeather.w_storm.bmp";
+                    resourceName = $"WifiWeather.Resources.w_storm.bmp";
                     break;
                 case int n when (n >= WeatherConstants.DRIZZLE_LIGHT && n <= WeatherConstants.DRIZZLE_SHOWER):
-                    resourceName = $"WifiWeather.w_drizzle.bmp";
+                    resourceName = $"WifiWeather.Resources.w_drizzle.bmp";
                     break;
                 case int n when (n >= WeatherConstants.RAIN_LIGHT && n <= WeatherConstants.RAIN_SHOWER_RAGGED):
-                    resourceName = $"WifiWeather.w_rain.bmp";
+                    resourceName = $"WifiWeather.Resources.w_rain.bmp";
                     break;
                 case int n when (n >= WeatherConstants.SNOW_LIGHT && n <= WeatherConstants.SNOW_SHOWER_HEAVY):
-                    resourceName = $"WifiWeather.w_snow.bmp";
+                    resourceName = $"WifiWeather.Resources.w_snow.bmp";
                     break;
                 case WeatherConstants.CLOUDS_CLEAR:
-                    resourceName = $"WifiWeather.w_clear.bmp";
+                    resourceName = $"WifiWeather.Resources.w_clear.bmp";
                     break;
                 case int n when (n >= WeatherConstants.CLOUDS_FEW && n <= WeatherConstants.CLOUDS_OVERCAST):
-                    resourceName = $"WifiWeather.w_cloudy.bmp";
+                    resourceName = $"WifiWeather.Resources.w_cloudy.bmp";
                     break;
                 default:
-                    resourceName = $"WifiWeather.w_misc.bmp";
+                    resourceName = $"WifiWeather.Resources.w_misc.bmp";
                     break;
             }
 

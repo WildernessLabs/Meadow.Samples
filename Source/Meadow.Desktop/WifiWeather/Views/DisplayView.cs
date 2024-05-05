@@ -7,7 +7,7 @@ namespace WifiWeather.Views
 {
     public class DisplayView
     {
-        Image _weatherIcon = Image.LoadFromResource("WifiWeather.w_clear.bmp");
+        Image _weatherIcon = Image.LoadFromResource("WifiWeather.Resources.w_clear.bmp");
 
         int x_padding = 20;
 
