@@ -1,6 +1,6 @@
-﻿using Meadow.Foundation.Servos;
+﻿using Meadow;
+using Meadow.Foundation.Servos;
 using Meadow.Units;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,24 +8,17 @@ namespace MeadowMapleServo.Controllers;
 
 public class ServoController
 {
-    private static readonly Lazy<ServoController> instance =
-        new Lazy<ServoController>(() => new ServoController());
-    public static ServoController Instance => instance.Value;
+    private Servo servo;
 
-    Servo servo;
-
-    Task animationTask = null;
-    CancellationTokenSource cancellationTokenSource = null;
+    private Task animationTask = null;
+    private CancellationTokenSource cancellationTokenSource = null;
 
     protected int _rotationAngle;
 
-    private ServoController()
+    public ServoController()
     {
-        Initialize();
-    }
+        Resolver.Services.Add(this);
 
-    private void Initialize()
-    {
         servo = new Servo(
             pwmPin: MeadowApp.Device.Pins.D10,
             config: NamedServoConfigs.SG90);
@@ -33,7 +26,7 @@ public class ServoController
 
     public void RotateTo(Angle angle)
     {
-        servo.RotateTo(angle);
+        _ = servo.RotateTo(angle);
     }
 
     public void StopSweep()
@@ -61,7 +54,7 @@ public class ServoController
                 if (cancellationToken.IsCancellationRequested) { break; }
 
                 _rotationAngle++;
-                servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
+                _ = servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
                 await Task.Delay(50);
             }
 
@@ -70,7 +63,7 @@ public class ServoController
                 if (cancellationToken.IsCancellationRequested) { break; }
 
                 _rotationAngle--;
-                servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
+                _ = servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
                 await Task.Delay(50);
             }
         }

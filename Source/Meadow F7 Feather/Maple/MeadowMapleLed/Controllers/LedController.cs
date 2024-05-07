@@ -1,45 +1,33 @@
 ﻿using Meadow;
 using Meadow.Foundation.Leds;
+using Meadow.Peripherals.Leds;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MeadowMapleLed.Controller;
+namespace MeadowMapleLed.Controllers;
 
 public class LedController
 {
-    private static readonly Lazy<LedController> instance =
-        new Lazy<LedController>(() => new LedController());
-    public static LedController Instance => instance.Value;
+    private IRgbPwmLed rgbPwmLed;
 
-    RgbPwmLed rgbPwmLed;
+    private Task animationTask = null;
+    private CancellationTokenSource cancellationTokenSource = null;
 
-    Task animationTask = null;
-    CancellationTokenSource cancellationTokenSource = null;
-
-    private LedController()
+    public LedController()
     {
-        Initialize();
-    }
+        Resolver.Services.Add(this);
 
-    private void Initialize()
-    {
         rgbPwmLed = new RgbPwmLed(
             redPwmPin: MeadowApp.Device.Pins.D12,
             greenPwmPin: MeadowApp.Device.Pins.D11,
             bluePwmPin: MeadowApp.Device.Pins.D10);
     }
 
-    void Stop()
+    private void Stop()
     {
         rgbPwmLed.StopAnimation();
         cancellationTokenSource?.Cancel();
-    }
-
-    public void SetColor(Color color)
-    {
-        Stop();
-        rgbPwmLed.SetColor(color);
     }
 
     public void TurnOn()
@@ -53,6 +41,12 @@ public class LedController
     {
         Stop();
         rgbPwmLed.IsOn = false;
+    }
+
+    public void SetColor(Color color)
+    {
+        Stop();
+        rgbPwmLed.SetColor(color);
     }
 
     public void StartBlink()

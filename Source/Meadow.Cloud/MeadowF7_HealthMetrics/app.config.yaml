@@ -21,7 +21,7 @@ Logging:
         Default: Trace
 
 # Meadow.Cloud configuration.
-Update:
+MeadowCloud:
 
     # Enable Logging, Events, Command + Control
     Enabled: true

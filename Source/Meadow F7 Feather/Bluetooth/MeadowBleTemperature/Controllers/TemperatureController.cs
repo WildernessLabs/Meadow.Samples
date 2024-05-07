@@ -1,34 +1,26 @@
-﻿using Meadow.Foundation.Sensors.Temperature;
+﻿using Meadow;
+using Meadow.Foundation.Sensors.Temperature;
 using Meadow.Units;
+using MeadowBleTemperature.Connectivity;
 using System;
 
 namespace MeadowBleTemperature.Controllers;
 
 public class TemperatureController
 {
-    private static readonly Lazy<TemperatureController> instance =
-        new Lazy<TemperatureController>(() => new TemperatureController());
-    public static TemperatureController Instance => instance.Value;
+    private AnalogTemperature analogTemperature;
 
-    public event EventHandler<Temperature> TemperatureUpdated = delegate { };
-
-    AnalogTemperature analogTemperature;
-
-    private TemperatureController()
+    public TemperatureController()
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        analogTemperature = new AnalogTemperature(MeadowApp.Device.Pins.A01,
+        analogTemperature = new AnalogTemperature(
+            MeadowApp.Device.Pins.A01,
             AnalogTemperature.KnownSensorType.LM35);
         analogTemperature.Updated += AnalogTemperatureUpdated;
     }
 
-    void AnalogTemperatureUpdated(object sender, Meadow.IChangeResult<Temperature> e)
+    private void AnalogTemperatureUpdated(object sender, IChangeResult<Temperature> e)
     {
-        TemperatureUpdated.Invoke(this, e.New);
+        Resolver.Services.Get<BluetoothServer>().UpdateTemperatureCharacteristic(e.New);
     }
 
     public void StartUpdating(TimeSpan timeSpan)
