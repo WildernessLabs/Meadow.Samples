@@ -22,6 +22,7 @@ public class MeadowAppDesktop : App<Desktop>
 
     private void GenerateLayout()
     {
+        Device.Display.Resize(320, 240, 4);
         var screen = new DisplayScreen(Device.Display!);
 
         var title = new Label(0, (screen.Height - 15) / 2, screen.Width, 30)

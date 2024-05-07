@@ -10,6 +10,8 @@ public class MeadowApp : App<Desktop>
 {
     public override Task Initialize()
     {
+        Device.Display.Resize(320, 240, 4);
+
         // Default WinForms screen (800,600)
         //_display = new WinFormsDisplay();
         //var views = new RotatingCube(_display);
