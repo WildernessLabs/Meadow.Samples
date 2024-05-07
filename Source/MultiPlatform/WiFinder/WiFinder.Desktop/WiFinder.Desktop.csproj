@@ -15,10 +15,4 @@
     <ProjectReference Include="..\WiFinder.Core\WiFinder.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="app.config.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

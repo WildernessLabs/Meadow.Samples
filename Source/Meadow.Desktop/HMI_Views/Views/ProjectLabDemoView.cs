@@ -8,31 +8,25 @@ namespace HMI_Views.Views;
 
 internal class ProjectLabDemoView
 {
-    readonly int margin = 5;
-    readonly int smallMargin = 3;
-    readonly int graphHeight = 106;
-
-    readonly int measureBoxWidth = 82;
-
-    readonly int column1 = 96;
-    readonly int column2 = 206;
-    readonly int columnWidth = 109;
-
-    readonly int rowHeight = 30;
-    readonly int row1 = 135;
-    readonly int row2 = 170;
-    readonly int row3 = 205;
-
-    readonly int sensorBarHeight = 14;
-    readonly int sensorBarInitialWidth = 6;
-    readonly int sensorBarX = 184;
-    readonly int sensorBarY = 202;
-    readonly int sensorBarZ = 220;
-
-    readonly int clockX = 244;
-    readonly int clockWidth = 71;
-
-    readonly int dPadSize = 9;
+    private readonly int margin = 5;
+    private readonly int smallMargin = 3;
+    private readonly int graphHeight = 106;
+    private readonly int measureBoxWidth = 82;
+    private readonly int column1 = 96;
+    private readonly int column2 = 206;
+    private readonly int columnWidth = 109;
+    private readonly int rowHeight = 30;
+    private readonly int row1 = 135;
+    private readonly int row2 = 170;
+    private readonly int row3 = 205;
+    private readonly int sensorBarHeight = 14;
+    private readonly int sensorBarInitialWidth = 6;
+    private readonly int sensorBarX = 184;
+    private readonly int sensorBarY = 202;
+    private readonly int sensorBarZ = 220;
+    private readonly int clockX = 244;
+    private readonly int clockWidth = 71;
+    private readonly int dPadSize = 9;
 
     protected DisplayScreen DisplayScreen { get; set; }
 
@@ -111,7 +105,7 @@ internal class ProjectLabDemoView
 
     private void LoadSplashLayout()
     {
-        SplashLayout = new AbsoluteLayout(DisplayScreen, 0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        SplashLayout = new AbsoluteLayout(0, 0, DisplayScreen.Width, DisplayScreen.Height)
         {
             IsVisible = false
         };
@@ -131,7 +125,7 @@ internal class ProjectLabDemoView
 
     private void LoadDataLayout()
     {
-        DataLayout = new AbsoluteLayout(DisplayScreen, 0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        DataLayout = new AbsoluteLayout(0, 0, DisplayScreen.Width, DisplayScreen.Height)
         {
             BackgroundColor = backgroundColor,
             IsVisible = false
