@@ -17,7 +17,7 @@ internal class ProjectLabHardware : IWiFinderHardware
         projLab = ProjectLab.Create();
 
         var wifi = device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
-        NetworkController = new ProjLabNetworkController(wifi);
+        NetworkController = new ProjLabNetworkController(wifi!);
     }
 
     public IButton? LeftButton => projLab.LeftButton;

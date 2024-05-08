@@ -1,6 +1,6 @@
-﻿using Meadow.Gateway.WiFi;
+﻿using Meadow;
+using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
-using System.Diagnostics;
 
 namespace WiFinder.Core;
 
@@ -57,12 +57,16 @@ public class NetworkController : INetworkController
     {
         Networks.Clear();
 
-        Networks.AddRange((await wifiAdapter.Scan()).Where(a => a.Ssid.Length > 0));
+        Resolver.Log.Info("Scanning for networks...");
 
-        foreach (var n in Networks)
-        {
-            Debug.WriteLine($"{n.SignalDbStrength} {n.Ssid}");
-        }
+        var start = Environment.TickCount;
+
+        var nets = await wifiAdapter.Scan();
+
+        var et = Environment.TickCount - start;
+        Resolver.Log.Info($"Scanning took {et} ms and found {nets.Count} networks");
+
+        Networks.AddRange(nets.Where(a => a.Ssid.Length > 0));
 
         if (SelectedNetwork == null && Networks.Count > 0)
         {

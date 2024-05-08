@@ -29,7 +29,9 @@ internal class DesktopHardware : IWiFinderHardware
         this.device = device;
 
         keyboard = new Keyboard();
-        NetworkController = new NetworkController(device.NetworkAdapters.First(a => a is IWiFiNetworkAdapter) as IWiFiNetworkAdapter);
+
+        var wifi = device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        NetworkController = new NetworkController(wifi!);
 
         LeftButton = new PushButton(keyboard.Pins.Left.CreateDigitalInterruptPort(InterruptMode.EdgeFalling));
         RightButton = new PushButton(keyboard.Pins.Right.CreateDigitalInterruptPort(InterruptMode.EdgeFalling));
