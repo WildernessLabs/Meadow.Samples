@@ -19,9 +19,6 @@ public class DisplayController
         INetworkController networkController)
     {
         this.networkController = networkController;
-        networkController.SelectedNetworkChanged += OnSelectedNetworkChanged;
-        networkController.NetworkListChanged += OnNetworkListChanged;
-        networkController.AntennaChanged += OnAntennaChanged;
 
         var theme = new DisplayTheme
         {
@@ -38,6 +35,10 @@ public class DisplayController
         GenerateLayouts(screen);
 
         UpdateDisplay();
+
+        networkController.SelectedNetworkChanged += OnSelectedNetworkChanged;
+        networkController.NetworkListChanged += OnNetworkListChanged;
+        networkController.AntennaChanged += OnAntennaChanged;
     }
 
     private void OnAntennaChanged(object sender, Meadow.Hardware.AntennaType e)
@@ -123,6 +124,7 @@ public class DisplayController
             {
                 networkListLayout.NetworkList.SelectedIndex = selectedIndex;
             }
+            networkListLayout.UpdateNetworkCount(networkController.Networks.Count);
         }
         else
         {
