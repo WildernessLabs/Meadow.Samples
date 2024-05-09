@@ -46,7 +46,7 @@ public class DisplayController
 
     private void LoadSplashLayout()
     {
-        splashLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height);
+        splashLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height);
 
         var image = Image.LoadFromResource("ProjectLabConnectivity.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, splashLayout.Width, splashLayout.Height, image)
@@ -61,7 +61,7 @@ public class DisplayController
 
     private void LoadDataLayout()
     {
-        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
+        dataLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };

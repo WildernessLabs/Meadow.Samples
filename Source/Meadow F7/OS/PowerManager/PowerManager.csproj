@@ -9,4 +9,9 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <None Update="app.config.yaml">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 </Project>

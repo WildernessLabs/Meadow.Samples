@@ -1,6 +1,5 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation;
 using Meadow.Foundation.Leds;
 using Meadow.Peripherals.Leds;
 using System;
@@ -8,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace BlinkyCS
 {
-    // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7FeatherV2>
+    public class V1App : MeadowApp<F7FeatherV1> { }
+    public class V2App : MeadowApp<F7FeatherV2> { }
+
+    public class MeadowApp<T> : App<T>
+        where T : F7FeatherBase
     {
-        RgbPwmLed onboardLed;
+        private RgbPwmLed onboardLed;
 
         public override Task Initialize()
         {
@@ -33,7 +35,7 @@ namespace BlinkyCS
             return CycleColors(TimeSpan.FromMilliseconds(1000));
         }
 
-        async Task CycleColors(TimeSpan duration)
+        private async Task CycleColors(TimeSpan duration)
         {
             Resolver.Log.Info("Cycle colors...");
 
@@ -54,7 +56,7 @@ namespace BlinkyCS
             }
         }
 
-        async Task ShowColorPulse(Color color, TimeSpan duration)
+        private async Task ShowColorPulse(Color color, TimeSpan duration)
         {
             await onboardLed.StartPulse(color, duration / 2);
             await Task.Delay(duration);
