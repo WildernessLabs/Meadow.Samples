@@ -54,6 +54,11 @@ internal class NetworkListLayout : AbsoluteLayout
 
     }
 
+    public void UpdateNetworkCount(int count)
+    {
+        titleLabel.Text = $"{count} Available network{(count == 1 ? string.Empty : "s")}";
+    }
+
     public string AntennaText
     {
         get => antennaLabel.Text;

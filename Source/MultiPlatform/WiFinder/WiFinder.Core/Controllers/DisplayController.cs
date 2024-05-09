@@ -19,9 +19,6 @@ public class DisplayController
         INetworkController networkController)
     {
         this.networkController = networkController;
-        networkController.SelectedNetworkChanged += OnSelectedNetworkChanged;
-        networkController.NetworkListChanged += OnNetworkListChanged;
-        networkController.AntennaChanged += OnAntennaChanged;
 
         var theme = new DisplayTheme
         {
@@ -38,6 +35,10 @@ public class DisplayController
         GenerateLayouts(screen);
 
         UpdateDisplay();
+
+        networkController.SelectedNetworkChanged += OnSelectedNetworkChanged;
+        networkController.NetworkListChanged += OnNetworkListChanged;
+        networkController.AntennaChanged += OnAntennaChanged;
     }
 
     private void OnAntennaChanged(object sender, Meadow.Hardware.AntennaType e)
@@ -105,13 +106,16 @@ public class DisplayController
 
         if (networkListLayout.IsVisible)
         {
+            Resolver.Log.Info("UpdateDisplay A");
             networkListLayout.NetworkList.Items.Clear();
 
             var i = 0;
             var selectedIndex = -1;
 
+            Resolver.Log.Info("UpdateDisplay B");
             foreach (var network in networkController.Networks)
             {
+                Resolver.Log.Info("UpdateDisplay C");
                 networkListLayout.NetworkList.Items.Add(network);
                 if (networkController.SelectedNetwork != null && network.Bssid == networkController.SelectedNetwork.Bssid)
                 {
@@ -121,8 +125,10 @@ public class DisplayController
             }
             if (selectedIndex >= 0)
             {
+                Resolver.Log.Info("UpdateDisplay D");
                 networkListLayout.NetworkList.SelectedIndex = selectedIndex;
             }
+            networkListLayout.UpdateNetworkCount(networkController.Networks.Count);
         }
         else
         {
