@@ -1,10 +1,8 @@
-<img src="Design/wildernesslabs-meadow-samples-banner.jpg"  alt="Meadow.ProjectLab, C#, iot" style="margin-bottom:10px" />
-
 # Meadow.Samples
 
-Sample applications for Meadow platforms, libraries and peripherals.
+<img src="Design/wildernesslabs-meadow-samples-banner.jpg"  alt="Meadow.ProjectLab, C#, iot" style="margin-bottom:10px" />
 
-Contents:
+Sample applications for Meadow platforms, libraries and peripherals.
 
 ## Contents
 
