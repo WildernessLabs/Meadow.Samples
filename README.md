@@ -590,14 +590,14 @@ This repo contains code samples for the Wilderness Labs Meadow [Project Lab](htt
     </tr>
     </tr>
         <td>
-            <a href="Source/ProjectLab/ProjectLabWiFiBle/"><img src="Design/wildernesslabs-projectlab-samples-maple.png"/></a><br/>
+            <a href="Source/ProjectLab/Connectivity/ProjectLabConnectivity/"><img src="Design/wildernesslabs-projectlab-samples-maple.png"/></a><br/>
             Control a Project Lab over Wi-Fi with a MAUI app</br>
-            <a href="Source/ProjectLab/ProjectLabWiFiBle/">Source Code</a>
+            <a href="Source/ProjectLab/Connectivity/ProjectLabConnectivity/">Source Code</a>
         </td>
         <td>
-            <a href="Source/ProjectLab/ProjectLabWiFiBle/"><img src="Design/wildernesslabs-projectlab-samples-bluetooth.png"/></a><br/>
+            <a href="Source/ProjectLab/Connectivity/ProjectLabConnectivity/"><img src="Design/wildernesslabs-projectlab-samples-bluetooth.png"/></a><br/>
             Control a Project Lab over Bluetooth with a MAUI app<br/>
-            <a href="Source/ProjectLab/ProjectLabWiFiBle/">Source Code</a>
+            <a href="Source/ProjectLab/Connectivity/ProjectLabConnectivity/">Source Code</a>
         </td>
         <td>
             <a href="Source/ProjectLab/MoistureMeter/"><img src="Design/wildernesslabs-projectlab-samples-grove-moisture-meter.png"/></a><br/>
