@@ -29,25 +29,13 @@ Public project samples for [Meadow.Windows](http://developer.wildernesslabs.co/M
 
 ### Windows
 
-#### Pre-Requisites
+#### Connecting sensors and peripherals
 
-To run these samples, make sure:
-
-1. Your development environment is [properly configured](https://developer.wildernesslabs.co/Meadow/Getting_Started/Getting_Started_Meadow.Desktop/) to run Meadow apps on your dev machine.
-2. [Optional] If the sample you wish to run uses a physical peripheral or sensor, add the native library (`libmpsse.dll`) of the FT232H IO Expander depending on your CPU's architecture ([Win32 or x64](/Support%20Files/Windows/FT232H%20Native%20Library/))  to that project and set the **Copy to Output Directory** to `Copy if newer` or `Copy always`
+If a sample uses a physical peripheral or sensor, you'll need to an FT232H IO Expander to connect to your machine. Also check the pinout to make sure to connect the peripheral or sensor on the right pins:
 
 <p align="center">
-    <img src="Design/wildernesslabs-meadow-desktop-build-action.png" style="width:50%" />
+    <img src="Design/wildernesslabs-meadow-desktop-pinout-ft232h.png" style="width:30%" />
 </p>
-
-Also check the pinout to make sure to connect the peripheral or sensor on the right pins:
-
-<p align="center">
-    <img src="Design/wildernesslabs-meadow-desktop-pinout-ft232h.png" style="width:50%" />
-</p>
-
-3. Rebuild and right-click the project and click on **Set as Startup Project** 
-4. Click **Debug** to run see a Meadow App running on Windows!
 
 <table>
     <tr>
