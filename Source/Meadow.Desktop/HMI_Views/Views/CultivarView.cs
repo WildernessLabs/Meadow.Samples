@@ -10,33 +10,23 @@ public class CultivarView
 {
     DisplayScreen screen;
 
-    Image imgWifi = Image.LoadFromResource("HMI_Views.Resources.img-wifi.bmp");
-    Image imgSync = Image.LoadFromResource("HMI_Views.Resources.img-sync.bmp");
+    private readonly Image imgWifi = Image.LoadFromResource("HMI_Views.Resources.img-wifi.bmp");
+    private readonly Image imgSync = Image.LoadFromResource("HMI_Views.Resources.img-sync.bmp");
+    private readonly Image imgRed = Image.LoadFromResource("HMI_Views.Resources.img-red.bmp");
+    private readonly Image imgGreen = Image.LoadFromResource("HMI_Views.Resources.img-green.bmp");
+    private readonly Image imgWifiFade = Image.LoadFromResource("HMI_Views.Resources.img-wifi-fade.bmp");
+    private readonly Image imgSyncFade = Image.LoadFromResource("HMI_Views.Resources.img-sync-fade.bmp");
 
-    Image imgRed = Image.LoadFromResource("HMI_Views.Resources.img-red.bmp");
-    Image imgGreen = Image.LoadFromResource("HMI_Views.Resources.img-green.bmp");
-    Image imgWifiFade = Image.LoadFromResource("HMI_Views.Resources.img-wifi-fade.bmp");
-    Image imgSyncFade = Image.LoadFromResource("HMI_Views.Resources.img-sync-fade.bmp");
-
-    protected Label StatusLabel { get; set; }
-
-    protected Label TemperatureLabel { get; set; }
-
-    protected Label HumidityLabel { get; set; }
-
-    protected Label SoilMoistureLabel { get; set; }
-
-    protected Picture ledLights { get; set; }
-
-    protected Picture wifi { get; set; }
-
-    protected Picture sync { get; set; }
-
-    protected Picture ledWater { get; set; }
-
-    protected Picture ledVents { get; set; }
-
-    protected Picture ledHeater { get; set; }
+    private Label StatusLabel;
+    private Label TemperatureLabel;
+    private Label HumidityLabel;
+    private Label SoilMoistureLabel;
+    private Picture ledLights;
+    private Picture wifi;
+    private Picture sync;
+    private Picture ledWater;
+    private Picture ledVents;
+    private Picture ledHeater;
 
     public CultivarView(IPixelDisplay _display)
     {

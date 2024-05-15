@@ -3,13 +3,14 @@ using Meadow.Foundation.Displays;
 using Meadow.Foundation.ICs.IOExpanders;
 using System;
 using System.Threading.Tasks;
-using WifiWeather.Services;
+using WifiWeather.Controllers;
 using WifiWeather.ViewModels;
-using WifiWeather.Views;
+
+namespace WifiWeather;
 
 public class MeadowApp : App<Desktop>
 {
-    private DisplayView _displayController;
+    private DisplayController _displayController;
 
     public override Task Initialize()
     {
@@ -25,7 +26,7 @@ public class MeadowApp : App<Desktop>
             resetPin: expander.Pins.C1
         );
 
-        _displayController = new DisplayView(display);
+        _displayController = new DisplayController(display);
 
         return Task.CompletedTask;
     }
@@ -33,7 +34,7 @@ public class MeadowApp : App<Desktop>
     async Task GetTemperature()
     {
         // Get outdoor conditions
-        var outdoorConditions = await WeatherService.GetWeatherForecast();
+        var outdoorConditions = await RestClientController.GetWeatherForecast();
 
         // Format indoor/outdoor conditions data
         var model = new WeatherViewModel(outdoorConditions);

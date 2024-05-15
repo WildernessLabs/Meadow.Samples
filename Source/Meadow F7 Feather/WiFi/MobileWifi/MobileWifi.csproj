@@ -24,6 +24,7 @@
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#23ABE3" Resize="false" />
+        <MauiIcon Include="Resources\AppIcon\appicon_round.svg" ForegroundFile="Resources\AppIcon\appicon_round.svg" Color="#23ABE3" Resize="false" />
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#23ABE3" BaseSize="128,128" />
@@ -39,6 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\AppIcon\appicon_round.svg" />
       <None Remove="Resources\Images\img_ble_pair.png" />
       <None Remove="Resources\Images\img_ble_paired.png" />
       <None Remove="Resources\Images\img_hide.png" />

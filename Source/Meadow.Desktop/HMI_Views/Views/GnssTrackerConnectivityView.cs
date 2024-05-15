@@ -27,8 +27,6 @@ public class GnssTrackerConnectivityView
             BackgroundColor = Color.White
         };
 
-
-
         displayScreen.Controls.Add(new Box(
             0,
             0 + OFFSET_Y,
