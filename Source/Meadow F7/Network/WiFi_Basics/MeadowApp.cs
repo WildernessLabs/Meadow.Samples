@@ -16,8 +16,8 @@ public class F7FeatherV1App : MeadowApp<F7FeatherV1> { }
 public class MeadowApp<T> : App<T>
     where T : F7MicroBase
 {
-    private const string WIFI_NAME = "LORA-LAN";
-    private const string WIFI_PASSWORD = "1234567890";
+    private const string WIFI_NAME = "MyWiFi";
+    private const string WIFI_PASSWORD = "MyPassword";
 
     public override async Task Run()
     {
