@@ -16,7 +16,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     private Label _message;
     private Box _box;
     private IDigitalInterruptPort _powerPort;
-    private IDigitalOutputPort _backlighPort;
+    private IDigitalOutputPort _backlightPort;
     private int _wakeCount;
 
     public override Task Initialize()
@@ -29,7 +29,7 @@ public class MeadowApp : App<F7CoreComputeV2>
         _powerPort = _projectLab.IOTerminal.Pins.A1.CreateDigitalInterruptPort(Meadow.Hardware.InterruptMode.EdgeFalling, Meadow.Hardware.ResistorMode.Disabled);
         _powerPort.Changed += OnPowerPortChanged;
 
-        _backlighPort = _projectLab.MikroBus1.Pins.INT.CreateDigitalOutputPort(true);
+        _backlightPort = _projectLab.MikroBus1.Pins.INT.CreateDigitalOutputPort(true);
 
         Device.PlatformOS.AfterWake += AfterWake;
         CreateLayout();
@@ -56,7 +56,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     private void PowerOffPeripherals()
     {
         Resolver.Log.Info("Powering off");
-        _backlighPort.State = false;
+        _backlightPort.State = false;
         Device.PlatformOS.Sleep(_projectLab.IOTerminal.Pins.A1, InterruptMode.EdgeRising);
     }
 
@@ -74,7 +74,7 @@ public class MeadowApp : App<F7CoreComputeV2>
             DisplayMessage($"Hello from wake! ({_wakeCount})");
         }
 
-        _backlighPort.State = true;
+        _backlightPort.State = true;
     }
 
     private void OnPowerPortChanged(object sender, DigitalPortResult e)
