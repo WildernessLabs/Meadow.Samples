@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 
 namespace WiFi_Config;
 
-// Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-public class MeadowApp : App<F7FeatherV2>
+public class CoreComputeApp : MeadowApp<F7CoreComputeV2> { }
+public class F7FeatherV2App : MeadowApp<F7FeatherV2> { }
+public class F7FeatherV1App : MeadowApp<F7FeatherV1> { }
+
+public class MeadowApp<T> : App<T>
+    where T : F7MicroBase
 {
-    public override Task Initialize()
+    public override async Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
@@ -33,8 +37,6 @@ public class MeadowApp : App<F7FeatherV2>
         {
             Resolver.Log.Info($"Network disconnected.");
         };
-
-        return base.Initialize();
     }
 
     public override Task Run()
