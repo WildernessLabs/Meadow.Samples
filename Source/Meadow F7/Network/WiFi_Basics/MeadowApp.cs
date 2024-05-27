@@ -16,53 +16,68 @@ public class F7FeatherV1App : MeadowApp<F7FeatherV1> { }
 public class MeadowApp<T> : App<T>
     where T : F7MicroBase
 {
-    private const string WIFI_NAME = "MyWiFi";
-    private const string WIFI_PASSWORD = "MyPassword";
+    private const string WIFI_NAME = "myWiFi";
+    private const string WIFI_PASSWORD = "myPassword";
 
-    public override async Task Run()
+    IWiFiNetworkAdapter wifi;
+
+    public override async Task Initialize()
     {
-        Resolver.Log.Info("Run...");
+        Resolver.Log.Info("Initialize...");
 
-        var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        // get the wifi adapter
+        wifi = Resolver.Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
-        // connected event test.
-        wifi.NetworkConnected += WiFiAdapter_NetworkConnected;
-        wifi.NetworkDisconnected += Wifi_NetworkDisconnected;
+        wifi.NetworkConnected += NetworkConnected;
 
-        // enumerate the public WiFi channels
+        wifi.NetworkConnecting += NetworkConnecting;
+
+        wifi.NetworkDisconnected += NetworkDisconnected;
+
+        // Enumerate the public WiFi channels
         await ScanForAccessPoints(wifi);
 
         try
         {
-            // connect to the wifi network.
             Resolver.Log.Info($"Connecting to WiFi Network {WIFI_NAME}");
 
+            // connect to the wifi network.
             await wifi.Connect(WIFI_NAME, WIFI_PASSWORD, TimeSpan.FromSeconds(45));
         }
         catch (Exception ex)
         {
             Resolver.Log.Error($"Failed to Connect: {ex.Message}");
         }
+    }
+
+    private void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
+    {
+        Resolver.Log.Info($"Joined network - IP Address: {args.IpAddress}");
+    }
+
+    private void NetworkConnecting(INetworkAdapter sender)
+    {
+        Resolver.Log.Info($"Network connecting...");
+    }
+
+    private void NetworkDisconnected(INetworkAdapter sender, NetworkDisconnectionEventArgs args)
+    {
+        Resolver.Log.Info($"Network disconnected because {args.Reason}");
+    }
+
+    public override async Task Run()
+    {
+        Resolver.Log.Info("Run...");
 
         if (wifi.IsConnected)
         {
             DisplayNetworkInformation();
 
-            //while (true)
-            //{
-            //    await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
-            //}
+            while (true)
+            {
+                await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
+            }
         }
-    }
-
-    private void Wifi_NetworkDisconnected(INetworkAdapter sender, NetworkDisconnectionEventArgs args)
-    {
-        Resolver.Log.Info($"Network disconnected: {args.Reason}");
-    }
-
-    private void WiFiAdapter_NetworkConnected(INetworkAdapter networkAdapter, NetworkConnectionEventArgs e)
-    {
-        Resolver.Log.Info($"Network connected. Device address: {e.IpAddress}");
     }
 
     private async Task ScanForAccessPoints(IWiFiNetworkAdapter wifi)
