@@ -521,9 +521,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WiFinder.ProjectLab", "Mult
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FSharp", "FSharp", "{0495DB21-FF7F-4ABD-8884-1919B8B82760}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Blinky_FSharp", "Meadow.Desktop\Blinky\FS\Blinky_FSharp\Blinky_FSharp.fsproj", "{63F40503-08FF-4D33-867D-9D5133388D89}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Blinky_FSharp", "Meadow.Desktop\Blinky\FS\Blinky_FSharp\Blinky_FSharp.fsproj", "{63F40503-08FF-4D33-867D-9D5133388D89}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blinky", "Meadow.Desktop\Blinky\CS\Blinky.csproj", "{134AD50B-4E01-4C84-B0CF-4C44A822781D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulatedSensors", "Meadow.Desktop\SimulatedSensors\SimulatedSensors.csproj", "{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2393,6 +2395,12 @@ Global
 		{134AD50B-4E01-4C84-B0CF-4C44A822781D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{134AD50B-4E01-4C84-B0CF-4C44A822781D}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{134AD50B-4E01-4C84-B0CF-4C44A822781D}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2644,6 +2652,7 @@ Global
 		{0495DB21-FF7F-4ABD-8884-1919B8B82760} = {A5E391D4-541D-485D-9210-4EAC4E8A2FB0}
 		{63F40503-08FF-4D33-867D-9D5133388D89} = {0495DB21-FF7F-4ABD-8884-1919B8B82760}
 		{134AD50B-4E01-4C84-B0CF-4C44A822781D} = {A5E391D4-541D-485D-9210-4EAC4E8A2FB0}
+		{2AB4CFFE-BB98-461C-BBF0-E256A5C4E75C} = {A5E391D4-541D-485D-9210-4EAC4E8A2FB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
