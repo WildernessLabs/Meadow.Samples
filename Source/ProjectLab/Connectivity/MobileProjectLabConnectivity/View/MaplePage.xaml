@@ -45,7 +45,7 @@
 
                         <Grid Grid.Column="1" WidthRequest="50" HeightRequest="50">
                             <Button Command="{Binding CmdSearchServers}" BackgroundColor="Transparent" CornerRadius="5" />
-                            <Image Source="icon_search.png" Margin="10" InputTransparent="True">
+                            <Image Source="img_search.png" Margin="10" InputTransparent="True">
                                 <Image.Triggers>
                                     <DataTrigger TargetType="Image" Binding="{Binding IsScanning}" Value="True">
                                         <Setter Property="IsVisible" Value="False" />

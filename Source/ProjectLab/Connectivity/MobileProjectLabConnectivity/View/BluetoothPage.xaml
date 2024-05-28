@@ -37,7 +37,7 @@
 
                         <Grid Grid.Column="1" WidthRequest="50" HeightRequest="50">
                             <Button Command="{Binding CmdToggleConnection}" BackgroundColor="Transparent" CornerRadius="5" />
-                            <Image Margin="10" HorizontalOptions="Center" Source="icon_connected">
+                            <Image Margin="10" HorizontalOptions="Center">
                                 <Image.Triggers>
                                     <DataTrigger TargetType="Image" Binding="{Binding IsDeviceListEmpty}" Value="True">
                                         <Setter Property="Opacity" Value="0.5" />
@@ -56,10 +56,10 @@
                                         <Setter Property="InputTransparent" Value="True" />
                                     </DataTrigger>
                                     <DataTrigger TargetType="Image" Binding="{Binding IsConnected}" Value="True">
-                                        <Setter Property="Source" Value="img_ble_paired" />
+                                        <Setter Property="Source" Value="img_ble_paired.png" />
                                     </DataTrigger>
                                     <DataTrigger TargetType="Image" Binding="{Binding IsConnected}" Value="False">
-                                        <Setter Property="Source" Value="img_ble_pair" />
+                                        <Setter Property="Source" Value="img_ble_pair.png" />
                                     </DataTrigger>
                                 </Image.Triggers>
                             </Image>
@@ -70,7 +70,7 @@
 
                         <Grid Grid.Column="3" WidthRequest="50" HeightRequest="50">
                             <Button Command="{Binding CmdSearchForDevices}" BackgroundColor="Transparent" CornerRadius="5" />
-                            <Image Source="img_search" Margin="10" InputTransparent="True" HorizontalOptions="Center" />
+                            <Image Source="img_search.png" Margin="10" InputTransparent="True" HorizontalOptions="Center" />
                         </Grid>
                     </Grid>
                 </Frame>
