@@ -8,27 +8,21 @@ namespace F7Feather_AzureIoTHub.Controllers;
 
 public class DisplayController
 {
-    Color backgroundColor = Color.FromHex("#23ABE3");
-
-    Font8x12 font8x12 = new Font8x12();
-    Font12x20 font12X20 = new Font12x20();
-
-    Image imgWifi = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_wifi.bmp");
-    Image imgWifiFade = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_wifi_fade.bmp");
-    Image imgSync = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_sync.bmp");
-    Image imgSyncFade = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_sync_fade.bmp");
-
-    DisplayScreen displayScreen;
-
-    AbsoluteLayout SplashLayout;
-    AbsoluteLayout DataLayout;
-
-    Picture Wifi;
-    Picture Sync;
-
-    Label Title;
-    Label Temperature;
-    Label Humidity;
+    private Color backgroundColor = Color.FromHex("#23ABE3");
+    private Font8x12 font8x12 = new Font8x12();
+    private Font12x20 font12X20 = new Font12x20();
+    private Image imgWifi = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_wifi.bmp");
+    private Image imgWifiFade = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_wifi_fade.bmp");
+    private Image imgSync = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_sync.bmp");
+    private Image imgSyncFade = Image.LoadFromResource("MeadowAzureIoTHub.Resources.img_sync_fade.bmp");
+    private DisplayScreen displayScreen;
+    private AbsoluteLayout SplashLayout;
+    private AbsoluteLayout DataLayout;
+    private Picture Wifi;
+    private Picture Sync;
+    private Label Title;
+    private Label Temperature;
+    private Label Humidity;
 
     public DisplayController(IPixelDisplay display)
     {
@@ -48,7 +42,7 @@ public class DisplayController
 
     private void LoadSplashLayout()
     {
-        SplashLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
+        SplashLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };
@@ -83,7 +77,7 @@ public class DisplayController
 
     public void LoadDataLayout()
     {
-        DataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
+        DataLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };

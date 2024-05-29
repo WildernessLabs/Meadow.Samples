@@ -17,19 +17,15 @@ internal class DisplayController
 
     private int counter = 0;
     private readonly int margin = 5;
-    readonly int smallMargin = 3;
-    readonly int graphHeight = 105;
-
-    readonly int measureBoxWidth = 82;
-
-    readonly int columnWidth = 100;
-
-    readonly int rowHeight = 30;
-    readonly int row1 = 135;
-    readonly int row2 = 170;
-    readonly int row3 = 205;
-
-    Image weatherIcon = Image.LoadFromResource($"WifiWeather.Resources.w_misc.bmp");
+    private readonly int smallMargin = 3;
+    private readonly int graphHeight = 105;
+    private readonly int measureBoxWidth = 82;
+    private readonly int columnWidth = 100;
+    private readonly int rowHeight = 30;
+    private readonly int row1 = 135;
+    private readonly int row2 = 170;
+    private readonly int row3 = 205;
+    private Image weatherIcon = Image.LoadFromResource($"WifiWeather.Resources.w_misc.bmp");
 
     public LineChartSeries OutdoorSeries { get; set; }
     protected DisplayScreen DisplayScreen { get; set; }
@@ -76,7 +72,7 @@ internal class DisplayController
 
     private void LoadSplashLayout()
     {
-        SplashLayout = new AbsoluteLayout(DisplayScreen, 0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        SplashLayout = new AbsoluteLayout(0, 0, DisplayScreen.Width, DisplayScreen.Height)
         {
             IsVisible = false
         };
@@ -94,7 +90,7 @@ internal class DisplayController
 
     private void LoadDataLayout()
     {
-        DataLayout = new AbsoluteLayout(DisplayScreen, 0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        DataLayout = new AbsoluteLayout(0, 0, DisplayScreen.Width, DisplayScreen.Height)
         {
             BackgroundColor = backgroundColor,
             IsVisible = false

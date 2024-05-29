@@ -24,6 +24,7 @@
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#23ABE3" Resize="false" />
+        <MauiIcon Include="Resources\AppIcon\appicon_round.svg" ForegroundFile="Resources\AppIcon\appicon_round.svg" Color="#23ABE3" Resize="false" />
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#23ABE3" BaseSize="128,128" />
@@ -40,6 +41,7 @@
 
     <ItemGroup>
       <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+      <None Remove="Resources\AppIcon\appicon_round.svg" />
       <None Remove="Resources\Images\img_ble_pair.svg" />
       <None Remove="Resources\Images\img_ble_paired.svg" />
       <None Remove="Resources\Images\img_search.png" />

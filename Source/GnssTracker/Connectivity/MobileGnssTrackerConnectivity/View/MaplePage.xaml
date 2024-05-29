@@ -152,7 +152,7 @@
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span Text="{Binding GasResistance}" />
-                                                <Span Text="MOhms" />
+                                                <Span Text=" MOhms" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -160,7 +160,7 @@
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span Text="{Binding Co2Concentration}" />
-                                                <Span Text="PPM" />
+                                                <Span Text=" PPM" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>

@@ -27,7 +27,7 @@ public class DisplayController
 
         displayScreen.BeginUpdate();
 
-        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height);
+        dataLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height);
 
         displayScreen.Controls.Add(new Box(
             0,

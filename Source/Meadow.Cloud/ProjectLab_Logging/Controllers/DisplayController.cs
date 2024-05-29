@@ -44,9 +44,9 @@ internal class DisplayController
         displayScreen.Controls.Add(splashLayout, dataLayout);
     }
 
-    void LoadSplashLayout()
+    private void LoadSplashLayout()
     {
-        splashLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
+        splashLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };
@@ -62,9 +62,9 @@ internal class DisplayController
         splashLayout.Controls.Add(displayImage);
     }
 
-    void LoadDataLayout()
+    private void LoadDataLayout()
     {
-        dataLayout = new AbsoluteLayout(displayScreen, 0, 0, displayScreen.Width, displayScreen.Height)
+        dataLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };

@@ -3,6 +3,7 @@
         <OutputType>Exe</OutputType>
         <TargetFrameworks>net8.0</TargetFrameworks>
         <Nullable>enable</Nullable>
+        <LangVersion>10.0</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,13 +17,13 @@
     </ItemGroup>
     
     <ItemGroup>
-        <EmbeddedResource Include="w_clear.bmp" />
-        <EmbeddedResource Include="w_cloudy.bmp" />
-        <EmbeddedResource Include="w_drizzle.bmp" />
-        <EmbeddedResource Include="w_misc.bmp" />
-        <EmbeddedResource Include="w_rain.bmp" />
-        <EmbeddedResource Include="w_snow.bmp" />
-        <EmbeddedResource Include="w_storm.bmp" />
+        <EmbeddedResource Include="Resources\w_clear.bmp" />
+        <EmbeddedResource Include="Resources\w_cloudy.bmp" />
+        <EmbeddedResource Include="Resources\w_drizzle.bmp" />
+        <EmbeddedResource Include="Resources\w_misc.bmp" />
+        <EmbeddedResource Include="Resources\w_rain.bmp" />
+        <EmbeddedResource Include="Resources\w_snow.bmp" />
+        <EmbeddedResource Include="Resources\w_storm.bmp" />
     </ItemGroup>
     
     <ItemGroup>
@@ -35,10 +36,4 @@
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
     <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
     </ItemGroup>
-
-
-
-
-
-
 </Project>

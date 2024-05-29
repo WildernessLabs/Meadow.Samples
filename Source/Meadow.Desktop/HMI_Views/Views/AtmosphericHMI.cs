@@ -1,4 +1,5 @@
-﻿using Meadow.Foundation.Graphics;
+﻿using Meadow;
+using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
 using System;
@@ -11,35 +12,31 @@ public class AtmosphericHMI
     int rowHeight = 60;
     int rowMargin = 15;
 
-    protected DisplayScreen DisplayScreen { get; set; }
+    private DisplayScreen displayScreen;
+    private Label light;
+    private Label pressure;
+    private Label humidity;
+    private Label temperature;
 
-    protected Label Light { get; set; }
-
-    protected Label Pressure { get; set; }
-
-    protected Label Humidity { get; set; }
-
-    protected Label Temperature { get; set; }
-
-    Meadow.Color backgroundColor = Meadow.Color.FromHex("#F3F7FA");
-    Meadow.Color foregroundColor = Meadow.Color.Black;
+    Color backgroundColor = Color.FromHex("#F3F7FA");
+    Color foregroundColor = Color.Black;
 
     Font12x20 font12X20 = new Font12x20();
 
     public AtmosphericHMI(IPixelDisplay display)
     {
-        DisplayScreen = new DisplayScreen(display)
+        displayScreen = new DisplayScreen(display)
         {
             BackgroundColor = backgroundColor
         };
 
-        DisplayScreen.Controls.Add(new GradientBox(0, 0, display.Width, display.Height)
+        displayScreen.Controls.Add(new GradientBox(0, 0, display.Width, display.Height)
         {
-            StartColor = Meadow.Color.FromHex("#5AC0EA"),
-            EndColor = Meadow.Color.FromHex("#B8E4F6")
+            StartColor = Color.FromHex("#5AC0EA"),
+            EndColor = Color.FromHex("#B8E4F6")
         });
 
-        DisplayScreen.Controls.Add(new Label(rowMargin, 0, DisplayScreen.Width / 2, rowHeight)
+        displayScreen.Controls.Add(new Label(rowMargin, 0, displayScreen.Width / 2, rowHeight)
         {
             Text = $"LIGHT",
             TextColor = foregroundColor,
@@ -47,7 +44,7 @@ public class AtmosphericHMI
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Left
         });
-        DisplayScreen.Controls.Add(new Label(rowMargin, rowHeight, DisplayScreen.Width / 2, rowHeight)
+        displayScreen.Controls.Add(new Label(rowMargin, rowHeight, displayScreen.Width / 2, rowHeight)
         {
             Text = $"PRESSURE",
             TextColor = foregroundColor,
@@ -55,7 +52,7 @@ public class AtmosphericHMI
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Left
         });
-        DisplayScreen.Controls.Add(new Label(rowMargin, rowHeight * 2, DisplayScreen.Width / 2, rowHeight)
+        displayScreen.Controls.Add(new Label(rowMargin, rowHeight * 2, displayScreen.Width / 2, rowHeight)
         {
             Text = $"HUMIDITY",
             TextColor = foregroundColor,
@@ -63,7 +60,7 @@ public class AtmosphericHMI
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Left
         });
-        DisplayScreen.Controls.Add(new Label(rowMargin, rowHeight * 3, DisplayScreen.Width / 2, rowHeight)
+        displayScreen.Controls.Add(new Label(rowMargin, rowHeight * 3, displayScreen.Width / 2, rowHeight)
         {
             Text = $"TEMPERATURE",
             TextColor = foregroundColor,
@@ -72,7 +69,7 @@ public class AtmosphericHMI
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        Light = new Label(DisplayScreen.Width / 2 - rowMargin, 0, DisplayScreen.Width / 2, rowHeight)
+        light = new Label(displayScreen.Width / 2 - rowMargin, 0, displayScreen.Width / 2, rowHeight)
         {
             Text = $"- Lx",
             TextColor = foregroundColor,
@@ -80,9 +77,9 @@ public class AtmosphericHMI
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right
         };
-        DisplayScreen.Controls.Add(Light);
+        displayScreen.Controls.Add(light);
 
-        Pressure = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight, DisplayScreen.Width / 2, rowHeight)
+        pressure = new Label(displayScreen.Width / 2 - rowMargin, rowHeight, displayScreen.Width / 2, rowHeight)
         {
             Text = $"- Mb",
             TextColor = foregroundColor,
@@ -90,9 +87,9 @@ public class AtmosphericHMI
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right
         };
-        DisplayScreen.Controls.Add(Pressure);
+        displayScreen.Controls.Add(pressure);
 
-        Humidity = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight * 2, DisplayScreen.Width / 2, rowHeight)
+        humidity = new Label(displayScreen.Width / 2 - rowMargin, rowHeight * 2, displayScreen.Width / 2, rowHeight)
         {
             Text = $"- %",
             TextColor = foregroundColor,
@@ -100,9 +97,9 @@ public class AtmosphericHMI
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right
         };
-        DisplayScreen.Controls.Add(Humidity);
+        displayScreen.Controls.Add(humidity);
 
-        Temperature = new Label(DisplayScreen.Width / 2 - rowMargin, rowHeight * 3, DisplayScreen.Width / 2, rowHeight)
+        temperature = new Label(displayScreen.Width / 2 - rowMargin, rowHeight * 3, displayScreen.Width / 2, rowHeight)
         {
             Text = $"- °C",
             TextColor = foregroundColor,
@@ -110,21 +107,20 @@ public class AtmosphericHMI
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right
         };
-        DisplayScreen.Controls.Add(Temperature);
+        displayScreen.Controls.Add(temperature);
     }
 
     public void UpdateAtmosphericConditions(string light, string pressure, string humidity, string temperature)
     {
-        DisplayScreen.BeginUpdate();
+        displayScreen.BeginUpdate();
 
-        Light.Text = light;
-        Pressure.Text = pressure;
-        Humidity.Text = humidity;
-        Temperature.Text = temperature;
+        this.light.Text = light;
+        this.pressure.Text = pressure;
+        this.humidity.Text = humidity;
+        this.temperature.Text = temperature;
 
-        DisplayScreen.EndUpdate();
+        displayScreen.EndUpdate();
     }
-
 
     public async Task Run()
     {

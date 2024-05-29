@@ -15,9 +15,9 @@
       <EmbeddedResource Include="Resources\img-wifi.bmp" />
     </ItemGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.GnssTracker" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Web.Maple.Server" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
+        <PackageReference Include="Meadow.GnssTracker" Version="*" />
+        <PackageReference Include="Meadow.Foundation.Web.Maple.Server" Version="*" />
+        <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
     </ItemGroup>
     <ItemGroup>
         <None Update="app.config.yaml">

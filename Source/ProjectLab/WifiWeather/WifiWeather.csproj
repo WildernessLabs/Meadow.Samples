@@ -72,7 +72,6 @@
     <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
     <PackageReference Include="Meadow.ProjectLab" Version="*" />
-        <PackageReference Include="System.Text.Json" Version="7.0.4" />
         <PackageReference Include="SimpleJpegDecoder" Version="*" />
     </ItemGroup>
     <ItemGroup>

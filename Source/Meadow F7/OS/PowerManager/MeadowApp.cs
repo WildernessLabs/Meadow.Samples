@@ -2,12 +2,17 @@
 using Meadow.Devices;
 using Meadow.Hardware;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PowerManager;
 
-public class MeadowApp : App<F7FeatherV2>
+public class V1App : MeadowApp<F7FeatherV1> { }
+public class V2App : MeadowApp<F7FeatherV2> { }
+
+public class MeadowApp<T> : App<T>
+    where T : F7FeatherBase
 {
     private IDigitalOutputPort blue;
     private IDigitalOutputPort red;
@@ -15,7 +20,20 @@ public class MeadowApp : App<F7FeatherV2>
 
     public override Task Initialize()
     {
+        Device.PlatformOS.MeadowSystemError += (s, e) =>
+            {
+                Resolver.Log.Info($"SYSTEM ERROR: {e.Message}");
+
+                var log = Device.PlatformOS.GetStartupMessages();
+                Resolver.Log.Info($"Log length: {log.Count()}");
+                foreach (var m in log)
+                {
+                    Resolver.Log.Info($"Log: {m.Message}");
+                }
+            };
+
         Resolver.Log.Info("===== Meadow Power Management Sample =====");
+
         Resolver.Log.Info($"{Device.Information.Platform} OS v.{Device.Information.OSVersion}");
 
         blue = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedBlue, false);
@@ -73,29 +91,29 @@ public class MeadowApp : App<F7FeatherV2>
         // blink blue pre-sleep
         var led = blue;
 
-        // we'll run a loop for a while, outputting the time
-        for (var i = 0; i < 13; i++)
+        while (true)
         {
-            Resolver.Log.Info($"Time is now: {DateTime.UtcNow:HH:mm:ss}");
+            Resolver.Log.Info($"Sleep cycle...");
 
-            led.State = true;
-            await Task.Delay(TimeSpan.FromMilliseconds(500));
-            led.State = false;
-            await Task.Delay(TimeSpan.FromMilliseconds(500));
-
-            // then we'll sleep for 5 seconds
-            if (i == 6)
+            // we'll run a loop for a while, outputting the time
+            for (var i = 0; i < 13; i++)
             {
-                Device.PlatformOS.Sleep(TimeSpan.FromSeconds(5));
+                Resolver.Log.Info($"Time is now: {DateTime.UtcNow:HH:mm:ss}");
 
-                // swap to blink red for post-sleep
-                led = red;
+                led.State = true;
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                led.State = false;
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
 
-                // Don't use the console for a while after wake due to a bug that will crash the OS
-                Thread.Sleep(3000);
+                // then we'll sleep for 5 seconds
+                if (i == 6)
+                {
+                    Device.PlatformOS.Sleep(TimeSpan.FromMinutes(2));
+
+                    // swap to blink red for post-sleep
+                    led = red;
+                }
             }
-
-            // when we wake we'll output a few more ticks
         }
 
         // finally we'll reset the device

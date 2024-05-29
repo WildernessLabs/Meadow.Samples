@@ -1,4 +1,6 @@
 ﻿using Meadow;
+using Meadow.Hardware;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace WiFi_Basics
@@ -10,7 +12,7 @@ namespace WiFi_Basics
             await MeadowOS.Start(args);
         }
 
-        public override Task Run()
+        public override async Task Run()
         {
             Resolver.Log.Info($"Meadow.Windows Network Sample");
 
@@ -22,7 +24,18 @@ namespace WiFi_Basics
                 Resolver.Log.Info($"  {adapter.Name}  {adapter.IpAddress}");
             }
 
-            return Task.CompletedTask;
+            Resolver.Log.Info($"WiFi info");
+            Resolver.Log.Info($"----------------------------");
+            foreach (var wifi in Device.NetworkAdapters.Where(i => i is IWiFiNetworkAdapter).Cast<IWiFiNetworkAdapter>())
+            {
+                Resolver.Log.Info($"  {wifi.Name}  {wifi.IpAddress}");
+
+                var networks = await wifi.Scan();
+                foreach (var network in networks)
+                {
+                    Resolver.Log.Info($"     {network.Ssid}: {network.SignalDbStrength}");
+                }
+            }
         }
     }
 }
