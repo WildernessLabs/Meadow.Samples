@@ -31,9 +31,9 @@
     </ItemGroup>
 
     <ItemGroup>
-    <PackageReference Include="Meadow.Avalonia" Version="*" />
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Bme68x" Version="*" />
-    <PackageReference Include="Meadow.Desktop" Version="*" />
+        <ProjectReference Include="..\..\..\..\Meadow.Core\source\ui\Meadow.Avalonia\Meadow.Avalonia.csproj" />
+        <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Ftxxxx\Driver\ICs.IOExpanders.Ftxxxx.csproj" />
+        <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Atmospheric.Bme68x\Driver\Sensors.Atmospheric.Bme68x.csproj" />
+        <ProjectReference Include="..\..\..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
     </ItemGroup>
 </Project>
