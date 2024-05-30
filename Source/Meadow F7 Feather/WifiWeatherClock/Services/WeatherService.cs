@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Meadow.Foundation.Serialization;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using WifiWeatherClock.Models;
@@ -25,7 +26,7 @@ public static class WeatherService
 
                 response.EnsureSuccessStatusCode();
                 string json = await response.Content.ReadAsStringAsync();
-                var values = System.Text.Json.JsonSerializer.Deserialize<WeatherReading>(json);
+                var values = MicroJson.Deserialize<WeatherReading>(json);
                 return values;
             }
             catch (TaskCanceledException)
