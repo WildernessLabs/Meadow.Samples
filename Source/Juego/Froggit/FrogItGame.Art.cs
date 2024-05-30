@@ -63,10 +63,12 @@ public partial class FrogItGame
     IPixelBuffer LoadSprite(byte[] data, Color color, int width = 8, int height = 8)
     {
         var buf = new Buffer1bppColor(width, height, data)
-           .RotateAndConvert<Buffer1bppColor>(RotationType._90Degrees)
+           .Rotate<Buffer1bppColor>(RotationType._90Degrees)
+           .Convert<Buffer1bppColor>()
            .ScaleUp<Buffer1bppColor>(2);
 
         buf.ColorOn = color;
-        return buf.ConvertPixelBuffer<BufferRgb444>();
+
+        return buf.Convert<BufferRgb444>();
     }
 }

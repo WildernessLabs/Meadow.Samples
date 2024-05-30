@@ -1,11 +1,11 @@
 ﻿using Meadow;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
+using Meadow.Foundation.Serialization;
 using Meadow.Hardware;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Touchscreen_Demo;
@@ -70,7 +70,7 @@ public class TouchscreenCalibrationService
         if (!fi.Exists) { return null; }
         using var file = fi.OpenText();
         var json = file.ReadToEnd();
-        var data = JsonSerializer.Deserialize<CalibrationPoint[]>(json);
+        var data = MicroJson.Deserialize<CalibrationPoint[]>(json);
         return data;
     }
 
@@ -84,7 +84,7 @@ public class TouchscreenCalibrationService
     {
         var fi = GetCalibrationFileInfo();
         if (fi.Exists) { fi.Delete(); }
-        var json = JsonSerializer.Serialize(data);
+        var json = MicroJson.Serialize(data);
         using var file = fi.CreateText();
         file.Write(json);
     }

@@ -72,7 +72,6 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Graphics.MicroLayout\Driver\Graphics.MicroLayout.csproj" />
         <ProjectReference Include="..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
-        <PackageReference Include="System.Text.Json" Version="7.0.4" />
         <PackageReference Include="SimpleJpegDecoder" Version="*" />
     </ItemGroup>
     <ItemGroup>
