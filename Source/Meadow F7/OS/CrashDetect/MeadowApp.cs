@@ -15,15 +15,12 @@ public class MeadowApp<T> : App<T>
     where T : F7MicroBase
 {
     private Random _random = new();
-    private bool _bootAfterCrash = false;
 
     public override Task Initialize()
     {
         var reliabilityService = Resolver.Services.Get<IReliabilityService>();
 
-        reliabilityService.MeadowSystemError += ReliabilityService_MeadowSystemError;
-
-        _bootAfterCrash = true;
+        reliabilityService.MeadowSystemError += OnMeadowSystemError;
 
         if (reliabilityService.LastBootWasFromCrash)
         {
@@ -42,48 +39,33 @@ public class MeadowApp<T> : App<T>
         return base.Initialize();
     }
 
-    private void ReliabilityService_MeadowSystemError(object sender, MeadowSystemErrorInfo e)
+    private void OnMeadowSystemError(MeadowSystemErrorInfo error, bool recommendReset, out bool forceReset)
     {
-        if (e is Esp32SystemErrorInfo espError)
+        if (error is Esp32SystemErrorInfo espError)
         {
             Resolver.Log.Warn($"The ESP32 has had an error ({espError.StatusCode}).");
-
-            switch (espError.StatusCode)
-            {
-                case StatusCodes.EspOutOfMemory:
-                    Resolver.Log.Error($"This is a fatal error. Resetting the device...");
-                    Resolver.Device.PlatformOS.Reset();
-                    break;
-                default:
-                    // any ESP reset error code is also fatal
-                    if (espError.StatusCode >= StatusCodes.EspReset && espError.StatusCode <= StatusCodes.EspResetSDIO)
-                    {
-                        Resolver.Log.Error($"This is a fatal error. Resetting the device...");
-                        Resolver.Device.PlatformOS.Reset();
-                    }
-                    break;
-            }
         }
         else
         {
-            Resolver.Log.Info($"We've had a system error: {e}");
+            Resolver.Log.Info($"We've had a system error: {error}");
         }
+
+        if (recommendReset)
+        {
+            Resolver.Log.Warn($"Meadow is recommending a device reset");
+        }
+
+        forceReset = recommendReset;
+
+        // override the reset recommendation
+        //forceReset = false;
     }
 
     public override async Task Run()
     {
-        if (!_bootAfterCrash)
-        {
-            await Task.Delay(TimeSpan.FromSeconds(_random.Next(3, 20)));
-            Resolver.Log.Info("FORCING A CRASH!");
-            throw new Exception($"OMG! My App Died with a random code {_random.Next(1, 101)}");
-        }
-        else
-        {
-            Resolver.Log.Info("Waiting for an ESP reset");
-
-            //                CreateAnOOMError();
-        }
+        await Task.Delay(TimeSpan.FromSeconds(_random.Next(3, 20)));
+        Resolver.Log.Info("FORCING A CRASH!");
+        throw new Exception($"OMG! My App Died with a random code {_random.Next(1, 101)}");
     }
 
     private void CreateAnOOMError()
