@@ -23,6 +23,6 @@ internal class MeadowCloudCommandHardware : IMeadowCloudCommandHardware
 
         RgbPwmLed = ProjLab.RgbLed;
 
-        FourChannelRelay = new FourChannelSpdtRelay(ProjLab.I2cBus, 0x11);
+        FourChannelRelay = new FourChannelSpdtRelay(ProjLab.Qwiic.I2cBus, 0x11);
     }
 }
