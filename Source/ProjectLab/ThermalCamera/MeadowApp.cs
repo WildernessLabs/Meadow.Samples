@@ -29,7 +29,7 @@ public class MeadowApp : App<F7CoreComputeV2>
 
         graphics = new MicroGraphics(projectLab.Display);
 
-        thermalCamera = new Mlx90640(projectLab.I2cBus);
+        thermalCamera = new Mlx90640(projectLab.Qwiic.I2cBus);
 
         onboardLed.SetColor(Color.Green);
 

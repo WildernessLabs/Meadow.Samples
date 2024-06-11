@@ -118,7 +118,7 @@ internal class MainController
 
             if (network.IsConnected)
             {
-                int TimeZoneOffSet = -8; // PST
+                int TimeZoneOffSet = -7; // PST
                 var today = DateTime.Now.AddHours(TimeZoneOffSet);
 
                 Resolver.Log.Trace("Connected!");

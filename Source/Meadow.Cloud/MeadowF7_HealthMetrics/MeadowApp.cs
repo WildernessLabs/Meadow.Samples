@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace MeadowF7_HealthMetrics;
 
-// Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-public class MeadowApp : App<F7FeatherV2>
+public class FeatherApp : MeadowApp<F7FeatherV2> { }
+public class CoreComputeApp : MeadowApp<F7CoreComputeV2> { }
+public class MeadowApp<T> : App<T>
+    where T : F7MicroBase
 {
     public override Task Initialize()
     {
