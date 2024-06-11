@@ -4,11 +4,11 @@ namespace CloudSample;
 
 public class MeadowApp : App<RaspberryPi>
 {
-    private MainController mainController;
+    private MainController? mainController;
 
     public override Task Initialize()
     {
-        //Resolver.Log.ShowGroups.Add("cloud");
+        Resolver.Log.ShowGroups.Add("Platform: Raspberry Pi");
 
         mainController = new MainController();
 
@@ -17,7 +17,7 @@ public class MeadowApp : App<RaspberryPi>
 
     public override Task Run()
     {
-        mainController.Start();
+        mainController?.Start();
 
         return base.Run();
     }
