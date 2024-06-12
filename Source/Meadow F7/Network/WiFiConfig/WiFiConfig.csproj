@@ -7,8 +7,8 @@
         <LangVersion>10</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.F7" Version="*" />
-    <PackageReference Include="Meadow.Foundation" Version="*" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Include="meadow.config.yaml">

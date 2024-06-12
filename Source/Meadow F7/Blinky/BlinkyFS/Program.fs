@@ -16,7 +16,7 @@ type MeadowApp() =
 
     let ShowColorPulse (color : Color) (duration : TimeSpan) = async {
         do! led.StartPulse(color, TimeSpan.FromMilliseconds(500.0)) |> Async.AwaitTask
-        do! Async.Sleep(int duration.TotalMilliseconds)
+        do! Async.Sleep duration
         do! led.StopAnimation() |> Async.AwaitTask
     }
     
