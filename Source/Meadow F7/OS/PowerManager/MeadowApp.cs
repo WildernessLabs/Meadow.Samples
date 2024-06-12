@@ -2,7 +2,6 @@
 using Meadow.Devices;
 using Meadow.Hardware;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,18 +19,6 @@ public class MeadowApp<T> : App<T>
 
     public override Task Initialize()
     {
-        Device.PlatformOS.MeadowSystemError += (s, e) =>
-            {
-                Resolver.Log.Info($"SYSTEM ERROR: {e.Message}");
-
-                var log = Device.PlatformOS.GetStartupMessages();
-                Resolver.Log.Info($"Log length: {log.Count()}");
-                foreach (var m in log)
-                {
-                    Resolver.Log.Info($"Log: {m.Message}");
-                }
-            };
-
         Resolver.Log.Info("===== Meadow Power Management Sample =====");
 
         Resolver.Log.Info($"{Device.Information.Platform} OS v.{Device.Information.OSVersion}");

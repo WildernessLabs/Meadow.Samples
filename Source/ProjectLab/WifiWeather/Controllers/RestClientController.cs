@@ -1,7 +1,7 @@
 ﻿using Meadow;
+using Meadow.Foundation.Serialization;
 using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using WifiWeather.DTOs;
 using WifiWeather.Models;
@@ -24,7 +24,7 @@ internal class RestClientController
 
                 response.EnsureSuccessStatusCode();
                 string json = await response.Content.ReadAsStringAsync();
-                var values = JsonSerializer.Deserialize<WeatherReadingDTO>(json);
+                var values = MicroJson.Deserialize<WeatherReadingDTO>(json);
 
                 double outdoorTemperature = values.main.temp - 273;
                 double outdoorPressure = values.main.pressure * 0.000987;

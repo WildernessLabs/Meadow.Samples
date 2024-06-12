@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace MeadowF7_Logging;
 
-// Change F7CoreComputeV2 to F7FeatherV2 (or F7FeatherV1) for Feather boards
-public class MeadowApp : App<F7CoreComputeV2>
+public class FeatherApp : MeadowApp<F7FeatherV2> { }
+public class CoreComputeApp : MeadowApp<F7CoreComputeV2> { }
+public class MeadowApp<T> : App<T>
+    where T : F7MicroBase
 {
     public override async Task Initialize()
     {

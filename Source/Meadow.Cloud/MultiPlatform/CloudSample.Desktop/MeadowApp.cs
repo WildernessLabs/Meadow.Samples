@@ -8,7 +8,7 @@ public class MeadowApp : App<Desktop>
 
     public override Task Initialize()
     {
-        //Resolver.Log.ShowGroups.Add("Cloud");
+        Resolver.Log.ShowGroups.Add("Platform: Meadow.Desktop");
 
         mainController = new MainController();
 
