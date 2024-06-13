@@ -27,32 +27,32 @@ internal class DisplayController
     private readonly int row3 = 205;
     private Image weatherIcon = Image.LoadFromResource($"WifiWeather.Resources.w_misc.bmp");
 
-    public LineChartSeries OutdoorSeries { get; set; }
-    protected DisplayScreen DisplayScreen { get; set; }
-    protected AbsoluteLayout SplashLayout { get; set; }
-    protected AbsoluteLayout DataLayout { get; set; }
-    protected LineChart LineChart { get; set; }
-    protected Picture WifiStatus { get; set; }
-    protected Picture SyncStatus { get; set; }
-    protected Picture Weather { get; set; }
-    protected Label Status { get; set; }
-    protected Label Counter { get; set; }
+    public LineChartSeries OutdoorSeries;
+    private DisplayScreen DisplayScreen;
+    private AbsoluteLayout SplashLayout;
+    private AbsoluteLayout DataLayout;
+    private LineChart LineChart;
+    private Picture WifiStatus;
+    private Picture SyncStatus;
+    private Picture Weather;
+    private Label Status;
+    private Label Counter;
 
-    protected Box TemperatureBox { get; set; }
-    protected Label TemperatureLabel { get; set; }
-    protected Label TemperatureValue { get; set; }
+    private Box TemperatureBox;
+    private Label TemperatureLabel;
+    private Label TemperatureValue;
 
-    protected Box PressureBox { get; set; }
-    protected Label PressureLabel { get; set; }
-    protected Label PressureValue { get; set; }
+    private Box PressureBox;
+    private Label PressureLabel;
+    private Label PressureValue;
 
-    protected Box HumidityBox { get; set; }
-    protected Label HumidityLabel { get; set; }
-    protected Label HumidityValue { get; set; }
+    private Box HumidityBox;
+    private Label HumidityLabel;
+    private Label HumidityValue;
 
-    protected Label FeelsLike { get; set; }
-    protected Label Sunrise { get; set; }
-    protected Label Sunset { get; set; }
+    private Label FeelsLike;
+    private Label Sunrise;
+    private Label Sunset;
 
     public DisplayController(IPixelDisplay display)
     {
