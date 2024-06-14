@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Threading.Tasks;
 
-namespace WifiWeather.Core;
+namespace WifiWeather.Core.Contracts;
 
 public interface INetworkController
 {
     event EventHandler NetworkStatusChanged;
 
-    Task Connect();
     bool IsConnected { get; }
 }

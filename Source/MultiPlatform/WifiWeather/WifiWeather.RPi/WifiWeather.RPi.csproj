@@ -5,15 +5,16 @@
         <LangVersion>10</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    <ItemGroup>
+      <Compile Remove="Controllers\**" />
+      <EmbeddedResource Remove="Controllers\**" />
+      <None Remove="Controllers\**" />
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
         <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
         <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Gtk\Driver\Displays.Gtk.csproj" />
         <ProjectReference Include="..\wifiweather.Core\wifiweather.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Controllers\" />
     </ItemGroup>
 </Project>

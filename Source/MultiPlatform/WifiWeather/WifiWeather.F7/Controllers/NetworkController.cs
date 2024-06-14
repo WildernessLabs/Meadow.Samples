@@ -1,14 +1,15 @@
 ﻿using Meadow.Devices;
 using Meadow.Hardware;
 using System;
-using System.Threading.Tasks;
-using WifiWeather.Core;
+using WifiWeather.Core.Contracts;
 
-namespace WifiWeather.F7;
+namespace WifiWeather.F7.Controllers;
 
 internal class NetworkController : INetworkController
 {
     public event EventHandler? NetworkStatusChanged;
+
+    private IWiFiNetworkAdapter? wifi;
 
     public NetworkController(F7MicroBase device)
     {
@@ -28,15 +29,8 @@ internal class NetworkController : INetworkController
         // Handle logic when connected.
     }
 
-    private IWiFiNetworkAdapter? wifi;
-
     public bool IsConnected
     {
         get => wifi.IsConnected;
-    }
-
-    public async Task Connect()
-    {
-
     }
 }

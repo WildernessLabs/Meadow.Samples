@@ -1,12 +1,12 @@
 ﻿using Meadow.Devices;
 using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Sensors.Buttons;
-using WifiWeather.Core;
 using WifiWeather.Core.Contracts;
+using WifiWeather.F7.Controllers;
 
-namespace WifiWeather.F7;
+namespace WifiWeather.F7.Hardware;
 
-internal class wifiweatherProjectLabHardware : IWifiWeatherHardware
+internal class WifiWeatherProjectLabHardware : IWifiWeatherHardware
 {
     private readonly IProjectLabHardware projLab;
 
@@ -20,7 +20,7 @@ internal class wifiweatherProjectLabHardware : IWifiWeatherHardware
 
     public INetworkController NetworkController { get; }
 
-    public wifiweatherProjectLabHardware(F7CoreComputeV2 device)
+    public WifiWeatherProjectLabHardware(F7CoreComputeV2 device)
     {
         projLab = ProjectLab.Create();
 

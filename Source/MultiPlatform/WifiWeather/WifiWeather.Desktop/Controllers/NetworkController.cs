@@ -1,55 +1,40 @@
 using Meadow;
 using System;
-using System.Threading.Tasks;
-using WifiWeather.Core;
+using WifiWeather.Core.Contracts;
 
-namespace WifiWeather.DesktopApp
+namespace WifiWeather.DesktopApp.Controllers;
+
+internal class NetworkController : INetworkController
 {
-    internal class NetworkController : INetworkController
+    private bool isConnected;
+
+    public event EventHandler? NetworkStatusChanged;
+
+    public NetworkController()
     {
-        private bool isConnected;
+        Resolver.Log.Info($"{MeadowApp.Device.NetworkAdapters.Count} network adapters detected");
 
-        public event EventHandler? NetworkStatusChanged;
-
-        public NetworkController()
+        foreach (var adapter in MeadowApp.Device.NetworkAdapters)
         {
-            Resolver.Log.Info($"Meadow.Windows Network Sample");
-
-            Resolver.Log.Info($"{MeadowApp.Device.NetworkAdapters.Count} network adapters detected");
-            Resolver.Log.Info($"----------------------------");
-
-            foreach (var adapter in MeadowApp.Device.NetworkAdapters)
-            {
-                Resolver.Log.Info($"  {adapter.Name}  {adapter.IpAddress}");
-            }
-
-            Resolver.Log.Info($"WiFi info");
-            Resolver.Log.Info($"----------------------------");
-            foreach (var wifi in MeadowApp.Device.NetworkAdapters)
-            {
-                IsConnected = wifi.IsConnected;
-
-                Resolver.Log.Info($"  {wifi.Name}  {wifi.IpAddress}");
-            }
+            Resolver.Log.Info($"{adapter.Name}  {adapter.IpAddress}");
         }
 
-        public bool IsConnected
+        foreach (var adapter in MeadowApp.Device.NetworkAdapters)
         {
-            get => isConnected;
-            private set
-            {
-                if (value == IsConnected) { return; }
-                isConnected = value;
-                NetworkStatusChanged?.Invoke(this, EventArgs.Empty);
-            }
+            IsConnected = adapter.IsConnected;
+
+            Resolver.Log.Info($"{adapter.Name}  {adapter.IpAddress}");
         }
+    }
 
-        public async Task Connect()
+    public bool IsConnected
+    {
+        get => isConnected;
+        private set
         {
-            // simulate connection delay
-            await Task.Delay(1000);
-
-            IsConnected = true;
+            if (value == IsConnected) { return; }
+            isConnected = value;
+            NetworkStatusChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

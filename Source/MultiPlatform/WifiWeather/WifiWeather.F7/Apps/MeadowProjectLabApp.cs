@@ -2,16 +2,17 @@
 using Meadow.Devices;
 using System.Threading.Tasks;
 using WifiWeather.Core;
+using WifiWeather.F7.Hardware;
 
 namespace WifiWeather.F7
 {
-    public class WifiWeatherProjectLabApp : App<F7CoreComputeV2>
+    public class MeadowProjectLabApp : App<F7CoreComputeV2>
     {
         private MainController mainController;
 
         public override Task Initialize()
         {
-            var hardware = new wifiweatherProjectLabHardware(Device);
+            var hardware = new WifiWeatherProjectLabHardware(Device);
             mainController = new MainController(hardware);
             mainController.Initialize();
 

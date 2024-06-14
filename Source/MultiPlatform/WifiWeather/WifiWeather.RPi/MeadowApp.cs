@@ -2,10 +2,11 @@
 using Meadow.Foundation.Displays;
 using System.Threading.Tasks;
 using WifiWeather.Core;
+using WifiWeather.RPi.Hardware;
 
 namespace WifiWeather.RPi;
 
-internal class wifiweatherApp : App<RaspberryPi>
+internal class MeadowApp : App<RaspberryPi>
 {
     private WifiWeatherHardware hardware;
     private MainController? mainController;

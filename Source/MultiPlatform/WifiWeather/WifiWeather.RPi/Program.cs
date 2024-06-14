@@ -1,12 +1,11 @@
 using Meadow;
 
-namespace wifiweather.RPi
+namespace WifiWeather.RPi;
+
+public static class Program
 {
-    public static class Program
+    private static void Main(string[] args)
     {
-        private static void Main(string[] args)
-        {
-            MeadowOS.Start(args);
-        }
+        MeadowOS.Start(args);
     }
 }

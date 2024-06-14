@@ -5,7 +5,7 @@ using Meadow.Peripherals.Displays;
 using System;
 using System.Collections.Generic;
 
-namespace WifiWeather.Core;
+namespace WifiWeather.Core.Controllers;
 
 public class DisplayController
 {
