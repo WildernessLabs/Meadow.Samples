@@ -1,9 +1,8 @@
 ﻿using Meadow;
 using Meadow.Foundation.Displays;
 using Meadow.Peripherals.Displays;
-using Meadow.Peripherals.Sensors;
-using Meadow.Peripherals.Sensors.Buttons;
 using WifiWeather.Core.Contracts;
+using WifiWeather.RPi.Controllers;
 
 namespace WifiWeather.RPi.Hardware;
 
@@ -11,27 +10,32 @@ internal class WifiWeatherHardware : IWifiWeatherHardware
 {
     private readonly RaspberryPi device;
     private readonly IPixelDisplay? display = null;
-    private readonly ITemperatureSensor temperatureSimulator;
 
-    public RotationType DisplayRotation => RotationType.Default;
+    public RotationType DisplayRotation => RotationType._270Degrees;
 
     public IPixelDisplay? Display => display;
 
-    public IButton? RightButton => null;
-
-    public IButton? LeftButton => null;
-
     public INetworkController NetworkController { get; }
 
-
-    public WifiWeatherHardware(RaspberryPi device, bool supportDisplay)
+    public WifiWeatherHardware(RaspberryPi device)
     {
         this.device = device;
 
-        if (supportDisplay)
-        {
-            // only if we have a display attached
-            display = new GtkDisplay(ColorMode.Format16bppRgb565);
-        }
+        var spiBus = device.CreateSpiBus(
+            device.Pins.SPI0_SCLK,
+            device.Pins.SPI0_MOSI,
+            device.Pins.SPI0_MISO,
+            new Meadow.Units.Frequency(48, Meadow.Units.Frequency.UnitType.Megahertz));
+
+        display = new Ili9341
+        (
+            spiBus,
+            chipSelectPin: device.Pins.GPIO16,
+            dcPin: device.Pins.GPIO21,
+            resetPin: device.Pins.GPIO20,
+            width: 240, height: 320
+        );
+
+        NetworkController = new NetworkController();
     }
 }

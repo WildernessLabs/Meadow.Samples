@@ -1,11 +1,12 @@
 using Meadow;
+using System.Threading.Tasks;
 
 namespace WifiWeather.RPi;
 
-public static class Program
+public class Program
 {
-    private static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
-        MeadowOS.Start(args);
+        await MeadowOS.Start(args);
     }
 }

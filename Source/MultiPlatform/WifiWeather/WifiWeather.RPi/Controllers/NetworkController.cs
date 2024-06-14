@@ -1,8 +1,8 @@
-using Meadow;
+﻿using Meadow;
 using System;
 using WifiWeather.Core.Contracts;
 
-namespace WifiWeather.DesktopApp.Controllers;
+namespace WifiWeather.RPi.Controllers;
 
 internal class NetworkController : INetworkController
 {
