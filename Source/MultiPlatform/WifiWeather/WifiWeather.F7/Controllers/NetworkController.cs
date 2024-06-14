@@ -2,45 +2,41 @@
 using Meadow.Hardware;
 using System;
 using System.Threading.Tasks;
-using wifiweather.Core;
+using WifiWeather.Core;
 
-namespace wifiweather.F7
+namespace WifiWeather.F7;
+
+internal class NetworkController : INetworkController
 {
-    internal class NetworkController : INetworkController
+    public event EventHandler? NetworkStatusChanged;
+
+    public NetworkController(F7MicroBase device)
     {
-        private const string WIFI_NAME = "[SOME_NAME]";
-        private const string WIFI_PASSWORD = "[SOME_SECRET]";
+        wifi = device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
-        public event EventHandler? NetworkStatusChanged;
+        wifi.NetworkConnected += OnNetworkConnected;
+        wifi.NetworkDisconnected += OnNetworkDisconnected;
+    }
 
-        public NetworkController(F7MicroBase device)
-        {
-            wifi = device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+    private void OnNetworkDisconnected(INetworkAdapter sender, NetworkDisconnectionEventArgs args)
+    {
+        // Handle logic when disconnected.
+    }
 
-            wifi.NetworkConnected += OnNetworkConnected;
-            wifi.NetworkDisconnected += OnNetworkDisconnected;
-        }
+    private void OnNetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
+    {
+        // Handle logic when connected.
+    }
 
-        private void OnNetworkDisconnected(INetworkAdapter sender, NetworkDisconnectionEventArgs args)
-        {
-            // Handle logic when disconnected.
-        }
+    private IWiFiNetworkAdapter? wifi;
 
-        private void OnNetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
-        {
-            // Handle logic when connected.
-        }
+    public bool IsConnected
+    {
+        get => wifi.IsConnected;
+    }
 
-        private IWiFiNetworkAdapter? wifi;
+    public async Task Connect()
+    {
 
-        public bool IsConnected
-        {
-            get => wifi.IsConnected;
-        }
-
-        public async Task Connect()
-        {
-            await wifi.Connect(WIFI_NAME, WIFI_PASSWORD, TimeSpan.FromSeconds(45));
-        }
     }
 }

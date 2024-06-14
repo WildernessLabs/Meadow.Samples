@@ -16,47 +16,39 @@ Coprocessor:
 
     # Should the ESP32 automatically attempt to connect to an access point at startup?
     # If set to true, wifi.yaml credentials must be stored in the device.
-#    AutomaticallyStartNetwork: true
+    AutomaticallyStartNetwork: true
 
     # Should the ESP32 automatically reconnect to the configured access point?
-#    AutomaticallyReconnect: true
+    AutomaticallyReconnect: true
 
     # Maximum number of retry attempts for connections etc. before an error code is returned.
-#    MaximumRetryCount: 7
+    MaximumRetryCount: 7
 
 # Network configuration.
 Network:
 
     # Network Interface (Default value is WiFi with DHCP)
-#    Interfaces:
-#        - Name: Ethernet
-#          UseDHCP: false
-#          IPAddress: 192.168.1.60
-#          NetMask: 255.255.255.0
-#          Gateway: 192.168.1.254
-#        - Name: WiFi
-#          UseDHCP: true
-#          IPAddress:
-#          NetMask:
-#          Gateway:
+    Interfaces:
+        - Name: WiFi
+          UseDHCP: true
 
     # Default Interface
-#    DefaultInterface: Wifi
+    DefaultInterface: Wifi
 
     # Automatically attempt to get the time at startup?
-#    GetNetworkTimeAtStartup: true
+    GetNetworkTimeAtStartup: true
 
     # Time synchronization period in seconds.
-#    NtpRefreshPeriod: 600
+    NtpRefreshPeriod: 600
 
     # Name of the NTP servers.
-#    NtpServers:
-#        - 0.pool.ntp.org
-#        - 1.pool.ntp.org
-#        - 2.pool.ntp.org
-#        - 3.pool.ntp.org
+    NtpServers:
+        - 0.pool.ntp.org
+        - 1.pool.ntp.org
+        - 2.pool.ntp.org
+        - 3.pool.ntp.org
 
     # IP addresses of the DNS servers.
-#    DnsServers:
-#        - 1.1.1.1
-#        - 8.8.8.8
+    DnsServers:
+        - 1.1.1.1
+        - 8.8.8.8
