@@ -47,7 +47,7 @@ public class MainController
         //    UpdateGraph();
         //};
 
-        displayController = new DisplayController(hardware.Display);
+        displayController = new DisplayController(hardware.Display, hardware.DisplayRotation);
         restClientController = new RestClientController();
 
         displayController.ShowSplashScreen();

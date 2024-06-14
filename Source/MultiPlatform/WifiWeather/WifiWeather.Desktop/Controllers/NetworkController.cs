@@ -1,3 +1,4 @@
+using Meadow;
 using System;
 using System.Threading.Tasks;
 using WifiWeather.Core;
@@ -10,7 +11,27 @@ namespace WifiWeather.DesktopApp
 
         public event EventHandler? NetworkStatusChanged;
 
-        public NetworkController() { }
+        public NetworkController()
+        {
+            Resolver.Log.Info($"Meadow.Windows Network Sample");
+
+            Resolver.Log.Info($"{MeadowApp.Device.NetworkAdapters.Count} network adapters detected");
+            Resolver.Log.Info($"----------------------------");
+
+            foreach (var adapter in MeadowApp.Device.NetworkAdapters)
+            {
+                Resolver.Log.Info($"  {adapter.Name}  {adapter.IpAddress}");
+            }
+
+            Resolver.Log.Info($"WiFi info");
+            Resolver.Log.Info($"----------------------------");
+            foreach (var wifi in MeadowApp.Device.NetworkAdapters)
+            {
+                IsConnected = wifi.IsConnected;
+
+                Resolver.Log.Info($"  {wifi.Name}  {wifi.IpAddress}");
+            }
+        }
 
         public bool IsConnected
         {

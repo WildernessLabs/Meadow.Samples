@@ -25,7 +25,7 @@ public class DisplayController
     private readonly int row1 = 135;
     private readonly int row2 = 170;
     private readonly int row3 = 205;
-    private Image weatherIcon = Image.LoadFromResource($"wifiweather.Assets.w_misc.bmp");
+    private Image weatherIcon = Image.LoadFromResource($"WifiWeather.Core.Resources.w_misc.bmp");
 
     public LineChartSeries OutdoorSeries { get; set; }
     protected DisplayScreen DisplayScreen { get; set; }
@@ -54,9 +54,9 @@ public class DisplayController
     protected Label Sunrise { get; set; }
     protected Label Sunset { get; set; }
 
-    public DisplayController(IPixelDisplay display)
+    public DisplayController(IPixelDisplay display, RotationType rotation)
     {
-        DisplayScreen = new DisplayScreen(display, RotationType._270Degrees)
+        DisplayScreen = new DisplayScreen(display, rotation)
         {
             BackgroundColor = backgroundColor
         };
@@ -77,7 +77,7 @@ public class DisplayController
             IsVisible = false
         };
 
-        var image = Image.LoadFromResource("wifiweather.Assets.img_meadow.bmp");
+        var image = Image.LoadFromResource("WifiWeather.Core.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, DisplayScreen.Width, DisplayScreen.Height, image)
         {
             BackColor = Color.FromHex("#14607F"),
@@ -133,7 +133,7 @@ public class DisplayController
         };
         DataLayout.Controls.Add(Counter);
 
-        var wifiImage = Image.LoadFromResource("wifiweather.Assets.img_wifi_connecting.bmp");
+        var wifiImage = Image.LoadFromResource("WifiWeather.Core.Resources.img_wifi_connecting.bmp");
         WifiStatus = new Picture(
             DisplayScreen.Width - wifiImage.Width - margin,
             margin,
@@ -146,7 +146,7 @@ public class DisplayController
         };
         DataLayout.Controls.Add(WifiStatus);
 
-        var syncImage = Image.LoadFromResource("wifiweather.Assets.img_refreshed.bmp");
+        var syncImage = Image.LoadFromResource("WifiWeather.Core.Resources.img_refreshed.bmp");
         SyncStatus = new Picture(
             DisplayScreen.Width - syncImage.Width - wifiImage.Width - margin * 2,
             margin,
@@ -183,7 +183,7 @@ public class DisplayController
         LineChart.Series.Add(OutdoorSeries);
         DataLayout.Controls.Add(LineChart);
 
-        var weatherImage = Image.LoadFromResource("wifiweather.Assets.w_misc.bmp");
+        var weatherImage = Image.LoadFromResource("WifiWeather.Core.Resources.w_misc.bmp");
         Weather = new Picture(
             margin,
             row1,
@@ -417,16 +417,16 @@ public class DisplayController
     public void UpdateWiFiStatus(bool isConnected)
     {
         var imageWiFi = isConnected
-            ? Image.LoadFromResource("wifiweather.Assets.img_wifi_connected.bmp")
-            : Image.LoadFromResource("wifiweather.Assets.img_wifi_connecting.bmp");
+            ? Image.LoadFromResource("WifiWeather.Core.Resources.img_wifi_connected.bmp")
+            : Image.LoadFromResource("WifiWeather.Core.Resources.img_wifi_connecting.bmp");
         WifiStatus.Image = imageWiFi;
     }
 
     public void UpdateSyncStatus(bool isSyncing)
     {
         var imageSync = isSyncing
-            ? Image.LoadFromResource("wifiweather.Assets.img_refreshing.bmp")
-            : Image.LoadFromResource("wifiweather.Assets.img_refreshed.bmp");
+            ? Image.LoadFromResource("WifiWeather.Core.Resources.img_refreshing.bmp")
+            : Image.LoadFromResource("WifiWeather.Core.Resources.img_refreshed.bmp");
         SyncStatus.Image = imageSync;
     }
 
