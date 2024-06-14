@@ -1,9 +1,4 @@
 using Meadow;
-using Meadow.Foundation.Displays;
-using Meadow.Logging;
-using System;
-using System.Threading.Tasks;
-using wifiweather.Core;
 
 namespace wifiweather.RPi
 {

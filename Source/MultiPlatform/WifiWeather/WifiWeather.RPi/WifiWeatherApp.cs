@@ -1,35 +1,35 @@
 ﻿using Meadow;
 using Meadow.Foundation.Displays;
-using Meadow.Pinouts;
-using System;
 using System.Threading.Tasks;
-using wifiweather.Core;
+using WifiWeather.Core;
 
-namespace wifiweather.RPi
+namespace WifiWeather.RPi;
+
+internal class wifiweatherApp : App<RaspberryPi>
 {
-    internal class wifiweatherApp : App<RaspberryPi>
+    private WifiWeatherHardware hardware;
+    private MainController? mainController;
+
+    public bool SupportDisplay { get; set; } = false;
+
+    public override Task Initialize()
     {
-        private wifiweatherHardware hardware;
-        private MainController mainController;
+        hardware = new WifiWeatherHardware(Device, SupportDisplay);
+        mainController = new MainController(hardware);
 
-        public bool SupportDisplay { get; set; } = false;
+        return Task.CompletedTask;
+    }
 
-        public override Task Initialize()
+    public override Task Run()
+    {
+        if (hardware.Display is GtkDisplay gtk)
         {
-            hardware = new wifiweatherHardware(Device, SupportDisplay);
-            mainController = new MainController();
-            return mainController.Initialize(hardware);
+            _ = mainController.Run();
+            gtk.Run();
         }
 
-        public override Task Run()
-        {
-            if (hardware.Display is GtkDisplay gtk)
-            {
-                _ = mainController.Run();
-                gtk.Run();
-            }
+        mainController!.Run();
 
-            return mainController.Run();
-        }
+        return Task.CompletedTask;
     }
 }

@@ -12,4 +12,8 @@
         <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Gtk\Driver\Displays.Gtk.csproj" />
         <ProjectReference Include="..\wifiweather.Core\wifiweather.Core.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
 </Project>
