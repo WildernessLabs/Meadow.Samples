@@ -11,9 +11,9 @@ internal class WifiWeatherHardware : IWifiWeatherHardware
     private readonly RaspberryPi device;
     private readonly IPixelDisplay? display = null;
 
-    public RotationType DisplayRotation => RotationType._270Degrees;
-
     public IPixelDisplay? Display => display;
+
+    public RotationType DisplayRotation => RotationType._270Degrees;
 
     public INetworkController NetworkController { get; }
 

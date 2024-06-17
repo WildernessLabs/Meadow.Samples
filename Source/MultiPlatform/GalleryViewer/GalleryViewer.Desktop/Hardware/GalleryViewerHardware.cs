@@ -10,7 +10,7 @@ namespace GalleryViewer.DesktopApp.Hardware;
 
 internal class GalleryViewerHardware : IGalleryViewerHardware
 {
-    private readonly Desktop device;
+    private readonly Meadow.Desktop device;
     private readonly Keyboard keyboard;
 
     public RotationType DisplayRotation => RotationType.Default;
@@ -21,7 +21,7 @@ internal class GalleryViewerHardware : IGalleryViewerHardware
 
     public IButton? LeftButton { get; }
 
-    public GalleryViewerHardware(Desktop device)
+    public GalleryViewerHardware(Meadow.Desktop device)
     {
         this.device = device;
 

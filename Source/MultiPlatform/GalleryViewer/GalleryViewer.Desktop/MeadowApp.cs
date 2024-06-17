@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GalleryViewer.DesktopApp;
 
-internal class MeadowApp : App<Desktop>
+internal class MeadowApp : App<Meadow.Desktop>
 {
     private MainController? mainController;
 

@@ -533,7 +533,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WifiWeather", "WifiWeather"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiWeather.Core", "MultiPlatform\WifiWeather\WifiWeather.Core\WifiWeather.Core.csproj", "{469890B2-3F6F-45D3-9CFE-3B940E54F895}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiWeather.DesktopApp", "MultiPlatform\WifiWeather\WifiWeather.Desktop\WifiWeather.DesktopApp.csproj", "{91D2DE6C-38E4-4AF2-BDFB-B8E422DF8807}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiWeather.Desktop", "MultiPlatform\WifiWeather\WifiWeather.Desktop\WifiWeather.Desktop.csproj", "{91D2DE6C-38E4-4AF2-BDFB-B8E422DF8807}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiWeather.F7", "MultiPlatform\WifiWeather\WifiWeather.F7\WifiWeather.F7.csproj", "{7FF65313-6537-4D18-BF48-EB6DA9AE4789}"
 EndProject
@@ -541,13 +541,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiWeather.RPi", "MultiPla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.Gtk", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Gtk\Driver\Displays.Gtk.csproj", "{57B4A398-775B-4FB2-AE3F-EE8B135E160C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryViewer.Core", "MultiPlatform\GalleryViewer\GalleryViewer.Core\GalleryViewer.Core.csproj", "{18E6D1CA-1A78-40F8-82E4-F03B0B76D706}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryViewer.Core", "MultiPlatform\GalleryViewer\GalleryViewer.Core\GalleryViewer.Core.csproj", "{18E6D1CA-1A78-40F8-82E4-F03B0B76D706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryViewer.Desktop", "MultiPlatform\GalleryViewer\GalleryViewer.Desktop\GalleryViewer.Desktop.csproj", "{DE4C0CE6-8A5E-42CF-804B-8B721393D271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryViewer.Desktop", "MultiPlatform\GalleryViewer\GalleryViewer.Desktop\GalleryViewer.Desktop.csproj", "{DE4C0CE6-8A5E-42CF-804B-8B721393D271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryViewer.F7", "MultiPlatform\GalleryViewer\GalleryViewer.F7\GalleryViewer.F7.csproj", "{B39DC5FD-3C18-4D6C-9B47-1FC9780AF8B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryViewer.F7", "MultiPlatform\GalleryViewer\GalleryViewer.F7\GalleryViewer.F7.csproj", "{B39DC5FD-3C18-4D6C-9B47-1FC9780AF8B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryViewer.RPi", "MultiPlatform\GalleryViewer\GalleryViewer.RPi\GalleryViewer.RPi.csproj", "{1705A290-5697-4171-AE38-9CA609854739}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryViewer.RPi", "MultiPlatform\GalleryViewer\GalleryViewer.RPi\GalleryViewer.RPi.csproj", "{1705A290-5697-4171-AE38-9CA609854739}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GalleryViewer", "GalleryViewer", "{722CEF8A-9917-4F65-9B71-22961F77322F}"
 EndProject

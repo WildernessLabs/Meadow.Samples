@@ -13,19 +13,29 @@ internal class GalleryViewerHardware : IGalleryViewerHardware
 
     public IPixelDisplay? Display => display;
 
-    public RotationType DisplayRotation => RotationType.Default;
+    public RotationType DisplayRotation => RotationType._270Degrees;
 
     public IButton? RightButton => null;
 
     public IButton? LeftButton => null;
 
-    public GalleryViewerHardware(RaspberryPi device, bool supportDisplay)
+    public GalleryViewerHardware(RaspberryPi device)
     {
         this.device = device;
 
-        if (supportDisplay)
-        { // only if we have a display attached
-            display = new GtkDisplay(ColorMode.Format16bppRgb565);
-        }
+        var spiBus = device.CreateSpiBus(
+            device.Pins.SPI0_SCLK,
+            device.Pins.SPI0_MOSI,
+            device.Pins.SPI0_MISO,
+            new Meadow.Units.Frequency(48, Meadow.Units.Frequency.UnitType.Megahertz));
+
+        display = new Ili9341
+        (
+            spiBus,
+            chipSelectPin: device.Pins.GPIO16,
+            dcPin: device.Pins.GPIO21,
+            resetPin: device.Pins.GPIO20,
+            width: 240, height: 320
+        );
     }
 }
