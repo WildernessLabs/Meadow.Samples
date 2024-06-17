@@ -10,21 +10,43 @@ public class MainController
     private DisplayController displayController;
     private InputController inputController;
 
+    private int selectedIndex = 0;
+
     public MainController() { }
 
     public Task Initialize(IGalleryViewerHardware hardware)
     {
         this.hardware = hardware;
 
-        //inputController = new InputController(hardware);
-        //inputController.UnitDownRequested += OnUnitDownRequested;
-        //inputController.UnitUpRequested += OnUnitUpRequested;
+        inputController = new InputController(hardware);
+        inputController.leftButtonPressed += LeftButtonPressed;
+        inputController.rightButtonPressed += RightButtonPressed;
 
         displayController = new DisplayController(
             this.hardware.Display,
             this.hardware.DisplayRotation);
 
         return Task.CompletedTask;
+    }
+
+    private void LeftButtonPressed(object sender, System.EventArgs e)
+    {
+        if (selectedIndex + 1 > 2)
+            selectedIndex = 0;
+        else
+            selectedIndex++;
+
+        displayController.UpdateDisplay(selectedIndex);
+    }
+
+    private void RightButtonPressed(object sender, System.EventArgs e)
+    {
+        if (selectedIndex - 1 < 0)
+            selectedIndex = 2;
+        else
+            selectedIndex--;
+
+        displayController.UpdateDisplay(selectedIndex);
     }
 
     public async Task Run()

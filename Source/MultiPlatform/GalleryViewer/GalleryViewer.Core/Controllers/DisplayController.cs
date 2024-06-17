@@ -7,12 +7,16 @@ namespace GalleryViewer.Core;
 
 public class DisplayController
 {
+    readonly string[] images = new string[3]
+    {
+        "GalleryViewer.Core.Assets.image1.bmp",
+        "GalleryViewer.Core.Assets.image2.bmp",
+        "GalleryViewer.Core.Assets.image3.bmp"
+    };
+
     private readonly DisplayScreen? screen;
 
-    private Image connectedImage;
-
-    private Picture networkIcon;
-
+    private Picture picture;
 
     public DisplayController(
         IPixelDisplay? display,
@@ -30,17 +34,14 @@ public class DisplayController
             rotation: displayRotation,
             theme: theme);
 
-        screen.Controls.Add(new Label(
-            0, 0, 128, 20)
-        {
-            Text = "Gallery Viewer",
-        });
-
-        UpdateDisplay();
+        var image = Image.LoadFromResource(images[0]);
+        picture = new Picture(
+            0, 0, screen.Width, screen.Height, image);
+        screen.Controls.Add(picture);
     }
 
-    private void UpdateDisplay()
+    public void UpdateDisplay(int imageIndex)
     {
-
+        picture.Image = Image.LoadFromResource(images[imageIndex]);
     }
 }

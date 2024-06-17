@@ -7,12 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Meadow.Foundation" Version="*" />
-        <PackageReference Include="Meadow.Foundation.Displays.Gtk" Version="*" />
-        <PackageReference Include="Meadow.Linux" Version="*" />
-    </ItemGroup>
-
-    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Gtk\Driver\Displays.Gtk.csproj" />
         <ProjectReference Include="..\galleryviewer.Core\GalleryViewer.Core.csproj" />
     </ItemGroup>
 </Project>
