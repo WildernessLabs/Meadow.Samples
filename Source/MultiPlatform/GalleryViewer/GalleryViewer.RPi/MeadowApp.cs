@@ -17,17 +17,20 @@ internal class MeadowApp : App<RaspberryPi>
     {
         hardware = new GalleryViewerHardware(Device, SupportDisplay);
         mainController = new MainController();
-        return mainController.Initialize(hardware);
+        mainController.Initialize(hardware);
+
+        return Task.CompletedTask;
     }
 
     public override Task Run()
     {
+        mainController?.Run();
+
         if (hardware.Display is GtkDisplay gtk)
         {
-            _ = mainController.Run();
             gtk.Run();
         }
 
-        return mainController.Run();
+        return Task.CompletedTask;
     }
 }

@@ -9,7 +9,7 @@ namespace GalleryViewer.DesktopApp;
 
 internal class MeadowApp : App<Desktop>
 {
-    private MainController mainController;
+    private MainController? mainController;
 
     public override Task Initialize()
     {
@@ -18,17 +18,19 @@ internal class MeadowApp : App<Desktop>
 
         var hardware = new GalleryViewerHardware(Device);
         mainController = new MainController();
-        return mainController.Initialize(hardware);
+        mainController.Initialize(hardware);
+
+        return Task.CompletedTask;
     }
 
     public override Task Run()
     {
         // this must be spawned in a worker because the UI needs the main thread
-        _ = mainController.Run();
+        _ = mainController?.Run();
 
         ExecutePlatformDisplayRunner();
 
-        return base.Run();
+        return Task.CompletedTask;
     }
 
     private void ExecutePlatformDisplayRunner()

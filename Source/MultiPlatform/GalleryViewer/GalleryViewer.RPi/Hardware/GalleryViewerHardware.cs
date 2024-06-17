@@ -11,9 +11,9 @@ internal class GalleryViewerHardware : IGalleryViewerHardware
     private readonly RaspberryPi device;
     private readonly IPixelDisplay? display = null;
 
-    public RotationType DisplayRotation => RotationType.Default;
-
     public IPixelDisplay? Display => display;
+
+    public RotationType DisplayRotation => RotationType.Default;
 
     public IButton? RightButton => null;
 

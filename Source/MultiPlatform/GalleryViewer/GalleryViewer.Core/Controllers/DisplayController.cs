@@ -9,27 +9,32 @@ public class DisplayController
 {
     private readonly DisplayScreen? screen;
 
-    private Picture networkIcon;
     private Image connectedImage;
+
+    private Picture networkIcon;
+
 
     public DisplayController(
         IPixelDisplay? display,
         RotationType displayRotation)
     {
-        if (display != null)
+        var theme = new DisplayTheme
         {
-            var theme = new DisplayTheme
-            {
-                Font = new Font12x20(),
-                BackgroundColor = Color.Black,
-                TextColor = Color.White
-            };
+            Font = new Font12x20(),
+            BackgroundColor = Color.Black,
+            TextColor = Color.White
+        };
 
-            screen = new DisplayScreen(
-                display,
-                rotation: displayRotation,
-                theme: theme);
-        }
+        screen = new DisplayScreen(
+            physicalDisplay: display,
+            rotation: displayRotation,
+            theme: theme);
+
+        screen.Controls.Add(new Label(
+            0, 0, 128, 20)
+        {
+            Text = "Gallery Viewer",
+        });
 
         UpdateDisplay();
     }

@@ -5,10 +5,15 @@
         <LangVersion>10</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
     <ItemGroup>
-        <EmbeddedResource Include="Assets\net-connected.bmp" />
-        <EmbeddedResource Include="Assets\net-disconnected.bmp" />
+      <None Remove="Assets\image1.jpg" />
+      <None Remove="Assets\image2.jpg" />
+      <None Remove="Assets\image3.jpg" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Assets\image1.jpg" />
+      <EmbeddedResource Include="Assets\image2.jpg" />
+      <EmbeddedResource Include="Assets\image3.jpg" />
     </ItemGroup>
 
     <ItemGroup>
