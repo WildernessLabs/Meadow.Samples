@@ -6,7 +6,7 @@
 Credentials:
 
     # WiFi SSID
-#    Ssid: YourSSID
+    Ssid: YourSSID
 
     # WiFi Password
-#    Password: SSIDPassword
+    Password: SSIDPassword

@@ -18,7 +18,13 @@ internal class AmbientMonitorHardware : IAmbientMonitorHardware
 
     public IPixelDisplay? Display => device.Display;
 
+    public INetworkAdapter? NetworkAdapter { get; }
+
     public ITemperatureSensor? TemperatureSensor { get; }
+
+    //public IBarometricPressureSensor? BarometricPressureSensor { get; }
+
+    //public IHumiditySensor? HumiditySensor { get; }
 
     public AmbientMonitorHardware(Desktop device)
     {
@@ -27,8 +33,13 @@ internal class AmbientMonitorHardware : IAmbientMonitorHardware
         keyboard = new Keyboard();
 
         TemperatureSensor = new SimulatedTemperatureSensor(
-            new Temperature(70, Temperature.UnitType.Fahrenheit),
-            keyboard.Pins.Up.CreateDigitalInterruptPort(InterruptMode.EdgeRising),
-            keyboard.Pins.Down.CreateDigitalInterruptPort(InterruptMode.EdgeRising));
+            new Temperature(20, Temperature.UnitType.Celsius),
+            new Temperature(18, Temperature.UnitType.Celsius),
+            new Temperature(25, Temperature.UnitType.Celsius));
+
+        if (MeadowApp.Device.NetworkAdapters.Count > 0)
+        {
+            NetworkAdapter = MeadowApp.Device.NetworkAdapters[0];
+        }
     }
 }

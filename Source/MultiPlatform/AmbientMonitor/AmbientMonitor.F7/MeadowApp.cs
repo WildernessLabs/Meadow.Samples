@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AmbientMonitor.F7;
 
-public class AmbientMonitorProjectLabApp : App<F7CoreComputeV2>
+public class MeadowApp : App<F7CoreComputeV2>
 {
     private MainController? mainController;
 
