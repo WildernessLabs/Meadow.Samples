@@ -28,6 +28,7 @@ internal class GalleryViewerHardware : IGalleryViewerHardware
         keyboard = new Keyboard();
 
         LeftButton = new PushButton(keyboard.Pins.Left.CreateDigitalInterruptPort(InterruptMode.EdgeFalling));
+
         RightButton = new PushButton(keyboard.Pins.Right.CreateDigitalInterruptPort(InterruptMode.EdgeFalling));
     }
 }
