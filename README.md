@@ -768,19 +768,18 @@ Meadow project samples build with StartKit. Same codebase runs on Meadow F7 devi
 <table>
     <tr>
         <td>
-            <a href="Source/MultiPlatform/WiFinder/"><img src="Design/template-green.png" /></a><br/>
-            Send environmental data to Azure IoT Hub via AMQP or MQTT</br>
-            <a href="https://www.hackster.io/wilderness-labs/send-temperature-humidity-data-from-meadow-to-azure-iot-hub-340b39">Hackster</a> | 
-            <a href="Source/Azure/F7Feather_AzureIoTHub/">Source Code</a>
+            <a href="Source/MultiPlatform/WiFinder/"><img src="Design/wildernesslabs-meadow-startkit-ambientmonitor.jpg" /></a><br/>
+            Send environmental data to Meadow.Cloud</br> 
+            <a href="Source/MultiPlatform/AmbientMonitor/">Source Code</a>
         </td>
         <td>
             <a href="Source/Azure/ProjectLab_AzureIoTHub/"><img src="Design/wildernesslabs-meadow-startkit-wifiweather.jpg"/></a><br/>
-            Get local weather forecast using Meadow Startkit.<br/> 
+            Get local weather forecast using Meadow Startkit<br/> 
             <a href="Source/MultiPlatform/WifiWeather/">Source Code</a>
         </td>
         <td>
             <a href="Source/Azure/Web_AzureIoTHub/"><img src="Design/wildernesslabs-meadow-startkit-galleryviewer.jpg"/></a><br/>
-            Basic image viewer using Meadow StartKit.</br>
+            Basic image viewer using Meadow StartKit</br>
             <a href="Source/MultiPlatform/GalleryViewer/">Source Code</a>
         </td>
     </tr>
