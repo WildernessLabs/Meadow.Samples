@@ -10,18 +10,18 @@ namespace GalleryViewer.DesktopApp.Hardware;
 
 internal class GalleryViewerHardware : IGalleryViewerHardware
 {
-    private readonly Meadow.Desktop device;
+    private readonly Desktop device;
     private readonly Keyboard keyboard;
-
-    public RotationType DisplayRotation => RotationType.Default;
-
-    public IPixelDisplay? Display => device.Display;
-
-    public IButton? RightButton { get; }
 
     public IButton? LeftButton { get; }
 
-    public GalleryViewerHardware(Meadow.Desktop device)
+    public IButton? RightButton { get; }
+
+    public IPixelDisplay? Display => device.Display;
+
+    public RotationType DisplayRotation => RotationType.Default;
+
+    public GalleryViewerHardware(Desktop device)
     {
         this.device = device;
 
