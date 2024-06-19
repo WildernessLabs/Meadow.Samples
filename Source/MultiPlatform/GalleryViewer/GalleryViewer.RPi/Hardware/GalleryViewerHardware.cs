@@ -12,9 +12,9 @@ namespace GalleryViewer.RPi.Hardware;
 internal class GalleryViewerHardware : IGalleryViewerHardware
 {
     private readonly RaspberryPi device;
-    private readonly IPixelDisplay? display = null;
-    private readonly IButton? leftButton = null;
-    private readonly IButton? rightButton = null;
+    private readonly IButton? leftButton;
+    private readonly IButton? rightButton;
+    private readonly IPixelDisplay? display;
 
     public IButton? LeftButton => leftButton;
 
@@ -30,7 +30,7 @@ internal class GalleryViewerHardware : IGalleryViewerHardware
 
         leftButton = new PushButton(device.Pins.GPIO26, ResistorMode.ExternalPullUp);
 
-        rightButton = new PushButton(device.Pins.GPIO19, ResistorMode.ExternalPullDown);
+        rightButton = new PushButton(device.Pins.GPIO19, ResistorMode.ExternalPullUp);
 
         var spiBus = device.CreateSpiBus(
             device.Pins.SPI0_SCLK,

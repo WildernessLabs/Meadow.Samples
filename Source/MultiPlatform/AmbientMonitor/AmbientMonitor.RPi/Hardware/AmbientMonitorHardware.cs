@@ -2,6 +2,7 @@
 using Meadow;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Sensors;
+using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Hardware;
 using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Sensors;
@@ -14,34 +15,37 @@ namespace AmbientMonitor.RPi.Hardware;
 internal class AmbientMonitorHardware : IAmbientMonitorHardware
 {
     private readonly RaspberryPi device;
-    private readonly IPixelDisplay? display = null;
+    private readonly IButton? leftButton;
+    private readonly IButton? rightButton;
+    private readonly IPixelDisplay? display;
+    private readonly INetworkAdapter? networkAdapter;
     private readonly ITemperatureSensor temperatureSimulator;
     private readonly IBarometricPressureSensor barometricPressureSensor;
     private readonly IHumiditySensor humiditySensor;
 
-    public IButton? LeftButton { get; }
+    public IButton? LeftButton => leftButton;
 
-    public IButton? RightButton { get; }
+    public IButton? RightButton => rightButton;
 
     public IPixelDisplay? Display => display;
 
     public RotationType DisplayRotation => RotationType._270Degrees;
 
-    public INetworkAdapter? NetworkAdapter { get; }
+    public INetworkAdapter? NetworkAdapter => networkAdapter;
 
-    public ITemperatureSensor? TemperatureSensor { get; }
+    public ITemperatureSensor? TemperatureSensor => temperatureSimulator;
 
-    public IBarometricPressureSensor? BarometricPressureSensor { get; }
+    public IBarometricPressureSensor? BarometricPressureSensor => barometricPressureSensor;
 
-    public IHumiditySensor? HumiditySensor { get; }
+    public IHumiditySensor? HumiditySensor => humiditySensor;
 
     public AmbientMonitorHardware(RaspberryPi device)
     {
         this.device = device;
 
-        //LeftButton = new PushButton(keyboard.Pins.Left.CreateDigitalInterruptPort(InterruptMode.EdgeFalling));
+        leftButton = new PushButton(device.Pins.GPIO26, ResistorMode.ExternalPullUp);
 
-        //RightButton = new PushButton(keyboard.Pins.Right.CreateDigitalInterruptPort(InterruptMode.EdgeFalling));
+        rightButton = new PushButton(device.Pins.GPIO19, ResistorMode.ExternalPullUp);
 
         var spiBus = device.CreateSpiBus(
            device.Pins.SPI0_SCLK,
@@ -58,18 +62,18 @@ internal class AmbientMonitorHardware : IAmbientMonitorHardware
             width: 240, height: 320
         );
 
-        TemperatureSensor = new SimulatedTemperatureSensor(
+        temperatureSimulator = new SimulatedTemperatureSensor(
             new Temperature(20, Temperature.UnitType.Celsius),
             new Temperature(18, Temperature.UnitType.Celsius),
             new Temperature(25, Temperature.UnitType.Celsius));
 
-        BarometricPressureSensor = new SimulatedBarometricPressureSensor();
+        barometricPressureSensor = new SimulatedBarometricPressureSensor();
 
-        HumiditySensor = new SimulatedHumiditySensor();
+        humiditySensor = new SimulatedHumiditySensor();
 
         if (MeadowApp.Device.NetworkAdapters.Count > 0)
         {
-            NetworkAdapter = MeadowApp.Device.NetworkAdapters[0];
+            networkAdapter = MeadowApp.Device.NetworkAdapters[0];
         }
     }
 }
