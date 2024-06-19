@@ -14,8 +14,8 @@ public class DisplayController
     private readonly int margin = 15;
 
     private Color TextColor = Color.White;
-    private Color backgroundColor = Color.FromHex("14607F");
-    private Color foregroundColor = Color.FromHex("10485E");
+    private Color backgroundColor = Color.FromHex("575E3C");
+    private Color foregroundColor = Color.FromHex("323626");
     private Color chartCurveColor = Color.FromHex("EF7D3B");
 
     private Font6x8 font6x8 = new Font6x8();
@@ -64,10 +64,10 @@ public class DisplayController
             IsVisible = false
         };
 
-        var image = Image.LoadFromResource("AmbientMonitor.Core.Assets.img_meadow.bmp");
+        var image = Image.LoadFromResource("AmbientMonitor.Core.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, displayScreen.Width, displayScreen.Height, image)
         {
-            BackColor = Meadow.Color.FromHex("14607F"),
+            BackColor = Meadow.Color.FromHex("575E3C"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
@@ -106,7 +106,7 @@ public class DisplayController
         };
         dataLayout.Controls.Add(latestReading);
 
-        var wifiImage = Image.LoadFromResource("AmbientMonitor.Core.Assets.img_wifi_connecting.bmp");
+        var wifiImage = Image.LoadFromResource("AmbientMonitor.Core.Resources.img-wifi-fade.bmp");
         wifiStatus = new Picture(displayScreen.Width - wifiImage.Width - margin, 0, wifiImage.Width, rowHeight, wifiImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
@@ -114,7 +114,7 @@ public class DisplayController
         };
         dataLayout.Controls.Add(wifiStatus);
 
-        var syncImage = Image.LoadFromResource("AmbientMonitor.Core.Assets.img_refreshed.bmp");
+        var syncImage = Image.LoadFromResource("AmbientMonitor.Core.Resources.img-sync-fade.bmp");
         syncStatus = new Picture(displayScreen.Width - syncImage.Width - wifiImage.Width - margin * 2, 0, syncImage.Width, rowHeight, syncImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
@@ -278,8 +278,8 @@ public class DisplayController
     public void UpdateWiFiStatus(bool isConnected)
     {
         var imageWiFi = isConnected
-            ? Image.LoadFromResource("AmbientMonitor.Core.Assets.img_wifi_connected.bmp")
-            : Image.LoadFromResource("AmbientMonitor.Core.Assets.img_wifi_connecting.bmp");
+            ? Image.LoadFromResource("AmbientMonitor.Core.Resources.img-wifi.bmp")
+            : Image.LoadFromResource("AmbientMonitor.Core.Resources.img-wifi-fade.bmp");
         wifiStatus.Image = imageWiFi;
 
         if (!isConnected && lineChartSeries.Points.Count == 0)
@@ -295,8 +295,8 @@ public class DisplayController
     public void UpdateSyncStatus(bool isSyncing)
     {
         var imageSync = isSyncing
-            ? Image.LoadFromResource("AmbientMonitor.Core.Assets.img_refreshing.bmp")
-            : Image.LoadFromResource("AmbientMonitor.Core.Assets.img_refreshed.bmp");
+            ? Image.LoadFromResource("AmbientMonitor.Core.Resources.img-sync-fade.bmp")
+            : Image.LoadFromResource("AmbientMonitor.Core.Resources.img-sync.bmp");
         syncStatus.Image = imageSync;
     }
 }
