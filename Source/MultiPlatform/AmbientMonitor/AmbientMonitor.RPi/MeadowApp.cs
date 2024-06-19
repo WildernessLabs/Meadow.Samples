@@ -7,14 +7,13 @@ namespace AmbientMonitor.RPi;
 
 internal class MeadowApp : App<RaspberryPi>
 {
-    private AmbientMonitorHardware hardware;
     private MainController? mainController;
 
     public bool SupportDisplay { get; set; } = false;
 
     public override Task Initialize()
     {
-        hardware = new AmbientMonitorHardware(Device);
+        var hardware = new AmbientMonitorHardware(Device);
         mainController = new MainController();
         mainController.Initialize(hardware);
 
@@ -23,7 +22,7 @@ internal class MeadowApp : App<RaspberryPi>
 
     public override Task Run()
     {
-        mainController.Run();
+        mainController?.Run();
 
         return Task.CompletedTask;
     }
