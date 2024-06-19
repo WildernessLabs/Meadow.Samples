@@ -34,8 +34,8 @@ public class MainController
         Resolver.Services.Add(cloudLogger);
 
         inputController = new InputController(hardware);
-        inputController.leftButtonPressed += LeftButtonPressed;
-        inputController.rightButtonPressed += RightButtonPressed;
+        inputController.LeftButtonPressed += LeftButtonPressed;
+        inputController.RightButtonPressed += RightButtonPressed;
 
         displayController = new DisplayController(
             this.hardware.Display,

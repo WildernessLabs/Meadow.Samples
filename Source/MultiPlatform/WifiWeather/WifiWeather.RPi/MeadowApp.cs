@@ -25,7 +25,7 @@ public class MeadowApp : App<RaspberryPi>
     {
         Resolver.Log.Info("Run...");
 
-        mainController!.Run();
+        mainController?.Run();
 
         return Task.CompletedTask;
     }

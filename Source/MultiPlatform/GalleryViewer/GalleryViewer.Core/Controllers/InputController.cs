@@ -5,20 +5,20 @@ namespace GalleryViewer.Core.Controllers;
 
 public class InputController
 {
-    public event EventHandler? leftButtonPressed;
+    public event EventHandler? LeftButtonPressed;
 
-    public event EventHandler? rightButtonPressed;
+    public event EventHandler? RightButtonPressed;
 
     public InputController(IGalleryViewerHardware platform)
     {
         if (platform.LeftButton is { } leftButton)
         {
-            leftButton.PressStarted += (s, e) => leftButtonPressed?.Invoke(this, EventArgs.Empty);
+            leftButton.PressStarted += (s, e) => LeftButtonPressed?.Invoke(this, EventArgs.Empty);
         }
 
         if (platform.RightButton is { } rightButton)
         {
-            rightButton.PressStarted += (s, e) => rightButtonPressed?.Invoke(this, EventArgs.Empty);
+            rightButton.PressStarted += (s, e) => RightButtonPressed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

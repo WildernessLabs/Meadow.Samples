@@ -16,6 +16,8 @@ internal class MeadowApp : App<Desktop>
         // output log messages to the VS debug window
         Resolver.Log.AddProvider(new DebugLogProvider());
 
+        Resolver.Log.Info("Initialize...");
+
         var hardware = new WifiWeatherHardware(Device);
         mainController = new MainController();
         mainController.Initialize(hardware);
@@ -25,6 +27,8 @@ internal class MeadowApp : App<Desktop>
 
     public override Task Run()
     {
+        Resolver.Log.Info("Run...");
+
         // this must be spawned in a worker because the UI needs the main thread
         _ = mainController!.Run();
 

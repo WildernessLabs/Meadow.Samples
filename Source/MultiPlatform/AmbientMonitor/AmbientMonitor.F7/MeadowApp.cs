@@ -11,7 +11,10 @@ public class MeadowApp : App<F7CoreComputeV2>
 
     public override Task Initialize()
     {
+        Resolver.Log.Info("Initialize...");
+
         var hardware = new AmbientMonitorProjectLabHardware(Device);
+
         mainController = new MainController();
         mainController.Initialize(hardware);
 
@@ -20,6 +23,8 @@ public class MeadowApp : App<F7CoreComputeV2>
 
     public override Task Run()
     {
+        Resolver.Log.Info("Run...");
+
         mainController?.Run();
 
         return Task.CompletedTask;

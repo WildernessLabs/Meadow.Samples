@@ -9,13 +9,13 @@ internal class GalleryViewerProjectLabHardware : IGalleryViewerHardware
 {
     private readonly IProjectLabHardware projLab;
 
-    public IPixelDisplay? Display => projLab.Display;
-
-    public RotationType DisplayRotation => RotationType._270Degrees;
-
     public IButton? LeftButton => projLab.LeftButton;
 
     public IButton? RightButton => projLab.RightButton;
+
+    public IPixelDisplay? Display => projLab.Display;
+
+    public RotationType DisplayRotation => RotationType._270Degrees;
 
     public GalleryViewerProjectLabHardware(F7CoreComputeV2 device)
     {

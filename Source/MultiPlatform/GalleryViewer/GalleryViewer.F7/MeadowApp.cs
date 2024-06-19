@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 
 namespace GalleryViewer.F7;
 
-public class GalleryViewerF7FeatherApp : App<F7FeatherV2>
+public class MeadowApp : App<F7CoreComputeV2>
 {
     private MainController? mainController;
 
     public override Task Initialize()
     {
-        var hardware = new GalleryViewerF7FeatherHardware(Device);
+        Resolver.Log.Info("Initialize...");
+
+        var hardware = new GalleryViewerProjectLabHardware(Device);
+
         mainController = new MainController();
         mainController.Initialize(hardware);
 
@@ -20,7 +23,7 @@ public class GalleryViewerF7FeatherApp : App<F7FeatherV2>
 
     public override Task Run()
     {
-        mainController?.Run();
+        Resolver.Log.Info("Run...");
 
         return Task.CompletedTask;
     }

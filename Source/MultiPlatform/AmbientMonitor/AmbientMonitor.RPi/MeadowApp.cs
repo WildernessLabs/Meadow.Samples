@@ -13,6 +13,8 @@ internal class MeadowApp : App<RaspberryPi>
 
     public override Task Initialize()
     {
+        Resolver.Log.Info("Initialize...");
+
         var hardware = new AmbientMonitorHardware(Device);
         mainController = new MainController();
         mainController.Initialize(hardware);
@@ -22,6 +24,8 @@ internal class MeadowApp : App<RaspberryPi>
 
     public override Task Run()
     {
+        Resolver.Log.Info("Run...");
+
         mainController?.Run();
 
         return Task.CompletedTask;

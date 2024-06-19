@@ -11,7 +11,10 @@ internal class MeadowApp : App<RaspberryPi>
 
     public override Task Initialize()
     {
+        Resolver.Log.Info("Initialize...");
+
         var hardware = new GalleryViewerHardware(Device);
+
         mainController = new MainController();
         mainController.Initialize(hardware);
 
@@ -20,7 +23,7 @@ internal class MeadowApp : App<RaspberryPi>
 
     public override Task Run()
     {
-        mainController?.Run();
+        Resolver.Log.Info("Run...");
 
         return Task.CompletedTask;
     }

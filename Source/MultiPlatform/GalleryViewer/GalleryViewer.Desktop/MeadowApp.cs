@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GalleryViewer.DesktopApp;
 
-internal class MeadowApp : App<Meadow.Desktop>
+internal class MeadowApp : App<Desktop>
 {
     private MainController? mainController;
 
@@ -16,7 +16,10 @@ internal class MeadowApp : App<Meadow.Desktop>
         // output log messages to the VS debug window
         Resolver.Log.AddProvider(new DebugLogProvider());
 
+        Resolver.Log.Info("Initialize...");
+
         var hardware = new GalleryViewerHardware(Device);
+
         mainController = new MainController();
         mainController.Initialize(hardware);
 
@@ -25,8 +28,7 @@ internal class MeadowApp : App<Meadow.Desktop>
 
     public override Task Run()
     {
-        // this must be spawned in a worker because the UI needs the main thread
-        _ = mainController?.Run();
+        Resolver.Log.Info("Run...");
 
         ExecutePlatformDisplayRunner();
 

@@ -20,8 +20,8 @@ public class MainController
         this.hardware = hardware;
 
         inputController = new InputController(hardware);
-        inputController.leftButtonPressed += LeftButtonPressed;
-        inputController.rightButtonPressed += RightButtonPressed;
+        inputController.LeftButtonPressed += LeftButtonPressed;
+        inputController.RightButtonPressed += RightButtonPressed;
 
         displayController = new DisplayController(
             this.hardware.Display,
@@ -48,15 +48,5 @@ public class MainController
             selectedIndex--;
 
         displayController.UpdateDisplay(selectedIndex);
-    }
-
-    public async Task Run()
-    {
-        while (true)
-        {
-            // add any app logic here
-
-            await Task.Delay(5000);
-        }
     }
 }
