@@ -292,11 +292,11 @@ public class DisplayController
         }
     }
 
-    public void UpdateSyncStatus(bool isSyncing)
+    public void UpdateSyncStatus(bool isSynced)
     {
-        var imageSync = isSyncing
-            ? Image.LoadFromResource("AmbientMonitor.Core.Assets.img-sync-fade.bmp")
-            : Image.LoadFromResource("AmbientMonitor.Core.Assets.img-sync.bmp");
+        var imageSync = isSynced
+            ? Image.LoadFromResource("AmbientMonitor.Core.Assets.img-sync.bmp")
+            : Image.LoadFromResource("AmbientMonitor.Core.Assets.img-sync-fade.bmp");
         syncStatus.Image = imageSync;
     }
 }

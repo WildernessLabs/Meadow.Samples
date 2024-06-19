@@ -1,5 +1,6 @@
 ﻿using AmbientMonitor.Core.Contracts;
 using AmbientMonitor.Core.Controllers;
+using AmbientMonitor.Core.Models;
 using Meadow;
 using Meadow.Logging;
 using System;
@@ -14,6 +15,7 @@ public class MainController
     int TIMEZONE_OFFSET = -7; // UTC-8
 
     private IAmbientMonitorHardware? hardware;
+    private SensorController sensorController;
     private DisplayController displayController;
     private InputController inputController;
 
@@ -28,6 +30,10 @@ public class MainController
     public Task Initialize(IAmbientMonitorHardware hardware)
     {
         this.hardware = hardware;
+
+        sensorController = new SensorController(hardware);
+        sensorController.Updated += SensorControllerUpdated;
+
 
         var cloudLogger = new CloudLogger();
         Resolver.Log.AddProvider(cloudLogger);
@@ -45,6 +51,58 @@ public class MainController
         displayController.ShowDataScreen();
 
         return Task.CompletedTask;
+    }
+
+    private void SensorControllerUpdated(object sender, AtmosphericConditions e)
+    {
+        displayController.UpdateWiFiStatus(hardware.NetworkAdapter.IsConnected);
+
+        temperatureReadings.Add(e.Temperature.Celsius);
+        if (temperatureReadings.Count > 10)
+        {
+            temperatureReadings.RemoveAt(0);
+        }
+
+        pressureReadings.Add(e.Pressure.Millibar);
+        if (pressureReadings.Count > 10)
+        {
+            pressureReadings.RemoveAt(0);
+        }
+
+        humidityReadings.Add(e.Humidity.Percent);
+        if (humidityReadings.Count > 10)
+        {
+            humidityReadings.RemoveAt(0);
+        }
+
+        if (hardware.NetworkAdapter.IsConnected)
+        {
+            displayController.UpdateSyncStatus(true);
+            displayController.UpdateStatus("Sending data...");
+            Thread.Sleep(2000);
+
+            var cloudLogger = Resolver.Services.Get<CloudLogger>();
+            cloudLogger?.LogEvent(1000, "environment reading", new Dictionary<string, object>()
+            {
+                { "temperature", $"{e.Temperature.Celsius:N2}" },
+                { "pressure", $"{e.Pressure.Millibar:N2}" },
+                { "humidity", $"{e.Humidity.Percent:N2}" },
+            });
+
+            displayController.UpdateStatus("Data sent!");
+            Thread.Sleep(2000);
+            displayController.UpdateSyncStatus(false);
+
+            displayController.UpdateLatestReading(DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("hh:mm tt dd/MM/yy"));
+
+            UpdateGraph();
+        }
+        else
+        {
+            displayController.UpdateStatus("Offline...");
+        }
+
+        displayController.UpdateStatus(DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("hh:mm tt dd/MM/yy"));
     }
 
     private void LeftButtonPressed(object sender, EventArgs e)
@@ -76,91 +134,10 @@ public class MainController
         }
     }
 
-    private void RecordSensor()
+    public Task Run()
     {
-        var temperature = hardware?.TemperatureSensor?.Temperature;
-        if (temperature != null)
-        {
-            temperatureReadings.Add(temperature.Value.Celsius);
-            if (temperatureReadings.Count > 10)
-            {
-                temperatureReadings.RemoveAt(0);
-            }
-        }
+        _ = sensorController.StartUpdating(TimeSpan.FromMinutes(1));
 
-        var pressure = hardware?.BarometricPressureSensor?.Pressure;
-        if (pressure != null)
-        {
-            pressureReadings.Add(pressure.Value.Millibar);
-            if (pressureReadings.Count > 10)
-            {
-                pressureReadings.RemoveAt(0);
-            }
-        }
-
-        var humidity = hardware?.HumiditySensor?.Humidity;
-        if (humidity != null)
-        {
-            humidityReadings.Add(humidity.Value.Percent);
-            if (humidityReadings.Count > 10)
-            {
-                humidityReadings.RemoveAt(0);
-            }
-        }
-
-        if (hardware.NetworkAdapter.IsConnected)
-        {
-            displayController.UpdateSyncStatus(true);
-            displayController.UpdateStatus("Sending data...");
-            Thread.Sleep(2000);
-
-            var cloudLogger = Resolver.Services.Get<CloudLogger>();
-            cloudLogger?.LogEvent(1000, "environment reading", new Dictionary<string, object>()
-            {
-                { "temperature", $"{(temperature?.Celsius)}" },
-                { "pressure", $"{pressure?.Millibar:N2}" },
-                { "humidity", $"{humidity?.Percent:N2}" },
-            });
-
-            displayController.UpdateStatus("Data sent!");
-            Thread.Sleep(2000);
-            displayController.UpdateSyncStatus(false);
-            displayController.UpdateStatus(DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("hh:mm tt dd/MM/yy"));
-
-            displayController.UpdateLatestReading(DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("hh:mm tt dd/MM/yy"));
-
-            UpdateGraph();
-        }
-        else
-        {
-            displayController.UpdateStatus("Offline...");
-        }
-    }
-
-    public async Task Run()
-    {
-        hardware?.TemperatureSensor.StartUpdating(TimeSpan.FromMinutes(1));
-        hardware?.BarometricPressureSensor.StartUpdating(TimeSpan.FromMinutes(1));
-        hardware?.HumiditySensor.StartUpdating(TimeSpan.FromMinutes(1));
-
-        while (true)
-        {
-            displayController.UpdateWiFiStatus(hardware.NetworkAdapter.IsConnected);
-
-            if (hardware.NetworkAdapter.IsConnected)
-            {
-                displayController.UpdateStatus(DateTime.Now.AddHours(TIMEZONE_OFFSET).ToString("hh:mm tt dd/MM/yy"));
-
-                RecordSensor();
-
-                await Task.Delay(TimeSpan.FromMinutes(1));
-            }
-            else
-            {
-                displayController.UpdateStatus("Offline...");
-
-                await Task.Delay(TimeSpan.FromSeconds(10));
-            }
-        }
+        return Task.CompletedTask;
     }
 }
