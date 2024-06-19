@@ -13,8 +13,8 @@ namespace WifiWeather.F7
         public override Task Initialize()
         {
             var hardware = new WifiWeatherProjectLabHardware(Device);
-            mainController = new MainController(hardware);
-            mainController.Initialize();
+            mainController = new MainController();
+            mainController.Initialize(hardware);
 
             return Task.CompletedTask;
         }

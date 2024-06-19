@@ -1,4 +1,5 @@
 ﻿using GalleryViewer.Core.Contracts;
+using GalleryViewer.Core.Controllers;
 using System.Threading.Tasks;
 
 namespace GalleryViewer.Core;

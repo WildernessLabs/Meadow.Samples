@@ -15,8 +15,8 @@ public class MeadowApp : App<RaspberryPi>
 
         var hardware = new WifiWeatherHardware(Device);
 
-        mainController = new MainController(hardware);
-        mainController.Initialize();
+        mainController = new MainController();
+        mainController.Initialize(hardware);
 
         return Task.CompletedTask;
     }

@@ -17,8 +17,8 @@ internal class MeadowApp : App<Desktop>
         Resolver.Log.AddProvider(new DebugLogProvider());
 
         var hardware = new WifiWeatherHardware(Device);
-        mainController = new MainController(hardware);
-        mainController.Initialize();
+        mainController = new MainController();
+        mainController.Initialize(hardware);
 
         return Task.CompletedTask;
     }

@@ -1,7 +1,7 @@
 ﻿using GalleryViewer.Core.Contracts;
 using System;
 
-namespace GalleryViewer.Core;
+namespace GalleryViewer.Core.Controllers;
 
 public class InputController
 {

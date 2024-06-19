@@ -3,7 +3,7 @@ using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
 
-namespace GalleryViewer.Core;
+namespace GalleryViewer.Core.Controllers;
 
 public class DisplayController
 {

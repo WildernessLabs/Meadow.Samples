@@ -15,6 +15,7 @@ public class MainController
     private int currentGraphType = 0;
 
     private IWifiWeatherHardware hardware;
+    private InputController inputController;
     private DisplayController displayController;
     private RestClientController restClientController;
 
@@ -22,26 +23,15 @@ public class MainController
     private List<double> pressureReadings = new List<double>();
     private List<double> humidityReadings = new List<double>();
 
-    public MainController(IWifiWeatherHardware hardware)
+    public MainController() { }
+
+    public void Initialize(IWifiWeatherHardware hardware)
     {
         this.hardware = hardware;
-    }
 
-    public void Initialize()
-    {
-        hardware.UpButton.PressStarted += (s, e) =>
-        {
-            currentGraphType = currentGraphType - 1 < 0 ? 2 : currentGraphType - 1;
-
-            UpdateGraph();
-        };
-
-        hardware.DownButton.PressStarted += (s, e) =>
-        {
-            currentGraphType = currentGraphType + 1 > 2 ? 0 : currentGraphType + 1;
-
-            UpdateGraph();
-        };
+        inputController = new InputController(hardware);
+        inputController.UpButtonPressed += UpButtonPressed;
+        inputController.DownButtonPressed += DownButtonPressed;
 
         displayController = new DisplayController(hardware.Display, hardware.DisplayRotation);
         restClientController = new RestClientController();
@@ -49,6 +39,20 @@ public class MainController
         displayController.ShowSplashScreen();
         Thread.Sleep(3000);
         displayController.ShowDataScreen();
+    }
+
+    private void UpButtonPressed(object sender, EventArgs e)
+    {
+        currentGraphType = currentGraphType - 1 < 0 ? 2 : currentGraphType - 1;
+
+        UpdateGraph();
+    }
+
+    private void DownButtonPressed(object sender, EventArgs e)
+    {
+        currentGraphType = currentGraphType + 1 > 2 ? 0 : currentGraphType + 1;
+
+        UpdateGraph();
     }
 
     private void UpdateGraph()
