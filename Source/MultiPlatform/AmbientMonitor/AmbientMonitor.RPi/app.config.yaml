@@ -15,4 +15,4 @@ Logging:
 MeadowCloud:
 
     # Enable Logging, Events, Command + Control
-#    Enabled: false
+    Enabled: true
