@@ -9,10 +9,10 @@ Logging:
     LogLevel:
     
         # Trace, Debug, Information, Warning, or Error
-        Default: Information
+        Default: Trace
 
 # Meadow.Cloud configuration.
 MeadowCloud:
 
     # Enable Logging, Events, Command + Control
-#    Enabled: false
+    Enabled: true

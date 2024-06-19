@@ -90,7 +90,7 @@ public class DisplayController
 
         status = new Label(margin, 15, displayScreen.Width / 2, 20)
         {
-            Text = $"--:-- -- --/--/--",
+            Text = "--:-- -- --/--/--",
             TextColor = TextColor,
             Font = font12X20,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -99,7 +99,7 @@ public class DisplayController
 
         latestReading = new Label(margin, 37, displayScreen.Width / 2, 8)
         {
-            Text = $"Latest Reading: --:-- -- --/--/--",
+            Text = "Latest Reading: --:-- -- --/--/--",
             TextColor = TextColor,
             Font = font6x8,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -161,7 +161,7 @@ public class DisplayController
             displayScreen.Width - margin * 2,
             axisLabelsHeight)
         {
-            Text = $"Y: Celcius | X: Every 30 minutes",
+            Text = "Y: Celcius | X: Every minute",
             TextColor = TextColor,
             BackColor = foregroundColor,
             Font = font6x8,
@@ -172,7 +172,7 @@ public class DisplayController
 
         temperature = new Label(15, 205, 115, 20)
         {
-            Text = $"TEMPERATURE",
+            Text = "TEMPERATURE",
             TextColor = TextColor,
             BackColor = foregroundColor,
             Font = font8x12,
@@ -183,7 +183,7 @@ public class DisplayController
 
         pressure = new Label(130, 205, 89, 20)
         {
-            Text = $"PRESSURE",
+            Text = "PRESSURE",
             TextColor = TextColor,
             BackColor = backgroundColor,
             Font = font8x12,
@@ -194,7 +194,7 @@ public class DisplayController
 
         humidity = new Label(219, 205, 86, 20)
         {
-            Text = $"HUMIDITY",
+            Text = "HUMIDITY",
             TextColor = TextColor,
             BackColor = backgroundColor,
             Font = font8x12,
@@ -253,15 +253,15 @@ public class DisplayController
         {
             case 0:
                 temperature.BackColor = foregroundColor;
-                axisLabels.Text = $"Y: Celcius | X: Every 30 minutes";
+                axisLabels.Text = "Y: Celcius | X: Every minute";
                 break;
             case 1:
                 pressure.BackColor = foregroundColor;
-                axisLabels.Text = $"Y: Millibar | X: Every 30 minutes";
+                axisLabels.Text = "Y: Millibar | X: Every minute";
                 break;
             case 2:
                 humidity.BackColor = foregroundColor;
-                axisLabels.Text = $"Y: Percent | X: Every 30 minutes";
+                axisLabels.Text = "Y: Percent | X: Every minute";
                 break;
         }
 
