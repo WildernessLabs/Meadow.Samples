@@ -6,7 +6,7 @@ using WifiWeather.F7.Hardware;
 
 namespace WifiWeather.F7
 {
-    public class MeadowProjectLabApp : App<F7CoreComputeV2>
+    public class MeadowApp : App<F7CoreComputeV2>
     {
         private MainController mainController;
 

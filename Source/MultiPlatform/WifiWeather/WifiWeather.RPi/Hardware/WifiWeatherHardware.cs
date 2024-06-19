@@ -1,31 +1,45 @@
 ﻿using Meadow;
 using Meadow.Foundation.Displays;
+using Meadow.Foundation.Sensors.Buttons;
+using Meadow.Hardware;
 using Meadow.Peripherals.Displays;
+using Meadow.Peripherals.Sensors.Buttons;
+using Meadow.Units;
 using WifiWeather.Core.Contracts;
-using WifiWeather.RPi.Controllers;
 
 namespace WifiWeather.RPi.Hardware;
 
 internal class WifiWeatherHardware : IWifiWeatherHardware
 {
     private readonly RaspberryPi device;
-    private readonly IPixelDisplay? display = null;
+    private readonly IButton? upButton;
+    private readonly IButton? downButton;
+    private readonly IPixelDisplay? display;
+    private readonly INetworkAdapter? networkAdapter;
+
+    public IButton? UpButton => upButton;
+
+    public IButton? DownButton => downButton;
 
     public IPixelDisplay? Display => display;
 
     public RotationType DisplayRotation => RotationType._270Degrees;
 
-    public INetworkController NetworkController { get; }
+    public INetworkAdapter? NetworkAdapter => networkAdapter;
 
     public WifiWeatherHardware(RaspberryPi device)
     {
         this.device = device;
 
+        upButton = new PushButton(device.Pins.GPIO19, ResistorMode.ExternalPullUp);
+
+        downButton = new PushButton(device.Pins.GPIO26, ResistorMode.ExternalPullUp);
+
         var spiBus = device.CreateSpiBus(
             device.Pins.SPI0_SCLK,
             device.Pins.SPI0_MOSI,
             device.Pins.SPI0_MISO,
-            new Meadow.Units.Frequency(48, Meadow.Units.Frequency.UnitType.Megahertz));
+            new Frequency(48, Frequency.UnitType.Megahertz));
 
         display = new Ili9341
         (
@@ -36,6 +50,9 @@ internal class WifiWeatherHardware : IWifiWeatherHardware
             width: 240, height: 320
         );
 
-        NetworkController = new NetworkController();
+        if (MeadowApp.Device.NetworkAdapters.Count > 0)
+        {
+            networkAdapter = MeadowApp.Device.NetworkAdapters[0];
+        }
     }
 }

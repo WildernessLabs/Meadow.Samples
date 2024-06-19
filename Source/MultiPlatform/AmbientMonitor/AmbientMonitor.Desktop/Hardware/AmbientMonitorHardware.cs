@@ -15,7 +15,6 @@ namespace AmbientMonitor.DesktopApp.Hardware;
 internal class AmbientMonitorHardware : IAmbientMonitorHardware
 {
     private readonly Desktop device;
-    private readonly Keyboard keyboard;
 
     public IButton? LeftButton { get; }
 
@@ -37,7 +36,7 @@ internal class AmbientMonitorHardware : IAmbientMonitorHardware
     {
         this.device = device;
 
-        keyboard = new Keyboard();
+        var keyboard = new Keyboard();
 
         LeftButton = new PushButton(keyboard.Pins.Left.CreateDigitalInterruptPort(InterruptMode.EdgeFalling));
 

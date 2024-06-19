@@ -15,7 +15,6 @@ public class MainController
     private int currentGraphType = 0;
 
     private IWifiWeatherHardware hardware;
-    private INetworkController network;
     private DisplayController displayController;
     private RestClientController restClientController;
 
@@ -26,26 +25,23 @@ public class MainController
     public MainController(IWifiWeatherHardware hardware)
     {
         this.hardware = hardware;
-        this.network = hardware.NetworkController;
     }
 
     public void Initialize()
     {
-        //hardware.Initialize();
+        hardware.UpButton.PressStarted += (s, e) =>
+        {
+            currentGraphType = currentGraphType - 1 < 0 ? 2 : currentGraphType - 1;
 
-        //hardware.UpButton.Clicked += (s, e) =>
-        //{
-        //    currentGraphType = currentGraphType - 1 < 0 ? 2 : currentGraphType - 1;
+            UpdateGraph();
+        };
 
-        //    UpdateGraph();
-        //};
+        hardware.DownButton.PressStarted += (s, e) =>
+        {
+            currentGraphType = currentGraphType + 1 > 2 ? 0 : currentGraphType + 1;
 
-        //hardware.DownButton.Clicked += (s, e) =>
-        //{
-        //    currentGraphType = currentGraphType + 1 > 2 ? 0 : currentGraphType + 1;
-
-        //    UpdateGraph();
-        //};
+            UpdateGraph();
+        };
 
         displayController = new DisplayController(hardware.Display, hardware.DisplayRotation);
         restClientController = new RestClientController();
@@ -112,9 +108,9 @@ public class MainController
     {
         while (true)
         {
-            displayController.UpdateWiFiStatus(network.IsConnected);
+            displayController.UpdateWiFiStatus(hardware.NetworkAdapter.IsConnected);
 
-            if (network.IsConnected)
+            if (hardware.NetworkAdapter.IsConnected)
             {
                 int TimeZoneOffSet = -7; // PST
                 var today = DateTime.Now.AddHours(TimeZoneOffSet);

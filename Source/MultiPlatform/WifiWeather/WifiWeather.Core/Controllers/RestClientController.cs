@@ -61,82 +61,82 @@ internal class RestClientController
         {
             case WeatherCodeConstants.THUNDERSTORM_LIGHT_RAIN:
                 resourceName = isDayLight
-                    ? $"WifiWeather.Core.Resources.w_storm_light_sun.bmp"
-                    : $"WifiWeather.Core.Resources.w_storm_light_moon.bmp";
+                    ? $"WifiWeather.Core.Assets.w_storm_light_sun.bmp"
+                    : $"WifiWeather.Core.Assets.w_storm_light_moon.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.THUNDERSTORM_RAIN &&
                 n <= WeatherCodeConstants.THUNDERSTORM):
-                resourceName = $"WifiWeather.Core.Resources.w_storm.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_storm.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.THUNDERSTORM_HEAVY &&
                 n <= WeatherCodeConstants.THUNDERSTORM_HEAVY_DRIZZLE):
-                resourceName = $"WifiWeather.Core.Resources.w_storm_heavy.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_storm_heavy.bmp";
                 break;
 
             case WeatherCodeConstants.DRIZZLE_LIGHT:
                 resourceName = isDayLight
-                    ? $"WifiWeather.Core.Resources.w_drizzle_light_sun.bmp"
-                    : $"WifiWeather.Core.Resources.w_drizzle_light_moon.bmp";
+                    ? $"WifiWeather.Core.Assets.w_drizzle_light_sun.bmp"
+                    : $"WifiWeather.Core.Assets.w_drizzle_light_moon.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.DRIZZLE &&
                 n <= WeatherCodeConstants.DRIZZLE_RAIN):
-                resourceName = $"WifiWeather.Core.Resources.w_drizzle.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_drizzle.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.DRIZZLE_HEAVY_RAIN &&
                 n <= WeatherCodeConstants.DRIZZLE_SHOWER):
-                resourceName = $"WifiWeather.Core.Resources.w_drizzle_heavy.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_drizzle_heavy.bmp";
                 break;
 
             case WeatherCodeConstants.RAIN_LIGHT:
                 resourceName = isDayLight
-                    ? $"WifiWeather.Core.Resources.w_rain_light_sun.bmp"
-                    : $"WifiWeather.Core.Resources.w_rain_light_moon.bmp";
+                    ? $"WifiWeather.Core.Assets.w_rain_light_sun.bmp"
+                    : $"WifiWeather.Core.Assets.w_rain_light_moon.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.RAIN_MODERATE &&
                 n <= WeatherCodeConstants.RAIN_FREEZING):
-                resourceName = $"WifiWeather.Core.Resources.w_rain.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_rain.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.RAIN_SHOWER_LIGHT &&
                 n <= WeatherCodeConstants.RAIN_SHOWER_RAGGED):
-                resourceName = $"WifiWeather.Core.Resources.w_rain_heavy.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_rain_heavy.bmp";
                 break;
 
             case WeatherCodeConstants.SNOW_LIGHT:
                 resourceName = isDayLight
-                    ? $"WifiWeather.Core.Resources.w_snow_light_sun.bmp"
-                    : $"WifiWeather.Core.Resources.w_snow_light_moon.bmp";
+                    ? $"WifiWeather.Core.Assets.w_snow_light_sun.bmp"
+                    : $"WifiWeather.Core.Assets.w_snow_light_moon.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.SNOW &&
                 n <= WeatherCodeConstants.SNOW_SHOWER_SLEET):
-                resourceName = $"WifiWeather.Core.Resources.w_snow.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_snow.bmp";
                 break;
             case int n when (n >= WeatherCodeConstants.SNOW_RAIN_LIGHT &&
                 n <= WeatherCodeConstants.SNOW_SHOWER_HEAVY):
-                resourceName = $"WifiWeather.Core.Resources.w_snow_rain.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_snow_rain.bmp";
                 break;
 
             case WeatherCodeConstants.MIST:
             case WeatherCodeConstants.FOG:
-                resourceName = $"WifiWeather.Core.Resources.w_mist.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_mist.bmp";
                 break;
 
             case WeatherCodeConstants.CLOUDS_CLEAR:
                 resourceName = isDayLight
-                    ? $"WifiWeather.Core.Resources.w_clear_sun.bmp"
-                    : $"WifiWeather.Core.Resources.w_clear_moon.bmp";
+                    ? $"WifiWeather.Core.Assets.w_clear_sun.bmp"
+                    : $"WifiWeather.Core.Assets.w_clear_moon.bmp";
                 break;
             case WeatherCodeConstants.CLOUDS_FEW:
             case WeatherCodeConstants.CLOUDS_SCATTERED:
                 resourceName = isDayLight
-                    ? $"WifiWeather.Core.Resources.w_clouds_sun.bmp"
-                    : $"WifiWeather.Core.Resources.w_clouds_moon.bmp";
+                    ? $"WifiWeather.Core.Assets.w_clouds_sun.bmp"
+                    : $"WifiWeather.Core.Assets.w_clouds_moon.bmp";
                 break;
             case WeatherCodeConstants.CLOUDS_BROKEN:
             case WeatherCodeConstants.CLOUDS_OVERCAST:
-                resourceName = $"WifiWeather.Core.Resources.w_clouds.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_clouds.bmp";
                 break;
             default:
-                resourceName = $"WifiWeather.Core.Resources.w_misc.bmp";
+                resourceName = $"WifiWeather.Core.Assets.w_misc.bmp";
                 break;
         }
 

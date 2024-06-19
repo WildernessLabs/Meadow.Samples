@@ -64,7 +64,7 @@ public class DisplayController
             IsVisible = false
         };
 
-        var image = Image.LoadFromResource("AmbientMonitor.Core.Resources.img_meadow.bmp");
+        var image = Image.LoadFromResource("AmbientMonitor.Core.Assets.img_meadow.bmp");
         var displayImage = new Picture(0, 0, displayScreen.Width, displayScreen.Height, image)
         {
             BackColor = Meadow.Color.FromHex("575E3C"),
@@ -106,7 +106,7 @@ public class DisplayController
         };
         dataLayout.Controls.Add(latestReading);
 
-        var wifiImage = Image.LoadFromResource("AmbientMonitor.Core.Resources.img-wifi-fade.bmp");
+        var wifiImage = Image.LoadFromResource("AmbientMonitor.Core.Assets.img-wifi-fade.bmp");
         wifiStatus = new Picture(displayScreen.Width - wifiImage.Width - margin, 0, wifiImage.Width, rowHeight, wifiImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
@@ -114,7 +114,7 @@ public class DisplayController
         };
         dataLayout.Controls.Add(wifiStatus);
 
-        var syncImage = Image.LoadFromResource("AmbientMonitor.Core.Resources.img-sync-fade.bmp");
+        var syncImage = Image.LoadFromResource("AmbientMonitor.Core.Assets.img-sync-fade.bmp");
         syncStatus = new Picture(displayScreen.Width - syncImage.Width - wifiImage.Width - margin * 2, 0, syncImage.Width, rowHeight, syncImage)
         {
             HorizontalAlignment = HorizontalAlignment.Center,
@@ -278,8 +278,8 @@ public class DisplayController
     public void UpdateWiFiStatus(bool isConnected)
     {
         var imageWiFi = isConnected
-            ? Image.LoadFromResource("AmbientMonitor.Core.Resources.img-wifi.bmp")
-            : Image.LoadFromResource("AmbientMonitor.Core.Resources.img-wifi-fade.bmp");
+            ? Image.LoadFromResource("AmbientMonitor.Core.Assets.img-wifi.bmp")
+            : Image.LoadFromResource("AmbientMonitor.Core.Assets.img-wifi-fade.bmp");
         wifiStatus.Image = imageWiFi;
 
         if (!isConnected && lineChartSeries.Points.Count == 0)
@@ -295,8 +295,8 @@ public class DisplayController
     public void UpdateSyncStatus(bool isSyncing)
     {
         var imageSync = isSyncing
-            ? Image.LoadFromResource("AmbientMonitor.Core.Resources.img-sync-fade.bmp")
-            : Image.LoadFromResource("AmbientMonitor.Core.Resources.img-sync.bmp");
+            ? Image.LoadFromResource("AmbientMonitor.Core.Assets.img-sync-fade.bmp")
+            : Image.LoadFromResource("AmbientMonitor.Core.Assets.img-sync.bmp");
         syncStatus.Image = imageSync;
     }
 }
