@@ -4,7 +4,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using WifiWeather.DTOs;
-using WifiWeather.Models;
+using WifiWeather.Utils;
 
 namespace WifiWeather.Controllers;
 

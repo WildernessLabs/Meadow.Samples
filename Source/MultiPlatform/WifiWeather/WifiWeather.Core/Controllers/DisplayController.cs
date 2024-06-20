@@ -1,21 +1,21 @@
-using Meadow;
+﻿using Meadow;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
 using System;
 using System.Collections.Generic;
 
-namespace WifiWeather.Controllers;
+namespace WifiWeather.Core.Controllers;
 
-internal class DisplayController
+public class DisplayController
 {
-    private Color backgroundColor = Color.FromHex("10485E");
-    private Color outdoorColor = Color.FromHex("C9DB31");
-    private Color foregroundColor = Color.FromHex("EEEEEE");
+    private readonly Color backgroundColor = Color.FromHex("10485E");
+    private readonly Color outdoorColor = Color.FromHex("C9DB31");
+    private readonly Color foregroundColor = Color.FromHex("EEEEEE");
+
     private readonly Font8x16 font8x16 = new Font8x16();
     private readonly Font6x8 font6x8 = new Font6x8();
 
-    private int counter = 0;
     private readonly int margin = 5;
     private readonly int smallMargin = 3;
     private readonly int graphHeight = 105;
@@ -25,78 +25,84 @@ internal class DisplayController
     private readonly int row1 = 135;
     private readonly int row2 = 170;
     private readonly int row3 = 205;
-    private Image weatherIcon = Image.LoadFromResource($"WifiWeather.Resources.w_misc.bmp");
 
-    public LineChartSeries OutdoorSeries;
-    private DisplayScreen DisplayScreen;
-    private AbsoluteLayout SplashLayout;
-    private AbsoluteLayout DataLayout;
-    private LineChart LineChart;
-    private Picture WifiStatus;
-    private Picture SyncStatus;
-    private Picture Weather;
-    private Label Status;
-    private Label Counter;
+    private int numberOfRequests = 0;
 
-    private Box TemperatureBox;
-    private Label TemperatureLabel;
-    private Label TemperatureValue;
+    private Image weatherIcon = Image.LoadFromResource($"WifiWeather.Core.Assets.w_misc.bmp");
 
-    private Box PressureBox;
-    private Label PressureLabel;
-    private Label PressureValue;
+    private DisplayScreen displayScreen;
+    private AbsoluteLayout splashLayout;
+    private AbsoluteLayout dataLayout;
 
-    private Box HumidityBox;
-    private Label HumidityLabel;
-    private Label HumidityValue;
+    private LineChartSeries outdoorSeries;
+    private LineChart lineChart;
 
-    private Label FeelsLike;
-    private Label Sunrise;
-    private Label Sunset;
+    private Picture wifiStatus;
+    private Picture syncStatus;
+    private Picture weather;
+    private Label status;
+    private Label counter;
 
-    public DisplayController(IPixelDisplay display)
+    private Box temperatureBox;
+    private Label temperatureLabel;
+    private Label temperatureValue;
+
+    private Box pressureBox;
+    private Label pressureLabel;
+    private Label pressureValue;
+
+    private Box humidityBox;
+    private Label humidityLabel;
+    private Label humidityValue;
+
+    private Label feelsLike;
+    private Label sunrise;
+    private Label sunset;
+
+    public DisplayController(IPixelDisplay display, RotationType rotation)
     {
-        DisplayScreen = new DisplayScreen(display, RotationType._270Degrees)
+        displayScreen = new DisplayScreen(display, rotation)
         {
             BackgroundColor = backgroundColor
         };
 
+        displayScreen.BeginUpdate();
+
         LoadSplashLayout();
-
-        DisplayScreen.Controls.Add(SplashLayout);
-
         LoadDataLayout();
 
-        DisplayScreen.Controls.Add(DataLayout);
+        displayScreen.Controls.Add(splashLayout!, dataLayout!);
+
+        displayScreen.EndUpdate();
     }
 
     private void LoadSplashLayout()
     {
-        SplashLayout = new AbsoluteLayout(0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        splashLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height)
         {
             IsVisible = false
         };
 
-        var image = Image.LoadFromResource("WifiWeather.Resources.img_meadow.bmp");
-        var displayImage = new Picture(0, 0, DisplayScreen.Width, DisplayScreen.Height, image)
+        var image = Image.LoadFromResource("WifiWeather.Core.Assets.img_meadow.bmp");
+        var displayImage = new Picture(0, 0, displayScreen.Width, displayScreen.Height, image)
         {
             BackColor = Color.FromHex("#14607F"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
 
-        SplashLayout.Controls.Add(displayImage);
+        splashLayout.Controls.Add(displayImage);
     }
 
     private void LoadDataLayout()
     {
-        DataLayout = new AbsoluteLayout(0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        dataLayout = new AbsoluteLayout(0, 0, displayScreen.Width, displayScreen.Height)
         {
             BackgroundColor = backgroundColor,
             IsVisible = false
         };
 
-        Status = new Label(
+        status = new Label(
             margin,
             margin + 2,
             152,
@@ -107,9 +113,9 @@ internal class DisplayController
             Font = font8x16,
             VerticalAlignment = VerticalAlignment.Center,
         };
-        DataLayout.Controls.Add(Status);
+        dataLayout.Controls.Add(status);
 
-        DataLayout.Controls.Add(new Box(
+        dataLayout.Controls.Add(new Box(
             226,
             margin + 2,
             44,
@@ -119,7 +125,7 @@ internal class DisplayController
             IsFilled = false
         });
 
-        Counter = new Label(
+        counter = new Label(
             228,
             margin + 2,
             44,
@@ -131,11 +137,11 @@ internal class DisplayController
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
-        DataLayout.Controls.Add(Counter);
+        dataLayout.Controls.Add(counter);
 
-        var wifiImage = Image.LoadFromResource("WifiWeather.Resources.img_wifi_connecting.bmp");
-        WifiStatus = new Picture(
-            DisplayScreen.Width - wifiImage.Width - margin,
+        var wifiImage = Image.LoadFromResource("WifiWeather.Core.Assets.img_wifi_connecting.bmp");
+        wifiStatus = new Picture(
+            displayScreen.Width - wifiImage.Width - margin,
             margin,
             wifiImage.Width,
             font8x16.Height,
@@ -144,11 +150,11 @@ internal class DisplayController
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
-        DataLayout.Controls.Add(WifiStatus);
+        dataLayout.Controls.Add(wifiStatus);
 
-        var syncImage = Image.LoadFromResource("WifiWeather.Resources.img_refreshed.bmp");
-        SyncStatus = new Picture(
-            DisplayScreen.Width - syncImage.Width - wifiImage.Width - margin * 2,
+        var syncImage = Image.LoadFromResource("WifiWeather.Core.Assets.img_refreshed.bmp");
+        syncStatus = new Picture(
+            displayScreen.Width - syncImage.Width - wifiImage.Width - margin * 2,
             margin,
             syncImage.Width,
             font8x16.Height,
@@ -157,12 +163,12 @@ internal class DisplayController
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
-        DataLayout.Controls.Add(SyncStatus);
+        dataLayout.Controls.Add(syncStatus);
 
-        LineChart = new LineChart(
+        lineChart = new LineChart(
             margin,
             25,
-            DisplayScreen.Width - margin * 2,
+            displayScreen.Width - margin * 2,
             graphHeight)
         {
             BackgroundColor = Color.FromHex("082936"),
@@ -171,7 +177,7 @@ internal class DisplayController
             IsVisible = false,
             AlwaysShowYOrigin = false,
         };
-        OutdoorSeries = new LineChartSeries()
+        outdoorSeries = new LineChartSeries()
         {
             LineColor = outdoorColor,
             PointColor = outdoorColor,
@@ -180,11 +186,11 @@ internal class DisplayController
             ShowLines = true,
             ShowPoints = true,
         };
-        LineChart.Series.Add(OutdoorSeries);
-        DataLayout.Controls.Add(LineChart);
+        lineChart.Series.Add(outdoorSeries);
+        dataLayout.Controls.Add(lineChart);
 
-        var weatherImage = Image.LoadFromResource("WifiWeather.Resources.w_misc.bmp");
-        Weather = new Picture(
+        var weatherImage = Image.LoadFromResource("WifiWeather.Core.Assets.w_misc.bmp");
+        weather = new Picture(
             margin,
             row1,
             100,
@@ -194,10 +200,10 @@ internal class DisplayController
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
-        DataLayout.Controls.Add(Weather);
+        dataLayout.Controls.Add(weather);
 
         #region TEMPERATURE
-        TemperatureBox = new Box(
+        temperatureBox = new Box(
             columnWidth + margin * 2,
             row1,
             columnWidth,
@@ -205,8 +211,8 @@ internal class DisplayController
         {
             ForeColor = outdoorColor
         };
-        DataLayout.Controls.Add(TemperatureBox);
-        TemperatureLabel = new Label(
+        dataLayout.Controls.Add(temperatureBox);
+        temperatureLabel = new Label(
             columnWidth + margin * 2 + smallMargin,
             row1 + smallMargin,
             measureBoxWidth - smallMargin * 2,
@@ -216,8 +222,8 @@ internal class DisplayController
             TextColor = backgroundColor,
             Font = font6x8
         };
-        DataLayout.Controls.Add(TemperatureLabel);
-        TemperatureValue = new Label(
+        dataLayout.Controls.Add(temperatureLabel);
+        temperatureValue = new Label(
             columnWidth + margin * 2 + smallMargin,
             row1 + font6x8.Height + smallMargin * 2,
             measureBoxWidth - smallMargin * 2,
@@ -228,11 +234,11 @@ internal class DisplayController
             Font = font6x8,
             ScaleFactor = ScaleFactor.X2
         };
-        DataLayout.Controls.Add(TemperatureValue);
+        dataLayout.Controls.Add(temperatureValue);
         #endregion
 
         #region PRESSURE
-        PressureBox = new Box(
+        pressureBox = new Box(
             columnWidth + margin * 2,
             row2,
             columnWidth,
@@ -240,8 +246,8 @@ internal class DisplayController
         {
             ForeColor = backgroundColor
         };
-        DataLayout.Controls.Add(PressureBox);
-        PressureLabel = new Label(
+        dataLayout.Controls.Add(pressureBox);
+        pressureLabel = new Label(
             columnWidth + margin * 2 + smallMargin,
             row2 + smallMargin,
             measureBoxWidth - smallMargin * 2,
@@ -251,8 +257,8 @@ internal class DisplayController
             TextColor = foregroundColor,
             Font = font6x8
         };
-        DataLayout.Controls.Add(PressureLabel);
-        PressureValue = new Label(
+        dataLayout.Controls.Add(pressureLabel);
+        pressureValue = new Label(
             columnWidth + margin * 2 + smallMargin,
             row2 + font6x8.Height + smallMargin * 2,
             measureBoxWidth - smallMargin * 2,
@@ -263,11 +269,11 @@ internal class DisplayController
             Font = font6x8,
             ScaleFactor = ScaleFactor.X2
         };
-        DataLayout.Controls.Add(PressureValue);
+        dataLayout.Controls.Add(pressureValue);
         #endregion
 
         #region HUMIDITY
-        HumidityBox = new Box(
+        humidityBox = new Box(
             columnWidth + margin * 2,
             row3,
             columnWidth,
@@ -275,8 +281,8 @@ internal class DisplayController
         {
             ForeColor = backgroundColor
         };
-        DataLayout.Controls.Add(HumidityBox);
-        HumidityLabel = new Label(
+        dataLayout.Controls.Add(humidityBox);
+        humidityLabel = new Label(
             columnWidth + margin * 2 + smallMargin,
             row3 + smallMargin,
             measureBoxWidth - smallMargin * 2,
@@ -286,8 +292,8 @@ internal class DisplayController
             TextColor = foregroundColor,
             Font = font6x8
         };
-        DataLayout.Controls.Add(HumidityLabel);
-        HumidityValue = new Label(
+        dataLayout.Controls.Add(humidityLabel);
+        humidityValue = new Label(
             columnWidth + margin * 2 + smallMargin,
             row3 + font6x8.Height + smallMargin * 2,
             columnWidth - smallMargin * 2,
@@ -298,10 +304,10 @@ internal class DisplayController
             Font = font6x8,
             ScaleFactor = ScaleFactor.X2
         };
-        DataLayout.Controls.Add(HumidityValue);
+        dataLayout.Controls.Add(humidityValue);
         #endregion
 
-        DataLayout.Controls.Add(new Label(
+        dataLayout.Controls.Add(new Label(
             columnWidth * 2 + margin * 3 + smallMargin,
             row1 + smallMargin,
             measureBoxWidth - smallMargin * 2,
@@ -311,7 +317,7 @@ internal class DisplayController
             TextColor = foregroundColor,
             Font = font6x8
         });
-        FeelsLike = new Label(
+        feelsLike = new Label(
             columnWidth * 2 + margin * 3 + smallMargin,
             row1 + font6x8.Height + smallMargin * 2,
             columnWidth - smallMargin * 2,
@@ -322,9 +328,9 @@ internal class DisplayController
             Font = font6x8,
             ScaleFactor = ScaleFactor.X2
         };
-        DataLayout.Controls.Add(FeelsLike);
+        dataLayout.Controls.Add(feelsLike);
 
-        DataLayout.Controls.Add(new Label(
+        dataLayout.Controls.Add(new Label(
             columnWidth * 2 + margin * 3 + smallMargin,
             row2 + smallMargin,
             measureBoxWidth - smallMargin * 2,
@@ -334,7 +340,7 @@ internal class DisplayController
             TextColor = foregroundColor,
             Font = font6x8
         });
-        Sunrise = new Label(
+        sunrise = new Label(
             columnWidth * 2 + margin * 3 + smallMargin,
             row2 + font6x8.Height + smallMargin * 2,
             columnWidth - smallMargin * 2,
@@ -345,9 +351,9 @@ internal class DisplayController
             Font = font6x8,
             ScaleFactor = ScaleFactor.X2
         };
-        DataLayout.Controls.Add(Sunrise);
+        dataLayout.Controls.Add(sunrise);
 
-        DataLayout.Controls.Add(new Label(
+        dataLayout.Controls.Add(new Label(
             columnWidth * 2 + margin * 3 + smallMargin,
             row3 + smallMargin,
             measureBoxWidth - smallMargin * 2,
@@ -357,7 +363,7 @@ internal class DisplayController
             TextColor = foregroundColor,
             Font = font6x8
         });
-        Sunset = new Label(
+        sunset = new Label(
             columnWidth * 2 + margin * 3 + smallMargin,
             row3 + font6x8.Height + smallMargin * 2,
             columnWidth - smallMargin * 2,
@@ -368,82 +374,82 @@ internal class DisplayController
             Font = font6x8,
             ScaleFactor = ScaleFactor.X2
         };
-        DataLayout.Controls.Add(Sunset);
+        dataLayout.Controls.Add(sunset);
     }
 
     private void UpdateReadingType(int type)
     {
-        TemperatureBox.ForeColor = PressureBox.ForeColor = HumidityBox.ForeColor = backgroundColor;
-        TemperatureLabel.TextColor = PressureLabel.TextColor = HumidityLabel.TextColor = foregroundColor;
-        TemperatureValue.TextColor = PressureValue.TextColor = HumidityValue.TextColor = foregroundColor;
+        temperatureBox.ForeColor = pressureBox.ForeColor = humidityBox.ForeColor = backgroundColor;
+        temperatureLabel.TextColor = pressureLabel.TextColor = humidityLabel.TextColor = foregroundColor;
+        temperatureValue.TextColor = pressureValue.TextColor = humidityValue.TextColor = foregroundColor;
 
         switch (type)
         {
             case 0:
-                TemperatureBox.ForeColor = outdoorColor;
-                TemperatureLabel.TextColor = backgroundColor;
-                TemperatureValue.TextColor = backgroundColor;
+                temperatureBox.ForeColor = outdoorColor;
+                temperatureLabel.TextColor = backgroundColor;
+                temperatureValue.TextColor = backgroundColor;
                 break;
             case 1:
-                PressureBox.ForeColor = outdoorColor;
-                PressureLabel.TextColor = backgroundColor;
-                PressureValue.TextColor = backgroundColor;
+                pressureBox.ForeColor = outdoorColor;
+                pressureLabel.TextColor = backgroundColor;
+                pressureValue.TextColor = backgroundColor;
                 break;
             case 2:
-                HumidityBox.ForeColor = outdoorColor;
-                HumidityLabel.TextColor = backgroundColor;
-                HumidityValue.TextColor = backgroundColor;
+                humidityBox.ForeColor = outdoorColor;
+                humidityLabel.TextColor = backgroundColor;
+                humidityValue.TextColor = backgroundColor;
                 break;
         }
     }
 
     public void ShowSplashScreen()
     {
-        DataLayout.IsVisible = false;
-        SplashLayout.IsVisible = true;
+        dataLayout.IsVisible = false;
+        splashLayout.IsVisible = true;
     }
 
     public void ShowDataScreen()
     {
-        SplashLayout.IsVisible = false;
-        DataLayout.IsVisible = true;
+        splashLayout.IsVisible = false;
+        dataLayout.IsVisible = true;
     }
 
     public void UpdateStatus(string status)
     {
-        Status.Text = status;
+        this.status.Text = status;
     }
 
     public void UpdateWiFiStatus(bool isConnected)
     {
         var imageWiFi = isConnected
-            ? Image.LoadFromResource("WifiWeather.Resources.img_wifi_connected.bmp")
-            : Image.LoadFromResource("WifiWeather.Resources.img_wifi_connecting.bmp");
-        WifiStatus.Image = imageWiFi;
+            ? Image.LoadFromResource("WifiWeather.Core.Assets.img_wifi_connected.bmp")
+            : Image.LoadFromResource("WifiWeather.Core.Assets.img_wifi_connecting.bmp");
+        wifiStatus.Image = imageWiFi;
     }
 
     public void UpdateSyncStatus(bool isSyncing)
     {
         var imageSync = isSyncing
-            ? Image.LoadFromResource("WifiWeather.Resources.img_refreshing.bmp")
-            : Image.LoadFromResource("WifiWeather.Resources.img_refreshed.bmp");
-        SyncStatus.Image = imageSync;
+            ? Image.LoadFromResource("WifiWeather.Core.Assets.img_refreshing.bmp")
+            : Image.LoadFromResource("WifiWeather.Core.Assets.img_refreshed.bmp");
+        syncStatus.Image = imageSync;
     }
 
     public void UpdateGraph(int graphType, List<double> readings)
     {
-        DisplayScreen.BeginUpdate();
+        displayScreen.BeginUpdate();
 
         UpdateReadingType(graphType);
 
-        OutdoorSeries.Points.Clear();
+        outdoorSeries.Points.Clear();
 
         for (var p = 0; p < readings.Count; p++)
         {
-            OutdoorSeries.Points.Add(p * 2, readings[p]);
+            outdoorSeries.Points.Add(p * 2, readings[p]);
         }
 
-        DisplayScreen.EndUpdate();
+        displayScreen.EndUpdate();
     }
 
     public void UpdateReadings(
@@ -456,23 +462,23 @@ internal class DisplayController
         DateTime sunrise,
         DateTime sunset)
     {
-        DisplayScreen.BeginUpdate();
+        displayScreen.BeginUpdate();
 
-        counter++;
-        Counter.Text = $"{counter:D5}";
+        numberOfRequests++;
+        counter.Text = $"{numberOfRequests:D5}";
 
         UpdateReadingType(readingType);
 
         weatherIcon = Image.LoadFromResource(icon);
-        Weather.Image = weatherIcon;
+        weather.Image = weatherIcon;
 
-        TemperatureValue.Text = $"{temperature:N1}C";
-        HumidityValue.Text = $"{humidity:N1}%";
-        PressureValue.Text = $"{pressure:N2}atm";
-        FeelsLike.Text = $"{feelsLike:N1}C";
-        Sunrise.Text = $"{sunrise:hh:mm tt}";
-        Sunset.Text = $"{sunset:hh:mm tt}";
+        temperatureValue.Text = $"{temperature:N1}C";
+        humidityValue.Text = $"{humidity:N1}%";
+        pressureValue.Text = $"{pressure:N2}atm";
+        this.feelsLike.Text = $"{feelsLike:N1}C";
+        this.sunrise.Text = $"{sunrise:hh:mm tt}";
+        this.sunset.Text = $"{sunset:hh:mm tt}";
 
-        DisplayScreen.EndUpdate();
+        displayScreen.EndUpdate();
     }
 }
