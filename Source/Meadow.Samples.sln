@@ -553,13 +553,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GalleryViewer", "GalleryVie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AmbientMonitor", "AmbientMonitor", "{FDA91A0A-5CDF-4312-AF4C-2702E1F00F7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbientMonitor.Core", "MultiPlatform\AmbientMonitor\AmbientMonitor.Core\AmbientMonitor.Core.csproj", "{E587E748-5075-4A84-98D0-4F98CA66A68B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmbientMonitor.Core", "MultiPlatform\AmbientMonitor\AmbientMonitor.Core\AmbientMonitor.Core.csproj", "{E587E748-5075-4A84-98D0-4F98CA66A68B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbientMonitor.Desktop", "MultiPlatform\AmbientMonitor\AmbientMonitor.Desktop\AmbientMonitor.Desktop.csproj", "{11B42937-5C54-412E-A570-63D8867D6818}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmbientMonitor.Desktop", "MultiPlatform\AmbientMonitor\AmbientMonitor.Desktop\AmbientMonitor.Desktop.csproj", "{11B42937-5C54-412E-A570-63D8867D6818}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbientMonitor.F7", "MultiPlatform\AmbientMonitor\AmbientMonitor.F7\AmbientMonitor.F7.csproj", "{8E9B4318-9BAF-431C-8EDE-7DF8323888C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmbientMonitor.F7", "MultiPlatform\AmbientMonitor\AmbientMonitor.F7\AmbientMonitor.F7.csproj", "{8E9B4318-9BAF-431C-8EDE-7DF8323888C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbientMonitor.RPi", "MultiPlatform\AmbientMonitor\AmbientMonitor.RPi\AmbientMonitor.RPi.csproj", "{1259861C-FAF0-4624-9B72-313FED3B4433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmbientMonitor.RPi", "MultiPlatform\AmbientMonitor\AmbientMonitor.RPi\AmbientMonitor.RPi.csproj", "{1259861C-FAF0-4624-9B72-313FED3B4433}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Servos", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Servos\Driver\Servos.csproj", "{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2540,6 +2542,15 @@ Global
 		{1259861C-FAF0-4624-9B72-313FED3B4433}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1259861C-FAF0-4624-9B72-313FED3B4433}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{1259861C-FAF0-4624-9B72-313FED3B4433}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2809,6 +2820,7 @@ Global
 		{11B42937-5C54-412E-A570-63D8867D6818} = {FDA91A0A-5CDF-4312-AF4C-2702E1F00F7A}
 		{8E9B4318-9BAF-431C-8EDE-7DF8323888C7} = {FDA91A0A-5CDF-4312-AF4C-2702E1F00F7A}
 		{1259861C-FAF0-4624-9B72-313FED3B4433} = {FDA91A0A-5CDF-4312-AF4C-2702E1F00F7A}
+		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
