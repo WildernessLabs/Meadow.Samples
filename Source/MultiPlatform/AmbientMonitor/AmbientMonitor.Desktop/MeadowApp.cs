@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AmbientMonitor.DesktopApp;
 
-internal class MeadowApp : App<Desktop>
+public class MeadowApp : App<Desktop>
 {
     private MainController? mainController;
 

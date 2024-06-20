@@ -9,7 +9,7 @@ using Meadow.Units;
 
 namespace GalleryViewer.RPi.Hardware;
 
-internal class GalleryViewerHardware : IGalleryViewerHardware
+public class GalleryViewerHardware : IGalleryViewerHardware
 {
     private readonly RaspberryPi device;
     private readonly IButton? leftButton;

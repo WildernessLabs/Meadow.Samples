@@ -12,7 +12,7 @@ using Meadow.Units;
 
 namespace AmbientMonitor.DesktopApp.Hardware;
 
-internal class AmbientMonitorHardware : IAmbientMonitorHardware
+public class AmbientMonitorHardware : IAmbientMonitorHardware
 {
     private readonly Desktop device;
 

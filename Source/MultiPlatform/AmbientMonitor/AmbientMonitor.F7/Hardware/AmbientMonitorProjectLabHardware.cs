@@ -8,7 +8,7 @@ using Meadow.Peripherals.Sensors.Buttons;
 
 namespace AmbientMonitor.F7;
 
-internal class AmbientMonitorProjectLabHardware : IAmbientMonitorHardware
+public class AmbientMonitorProjectLabHardware : IAmbientMonitorHardware
 {
     private readonly IProjectLabHardware projLab;
 

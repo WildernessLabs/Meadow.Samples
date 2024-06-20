@@ -5,7 +5,7 @@ using Meadow.Peripherals.Sensors.Buttons;
 
 namespace GalleryViewer.F7;
 
-internal class GalleryViewerProjectLabHardware : IGalleryViewerHardware
+public class GalleryViewerProjectLabHardware : IGalleryViewerHardware
 {
     private readonly IProjectLabHardware projLab;
 

@@ -7,7 +7,7 @@ using WifiWeather.DesktopApp.Hardware;
 
 namespace WifiWeather.DesktopApp;
 
-internal class MeadowApp : App<Desktop>
+public class MeadowApp : App<Desktop>
 {
     private MainController? mainController;
 

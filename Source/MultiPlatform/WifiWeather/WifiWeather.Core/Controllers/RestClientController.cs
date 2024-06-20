@@ -8,7 +8,7 @@ using WifiWeather.Core.Utils;
 
 namespace WifiWeather.Core.Controllers;
 
-internal class RestClientController
+public class RestClientController
 {
     string climateDataUri = "http://api.openweathermap.org/data/2.5/weather";
 

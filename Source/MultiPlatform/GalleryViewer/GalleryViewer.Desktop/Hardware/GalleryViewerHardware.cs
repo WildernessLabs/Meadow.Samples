@@ -8,7 +8,7 @@ using Meadow.Peripherals.Sensors.Buttons;
 
 namespace GalleryViewer.DesktopApp.Hardware;
 
-internal class GalleryViewerHardware : IGalleryViewerHardware
+public class GalleryViewerHardware : IGalleryViewerHardware
 {
     private readonly Desktop device;
     private readonly Keyboard keyboard;

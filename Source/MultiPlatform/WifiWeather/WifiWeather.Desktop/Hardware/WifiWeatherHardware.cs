@@ -8,7 +8,7 @@ using WifiWeather.Core.Contracts;
 
 namespace WifiWeather.DesktopApp.Hardware;
 
-internal class WifiWeatherHardware : IWifiWeatherHardware
+public class WifiWeatherHardware : IWifiWeatherHardware
 {
     private readonly Desktop device;
     private readonly IButton? upButton;

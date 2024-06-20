@@ -12,7 +12,7 @@ using Meadow.Units;
 
 namespace AmbientMonitor.RPi.Hardware;
 
-internal class AmbientMonitorHardware : IAmbientMonitorHardware
+public class AmbientMonitorHardware : IAmbientMonitorHardware
 {
     private readonly RaspberryPi device;
     private readonly IButton? leftButton;

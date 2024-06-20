@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AmbientMonitor.RPi;
 
-internal class MeadowApp : App<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private MainController? mainController;
 

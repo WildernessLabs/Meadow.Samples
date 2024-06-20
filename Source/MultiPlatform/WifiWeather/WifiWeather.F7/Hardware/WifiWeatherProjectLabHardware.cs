@@ -6,7 +6,7 @@ using WifiWeather.Core.Contracts;
 
 namespace WifiWeather.F7.Hardware;
 
-internal class WifiWeatherProjectLabHardware : IWifiWeatherHardware
+public class WifiWeatherProjectLabHardware : IWifiWeatherHardware
 {
     private readonly IProjectLabHardware projLab;
     private readonly INetworkAdapter networkAdapter;
@@ -19,7 +19,7 @@ internal class WifiWeatherProjectLabHardware : IWifiWeatherHardware
 
     public IPixelDisplay? Display => projLab.Display;
 
-    public INetworkAdapter NetworkAdapter => networkAdapter;
+    public INetworkAdapter? NetworkAdapter => networkAdapter;
 
     public WifiWeatherProjectLabHardware(F7CoreComputeV2 device)
     {

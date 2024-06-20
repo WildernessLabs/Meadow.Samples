@@ -50,11 +50,14 @@ public class DisplayController
             BackgroundColor = backgroundColor
         };
 
-        LoadSplashLayout();
+        displayScreen.BeginUpdate();
 
+        LoadSplashLayout();
         LoadDataLayout();
 
         displayScreen.Controls.Add(splashLayout!, dataLayout!);
+
+        displayScreen.EndUpdate();
     }
 
     private void LoadSplashLayout()

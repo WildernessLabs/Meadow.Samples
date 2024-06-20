@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GalleryViewer.RPi;
 
-internal class MeadowApp : App<RaspberryPi>
+public class MeadowApp : App<RaspberryPi>
 {
     private MainController? mainController;
 

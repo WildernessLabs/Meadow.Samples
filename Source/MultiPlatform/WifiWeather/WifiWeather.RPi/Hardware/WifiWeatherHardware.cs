@@ -9,7 +9,7 @@ using WifiWeather.Core.Contracts;
 
 namespace WifiWeather.RPi.Hardware;
 
-internal class WifiWeatherHardware : IWifiWeatherHardware
+public class WifiWeatherHardware : IWifiWeatherHardware
 {
     private readonly RaspberryPi device;
     private readonly IButton? upButton;
