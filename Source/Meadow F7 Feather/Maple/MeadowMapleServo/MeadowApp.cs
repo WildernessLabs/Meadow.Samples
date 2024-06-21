@@ -1,7 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
-using Meadow.Foundation.Servos;
 using Meadow.Foundation.Web.Maple;
 using Meadow.Hardware;
 using Meadow.Units;
@@ -29,7 +28,7 @@ public class MeadowApp : App<F7FeatherV2>
         onboardLed.SetColor(Color.Red);
 
         servoController = new ServoController();
-        servoController.RotateTo(new Angle(NamedServoConfigs.SG90.MinimumAngle));
+        servoController.RotateTo(Angle.Zero);
 
         wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
         wifi.NetworkConnected += NetworkConnected;
