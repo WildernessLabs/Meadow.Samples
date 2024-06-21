@@ -85,7 +85,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelDisplay_Sample", "Mead
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerialPort", "Meadow.Desktop\SerialPort\SerialPort.csproj", "{B543C688-7C11-4E5A-BFA6-BAD1D8393610}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPI", "Meadow.Desktop\SPI\SPI.csproj", "{613B9614-FC42-48E7-9A28-14E53B6CEAE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPI_Displays", "Meadow.Desktop\SPI_Displays\SPI_Displays.csproj", "{613B9614-FC42-48E7-9A28-14E53B6CEAE4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Touchscreen_Demo", "Meadow.Desktop\Touchscreen_Demo\Touchscreen_Demo.csproj", "{B9BEEE15-86BB-4536-AB42-B3FA91842E40}"
 EndProject
