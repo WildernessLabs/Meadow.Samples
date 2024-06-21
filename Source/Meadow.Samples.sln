@@ -73,7 +73,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterDisplaySample", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalOutputPort", "Meadow.Desktop\DigitalOutputPort\DigitalOutputPort.csproj", "{1ACC3D3A-940C-4DEB-9AD3-6F75E53DBB3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "I2C", "Meadow.Desktop\I2C\I2C.csproj", "{02DAE683-2C24-4C69-8D7D-6272C4C63DB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "I2C_Sensors", "Meadow.Desktop\I2C_Sensors\I2C_Sensors.csproj", "{02DAE683-2C24-4C69-8D7D-6272C4C63DB3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keyboard", "Meadow.Desktop\Keyboard\Keyboard.csproj", "{03408A53-A777-4BAF-8FCE-A8BA632ADEFE}"
 EndProject
