@@ -9,27 +9,25 @@ using System.Threading.Tasks;
 
 namespace ThermalCamera;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    IRgbPwmLed onboardLed;
-    IProjectLabHardware projectLab;
-    Mlx90640 thermalCamera;
-    MicroGraphics graphics;
+    private IRgbPwmLed onboardLed;
+    private Mlx90640 thermalCamera;
+    private MicroGraphics graphics;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        onboardLed = projectLab.RgbLed;
+        onboardLed = Hardware.RgbLed;
         onboardLed.SetColor(Color.Red);
 
-        graphics = new MicroGraphics(projectLab.Display);
+        graphics = new MicroGraphics(Hardware.Display);
 
-        thermalCamera = new Mlx90640(projectLab.Qwiic.I2cBus);
+        thermalCamera = new Mlx90640(Hardware.Qwiic.I2cBus);
 
         onboardLed.SetColor(Color.Green);
 

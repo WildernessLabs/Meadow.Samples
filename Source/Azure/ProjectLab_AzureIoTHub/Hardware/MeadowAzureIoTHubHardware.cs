@@ -15,10 +15,13 @@ internal class MeadowAzureIoTHubHardware : IMeadowAzureIoTHubHardware
 
     public IRgbPwmLed RgbPwmLed { get; set; }
 
+    public MeadowAzureIoTHubHardware(IProjectLabHardware projLab)
+    {
+        ProjLab = projLab;
+    }
+
     public void Initialize()
     {
-        ProjLab = ProjectLab.Create();
-
         Display = ProjLab.Display;
 
         RgbPwmLed = ProjLab.RgbLed;

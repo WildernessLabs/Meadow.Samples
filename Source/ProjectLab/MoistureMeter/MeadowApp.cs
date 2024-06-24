@@ -8,26 +8,24 @@ using System.Threading.Tasks;
 
 namespace MoistureMeter;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private IRgbPwmLed onboardLed;
     private MoistureSensor sensor;
-    private IProjectLabHardware projectLab;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        onboardLed = projectLab.RgbLed;
+        onboardLed = Hardware.RgbLed;
         onboardLed.SetColor(Color.Red);
 
-        DisplayController.Instance.Initialize(projectLab.Display);
+        DisplayController.Instance.Initialize(Hardware.Display);
 
-        sensor = new MoistureSensor(projectLab.GroveAnalog.Pins.D0);
+        sensor = new MoistureSensor(Hardware.GroveAnalog.Pins.D0);
 
         sensor.Updated += (sender, result) =>
         {

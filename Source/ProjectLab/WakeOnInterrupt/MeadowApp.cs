@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace WakeOnInterrupt;
 
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    private IProjectLabHardware _projectLab;
     private DisplayScreen _screen;
     private Label _message;
     private Box _box;
@@ -23,15 +23,14 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        _projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {_projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        _powerPort = _projectLab.IOTerminal.Pins.A1.CreateDigitalInterruptPort(Meadow.Hardware.InterruptMode.EdgeFalling, Meadow.Hardware.ResistorMode.Disabled);
+        _powerPort = Hardware.IOTerminal.Pins.A1.CreateDigitalInterruptPort(Meadow.Hardware.InterruptMode.EdgeFalling, Meadow.Hardware.ResistorMode.Disabled);
         _powerPort.Changed += OnPowerPortChanged;
 
-        _backlightPort = _projectLab.MikroBus1.Pins.INT.CreateDigitalOutputPort(true);
+        _backlightPort = Hardware.MikroBus1.Pins.INT.CreateDigitalOutputPort(true);
 
-        Device.PlatformOS.AfterWake += AfterWake;
+        Hardware.ComputeModule.PlatformOS.AfterWake += AfterWake;
         CreateLayout();
 
         PowerOnPeripherals(false);
@@ -57,7 +56,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Powering off");
         _backlightPort.State = false;
-        Device.PlatformOS.Sleep(_projectLab.IOTerminal.Pins.A1, InterruptMode.EdgeRising);
+        Hardware.ComputeModule.PlatformOS.Sleep(Hardware.IOTerminal.Pins.A1, InterruptMode.EdgeRising);
     }
 
     private void PowerOnPeripherals(bool fromWake)
@@ -96,7 +95,7 @@ public class MeadowApp : App<F7CoreComputeV2>
 
     private void CreateLayout()
     {
-        _screen = new DisplayScreen(_projectLab.Display, RotationType._270Degrees);
+        _screen = new DisplayScreen(Hardware.Display, RotationType._270Degrees);
         _message = new Label(0, 0, _screen.Width, 30)
         {
             Font = new Font12x20()

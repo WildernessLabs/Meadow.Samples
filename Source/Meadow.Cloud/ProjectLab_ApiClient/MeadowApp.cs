@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace ProjectLab_ApiClient;
 
-// Change F7CoreComputeV2 to F7FeatherV2 (or F7FeatherV1) for Feather boards
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    MainController mainController;
+    private MainController mainController;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new MeadowCloudClientHardware();
-        var network = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        var hardware = new MeadowCloudClientHardware(Hardware);
+        var network = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
         mainController = new MainController(hardware, network);
         mainController.Initialize();

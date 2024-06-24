@@ -6,37 +6,34 @@ using System.Threading.Tasks;
 
 namespace AnalogClockFace;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    readonly Color WatchBackgroundColor = Color.White;
-
-    MicroGraphics graphics;
-    IProjectLabHardware projectLab;
-    int tick;
+    private readonly Color WatchBackgroundColor = Color.White;
+    private MicroGraphics graphics;
+    private int tick;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        projectLab.RgbLed.SetColor(Color.Red);
+        Hardware.RgbLed.SetColor(Color.Red);
 
-        graphics = new MicroGraphics(projectLab.Display)
+        graphics = new MicroGraphics(Hardware.Display)
         {
             IgnoreOutOfBoundsPixels = true,
             CurrentFont = new Font12x20(),
             Stroke = 3
         };
 
-        projectLab.RgbLed.SetColor(Color.Green);
+        Hardware.RgbLed.SetColor(Color.Green);
 
         return Task.CompletedTask;
     }
 
-    void DrawWatchFace()
+    private void DrawWatchFace()
     {
         graphics.Clear();
         int hour = 12;
@@ -62,7 +59,8 @@ public class MeadowApp : App<F7CoreComputeV2>
 
         graphics.Show();
     }
-    void UpdateClock(int second = 0)
+
+    private void UpdateClock(int second = 0)
     {
         int xCenter = graphics.Width / 2;
         int yCenter = graphics.Height / 2;

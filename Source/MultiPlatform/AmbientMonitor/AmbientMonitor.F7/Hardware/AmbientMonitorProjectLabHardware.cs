@@ -28,10 +28,9 @@ public class AmbientMonitorProjectLabHardware : IAmbientMonitorHardware
 
     public IHumiditySensor? HumiditySensor => projLab.HumiditySensor;
 
-    public AmbientMonitorProjectLabHardware(F7CoreComputeV2 device)
+    public AmbientMonitorProjectLabHardware(IProjectLabHardware projLab)
     {
-        projLab = ProjectLab.Create();
-
-        NetworkAdapter = device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        this.projLab = projLab;
+        projLab.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
     }
 }

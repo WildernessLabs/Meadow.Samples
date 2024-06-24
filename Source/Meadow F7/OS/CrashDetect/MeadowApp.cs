@@ -20,7 +20,7 @@ public class MeadowApp<T> : App<T>
     {
         var reliabilityService = Resolver.Services.Get<IReliabilityService>();
 
-        reliabilityService.MeadowSystemError += OnMeadowSystemError;
+        //        reliabilityService.MeadowSystemError += OnMeadowSystemError;
 
         if (reliabilityService.LastBootWasFromCrash)
         {
@@ -65,7 +65,7 @@ public class MeadowApp<T> : App<T>
     {
         await Task.Delay(TimeSpan.FromSeconds(_random.Next(3, 20)));
         Resolver.Log.Info("FORCING A CRASH!");
-        throw new Exception($"OMG! My App Died with a random code {_random.Next(1, 101)}");
+        //        throw new Exception($"OMG! My App Died with a random code {_random.Next(1, 101)}");
     }
 
     private void CreateAnOOMError()

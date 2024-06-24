@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GalleryViewer.F7;
 
-public class MeadowApp : App<F7CoreComputeV2>
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private MainController? mainController;
 
@@ -13,7 +13,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new GalleryViewerProjectLabHardware(Device);
+        var hardware = new GalleryViewerProjectLabHardware(Hardware);
 
         mainController = new MainController();
         mainController.Initialize(hardware);

@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace ProjectLabConnectivity;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     public override async Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
-        var ble = Device.BluetoothAdapter;
+        var wifi = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        var ble = (Hardware.ComputeModule as F7MicroBase).BluetoothAdapter;
 
-        var mainController = new MainController(projectLab, wifi, ble);
+        var mainController = new MainController(Hardware, wifi, ble);
         await mainController.Initialize();
     }
 }

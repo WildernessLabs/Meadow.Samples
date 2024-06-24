@@ -8,7 +8,7 @@ namespace ProjectLab_Logging.Hardware;
 
 internal class MeadowCloudLoggingHardware : IMeadowCloudLoggingHardware
 {
-    protected ProjectLabHardwareBase ProjectLab { get; private set; }
+    protected IProjectLabHardware ProjLab { get; }
 
     public IPixelDisplay Display { get; set; }
 
@@ -20,18 +20,21 @@ internal class MeadowCloudLoggingHardware : IMeadowCloudLoggingHardware
 
     public IRgbPwmLed RgbPwmLed { get; set; }
 
+    public MeadowCloudLoggingHardware(IProjectLabHardware projLab)
+    {
+        ProjLab = projLab;
+    }
+
     public void Initialize()
     {
-        ProjectLab = Meadow.Devices.ProjectLab.Create() as ProjectLabHardwareBase;
+        Display = ProjLab.Display;
 
-        Display = ProjectLab.Display;
+        RgbPwmLed = ProjLab.RgbLed;
 
-        RgbPwmLed = ProjectLab.RgbLed;
+        TemperatureSensor = ProjLab.TemperatureSensor;
 
-        TemperatureSensor = ProjectLab.TemperatureSensor;
+        BarometricPressureSensor = ProjLab.BarometricPressureSensor;
 
-        BarometricPressureSensor = ProjectLab.BarometricPressureSensor;
-
-        HumiditySensor = ProjectLab.HumiditySensor;
+        HumiditySensor = ProjLab.HumiditySensor;
     }
 }

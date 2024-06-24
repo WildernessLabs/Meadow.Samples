@@ -18,8 +18,7 @@ public class MeadowApp<T> : App<T>
 {
     private const string WIFI_NAME = "myWiFi";
     private const string WIFI_PASSWORD = "myPassword";
-
-    IWiFiNetworkAdapter wifi;
+    private IWiFiNetworkAdapter wifi;
 
     public override async Task Initialize()
     {

@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace MagicEightMeadow;
 
-public class MeadowApp : App<F7CoreComputeV2>
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    MainController mainController;
+    private MainController mainController;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new MagicEightMeadowHardware();
+        var hardware = new MagicEightMeadowHardware(Hardware);
 
         mainController = new MainController(hardware);
         mainController.Initialize();

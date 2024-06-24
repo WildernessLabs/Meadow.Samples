@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Simon;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private int ANIMATION_DELAY = 50;
     private const int DOT_UP = 0;
@@ -22,17 +22,15 @@ public class MeadowApp : App<F7CoreComputeV2>
     private SimonGame game;
     private IRgbPwmLed onboardLed;
     private MicroGraphics graphics;
-    private IProjectLabHardware projectLab;
     private IButton[] buttons;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        onboardLed = projectLab.RgbLed;
+        onboardLed = Hardware.RgbLed;
         onboardLed.SetColor(Color.Red);
 
         notes = new Frequency[]
@@ -45,20 +43,20 @@ public class MeadowApp : App<F7CoreComputeV2>
 
         game = new SimonGame();
 
-        graphics = new MicroGraphics(projectLab.Display)
+        graphics = new MicroGraphics(Hardware.Display)
         {
             Stroke = 5
         };
         graphics.Clear();
 
         buttons = new IButton[4];
-        buttons[0] = projectLab.UpButton;
+        buttons[0] = Hardware.UpButton;
         buttons[0].Clicked += ButtonUpClicked;
-        buttons[2] = projectLab.DownButton;
+        buttons[2] = Hardware.DownButton;
         buttons[2].Clicked += ButtonDownClicked;
-        buttons[3] = projectLab.LeftButton;
+        buttons[3] = Hardware.LeftButton;
         buttons[3].Clicked += ButtonLeftClicked;
-        buttons[1] = projectLab.RightButton;
+        buttons[1] = Hardware.RightButton;
         buttons[1].Clicked += ButtonRightClicked;
 
         onboardLed.SetColor(Color.Green);
@@ -122,7 +120,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     private async Task DrawDotFilled(int index, int duration = 400)
     {
         DrawDot(index, true);
-        await projectLab.Speaker.PlayTone(notes[index], TimeSpan.FromMilliseconds(duration));
+        await Hardware.Speaker.PlayTone(notes[index], TimeSpan.FromMilliseconds(duration));
         DrawDot(index, false);
     }
 
@@ -196,7 +194,7 @@ public class MeadowApp : App<F7CoreComputeV2>
         isAnimating = true;
 
         //await Task.Delay(750);
-        await projectLab.Speaker.PlayTone(new Frequency(123.47f), TimeSpan.FromMilliseconds(750));
+        await Hardware.Speaker.PlayTone(new Frequency(123.47f), TimeSpan.FromMilliseconds(750));
 
         for (int i = 0; i < 20; i++)
         {

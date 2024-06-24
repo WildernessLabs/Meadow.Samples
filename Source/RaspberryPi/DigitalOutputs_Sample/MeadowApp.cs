@@ -1,5 +1,8 @@
 ﻿using Meadow;
+using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Foundation.Leds;
+using Meadow.Hardware;
+using Meadow.Units;
 
 namespace DigitalOutputs_Sample;
 
@@ -7,40 +10,60 @@ public class MeadowApp : App<RaspberryPi>
 {
     private List<Led>? leds;
 
+    private Mcp23008 _mcp23008;
+    private Mcp3004 _mcp3004;
+
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        leds = new List<Led>
-            {
-                new Led(Device.Pins.GPIO2),
-                new Led(Device.Pins.GPIO3),
-                new Led(Device.Pins.GPIO4),
-                new Led(Device.Pins.GPIO17),
-                new Led(Device.Pins.GPIO27),
-                new Led(Device.Pins.GPIO22),
-                new Led(Device.Pins.GPIO10),
-                new Led(Device.Pins.GPIO9),
-                new Led(Device.Pins.GPIO11),
-                new Led(Device.Pins.GPIO5),
-                new Led(Device.Pins.GPIO6),
-                new Led(Device.Pins.GPIO13),
-                new Led(Device.Pins.GPIO19),
-                new Led(Device.Pins.GPIO26),
+        var names = Device.PlatformOS.GetSerialPortNames();
+        Resolver.Log.Info($"names: {names.Length}");
 
-                new Led(Device.Pins.GPIO14),
-                new Led(Device.Pins.GPIO15),
-                new Led(Device.Pins.GPIO18),
-                new Led(Device.Pins.GPIO23),
-                new Led(Device.Pins.GPIO24),
-                new Led(Device.Pins.GPIO25),
-                //new Led(Device.Pins.GPIO8), // SPI needs to be disabled to use this pin
-                //new Led(Device.Pins.GPIO7), // SPI needs to be disabled to use this pin
-                new Led(Device.Pins.GPIO12),
-                new Led(Device.Pins.GPIO16),
-                new Led(Device.Pins.GPIO20),
-                new Led(Device.Pins.GPIO21),
-            };
+        var pn = Device.PlatformOS.GetSerialPortName("serial0");
+        Resolver.Log.Info($"Portname: {pn}");
+
+        var port = pn.CreateSerialPort();
+        port.Open();
+        var tx = new byte[10];
+        var rx = new byte[10];
+
+        while (true)
+        {
+            Random.Shared.NextBytes(tx);
+
+            port.Write(tx);
+            Thread.Sleep(100);
+            Resolver.Log.Info($"Available: {port.BytesToRead}");
+            var r = port.Read(rx, 0, rx.Length);
+            Resolver.Log.Info($"Read: {r}");
+
+            Resolver.Log.Info($"{BitConverter.ToString(tx)} --> {BitConverter.ToString(rx)}");
+
+            Thread.Sleep(2000);
+        }
+
+
+
+
+
+
+        var _mcpInt = Device.Pins.GPIO18.CreateDigitalInterruptPort(InterruptMode.EdgeRising, ResistorMode.Disabled);
+
+        _mcp23008 = new Mcp23008(
+            Device.CreateI2cBus(1),
+            address: (byte)Mcp23008.Addresses.Default,
+            interruptPort: _mcpInt,
+            resetPort: Device.Pins.GPIO17.CreateDigitalOutputPort(false)
+            );
+
+        _mcp3004 = new Mcp3004(
+            Device.CreateSpiBus(
+                Device.Pins.GPIO21,
+                Device.Pins.GPIO20,
+                Device.Pins.GPIO19,
+                new Frequency(2.34, Frequency.UnitType.Megahertz)),
+            Device.Pins.Pin24.CreateDigitalOutputPort(true));
 
         return Task.CompletedTask;
     }
@@ -49,25 +72,29 @@ public class MeadowApp : App<RaspberryPi>
     {
         Resolver.Log.Info("Run...");
 
+        //var gp6 = _mcp23008.Pins.GP6.CreateDigitalInterruptPort(InterruptMode.EdgeBoth, ResistorMode.InternalPullUp);
+        //var gp5 = _mcp23008.Pins.GP5.CreateDigitalInterruptPort(InterruptMode.EdgeBoth, ResistorMode.InternalPullUp);
+
+        //gp5.Changed += (s, e) => Resolver.Log.Info($"GP5 changed");
+        //gp6.Changed += (s, e) => Resolver.Log.Info($"GP6 changed");
+
+        var ch0 = _mcp3004.Pins.CH0.CreateAnalogInputPort();
+        var ch1 = _mcp3004.Pins.CH1.CreateAnalogInputPort();
+        var ch2 = _mcp3004.Pins.CH2.CreateAnalogInputPort();
+        var ch3 = _mcp3004.Pins.CH3.CreateAnalogInputPort();
+        ch0.StartUpdating();
         while (true)
         {
-            Resolver.Log.Error("Turning on each led every 100ms");
-            for (int i = 0; i < leds.Count; i++)
-            {
-                leds[i].IsOn = true;
-                await Task.Delay(100);
-            }
+            Resolver.Log.Info($"--------");
+            Resolver.Log.Info($"Read CH0: {ch0.Voltage:N2} V");
+            Resolver.Log.Info($"Read CH1: {ch1.Voltage:N2} V");
+            Resolver.Log.Info($"Read CH2: {ch2.Voltage:N2} V");
+            Resolver.Log.Info($"Read CH3: {ch3.Voltage:N2} V");
 
-            await Task.Delay(500);
+            //Resolver.Log.Info($"GP5: {gp5.State}");
+            //Resolver.Log.Info($"GP6: {gp6.State}");
 
-            Resolver.Log.Info("Turning off each led every 100ms");
-            for (int i = leds.Count - 1; i >= 0; i--)
-            {
-                leds[i].IsOn = false;
-                await Task.Delay(100);
-            }
-
-            await Task.Delay(500);
+            Thread.Sleep(2000);
         }
     }
 
