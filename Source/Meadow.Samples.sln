@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Logging", "..\..\Mea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Core", "..\..\Meadow.Core\source\Meadow.Core\Meadow.Core.csproj", "{F946F64B-09F7-418C-8855-BA6CC6061F0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.F7", "..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj", "{FFBE8C93-9609-42BC-9A52-C25CC88FE8B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.F7", "..\..\Meadow.Core\Source\implementations\f7\Meadow.F7\Meadow.F7.csproj", "{FFBE8C93-9609-42BC-9A52-C25CC88FE8B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Foundation.Core", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj", "{475E46AC-8E14-47E6-A28B-1D30C7C75516}"
 EndProject
@@ -473,13 +473,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrashDetect", "Meadow F7\OS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.Silk", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Silk\Driver\Displays.Silk.csproj", "{43E8A4B3-E917-4781-85AC-95E5DA4176BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Windows", "..\..\Meadow.Core\source\implementations\windows\Meadow.Windows\Meadow.Windows.csproj", "{D22FFEC3-0E36-491B-8B8B-CAFAC7F81A0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Windows", "..\..\Meadow.Core\Source\implementations\windows\Meadow.Windows\Meadow.Windows.csproj", "{D22FFEC3-0E36-491B-8B8B-CAFAC7F81A0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Desktop", "..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj", "{30D71971-96E0-4BDE-ABAF-C2823A8EF5C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Desktop", "..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj", "{30D71971-96E0-4BDE-ABAF-C2823A8EF5C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Mac", "..\..\Meadow.Core\source\implementations\mac\Meadow.Mac\Meadow.Mac.csproj", "{733F129E-84F0-4FCB-8B60-C04CA8122B43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Mac", "..\..\Meadow.Core\Source\implementations\mac\Meadow.Mac\Meadow.Mac.csproj", "{733F129E-84F0-4FCB-8B60-C04CA8122B43}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Linux", "..\..\Meadow.Core\source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj", "{3C565075-AB93-493E-A552-E0DFFAFE3E79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Linux", "..\..\Meadow.Core\Source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj", "{3C565075-AB93-493E-A552-E0DFFAFE3E79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GnssTracker", "GnssTracker", "{9F7C1A01-9EFA-4257-86BC-B14E65DC7D95}"
 EndProject
