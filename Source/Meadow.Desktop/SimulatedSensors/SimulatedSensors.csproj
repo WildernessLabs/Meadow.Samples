@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\..\..\..\Meadow.Core\source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
+      <ProjectReference Include="..\..\..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
       <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
       <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Hid.Keyboard\Driver\Sensors.Hid.Keyboard.csproj" />
     </ItemGroup>

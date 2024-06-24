@@ -25,7 +25,7 @@
         <EmbeddedResource Include="w_storm.jpg" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
+        <ProjectReference Include="..\..\..\..\Meadow.Core\Source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
         <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
         <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.TftSpi\Driver\Displays.TftSpi.csproj" />
         <PackageReference Include="SimpleJpegDecoder" Version="*" />
