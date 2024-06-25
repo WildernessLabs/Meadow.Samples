@@ -26,7 +26,7 @@
         <EmbeddedResource Include="Resources\img_wifi_connecting.bmp" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\amqpnetlite\src\Amqp.csproj" />
+        <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
         <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Graphics.MicroLayout\Driver\Graphics.MicroLayout.csproj" />
         <ProjectReference Include="..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
     </ItemGroup>
