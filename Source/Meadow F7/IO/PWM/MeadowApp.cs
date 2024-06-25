@@ -108,10 +108,10 @@ public class MeadowApp : App<F7FeatherV2>
             Resolver.Log.Info($"Duty: {pwm.DutyCycle}  Duration: {pwm.Duration}");
             await Task.Delay(2000);
 
-            var temp = Math.Round(pwm.Duration.TotalMilliseconds + delta, 0);
-            pwm.Duration.Add(TimeSpan.FromMilliseconds(temp));
+            var temp = Math.Round(pwm.Duration.Milliseconds + delta, 0);
+            pwm.Duration.Add(TimePeriod.FromMilliseconds(temp));
 
-            if (pwm.Duration.TotalMilliseconds <= 000 || pwm.Duration.TotalMilliseconds >= 10.0)
+            if (pwm.Duration.Milliseconds <= 000 || pwm.Duration.Milliseconds >= 10.0)
             {
                 delta *= -1;
             }
