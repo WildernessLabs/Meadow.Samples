@@ -7,7 +7,7 @@ namespace GalleryViewer.Hardware;
 
 internal class GalleryViewerHardware : IGalleryViewerHardware
 {
-    protected IProjectLabHardware ProjLab { get; private set; }
+    protected IProjectLabHardware ProjLab { get; }
 
     public IPixelDisplay Display { get; set; }
 
@@ -17,10 +17,13 @@ internal class GalleryViewerHardware : IGalleryViewerHardware
 
     public IRgbPwmLed RgbPwmLed { get; set; }
 
+    public GalleryViewerHardware(IProjectLabHardware projLab)
+    {
+        ProjLab = projLab;
+    }
+
     public void Initialize()
     {
-        ProjLab = ProjectLab.Create();
-
         Display = ProjLab.Display;
 
         RightButton = ProjLab.RightButton;

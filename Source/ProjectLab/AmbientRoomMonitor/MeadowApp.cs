@@ -5,18 +5,16 @@ using System.Threading.Tasks;
 
 namespace AmbientRoomMonitor;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    MainController mainController;
+    private MainController mainController;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new AmbientRoomMonitorHardware();
-
-        mainController = new MainController(hardware);
+        mainController = new MainController(new AmbientRoomMonitorHardware(Hardware));
         mainController.Initialize();
 
         return Task.CompletedTask;

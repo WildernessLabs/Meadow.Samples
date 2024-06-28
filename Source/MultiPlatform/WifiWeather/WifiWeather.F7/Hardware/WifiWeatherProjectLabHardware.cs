@@ -21,10 +21,10 @@ public class WifiWeatherProjectLabHardware : IWifiWeatherHardware
 
     public INetworkAdapter? NetworkAdapter => networkAdapter;
 
-    public WifiWeatherProjectLabHardware(F7CoreComputeV2 device)
+    public WifiWeatherProjectLabHardware(IProjectLabHardware projLab)
     {
-        projLab = ProjectLab.Create();
+        this.projLab = projLab;
 
-        networkAdapter = device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        networkAdapter = projLab.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
     }
 }

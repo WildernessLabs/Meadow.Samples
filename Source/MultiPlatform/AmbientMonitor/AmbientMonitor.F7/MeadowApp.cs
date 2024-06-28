@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AmbientMonitor.F7;
 
-public class MeadowApp : App<F7CoreComputeV2>
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private MainController? mainController;
 
@@ -13,7 +13,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new AmbientMonitorProjectLabHardware(Device);
+        var hardware = new AmbientMonitorProjectLabHardware(Hardware);
 
         mainController = new MainController();
         mainController.Initialize(hardware);

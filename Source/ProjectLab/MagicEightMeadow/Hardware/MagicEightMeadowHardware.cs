@@ -7,7 +7,7 @@ namespace MagicEightMeadow.Hardware;
 
 internal class MagicEightMeadowHardware : IMagicEightMeadowHardware
 {
-    protected IProjectLabHardware projectLab { get; private set; }
+    protected IProjectLabHardware ProjLab { get; }
 
     public IPixelDisplay Display { get; set; }
 
@@ -15,14 +15,17 @@ internal class MagicEightMeadowHardware : IMagicEightMeadowHardware
 
     public Bmi270 MotionSensor { get; set; }
 
+    public MagicEightMeadowHardware(IProjectLabHardware projectLab)
+    {
+        this.ProjLab = projectLab;
+    }
+
     public void Initialize()
     {
-        projectLab = ProjectLab.Create();
+        Display = ProjLab.Display;
 
-        Display = projectLab.Display;
+        RgbPwmLed = ProjLab.RgbLed;
 
-        RgbPwmLed = projectLab.RgbLed;
-
-        MotionSensor = (projectLab as ProjectLabHardwareBase).MotionSensor;
+        MotionSensor = (ProjLab as ProjectLabHardwareBase).MotionSensor;
     }
 }

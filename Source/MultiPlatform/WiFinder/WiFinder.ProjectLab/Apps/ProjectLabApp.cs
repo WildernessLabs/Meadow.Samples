@@ -1,16 +1,16 @@
-﻿using Meadow;
-using Meadow.Devices;
+﻿using Meadow.Devices;
 using WiFinder.Core;
 
 namespace WiFinder.F7;
 
-public class ProjectLabApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private MainController mainController;
 
     public override Task Initialize()
     {
-        var hardware = new ProjectLabHardware(Device);
+        var hardware = new ProjectLabHardware(Hardware);
         mainController = new MainController();
         return mainController.Initialize(hardware);
     }

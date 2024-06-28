@@ -7,7 +7,7 @@ namespace ProjectLab_Command.Hardware;
 
 internal class MeadowCloudCommandHardware : IMeadowCloudCommandHardware
 {
-    protected IProjectLabHardware ProjLab { get; private set; }
+    protected IProjectLabHardware ProjLab { get; }
 
     public IPixelDisplay Display { get; set; }
 
@@ -15,10 +15,13 @@ internal class MeadowCloudCommandHardware : IMeadowCloudCommandHardware
 
     public FourChannelSpdtRelay FourChannelRelay { get; set; }
 
+    public MeadowCloudCommandHardware(IProjectLabHardware projLab)
+    {
+        ProjLab = projLab;
+    }
+
     public void Initialize()
     {
-        ProjLab = ProjectLab.Create();
-
         Display = ProjLab.Display;
 
         RgbPwmLed = ProjLab.RgbLed;

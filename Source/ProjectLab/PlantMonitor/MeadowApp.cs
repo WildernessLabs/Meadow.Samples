@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace PlantMonitor;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private IRgbPwmLed onboardLed;
-    private IProjectLabHardware projectLab;
     private MoistureSensor moistureSensor;
     private DisplayController displayController;
 
@@ -20,16 +19,15 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        onboardLed = projectLab.RgbLed;
+        onboardLed = Hardware.RgbLed;
         onboardLed.SetColor(Color.Red);
 
         displayController = DisplayController.Instance;
-        displayController.Initialize(projectLab.Display);
+        displayController.Initialize(Hardware.Display);
 
-        moistureSensor = new MoistureSensor(Device.Pins.A01.CreateAnalogInputPort(1));
+        moistureSensor = new MoistureSensor(Hardware.IOTerminal.Pins.A1.CreateAnalogInputPort(1));
         var moistureSensorObserver = MoistureSensor.CreateObserver(
             handler: result =>
             {

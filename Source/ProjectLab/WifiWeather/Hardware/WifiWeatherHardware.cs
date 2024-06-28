@@ -17,10 +17,13 @@ internal class WifiWeatherHardware : IWifiWeatherHardware
 
     public ITemperatureSensor TemperatureSensor { get; set; }
 
+    public WifiWeatherHardware(IProjectLabHardware projLab)
+    {
+        ProjLab = projLab;
+    }
+
     public void Initialize()
     {
-        ProjLab = ProjectLab.Create();
-
         UpButton = ProjLab.UpButton;
 
         DownButton = ProjLab.DownButton;

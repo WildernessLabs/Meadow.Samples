@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace ProjectLab_AzureIoTHub;
 
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    MainController mainController;
+    private MainController mainController;
 
     public override async Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new MeadowAzureIoTHubHardware();
-        var network = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        var hardware = new MeadowAzureIoTHubHardware(Hardware);
+        var network = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
         mainController = new MainController(hardware, network);
         await mainController.Initialize();

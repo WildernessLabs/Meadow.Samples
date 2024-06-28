@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 namespace GalleryViewer;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    MainController mainController;
+    private MainController mainController;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new GalleryViewerHardware();
+        var hardware = new GalleryViewerHardware(Hardware);
 
         mainController = new MainController(hardware);
         mainController.Initialize();

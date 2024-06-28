@@ -10,37 +10,32 @@ using System.Threading.Tasks;
 
 namespace MorseCodeTrainer;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    Dictionary<string, string> morseCode;
-
-    IRgbPwmLed onboardLed;
-
-    Stopwatch stopWatch;
-    string answer;
-    string question;
-
-    IProjectLabHardware projectLab;
+    private Dictionary<string, string> morseCode;
+    private IRgbPwmLed onboardLed;
+    private Stopwatch stopWatch;
+    private string answer;
+    private string question;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        onboardLed = projectLab.RgbLed;
+        onboardLed = Hardware.RgbLed;
         onboardLed.SetColor(Color.Red);
 
-        DisplayController.Instance.Initialize(projectLab.Display, projectLab.Speaker);
+        DisplayController.Instance.Initialize(Hardware.Display, Hardware.Speaker);
 
-        projectLab.RightButton.PressStarted += ButtonPressStarted;
-        projectLab.RightButton.PressEnded += ButtonPressEnded;
+        Hardware.RightButton.PressStarted += ButtonPressStarted;
+        Hardware.RightButton.PressEnded += ButtonPressEnded;
 
-        projectLab.LeftButton.Clicked += BackSpaceButtonClicked;
+        Hardware.LeftButton.Clicked += BackSpaceButtonClicked;
 
-        projectLab.DownButton.Clicked += SubmitButtonClicked;
+        Hardware.DownButton.Clicked += SubmitButtonClicked;
 
         stopWatch = new Stopwatch();
 
@@ -51,7 +46,7 @@ public class MeadowApp : App<F7CoreComputeV2>
         return base.Initialize();
     }
 
-    void LoadMorseCode()
+    private void LoadMorseCode()
     {
         morseCode = new Dictionary<string, string>
         {
@@ -123,16 +118,16 @@ public class MeadowApp : App<F7CoreComputeV2>
         }
     }
 
-    async void ButtonPressStarted(object sender, EventArgs e)
+    private async void ButtonPressStarted(object sender, EventArgs e)
     {
-        await projectLab.Speaker.PlayTone(new Meadow.Units.Frequency(440), TimeSpan.MaxValue);
+        await Hardware.Speaker.PlayTone(new Meadow.Units.Frequency(440), TimeSpan.MaxValue);
         stopWatch.Reset();
         stopWatch.Start();
     }
 
-    void ButtonPressEnded(object sender, EventArgs e)
+    private void ButtonPressEnded(object sender, EventArgs e)
     {
-        projectLab.Speaker.StopTone();
+        Hardware.Speaker.StopTone();
         stopWatch.Stop();
 
         if (stopWatch.ElapsedMilliseconds < 200)
@@ -147,7 +142,7 @@ public class MeadowApp : App<F7CoreComputeV2>
         DisplayController.Instance.UpdateAnswer(answer, Color.White);
     }
 
-    void ShowLetterQuestion()
+    private void ShowLetterQuestion()
     {
         answer = string.Empty;
         question = morseCode.ElementAt(new Random().Next(0, morseCode.Count)).Value;

@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace RotatingCube;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private IRgbPwmLed onboardLed;
-    private IProjectLabHardware projectLab;
     private MicroGraphics graphics;
     private Cube3d cube;
     private Color cubeColor;
@@ -25,29 +24,28 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        onboardLed = projectLab.RgbLed;
+        onboardLed = Hardware.RgbLed;
         onboardLed.SetColor(Color.Red);
 
-        graphics = new MicroGraphics(projectLab.Display)
+        graphics = new MicroGraphics(Hardware.Display)
         {
             Stroke = 3
         };
 
-        projectLab.RightButton.Clicked += RightButton_Clicked;
-        projectLab.LeftButton.Clicked += LeftButton_Clicked;
-        projectLab.UpButton.Clicked += UpButton_Clicked;
-        projectLab.DownButton.Clicked += DownButton_Clicked;
+        Hardware.RightButton.Clicked += RightButton_Clicked;
+        Hardware.LeftButton.Clicked += LeftButton_Clicked;
+        Hardware.UpButton.Clicked += UpButton_Clicked;
+        Hardware.DownButton.Clicked += DownButton_Clicked;
 
-        projectLab.UpButton.LongClickedThreshold = TimeSpan.FromMilliseconds(500);
-        projectLab.UpButton.LongClicked += UpButton_LongClicked;
+        Hardware.UpButton.LongClickedThreshold = TimeSpan.FromMilliseconds(500);
+        Hardware.UpButton.LongClicked += UpButton_LongClicked;
 
-        projectLab.DownButton.LongClickedThreshold = TimeSpan.FromMilliseconds(500);
-        projectLab.DownButton.LongClicked += DownButton_LongClicked;
+        Hardware.DownButton.LongClickedThreshold = TimeSpan.FromMilliseconds(500);
+        Hardware.DownButton.LongClicked += DownButton_LongClicked;
 
-        (projectLab as ProjectLabHardwareBase).MotionSensor.Updated += MotionSensor_Updated;
+        (Hardware as ProjectLabHardwareBase).MotionSensor.Updated += MotionSensor_Updated;
 
         onboardLed.SetColor(Color.Green);
 
@@ -151,7 +149,7 @@ public class MeadowApp : App<F7CoreComputeV2>
 
     public override Task Run()
     {
-        (projectLab as ProjectLabHardwareBase).MotionSensor.StartUpdating(motionUpdateInterval);
+        (Hardware as ProjectLabHardwareBase).MotionSensor.StartUpdating(motionUpdateInterval);
 
         cube = new Cube3d(graphics.Width / 2, graphics.Height / 2, cubeSize);
         cubeColor = initialColor;

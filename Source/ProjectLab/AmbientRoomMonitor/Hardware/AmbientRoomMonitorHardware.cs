@@ -18,10 +18,13 @@ internal class AmbientRoomMonitorHardware : IAmbientRoomMonitorHardware
 
     public Bme68x EnvironmentalSensor { get; set; }
 
+    internal AmbientRoomMonitorHardware(IProjectLabHardware projectLab)
+    {
+        ProjLab = projectLab;
+    }
+
     public void Initialize()
     {
-        ProjLab = ProjectLab.Create();
-
         Display = ProjLab.Display;
 
         RgbPwmLed = ProjLab.RgbLed;

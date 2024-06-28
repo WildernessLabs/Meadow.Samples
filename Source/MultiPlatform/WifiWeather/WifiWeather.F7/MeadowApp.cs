@@ -6,7 +6,8 @@ using WifiWeather.F7.Hardware;
 
 namespace WifiWeather.F7;
 
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private MainController? mainController;
 
@@ -14,7 +15,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new WifiWeatherProjectLabHardware(Device);
+        var hardware = new WifiWeatherProjectLabHardware(Hardware);
 
         mainController = new MainController();
         mainController.Initialize(hardware);

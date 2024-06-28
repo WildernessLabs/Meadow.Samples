@@ -17,8 +17,8 @@ public class GalleryViewerProjectLabHardware : IGalleryViewerHardware
 
     public RotationType DisplayRotation => RotationType._270Degrees;
 
-    public GalleryViewerProjectLabHardware(F7CoreComputeV2 device)
+    public GalleryViewerProjectLabHardware(IProjectLabHardware projLab)
     {
-        projLab = ProjectLab.Create();
+        this.projLab = projLab;
     }
 }

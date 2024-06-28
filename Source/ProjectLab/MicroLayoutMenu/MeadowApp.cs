@@ -7,23 +7,20 @@ using System.Threading.Tasks;
 
 namespace MicroLayoutMenu;
 
-// Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    private IProjectLabHardware _projectLab;
     private DisplayScreen _screen;
     private Menu _menu;
 
     public override Task Initialize()
     {
-        _projectLab = ProjectLab.Create();
-
-        _screen = new DisplayScreen(_projectLab.Display, RotationType._270Degrees);
+        _screen = new DisplayScreen(Hardware.Display, RotationType._270Degrees);
 
         return base.Initialize();
     }
 
-    void ShowDemoScreen()
+    private void ShowDemoScreen()
     {
         var image = Image.LoadFromResource("MicroLayoutMenu.img_meadow.bmp");
 
@@ -63,7 +60,7 @@ public class MeadowApp : App<F7CoreComputeV2>
             });
     }
 
-    void ShowMenuScreen()
+    private void ShowMenuScreen()
     {
         var menuItems = new string[]
             {
@@ -77,8 +74,8 @@ public class MeadowApp : App<F7CoreComputeV2>
 
         _menu = new Menu(menuItems, _screen);
 
-        _projectLab.UpButton.Clicked += (s, e) => _menu.Up();
-        _projectLab.DownButton.Clicked += (s, e) => _menu.Down();
+        Hardware.UpButton.Clicked += (s, e) => _menu.Up();
+        Hardware.DownButton.Clicked += (s, e) => _menu.Down();
     }
 
     public override Task Run()
