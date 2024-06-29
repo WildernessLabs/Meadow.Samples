@@ -10,15 +10,15 @@ public class MeadowApp : App<Desktop>
 {
     public override Task Initialize()
     {
-        Device.Display.Resize(320, 240, 4);
+        Device.Display.Resize(320, 240, 2);
 
         // Default WinForms screen (800,600)
         //_display = new WinFormsDisplay();
         //var views = new RotatingCube(_display);
 
         // Screen size of a ILI9488 display
-        Device.Display.Resize(250, 122);
-        var views = new GnssTrackerConnectivityView(Device.Display);
+        //Device.Display.Resize(250, 122);
+        //var views = new GnssTrackerConnectivityView(Device.Display);
 
         // Screen size of a EPD4IN2bV2 e-paper display
         //Device.Display.Resize(300, 400);
@@ -28,7 +28,7 @@ public class MeadowApp : App<Desktop>
         //var views = new CultivarView(Device.Display);
         //var views = new ProjectLabDemoView(Device.Display);
         //var views = new AtmosphericHMI(Device.Display);
-        //var views = new WifiWeatherV2(Device.Display);
+        var views = new WifiWeatherV2(Device.Display);
 
         _ = Task.Run(() =>
         {
