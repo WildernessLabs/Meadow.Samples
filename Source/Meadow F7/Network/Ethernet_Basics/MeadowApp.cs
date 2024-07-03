@@ -22,8 +22,8 @@ public class MeadowApp : App<F7CoreComputeV2>
         }
         else
         {
-            // connected event test.
-            ethernet.NetworkConnected += EthernetAdapterNetworkConnected;
+            ethernet.NetworkConnected += EthernetAdapterConnected;
+            ethernet.NetworkDisconnected += EthernetAdapterDisconnected;
 
             if (ethernet.IsConnected)
             {
@@ -31,15 +31,28 @@ public class MeadowApp : App<F7CoreComputeV2>
 
                 while (true)
                 {
-                    await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
+                    try
+                    {
+                        await GetWebPageViaHttpClient("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
+                    }
+                    catch (Exception ex)
+                    {
+                        Resolver.Log.Error($"{ex.Message}");
+                        await Task.Delay(3000);
+                    }
                 }
             }
         }
     }
 
-    void EthernetAdapterNetworkConnected(INetworkAdapter networkAdapter, NetworkConnectionEventArgs e)
+    private void EthernetAdapterDisconnected(INetworkAdapter sender, NetworkDisconnectionEventArgs args)
     {
-        Resolver.Log.Info("Connection request completed");
+        Resolver.Log.Info("Network cable disconnected");
+    }
+
+    private void EthernetAdapterConnected(INetworkAdapter networkAdapter, NetworkConnectionEventArgs e)
+    {
+        Resolver.Log.Info("Network cable connected");
     }
 
     public void DisplayNetworkInformation()
