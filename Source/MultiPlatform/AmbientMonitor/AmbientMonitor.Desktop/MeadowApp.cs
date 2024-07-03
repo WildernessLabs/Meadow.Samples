@@ -17,6 +17,8 @@ public class MeadowApp : App<Desktop>
 
         Resolver.Log.Info("Initialize...");
 
+        Device.Display.Resize(320, 240, 2);
+
         var hardware = new AmbientMonitorHardware(Device);
 
         mainController = new MainController();

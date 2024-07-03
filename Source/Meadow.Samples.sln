@@ -505,7 +505,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GnssTrackerConnectivity.Com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileGnssTrackerConnectivity", "GnssTracker\Connectivity\MobileGnssTrackerConnectivity\MobileGnssTrackerConnectivity.csproj", "{5EE35697-6C30-432F-B675-24CE02F2CF9D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultiPlatform", "MultiPlatform", "{BC0444E2-446D-49D1-9080-B00C3EE3F745}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StartKit", "StartKit", "{BC0444E2-446D-49D1-9080-B00C3EE3F745}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WiFinder", "WiFinder", "{7F75D9E7-EBD6-487A-8578-3C6D0ED95B5D}"
 EndProject
