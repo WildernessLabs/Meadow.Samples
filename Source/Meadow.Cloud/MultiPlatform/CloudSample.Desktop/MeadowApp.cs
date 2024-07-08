@@ -8,7 +8,7 @@ public class MeadowApp : App<Desktop>
 
     public override Task Initialize()
     {
-        Resolver.Log.ShowGroups.Add("Platform: Meadow.Desktop");
+        Resolver.Log.Info("Platform: Meadow.Desktop");
 
         mainController = new MainController();
 
