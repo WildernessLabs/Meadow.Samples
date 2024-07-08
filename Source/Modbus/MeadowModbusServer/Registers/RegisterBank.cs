@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MeadowModbusServer;
+namespace MeadowModbusServer.Registers;
 
 internal class RegisterBank
 {
@@ -29,7 +29,7 @@ internal class RegisterBank
         Buffer.BlockCopy(bytes, 0, registers, offset * 2, bytes.Length);
     }
 
-    public ushort[]? GetRegisters(int startRegister, int count)
+    public ushort[] GetRegisters(int startRegister, int count)
     {
         var end = (int)Registers.TotalLength;
         if (startRegister >= end) return null;

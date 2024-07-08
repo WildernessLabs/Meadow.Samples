@@ -17,6 +17,8 @@ public class WifiWeatherHardware : IWifiWeatherHardware
     private readonly IPixelDisplay? display;
     private readonly INetworkAdapter? networkAdapter;
 
+    public int TimezoneOffset => 0;
+
     public IButton? UpButton => upButton;
 
     public IButton? DownButton => downButton;

@@ -5,6 +5,8 @@ using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Hardware;
 using Meadow.Modbus;
 using Meadow.Peripherals.Displays;
+using Meadow.Units;
+using MeadowModbusServer.Registers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,13 +129,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
         addressLabel.Text = address.ToString();
     }
 
-    private void ShowTelemetry(IEnumerable<KeyValuePair<string, float>> telemetry)
-    {
-        telemetryLabel.Text = string.Join("  ",
-            telemetry.Select(t => $"{t.Key}={t.Value:0.0}"));
-    }
-
-    private void OnEnvironmentalSensorUpdated(object sender, IChangeResult<(Meadow.Units.Temperature? Temperature, Meadow.Units.RelativeHumidity? Humidity, Meadow.Units.Pressure? Pressure, Meadow.Units.Resistance? GasResistance)> e)
+    private void OnEnvironmentalSensorUpdated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
     {
         var d = new Dictionary<string, float>();
 
@@ -155,5 +151,11 @@ public class MeadowApp : ProjectLabCoreComputeApp
         }
 
         ShowTelemetry(d);
+    }
+
+    private void ShowTelemetry(IEnumerable<KeyValuePair<string, float>> telemetry)
+    {
+        telemetryLabel.Text = string.Join("  ",
+            telemetry.Select(t => $"{t.Key}={t.Value:0.0}"));
     }
 }

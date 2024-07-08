@@ -6,6 +6,8 @@ namespace WifiWeather.Core.Contracts;
 
 public interface IWifiWeatherHardware
 {
+    int TimezoneOffset { get; }
+
     IButton? UpButton { get; }
 
     IButton? DownButton { get; }

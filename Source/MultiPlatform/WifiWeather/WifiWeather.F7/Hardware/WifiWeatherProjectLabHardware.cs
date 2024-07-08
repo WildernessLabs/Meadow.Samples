@@ -10,6 +10,8 @@ public class WifiWeatherProjectLabHardware : IWifiWeatherHardware
 {
     private readonly IProjectLabHardware projLab;
 
+    public int TimezoneOffset => -7;
+
     public RotationType DisplayRotation => RotationType._270Degrees;
 
     public IButton? UpButton => projLab.UpButton;
