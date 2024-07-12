@@ -9,7 +9,8 @@ namespace WifiWeather.F7.Hardware;
 public class WifiWeatherProjectLabHardware : IWifiWeatherHardware
 {
     private readonly IProjectLabHardware projLab;
-    private readonly INetworkAdapter networkAdapter;
+
+    public int TimezoneOffset => -7;
 
     public RotationType DisplayRotation => RotationType._270Degrees;
 
@@ -19,12 +20,10 @@ public class WifiWeatherProjectLabHardware : IWifiWeatherHardware
 
     public IPixelDisplay? Display => projLab.Display;
 
-    public INetworkAdapter? NetworkAdapter => networkAdapter;
+    public INetworkAdapter? NetworkAdapter => projLab.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
     public WifiWeatherProjectLabHardware(IProjectLabHardware projLab)
     {
         this.projLab = projLab;
-
-        networkAdapter = projLab.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
     }
 }

@@ -10,7 +10,7 @@ public class MeadowApp : App<F7CoreComputeV2>
 
     public override Task Initialize()
     {
-        Resolver.Log.ShowGroups.Add("Platform: Meadow F7");
+        Resolver.Log.Info("Platform: Meadow F7");
 
         mainController = new MainController();
 

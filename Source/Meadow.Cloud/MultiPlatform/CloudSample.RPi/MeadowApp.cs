@@ -8,7 +8,7 @@ public class MeadowApp : App<RaspberryPi>
 
     public override Task Initialize()
     {
-        Resolver.Log.ShowGroups.Add("Platform: Raspberry Pi");
+        Resolver.Log.Info("Platform: Raspberry Pi");
 
         mainController = new MainController();
 

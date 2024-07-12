@@ -1,2 +1,2 @@
 Deploy:
-    NoLink: [ App, WifiWeather.Core ]
+    NoLink: [ App, WifiWeather.Core, ProjectLab ]

@@ -20,7 +20,7 @@ public class AmbientMonitorProjectLabHardware : IAmbientMonitorHardware
 
     public RotationType DisplayRotation => RotationType._270Degrees;
 
-    public INetworkAdapter? NetworkAdapter { get; }
+    public INetworkAdapter? NetworkAdapter => projLab.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
     public ITemperatureSensor? TemperatureSensor => projLab.TemperatureSensor;
 
@@ -31,6 +31,5 @@ public class AmbientMonitorProjectLabHardware : IAmbientMonitorHardware
     public AmbientMonitorProjectLabHardware(IProjectLabHardware projLab)
     {
         this.projLab = projLab;
-        projLab.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
     }
 }

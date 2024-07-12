@@ -116,10 +116,9 @@ public class MainController
 
             if (hardware.NetworkAdapter.IsConnected)
             {
-                int TimeZoneOffSet = -7; // PST
-                var today = DateTime.Now.AddHours(TimeZoneOffSet);
+                var today = DateTime.Now.AddHours(hardware.TimezoneOffset);
 
-                Resolver.Log.Trace("Connected!");
+                Resolver.Log.Trace($"Today: {today.ToString("hh:mm tt | dd/MM/yyyy")}");
 
                 if (today.Minute == 0 ||
                     today.Minute == 10 ||

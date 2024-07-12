@@ -13,10 +13,11 @@ public class MeadowApp : App<Desktop>
 
     public override Task Initialize()
     {
-        // output log messages to the VS debug window
         Resolver.Log.AddProvider(new DebugLogProvider());
 
         Resolver.Log.Info("Initialize...");
+
+        Device.Display.Resize(320, 240, 2);
 
         var hardware = new GalleryViewerHardware(Device);
 

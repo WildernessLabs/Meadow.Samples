@@ -472,12 +472,14 @@ public class DisplayController
         weatherIcon = Image.LoadFromResource(icon);
         weather.Image = weatherIcon;
 
-        temperatureValue.Text = $"{temperature:N1}C";
+        temperatureValue.Text = $"{temperature:N1}°C";
         humidityValue.Text = $"{humidity:N1}%";
         pressureValue.Text = $"{pressure:N2}atm";
         this.feelsLike.Text = $"{feelsLike:N1}C";
         this.sunrise.Text = $"{sunrise:hh:mm tt}";
         this.sunset.Text = $"{sunset:hh:mm tt}";
+
+        Resolver.Log.Info($"{numberOfRequests} - {temperature:N1}°C, {pressure:N2}atm, {humidity:N1}%");
 
         displayScreen.EndUpdate();
     }

@@ -505,7 +505,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GnssTrackerConnectivity.Com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileGnssTrackerConnectivity", "GnssTracker\Connectivity\MobileGnssTrackerConnectivity\MobileGnssTrackerConnectivity.csproj", "{5EE35697-6C30-432F-B675-24CE02F2CF9D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultiPlatform", "MultiPlatform", "{BC0444E2-446D-49D1-9080-B00C3EE3F745}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StartKit", "StartKit", "{BC0444E2-446D-49D1-9080-B00C3EE3F745}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WiFinder", "WiFinder", "{7F75D9E7-EBD6-487A-8578-3C6D0ED95B5D}"
 EndProject
@@ -560,6 +560,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Servos", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Servos\Driver\Servos.csproj", "{09D8D895-436E-41AD-A813-9A2C0EE5FAC4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICs.ADC.Mcp3xxx", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.ADCs.Mcp3xxx\Driver\ICs.ADC.Mcp3xxx.csproj", "{8E5AE8EC-842E-4332-A219-5E812B397258}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModBusClient", "Modbus\ModBusClient\ModBusClient.csproj", "{029D7D51-257B-4CA9-80AC-F8B0238B55DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopModbusClient", "Modbus\DesktopModbusClient\DesktopModbusClient.csproj", "{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowModbusServer", "Modbus\MeadowModbusServer\MeadowModbusServer.csproj", "{F6BA3311-6502-4A7E-89A9-D943245DCA00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2543,6 +2549,27 @@ Global
 		{8E5AE8EC-842E-4332-A219-5E812B397258}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E5AE8EC-842E-4332-A219-5E812B397258}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 		{8E5AE8EC-842E-4332-A219-5E812B397258}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
+		{029D7D51-257B-4CA9-80AC-F8B0238B55DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{029D7D51-257B-4CA9-80AC-F8B0238B55DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{029D7D51-257B-4CA9-80AC-F8B0238B55DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{029D7D51-257B-4CA9-80AC-F8B0238B55DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{029D7D51-257B-4CA9-80AC-F8B0238B55DF}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{029D7D51-257B-4CA9-80AC-F8B0238B55DF}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Simulation|Any CPU.Build.0 = Debug|Any CPU
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2812,6 +2839,9 @@ Global
 		{1259861C-FAF0-4624-9B72-313FED3B4433} = {FDA91A0A-5CDF-4312-AF4C-2702E1F00F7A}
 		{09D8D895-436E-41AD-A813-9A2C0EE5FAC4} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 		{8E5AE8EC-842E-4332-A219-5E812B397258} = {A809F07D-DD94-4375-8776-23FBE73591A5}
+		{029D7D51-257B-4CA9-80AC-F8B0238B55DF} = {3B2ADC8C-1ACB-49F3-8A3C-4F453FF9FE75}
+		{4A4C3198-BF16-47DB-BA01-25DDCF77B2F5} = {3B2ADC8C-1ACB-49F3-8A3C-4F453FF9FE75}
+		{F6BA3311-6502-4A7E-89A9-D943245DCA00} = {3B2ADC8C-1ACB-49F3-8A3C-4F453FF9FE75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}

@@ -5,6 +5,8 @@ using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Hardware;
 using Meadow.Modbus;
 using Meadow.Peripherals.Displays;
+using Meadow.Units;
+using MeadowModbusServer.Registers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace MeadowModbusServer;
 
-public class MeadowApp : App<F7CoreComputeV2>
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private IProjectLabHardware projectLab;
     private ModbusTcpServer modbusServer;
@@ -29,21 +31,45 @@ public class MeadowApp : App<F7CoreComputeV2>
         // map sensor values to input registers
         registers = new RegisterBank((int)RegisterBank.Registers.TotalLength);
 
-        projectLab = ProjectLab.Create();
+        projectLab = Hardware;
 
         BuildScreen();
 
         (projectLab as ProjectLabHardwareBase).AtmosphericSensor.Updated += OnEnvironmentalSensorUpdated;
         (projectLab as ProjectLabHardwareBase).AtmosphericSensor.StartUpdating();
 
-        Device.NetworkConnected += OnNetworkConnected;
+        var wifi = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
-        _ = Device
-            .NetworkAdapters
-            .Primary<IWiFiNetworkAdapter>()
-            .Connect("BOBS_YOUR_UNCLE", "1234567890");
+        if (wifi.IsConnected)
+        {
+            StartModbusServer(wifi.IpAddress);
+        }
+        else
+        {
+            wifi.NetworkConnected += OnNetworkConnected;
+        }
 
         return Task.CompletedTask;
+    }
+
+    private void OnNetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
+    {
+        StartModbusServer(args.IpAddress);
+    }
+
+    private void StartModbusServer(IPAddress ipAddress)
+    {
+        Resolver.Log.Info($"Network connected. Starting Modbus server on {ipAddress}");
+
+        // update the display to make connecting easier
+        ShowNetworkAddress(ipAddress);
+
+        // set up modbus server
+        modbusServer = new ModbusTcpServer();
+        modbusServer.ReadInputRegisterRequest += OnModbusServerReadInputRegisterRequest;
+        modbusServer.ClientConnected += OnClientConnected;
+
+        modbusServer.Start();
     }
 
     private void BuildScreen()
@@ -63,21 +89,6 @@ public class MeadowApp : App<F7CoreComputeV2>
         telemetryLabel.Font = new Font8x16();
 
         screen.Controls.Add(header, addressLabel, telemetryLabel);
-    }
-
-    private void OnNetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
-    {
-        Resolver.Log.Info($"Network connected.  Starting Modbus server on {args.IpAddress}");
-
-        // update the display to make connecting easier
-        ShowNetworkAddress(args.IpAddress);
-
-        // set up modbus server
-        modbusServer = new ModbusTcpServer();
-        modbusServer.ReadInputRegisterRequest += OnModbusServerReadInputRegisterRequest;
-        modbusServer.ClientConnected += OnClientConnected;
-
-        modbusServer.Start();
     }
 
     private IModbusResult OnModbusServerReadInputRegisterRequest(byte modbusAddress, ushort startRegister, short length)
@@ -118,13 +129,7 @@ public class MeadowApp : App<F7CoreComputeV2>
         addressLabel.Text = address.ToString();
     }
 
-    private void ShowTelemetry(IEnumerable<KeyValuePair<string, float>> telemetry)
-    {
-        telemetryLabel.Text = string.Join("  ",
-            telemetry.Select(t => $"{t.Key}={t.Value:0.0}"));
-    }
-
-    private void OnEnvironmentalSensorUpdated(object sender, IChangeResult<(Meadow.Units.Temperature? Temperature, Meadow.Units.RelativeHumidity? Humidity, Meadow.Units.Pressure? Pressure, Meadow.Units.Resistance? GasResistance)> e)
+    private void OnEnvironmentalSensorUpdated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
     {
         var d = new Dictionary<string, float>();
 
@@ -146,5 +151,11 @@ public class MeadowApp : App<F7CoreComputeV2>
         }
 
         ShowTelemetry(d);
+    }
+
+    private void ShowTelemetry(IEnumerable<KeyValuePair<string, float>> telemetry)
+    {
+        telemetryLabel.Text = string.Join("  ",
+            telemetry.Select(t => $"{t.Key}={t.Value:0.0}"));
     }
 }

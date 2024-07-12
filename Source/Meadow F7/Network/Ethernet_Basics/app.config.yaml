@@ -19,18 +19,3 @@ Logging:
     
         # Trace, Debug, Information, Warning, or Error
         Default: Trace
-
-# Meadow.Cloud configuration.
-Update:
-
-    # Enable Meadow.Cloud features
-#    Enabled: true
-
-# Meadow.Cloud Health Metrics.
-HealthMetrics:
-
-    # Enable Health Metrics
-#    Enabled: true
-
-    # How often to send metrics to Meadow.Cloud (in minutes)
-#    Interval: 15
