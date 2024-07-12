@@ -5,6 +5,6 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.Desktop" Version="*" />
+      <ProjectReference Include="..\..\..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
     </ItemGroup>
 </Project>

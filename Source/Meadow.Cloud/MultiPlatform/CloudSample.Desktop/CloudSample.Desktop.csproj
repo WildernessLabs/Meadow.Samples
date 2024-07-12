@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.Desktop" Version="*" />
+        <ProjectReference Include="..\..\..\..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
         <ProjectReference Include="..\..\MultiPlatform\CloudSample.Core\CloudSample.Core.csproj" />
     </ItemGroup>
     <ItemGroup>

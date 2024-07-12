@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="MeadowApp.fs" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Meadow.Desktop" Version="*" />
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ftxxxx" Version="*" />
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Ftxxxx\Driver\ICs.IOExpanders.Ftxxxx.csproj" />
   </ItemGroup>
+
 </Project>
