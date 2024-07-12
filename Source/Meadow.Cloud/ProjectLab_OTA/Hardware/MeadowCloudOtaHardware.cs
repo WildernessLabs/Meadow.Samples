@@ -6,18 +6,21 @@ namespace ProjectLab_OTA.Hardware;
 
 internal class MeadowCloudOtaHardware : IMeadowCloudOtaHardware
 {
-    protected ProjectLabHardwareBase ProjectLab { get; private set; }
+    protected IProjectLabHardware ProjLab { get; private set; }
 
     public IPixelDisplay Display { get; set; }
 
     public IRgbPwmLed RgbPwmLed { get; set; }
 
+    public MeadowCloudOtaHardware(IProjectLabHardware projLab)
+    {
+        ProjLab = projLab;
+    }
+
     public void Initialize()
     {
-        ProjectLab = Meadow.Devices.ProjectLab.Create() as ProjectLabHardwareBase;
+        Display = ProjLab.Display;
 
-        Display = ProjectLab.Display;
-
-        RgbPwmLed = ProjectLab.RgbLed;
+        RgbPwmLed = ProjLab.RgbLed;
     }
 }

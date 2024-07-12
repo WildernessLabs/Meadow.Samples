@@ -1,5 +1,6 @@
 ﻿using Meadow;
 using Meadow.Foundation.Servos;
+using Meadow.Peripherals.Servos;
 using Meadow.Units;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace MeadowBleServo.Controllers;
 
 public class ServoController
 {
-    private Servo servo;
+    private IAngularServo servo;
 
     private Task animationTask = null;
     private CancellationTokenSource cancellationTokenSource = null;
@@ -19,14 +20,12 @@ public class ServoController
     {
         Resolver.Services.Add(this);
 
-        servo = new Servo(
-            pwmPin: MeadowApp.Device.Pins.D10,
-            config: NamedServoConfigs.SG90);
+        servo = new Sg90(MeadowApp.Device.Pins.D10);
     }
 
     public void RotateTo(Angle angle)
     {
-        _ = servo.RotateTo(angle);
+        servo.RotateTo(angle);
     }
 
     public void StopSweep()
@@ -54,7 +53,7 @@ public class ServoController
                 if (cancellationToken.IsCancellationRequested) { break; }
 
                 _rotationAngle++;
-                _ = servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
+                servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
                 await Task.Delay(50);
             }
 
@@ -63,7 +62,7 @@ public class ServoController
                 if (cancellationToken.IsCancellationRequested) { break; }
 
                 _rotationAngle--;
-                _ = servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
+                servo.RotateTo(new Angle(_rotationAngle, Angle.UnitType.Degrees));
                 await Task.Delay(50);
             }
         }

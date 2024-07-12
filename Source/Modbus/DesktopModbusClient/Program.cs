@@ -1,5 +1,7 @@
 ﻿using Meadow.Modbus;
+using System;
 using System.Net;
+using System.Threading.Tasks;
 
 internal class Program
 {
@@ -40,6 +42,5 @@ internal class Program
 
             await Task.Delay(2000);
         }
-
     }
 }

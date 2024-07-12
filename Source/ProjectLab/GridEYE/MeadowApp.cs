@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace GridEYE;
 
-// Change F7CoreComputeV2 to F7FeatherV2 for ProjectLab v2
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    private IProjectLabHardware _projectLab;
     private DisplayScreen _screen;
     private Amg8833 _camera;
     private Box[] _pixelBoxes;
@@ -20,10 +19,9 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        _projectLab = ProjectLab.Create();
-        Resolver.Log.Info($"Running on ProjectLab Hardware {_projectLab.RevisionString}");
+        Resolver.Log.Info($"Running on ProjectLab Hardware {Hardware.RevisionString}");
 
-        _camera = new Amg8833(_projectLab.Qwiic.I2cBus);
+        _camera = new Amg8833(Hardware.Qwiic.I2cBus);
 
         CreateLayout();
         return base.Initialize();
@@ -32,7 +30,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     private void CreateLayout()
     {
         _pixelBoxes = new Box[64];
-        _screen = new DisplayScreen(_projectLab.Display);
+        _screen = new DisplayScreen(Hardware.Display);
         var x = 0;
         var y = 0;
         var boxSize = 32;

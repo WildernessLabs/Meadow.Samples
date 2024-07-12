@@ -17,6 +17,9 @@
     <PackageReference Include="Meadow.ProjectLab" Version="*" />
     </ItemGroup>
     <ItemGroup>
+        <None Update="app.build.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="meadow.config.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>

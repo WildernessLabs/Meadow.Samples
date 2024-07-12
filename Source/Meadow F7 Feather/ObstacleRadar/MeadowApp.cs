@@ -7,6 +7,7 @@ using Meadow.Foundation.Sensors.Distance;
 using Meadow.Foundation.Servos;
 using Meadow.Hardware;
 using Meadow.Peripherals.Displays;
+using Meadow.Peripherals.Servos;
 using Meadow.Units;
 using System;
 using System.Threading;
@@ -19,13 +20,12 @@ namespace ObstacleRadar;
 // public class MeadowApp : App<F7FeatherV1> <- If you have a Meadow F7v1.*
 public class MeadowApp : App<F7FeatherV2>
 {
-    MicroGraphics graphics;
-    Vl53l0x sensor;
-    Servo servo;
+    private MicroGraphics graphics;
+    private Vl53l0x sensor;
+    private IAngularServo servo;
+    private float[] radarData = new float[181];
 
-    float[] radarData = new float[181];
-
-    public override async Task Initialize()
+    public override Task Initialize()
     {
         var onboardLed = new RgbPwmLed(
             redPwmPin: Device.Pins.OnboardLedRed,
@@ -48,13 +48,15 @@ public class MeadowApp : App<F7FeatherV2>
         sensor = new Vl53l0x(i2cBus);
         sensor.StartUpdating(TimeSpan.FromMilliseconds(200));
 
-        servo = new Servo(Device.Pins.D05, NamedServoConfigs.SG90);
-        await servo.RotateTo(new Angle(0, AU.Degrees));
+        servo = new Sg90(Device.Pins.D05);
+        servo.Neutral();
 
         onboardLed.SetColor(Color.Green);
+
+        return base.Initialize();
     }
 
-    void Draw()
+    private void Draw()
     {
         int angle = 160;
         int increment = 4;
@@ -98,7 +100,7 @@ public class MeadowApp : App<F7FeatherV2>
         }
     }
 
-    void DrawRadar()
+    private void DrawRadar()
     {
         int xCenter = 120;
         int yCenter = 170;

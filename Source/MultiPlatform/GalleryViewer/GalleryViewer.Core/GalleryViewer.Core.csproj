@@ -1,0 +1,26 @@
+<Project Sdk="Meadow.Sdk/1.1.0">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <OutputType>Library</OutputType>
+        <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="Assets\image1.bmp" />
+      <None Remove="Assets\image1.jpg" />
+      <None Remove="Assets\image2.bmp" />
+      <None Remove="Assets\image2.jpg" />
+      <None Remove="Assets\image3.bmp" />
+      <None Remove="Assets\image3.jpg" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Assets\image1.bmp" />
+      <EmbeddedResource Include="Assets\image2.bmp" />
+      <EmbeddedResource Include="Assets\image3.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
+    </ItemGroup>
+</Project>

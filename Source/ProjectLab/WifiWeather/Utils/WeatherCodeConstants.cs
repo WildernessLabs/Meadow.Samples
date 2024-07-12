@@ -1,4 +1,4 @@
-﻿namespace WifiWeather.Models;
+﻿namespace WifiWeather.Utils;
 
 public sealed class WeatherCodeConstants
 {

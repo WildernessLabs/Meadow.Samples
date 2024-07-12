@@ -9,5 +9,7 @@
     <PackageReference Include="Meadow.Linux" Version="*" />
     <PackageReference Include="Meadow.Linux" Version="*" />
     <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.ADCs.Mcp3xxx" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Mcp23xxx" Version="*" />
   </ItemGroup>
 </Project>

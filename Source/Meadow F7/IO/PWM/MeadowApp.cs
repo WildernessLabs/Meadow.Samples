@@ -10,8 +10,8 @@ namespace PWM;
 
 public class MeadowApp : App<F7FeatherV2>
 {
-    IPwmPort pwm04;
-    IDigitalOutputPort d03;
+    private IPwmPort pwm04;
+    private IDigitalOutputPort d03;
 
     public override Task Initialize()
     {
@@ -58,36 +58,7 @@ public class MeadowApp : App<F7FeatherV2>
         pwmC.Start();
     }
 
-    async Task TimeScaleChecks(IPwmPort pwm)
-    {
-        var delta = 100;
-
-        pwm.Frequency = new Meadow.Units.Frequency(50f);
-
-        pwm.Start();
-        while (true)
-        {
-            pwm.TimeScale = TimeScale.Seconds;
-            pwm.Period = 0.02f;
-            Resolver.Log.Info($"Freq: {pwm.Frequency.Hertz}  Period: {(int)pwm.Period} {pwm.TimeScale}");
-            await Task.Delay(2000);
-
-            pwm.TimeScale = TimeScale.Milliseconds;
-            Resolver.Log.Info($"Freq: {pwm.Frequency.Hertz}  Period: {(int)pwm.Period} {pwm.TimeScale}");
-            await Task.Delay(2000);
-            pwm.Period = 50f;
-            Resolver.Log.Info($"Freq: {pwm.Frequency.Hertz}  Period: {(int)pwm.Period} {pwm.TimeScale}");
-            await Task.Delay(2000);
-
-            pwm.TimeScale = TimeScale.Microseconds;
-            Resolver.Log.Info($"Freq: {pwm.Frequency.Hertz}  Period: {(int)pwm.Period} {pwm.TimeScale}");
-            pwm.Period = 80f;
-            Resolver.Log.Info($"Freq: {pwm.Frequency.Hertz}  Period: {(int)pwm.Period} {pwm.TimeScale}");
-            await Task.Delay(2000);
-        }
-    }
-
-    async Task FrequencyChecks(IPwmPort pwm)
+    private async Task FrequencyChecks(IPwmPort pwm)
     {
         Frequency delta = new Frequency(100);
 
@@ -95,7 +66,7 @@ public class MeadowApp : App<F7FeatherV2>
 
         while (true)
         {
-            Resolver.Log.Info($"Freq: {pwm.Frequency}  Period: {pwm.Period} {pwm.TimeScale}");
+            Resolver.Log.Info($"Freq: {pwm.Frequency}  Period: {pwm.Period}");
             await Task.Delay(5000);
 
             pwm.Frequency += delta;
@@ -106,7 +77,7 @@ public class MeadowApp : App<F7FeatherV2>
         }
     }
 
-    async Task DutyCycleChecks(IPwmPort pwm)
+    private async Task DutyCycleChecks(IPwmPort pwm)
     {
         var delta = 0.10000f;
 
@@ -114,7 +85,7 @@ public class MeadowApp : App<F7FeatherV2>
 
         while (true)
         {
-            Resolver.Log.Info($"Duty: {pwm.DutyCycle}  Duration: {pwm.Duration} {pwm.TimeScale}");
+            Resolver.Log.Info($"Duty: {pwm.DutyCycle}  Duration: {pwm.Duration}");
             await Task.Delay(2000);
 
             var temp = Math.Round(pwm.DutyCycle + delta, 1);
@@ -127,21 +98,20 @@ public class MeadowApp : App<F7FeatherV2>
         }
     }
 
-    async Task DurationChecks(IPwmPort pwm)
+    private async Task DurationChecks(IPwmPort pwm)
     {
         var delta = 1f;
-        pwm.TimeScale = TimeScale.Milliseconds;
 
         pwm.Start();
         while (true)
         {
-            Resolver.Log.Info($"Duty: {pwm.DutyCycle}  Duration: {pwm.Duration} {pwm.TimeScale}");
+            Resolver.Log.Info($"Duty: {pwm.DutyCycle}  Duration: {pwm.Duration}");
             await Task.Delay(2000);
 
-            var temp = Math.Round(pwm.Duration + delta, 0);
-            pwm.Duration = (float)temp;
+            var temp = Math.Round(pwm.Duration.Milliseconds + delta, 0);
+            pwm.Duration.Add(TimePeriod.FromMilliseconds(temp));
 
-            if (pwm.Duration <= 000 || pwm.Duration >= 10.0)
+            if (pwm.Duration.Milliseconds <= 000 || pwm.Duration.Milliseconds >= 10.0)
             {
                 delta *= -1;
             }

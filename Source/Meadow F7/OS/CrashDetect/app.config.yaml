@@ -8,6 +8,11 @@ Lifecycle:
     # # When app set to restart automatically on app failure, 
     # AppFailureRestartDelaySeconds: 15
 
+MeadowCloud:
+    
+    # Enable Logging, Events, Command + Control
+    Enabled: true
+
 # # Adjust the level of logging detail.
 Logging:
     LogLevel:

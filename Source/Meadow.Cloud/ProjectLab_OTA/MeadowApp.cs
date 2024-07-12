@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace ProjectLab_OTA;
 
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     /*
     
@@ -37,14 +38,14 @@ public class MeadowApp : App<F7CoreComputeV2>
 
     public static double VERSION { get; set; } = 1.2;
 
-    MainController mainController;
+    private MainController mainController;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new MeadowCloudOtaHardware();
-        var network = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        var hardware = new MeadowCloudOtaHardware(Hardware);
+        var network = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
         mainController = new MainController(hardware, network);
         mainController.Initialize();

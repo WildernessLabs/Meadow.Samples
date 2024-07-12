@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace MathLineCharts;
 
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private DisplayScreen _screen;
 
@@ -15,9 +16,7 @@ public class MeadowApp : App<F7CoreComputeV2>
     {
         Resolver.Log.Info("Initialize...");
 
-        var projectLab = ProjectLab.Create();
-
-        _screen = new DisplayScreen(projectLab.Display, RotationType._270Degrees);
+        _screen = new DisplayScreen(Hardware.Display, RotationType._270Degrees);
 
         _screen.BackgroundColor = Color.AntiqueWhite;
 

@@ -1,0 +1,74 @@
+<Project Sdk="Meadow.Sdk/1.1.0">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <OutputType>Library</OutputType>
+        <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="Assets\img_meadow.bmp" />
+      <None Remove="Assets\img_refreshed.bmp" />
+      <None Remove="Assets\img_refreshing.bmp" />
+      <None Remove="Assets\img_wifi_connected.bmp" />
+      <None Remove="Assets\img_wifi_connecting.bmp" />
+      <None Remove="Assets\w_clear_moon.bmp" />
+      <None Remove="Assets\w_clear_sun.bmp" />
+      <None Remove="Assets\w_clouds.bmp" />
+      <None Remove="Assets\w_clouds_moon.bmp" />
+      <None Remove="Assets\w_clouds_sun.bmp" />
+      <None Remove="Assets\w_drizzle.bmp" />
+      <None Remove="Assets\w_drizzle_heavy.bmp" />
+      <None Remove="Assets\w_drizzle_light_moon.bmp" />
+      <None Remove="Assets\w_drizzle_light_sun.bmp" />
+      <None Remove="Assets\w_misc.bmp" />
+      <None Remove="Assets\w_mist.bmp" />
+      <None Remove="Assets\w_rain.bmp" />
+      <None Remove="Assets\w_rain_heavy.bmp" />
+      <None Remove="Assets\w_rain_light_moon.bmp" />
+      <None Remove="Assets\w_rain_light_sun.bmp" />
+      <None Remove="Assets\w_snow.bmp" />
+      <None Remove="Assets\w_snow_light_moon.bmp" />
+      <None Remove="Assets\w_snow_light_sun.bmp" />
+      <None Remove="Assets\w_snow_rain.bmp" />
+      <None Remove="Assets\w_storm.bmp" />
+      <None Remove="Assets\w_storm_heavy.bmp" />
+      <None Remove="Assets\w_storm_light_moon.bmp" />
+      <None Remove="Assets\w_storm_light_sun.bmp" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Assets\img_meadow.bmp" />
+      <EmbeddedResource Include="Assets\img_refreshed.bmp" />
+      <EmbeddedResource Include="Assets\img_refreshing.bmp" />
+      <EmbeddedResource Include="Assets\img_wifi_connected.bmp" />
+      <EmbeddedResource Include="Assets\img_wifi_connecting.bmp" />
+      <EmbeddedResource Include="Assets\w_clear_moon.bmp" />
+      <EmbeddedResource Include="Assets\w_clear_sun.bmp" />
+      <EmbeddedResource Include="Assets\w_clouds.bmp" />
+      <EmbeddedResource Include="Assets\w_clouds_moon.bmp" />
+      <EmbeddedResource Include="Assets\w_clouds_sun.bmp" />
+      <EmbeddedResource Include="Assets\w_drizzle.bmp" />
+      <EmbeddedResource Include="Assets\w_drizzle_heavy.bmp" />
+      <EmbeddedResource Include="Assets\w_drizzle_light_moon.bmp" />
+      <EmbeddedResource Include="Assets\w_drizzle_light_sun.bmp" />
+      <EmbeddedResource Include="Assets\w_misc.bmp" />
+      <EmbeddedResource Include="Assets\w_mist.bmp" />
+      <EmbeddedResource Include="Assets\w_rain.bmp" />
+      <EmbeddedResource Include="Assets\w_rain_heavy.bmp" />
+      <EmbeddedResource Include="Assets\w_rain_light_moon.bmp" />
+      <EmbeddedResource Include="Assets\w_rain_light_sun.bmp" />
+      <EmbeddedResource Include="Assets\w_snow.bmp" />
+      <EmbeddedResource Include="Assets\w_snow_light_moon.bmp" />
+      <EmbeddedResource Include="Assets\w_snow_light_sun.bmp" />
+      <EmbeddedResource Include="Assets\w_snow_rain.bmp" />
+      <EmbeddedResource Include="Assets\w_storm.bmp" />
+      <EmbeddedResource Include="Assets\w_storm_heavy.bmp" />
+      <EmbeddedResource Include="Assets\w_storm_light_moon.bmp" />
+      <EmbeddedResource Include="Assets\w_storm_light_sun.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Serialization.MicroJson" Version="*" />
+    </ItemGroup>
+</Project>

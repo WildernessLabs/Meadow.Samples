@@ -1,16 +1,17 @@
-﻿<Project Sdk="Meadow.Sdk/1.1">
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
     <PropertyGroup>
+        <OutputType>Library</OutputType>
         <TargetFramework>netstandard2.1</TargetFramework>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <OutputType>Exe</OutputType>
         <AssemblyName>App</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="Program.fs" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Update="FSharp.Core" Version="4.7.2" />
         <PackageReference Include="Meadow.F7" Version="*" />
-        <PackageReference Include="Meadow.Foundation" Version="*" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Update="FSharp.Core" Version="4.7.2" />
     </ItemGroup>
 </Project>

@@ -26,7 +26,7 @@
         <EmbeddedResource Include="Resources\img_wifi_fade.bmp" />
     </ItemGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
+        <PackageReference Include="Meadow.AmqpNetLite" Version="*" />
     <PackageReference Include="Meadow.F7" Version="*" />
     <PackageReference Include="Meadow.Foundation" Version="*" />
     <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />

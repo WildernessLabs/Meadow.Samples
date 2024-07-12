@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreComputeBreakout", "CoreComputeBreakout.csproj", "{02AAE99A-2DBA-4708-A89F-0B4B4BB345B7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.F7", "..\..\..\..\..\Meadow.Core\source\Meadow.F7\Meadow.F7.csproj", "{6C48A755-200E-4387-8232-C223C3AE97DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.F7", "..\..\..\..\..\Meadow.Core\Source\Meadow.F7\Meadow.F7.csproj", "{6C48A755-200E-4387-8232-C223C3AE97DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Core", "..\..\..\..\..\Meadow.Core\source\Meadow.Core\Meadow.Core.csproj", "{33296879-B586-4F83-82C7-E64700310CDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Core", "..\..\..\..\..\Meadow.Core\Source\Meadow.Core\Meadow.Core.csproj", "{33296879-B586-4F83-82C7-E64700310CDF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Contracts", "..\..\..\..\..\Meadow.Contracts\Source\Meadow.Contracts\Meadow.Contracts.csproj", "{7A6963F1-0A7C-4378-93C1-7B926A70EA47}"
 EndProject

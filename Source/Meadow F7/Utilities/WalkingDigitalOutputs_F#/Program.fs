@@ -1,55 +1,60 @@
-﻿// Learn more about F# at http://fsharp.org
+﻿namespace MeadowApp
 
 open Meadow
 open Meadow.Devices
 open System.Threading
+open System.Threading.Tasks
 
 
-type OutputApp() =
+type MeadowApp() =
     inherit App<F7FeatherV2>()  
     
-    let outs = [OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.OnboardLedRed
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.OnboardLedGreen
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.OnboardLedBlue
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D00
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D01
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D02
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D03
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D04
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D05
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D06
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D07
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D08
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D09
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D10
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D11
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D12
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D13
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D14
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.D15
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.A00
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.A01
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.A02
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.A03
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.A04
-                OutputApp.Device.CreateDigitalOutputPort OutputApp.Device.Pins.A05
+    let outs = [MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.OnboardLedRed
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.OnboardLedGreen
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.OnboardLedBlue
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D00
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D01
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D02
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D03
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D04
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D05
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D06
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D07
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D08
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D09
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D10
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D11
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D12
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D13
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D14
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.D15
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.A00
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.A01
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.A02
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.A03
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.A04
+                MeadowApp.Device.CreateDigitalOutputPort MeadowApp.Device.Pins.A05
                 ]
-    // walk outputs
-    do outs |> List.iter (fun port -> 
+
+    let WalkOutputs() = 
+        do outs |> List.iter (fun port -> 
                             port.State <- true
                             Thread.Sleep 250
                             port.State <- false
                             )
 
-    // dispose of ports
-    do outs |> List.iter (fun port -> port.Dispose())
-    
-    
+        do outs |> List.iter (fun port -> port.Dispose())
 
+    override this.Initialize() =
+        do Resolver.Log.Info "Initialize... (F#)"
 
-[<EntryPoint>]
-let main argv =
-    printfn "Hello from F#!"
-    let app = new OutputApp()
-    Thread.Sleep(Timeout.Infinite)
-    0 // return an integer exit code
+        
+
+        base.Initialize()
+        
+    override this.Run () : Task =
+        let runAsync = async {
+            do Resolver.Log.Info "Run... (F#)"
+            do WalkOutputs()
+        }
+        Async.StartAsTask(runAsync) :> Task

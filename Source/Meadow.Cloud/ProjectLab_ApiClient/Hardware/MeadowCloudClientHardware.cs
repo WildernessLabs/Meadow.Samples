@@ -7,7 +7,7 @@ namespace ProjectLab_ApiClient.Hardware;
 
 internal class MeadowCloudClientHardware : IMeadowCloudClientHardware
 {
-    protected IProjectLabHardware ProjLab { get; private set; }
+    protected IProjectLabHardware ProjLab { get; }
 
     public IPixelDisplay Display { get; set; }
 
@@ -17,10 +17,13 @@ internal class MeadowCloudClientHardware : IMeadowCloudClientHardware
 
     public IRgbPwmLed RgbPwmLed { get; set; }
 
+    public MeadowCloudClientHardware(IProjectLabHardware projLab)
+    {
+        ProjLab = projLab;
+    }
+
     public void Initialize()
     {
-        ProjLab = ProjectLab.Create();
-
         Display = ProjLab.Display;
 
         RightButton = ProjLab.RightButton;

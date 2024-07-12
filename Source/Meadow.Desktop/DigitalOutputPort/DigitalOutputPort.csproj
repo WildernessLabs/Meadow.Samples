@@ -6,7 +6,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ftxxxx" Version="*" />
     <PackageReference Include="Meadow.Desktop" Version="*" />
     </ItemGroup>
 </Project>

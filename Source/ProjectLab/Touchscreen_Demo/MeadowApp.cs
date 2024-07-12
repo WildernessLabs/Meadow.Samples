@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Touchscreen_Demo;
 
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
     private CircleDemo _demo;
 
     public override async Task Initialize()
     {
-        var projectLab = ProjectLab.Create();
         var display = new DisplayScreen(
-            projectLab.Display,
-            touchScreen: projectLab.Touchscreen,
+            Hardware.Display,
+            touchScreen: Hardware.Touchscreen,
             rotation: Meadow.Peripherals.Displays.RotationType._270Degrees);
 
-        if (projectLab.Touchscreen == null)
+        if (Hardware.Touchscreen == null)
         {
             Resolver.Log.Error($"This demo requires a touchscreen, which is available of version hardware revision 3.f or later");
             return;
@@ -32,7 +32,7 @@ public class MeadowApp : App<F7CoreComputeV2>
         var calData = ts.GetSavedCalibrationData();
         if (calData != null)
         {
-            (projectLab.Touchscreen as ICalibratableTouchscreen).SetCalibrationData(calData);
+            (Hardware.Touchscreen as ICalibratableTouchscreen).SetCalibrationData(calData);
         }
         else
         {
@@ -41,7 +41,7 @@ public class MeadowApp : App<F7CoreComputeV2>
             await ts.Calibrate(true);
         }
 
-        _demo = new CircleDemo(display, projectLab.Touchscreen);
+        _demo = new CircleDemo(display, Hardware.Touchscreen);
     }
 
     public override Task Run()

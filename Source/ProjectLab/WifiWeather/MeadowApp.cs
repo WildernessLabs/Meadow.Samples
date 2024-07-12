@@ -6,16 +6,17 @@ using WifiWeather.Hardware;
 
 namespace WifiWeather;
 
-public class MeadowApp : App<F7CoreComputeV2>
+// Change ProjectLabCoreComputeApp to ProjectLabFeatherApp for ProjectLab v2
+public class MeadowApp : ProjectLabCoreComputeApp
 {
-    MainController mainController;
+    private MainController mainController;
 
     public override Task Initialize()
     {
         Resolver.Log.Info("Initialize...");
 
-        var hardware = new WifiWeatherHardware();
-        var network = Device.NetworkAdapters.Primary<INetworkAdapter>();
+        var hardware = new WifiWeatherHardware(Hardware);
+        var network = Hardware.ComputeModule.NetworkAdapters.Primary<INetworkAdapter>();
 
         mainController = new MainController(hardware, network);
         mainController.Initialize();

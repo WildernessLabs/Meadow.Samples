@@ -34,6 +34,6 @@
     <PackageReference Include="Meadow.Desktop" Version="*" />
     <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ft232h" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ftxxxx" Version="*" />
     </ItemGroup>
 </Project>

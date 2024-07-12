@@ -9,14 +9,13 @@ namespace WiFinder.F7;
 
 internal class ProjectLabHardware : IWiFinderHardware
 {
-    private readonly IProjectLabHardware projLab;
+    private IProjectLabHardware projLab;
 
-
-    public ProjectLabHardware(F7CoreComputeV2 device)
+    public ProjectLabHardware(IProjectLabHardware projLab)
     {
-        projLab = ProjectLab.Create();
+        this.projLab = projLab;
 
-        var wifi = device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+        var wifi = projLab.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
         NetworkController = new ProjLabNetworkController(wifi!);
     }
 

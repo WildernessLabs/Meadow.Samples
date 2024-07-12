@@ -10,6 +10,6 @@
     <PackageReference Include="Meadow.F7" Version="*" />
     <PackageReference Include="Meadow.Foundation" Version="*" />
     <PackageReference Include="Meadow.Foundation.Web.Maple.Server" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Servos.ServoCore" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Servos" Version="*" />
     </ItemGroup>
 </Project>
