@@ -7,9 +7,9 @@
         <LangVersion>10.0</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Meadow.Core\Source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-        <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
-        <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.Lcd.CharacterDisplay\Driver\Displays.Lcd.CharacterDisplay.csproj" />
+    <PackageReference Include="Meadow.F7" Version="*" />
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Displays.Lcd.CharacterDisplay" Version="*" />
     </ItemGroup>
     <ItemGroup>
         <None Update="meadow.config.yaml">

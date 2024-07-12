@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <OutputType>Exe</OutputType>
@@ -7,9 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
-        <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
-        <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Hid.Keyboard\Driver\Sensors.Hid.Keyboard.csproj" />
+    <PackageReference Include="Meadow.Desktop" Version="*" />
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Hid.Keyboard" Version="*" />
         <ProjectReference Include="..\galleryviewer.Core\GalleryViewer.Core.csproj" />
     </ItemGroup>
 </Project>
