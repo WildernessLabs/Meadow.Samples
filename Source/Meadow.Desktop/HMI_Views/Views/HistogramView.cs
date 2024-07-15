@@ -1,23 +1,26 @@
-﻿using Meadow.Foundation.Graphics.MicroLayout;
+﻿using Meadow;
+using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
 using System;
 using System.Threading.Tasks;
 
 namespace HMI_Views.Views;
 
-public class SpectrumView
+public class HistogramView
 {
     private DisplayScreen screen;
-    private SpectraChart spectraChart1;
-    private SpectraChart spectraChart2;
+    private HistogramChart spectraChart1;
+    private HistogramChart spectraChart2;
 
-    public SpectrumView(IPixelDisplay _display)
+    public HistogramView(IPixelDisplay _display)
     {
         screen = new DisplayScreen(_display);
 
-        spectraChart1 = new SpectraChart(10, 0, screen.Width - 20, screen.Height / 2);
+        spectraChart1 = new HistogramChart(10, 0, screen.Width - 20, screen.Height / 2);
+        spectraChart1.Series.Add(new HistogramChartSeries { ForeColor = Color.Red });
 
-        spectraChart2 = new SpectraChart(10, screen.Height / 2, screen.Width - 20, screen.Height / 2);
+        spectraChart2 = new HistogramChart(10, screen.Height / 2, screen.Width - 20, screen.Height / 2);
+        spectraChart2.Series.Add(new HistogramChartSeries { ForeColor = Color.Green });
 
         screen.Controls.Add(spectraChart1, spectraChart2);
     }
@@ -28,6 +31,8 @@ public class SpectrumView
 
         while (true)
         {
+            screen.BeginUpdate();
+
             var s1 = new (int X, int Y)[count];
             s1[0].X = 1;
             s1[0].Y = 0;
@@ -39,7 +44,7 @@ public class SpectrumView
             s1[s1.Length - 1].X = 50000;
             s1[s1.Length - 1].Y = 0;
 
-            spectraChart1.Series = s1;
+            spectraChart1.Series[0].DataElements = s1;
 
             var s2 = new (int X, int Y)[count];
             s2[0].X = 100;
@@ -52,7 +57,9 @@ public class SpectrumView
             s2[s2.Length - 1].X = 50000;
             s2[s2.Length - 1].Y = 0;
 
-            spectraChart2.Series = s2;
+            spectraChart2.Series[0].DataElements = s2;
+
+            screen.EndUpdate();
 
             await Task.Delay(500);
         }

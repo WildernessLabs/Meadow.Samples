@@ -29,7 +29,7 @@ public class MeadowApp : App<Desktop>
         //var views = new ProjectLabDemoView(Device.Display);
         //var views = new AtmosphericHMI(Device.Display);
         //var views = new WifiWeatherV2(Device.Display);
-        var views = new SpectrumView(Device.Display);
+        var views = new HistogramView(Device.Display);
 
         _ = Task.Run(() =>
         {
