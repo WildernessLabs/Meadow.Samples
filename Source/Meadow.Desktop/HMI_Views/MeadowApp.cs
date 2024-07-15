@@ -28,12 +28,13 @@ public class MeadowApp : App<Desktop>
         //var views = new CultivarView(Device.Display);
         //var views = new ProjectLabDemoView(Device.Display);
         //var views = new AtmosphericHMI(Device.Display);
-        var views = new WifiWeatherV2(Device.Display);
+        //var views = new WifiWeatherV2(Device.Display);
+        var views = new HistogramView(Device.Display);
 
         _ = Task.Run(() =>
         {
             Thread.Sleep(2000);
-            views.Run();
+            _ = views.Run();
         });
 
         return Task.CompletedTask;

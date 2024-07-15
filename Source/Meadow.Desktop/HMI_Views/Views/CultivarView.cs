@@ -8,7 +8,7 @@ namespace HMI_Views.Views;
 
 public class CultivarView
 {
-    DisplayScreen screen;
+    private DisplayScreen screen;
 
     private readonly Image imgWifi = Image.LoadFromResource("HMI_Views.Resources.img-wifi.bmp");
     private readonly Image imgSync = Image.LoadFromResource("HMI_Views.Resources.img-sync.bmp");
