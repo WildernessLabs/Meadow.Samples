@@ -2,6 +2,8 @@
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
+using System;
+using System.Threading.Tasks;
 
 namespace CellularSample;
 
@@ -62,7 +64,7 @@ public class DisplayController
 
         switch (strength)
         {
-            case int n when (n >= -70 && n <= -20):
+            case int n when (n >= -70 && n <= -50):
                 signalBars.Image = imgSignal4Bar;
                 break;
             case int n when (n >= -80 && n <= -71):
