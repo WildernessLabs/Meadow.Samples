@@ -1,0 +1,41 @@
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <OutputType>Library</OutputType>
+        <AssemblyName>App</AssemblyName>
+        <LangVersion>10.0</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="Assets\img-cell-0.bmp" />
+      <None Remove="Assets\img-cell-1.bmp" />
+      <None Remove="Assets\img-cell-2.bmp" />
+      <None Remove="Assets\img-cell-3.bmp" />
+      <None Remove="Assets\img-cell-4.bmp" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Assets\img-cell-0.bmp" />
+      <EmbeddedResource Include="Assets\img-cell-1.bmp" />
+      <EmbeddedResource Include="Assets\img-cell-2.bmp" />
+      <EmbeddedResource Include="Assets\img-cell-3.bmp" />
+      <EmbeddedResource Include="Assets\img-cell-4.bmp" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Graphics.MicroLayout\Driver\Graphics.MicroLayout.csproj" />
+      <ProjectReference Include="..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="app.build.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="app.config.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="cell.config.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="meadow.config.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>
