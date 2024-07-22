@@ -64,7 +64,7 @@ public class DisplayController
 
         switch (strength)
         {
-            case int n when (n >= -70 && n <= -50):
+            case int n when (n >= -70 && n <= -20):
                 signalBars.Image = imgSignal4Bar;
                 break;
             case int n when (n >= -80 && n <= -71):
