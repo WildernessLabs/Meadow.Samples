@@ -2,8 +2,6 @@
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
-using System;
-using System.Threading.Tasks;
 
 namespace CellularSample;
 
