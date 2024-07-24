@@ -2,8 +2,6 @@
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using Meadow.Peripherals.Displays;
-using System;
-using System.Threading.Tasks;
 
 namespace CellularSample;
 
@@ -92,19 +90,5 @@ public class DisplayController
         this.ipAddress.Text = string.IsNullOrEmpty(ipAddress)
             ? "---.---.---.---"
             : ipAddress;
-    }
-
-    public async Task Run()
-    {
-        bool status = false;
-
-        while (true)
-        {
-            var random = new Random();
-
-            status = !status;
-
-            await Task.Delay(1000);
-        }
     }
 }

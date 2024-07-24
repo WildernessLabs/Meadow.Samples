@@ -66,7 +66,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
 
     async Task GetWebPageViaHttpClient(string uri)
     {
-        Console.WriteLine($"Requesting {uri} - {DateTime.Now}");
+        Resolver.Log.Info($"Requesting {uri} - {DateTime.Now}");
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
@@ -83,7 +83,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
                     var contentLength = response.Content.Headers.ContentLength ?? -1L;
                     var progress = new Progress<long>(totalBytes =>
                     {
-                        Console.WriteLine($"{totalBytes} bytes downloaded ({(double)totalBytes / contentLength:P2})");
+                        Resolver.Log.Info($"{totalBytes} bytes downloaded ({(double)totalBytes / contentLength:P2})");
                     });
 
                     using (var stream = await response.Content.ReadAsStreamAsync())
@@ -100,15 +100,15 @@ public class MeadowApp : ProjectLabCoreComputeApp
                     }
 
                     stopwatch.Stop();
-                    Console.WriteLine($"Download complete. Time taken: {stopwatch.Elapsed.TotalSeconds:F2} seconds");
+                    Resolver.Log.Info($"Download complete. Time taken: {stopwatch.Elapsed.TotalSeconds:F2} seconds");
                 }
                 catch (TaskCanceledException)
                 {
-                    Console.WriteLine("Request timed out.");
+                    Resolver.Log.Info("Request timed out.");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Request went sideways: {e.Message}");
+                    Resolver.Log.Info($"Request went sideways: {e.Message}");
                 }
             }
         }
