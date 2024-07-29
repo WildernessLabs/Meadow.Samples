@@ -1,6 +1,7 @@
 ﻿using Meadow;
 using Meadow.Foundation.ICs.CAN;
 using Meadow.Foundation.Sensors.Atmospheric;
+using Meadow.Hardware;
 using Meadow.Units;
 using System.Threading.Tasks;
 
@@ -22,15 +23,17 @@ public class MeadowApp : App<BeagleBoneBlack>
         var transceiver = new Mcp2515(
             Device.CreateSpiBus(0, 1_000_000.Hertz()),
             Device.Pins.GPIO_49.CreateDigitalOutputPort(),
-            CanBitrate.Can_250kbps);
+             Mcp2515.CanOscillator.Osc_8MHz);
+
+        var bus = transceiver.CreateCanBus(CanBitrate.Can_250kbps);
 
         while (true)
         {
             Resolver.Log.Info("Checking bus...");
 
-            if (transceiver.IsFrameAvailable())
+            if (bus.IsFrameAvailable())
             {
-                var frame = transceiver.ReadFrame();
+                var frame = bus.ReadFrame();
                 if (frame != null)
                 {
                     Resolver.Log.Info($"Received a {frame!.GetType().Name}");
