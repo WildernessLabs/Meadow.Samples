@@ -1,0 +1,39 @@
+﻿# Acceptable values for true: true, 1, yes
+# Acceptable values for false: false, 0, no
+
+# Main Device Config
+Device:
+
+    # Name of the device on the network.
+    Name: MeadowDevice
+
+    # Corresponding MCU pin names for the reserved pins
+    # (COMX_RX pin, COM_TX pin, ENABLE pin)
+    # Examples:
+    # Using mikroBUS 1 on Project Lab v3 with Quectel BG95-M3 (Meadow AN pin as enable pin),
+    #  reserve the following:
+    ReservedPins: B15;B14;A3
+
+# Network configuration.
+Network:
+
+    #  Which interface should be used?
+    DefaultInterface: Cell
+
+    # Automatically attempt to get the time at startup?
+    GetNetworkTimeAtStartup: true
+
+    # Time synchronization period in seconds.
+    NtpRefreshPeriod: 600
+
+    # Name of the NTP servers.
+    NtpServers:
+        - 0.pool.ntp.org
+        - 1.pool.ntp.org
+        - 2.pool.ntp.org
+        - 3.pool.ntp.org
+
+    # IP addresses of the DNS servers.
+    DnsServers:
+        - 1.1.1.1
+        - 8.8.8.8

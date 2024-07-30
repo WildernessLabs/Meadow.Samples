@@ -1,0 +1,5 @@
+Settings:
+    APN: teal             # (required) Access Point Name
+    Module: BG95M3        # (required) Module model (BG770A, BG95M3 or M95)
+    Interface: COM1       # (required) Serial interface (COM1 (default), COM4 or COM6)
+    EnablePin: A3         # (required) Enable MCU pin to turn the module on/off.
