@@ -81,6 +81,16 @@ public class MeadowApp : App<F7CoreComputeV2>
         Console.WriteLine("Cell network disconnected!");
     }
 
+    void CellAdapter_NetworkConnectFailed(INetworkAdapter sender)
+    {
+        Console.WriteLine("Cell network connect failed!");
+    }
+
+    void CellAdapter_NetworkConnecting(INetworkAdapter sender)
+    {
+        Console.WriteLine("Cell network connecting!");
+    }
+
     async Task GetWebPageViaHttpClient(string uri)
     {
         Console.WriteLine($"Requesting {uri} - {DateTime.Now}");
