@@ -10,6 +10,9 @@
         <ProjectReference Include="..\..\..\..\Juego\Source\Juego\Juego.csproj" />
     </ItemGroup>
     <ItemGroup>
+        <None Update="app.build.yaml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
         <None Update="meadow.config.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
