@@ -10,4 +10,9 @@
         <ProjectReference Include="..\..\..\..\..\Juego\Source\Juego\Juego.csproj" />
         <ProjectReference Include="..\Eyeball.Core\Eyeball.Core.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <None Update="app.build.yaml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 </Project>
