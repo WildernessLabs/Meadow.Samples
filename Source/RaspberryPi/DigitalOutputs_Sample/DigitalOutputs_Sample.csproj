@@ -6,10 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-      <ProjectReference Include="..\..\..\..\Meadow.Core\Source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
-      <ProjectReference Include="..\..\..\..\Meadow.Core\Source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
-      <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
-      <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.ADCs.Mcp3xxx\Driver\ICs.ADC.Mcp3xxx.csproj" />
-      <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Mcp23xxx\Driver\ICs.IOExpanders.Mcp23xxx.csproj" />
+    <PackageReference Include="Meadow.Linux" Version="*" />
+    <PackageReference Include="Meadow.Linux" Version="*" />
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.ADCs.Mcp3xxx" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Mcp23xxx" Version="*" />
   </ItemGroup>
 </Project>
