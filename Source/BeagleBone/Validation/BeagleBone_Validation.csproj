@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <AssemblyName>App</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Meadow.Linux" Version="*" />
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.ICs.CAN.Mcp2515" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Bmx280" Version="*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="app.config.yaml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+</Project>

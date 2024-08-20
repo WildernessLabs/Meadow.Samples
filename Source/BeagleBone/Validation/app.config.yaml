@@ -1,0 +1,7 @@
+Lifecycle:
+    RestartOnAppFailure: false
+
+Logging:
+    LogLevel:    
+        # Trace, Debug, Information, Warning, or Error
+        Default: Trace

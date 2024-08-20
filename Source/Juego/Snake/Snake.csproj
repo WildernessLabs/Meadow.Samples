@@ -10,6 +10,9 @@
     <PackageReference Include="Meadow.Juego" Version="*" />
     </ItemGroup>
     <ItemGroup>
+        <None Update="app.build.yaml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
         <None Update="meadow.config.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
