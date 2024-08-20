@@ -8,8 +8,10 @@
   <ItemGroup>
     <Compile Include="MeadowApp.fs" />
   </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Meadow.Desktop" Version="*" />
-        <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ftxxxx" Version="*" />
-    </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Ftxxxx\Driver\ICs.IOExpanders.Ftxxxx.csproj" />
+  </ItemGroup>
+
 </Project>
