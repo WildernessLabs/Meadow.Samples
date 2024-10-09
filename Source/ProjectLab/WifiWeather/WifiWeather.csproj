@@ -75,6 +75,9 @@
         <PackageReference Include="SimpleJpegDecoder" Version="*" />
     </ItemGroup>
     <ItemGroup>
+        <None Update="app.build.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="app.config.yaml">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

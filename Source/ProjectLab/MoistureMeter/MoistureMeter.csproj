@@ -14,6 +14,9 @@
         <LangVersion>10.0</LangVersion>
     </PropertyGroup>
     <ItemGroup>
+        <None Update="app.build.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="meadow.config.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
