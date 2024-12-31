@@ -577,6 +577,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICs.CAN.Mcp2515", "..\..\Me
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CellularSample", "ProjectLab\CellularSample\CellularSample.csproj", "{9628FF7D-2852-41F9-A8C4-2B5B0012B0FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualDisplay_Sample", "Meadow.Desktop\VirtualDisplay\VirtualDisplay_Sample.csproj", "{5A285C1D-31AC-406A-BF16-5C279EE342B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2604,6 +2606,12 @@ Global
 		{9628FF7D-2852-41F9-A8C4-2B5B0012B0FA}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{9628FF7D-2852-41F9-A8C4-2B5B0012B0FA}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 		{9628FF7D-2852-41F9-A8C4-2B5B0012B0FA}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
+		{5A285C1D-31AC-406A-BF16-5C279EE342B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A285C1D-31AC-406A-BF16-5C279EE342B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A285C1D-31AC-406A-BF16-5C279EE342B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A285C1D-31AC-406A-BF16-5C279EE342B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A285C1D-31AC-406A-BF16-5C279EE342B9}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A285C1D-31AC-406A-BF16-5C279EE342B9}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2881,6 +2889,7 @@ Global
 		{60633D1F-9B23-428D-9DED-12C682DB20E1} = {EBCCC550-7DFF-43F7-9B46-D97C472ECB9F}
 		{44E9AEA0-C0E6-4C5F-93FD-3210255320B6} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 		{9628FF7D-2852-41F9-A8C4-2B5B0012B0FA} = {DA0CC626-D072-457F-89B7-C22427D4C775}
+		{5A285C1D-31AC-406A-BF16-5C279EE342B9} = {A5E391D4-541D-485D-9210-4EAC4E8A2FB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
