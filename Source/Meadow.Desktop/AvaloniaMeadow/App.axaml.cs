@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaMeadow
 {
-    public partial class App : AvaloniaMeadowApplication<Windows>
+    public partial class App : AvaloniaMeadowApplication<Meadow.Windows>
     {
         public override void OnFrameworkInitializationCompleted()
         {
