@@ -195,7 +195,7 @@ internal class ProjectLabDemoView
         #region TEMPERATURE
         TemperatureBox = new Box(margin, row1, measureBoxWidth, rowHeight)
         {
-            ForeColor = selectedColor
+            ForegroundColor = selectedColor
         };
         DataLayout.Controls.Add(TemperatureBox);
         TemperatureLabel = new Label(
@@ -230,7 +230,7 @@ internal class ProjectLabDemoView
             measureBoxWidth,
             rowHeight)
         {
-            ForeColor = backgroundColor
+            ForegroundColor = backgroundColor
         };
         DataLayout.Controls.Add(PressureBox);
         PressureLabel = new Label(
@@ -265,7 +265,7 @@ internal class ProjectLabDemoView
             measureBoxWidth,
             rowHeight)
         {
-            ForeColor = backgroundColor
+            ForegroundColor = backgroundColor
         };
         DataLayout.Controls.Add(HumidityBox);
         HumidityLabel = new Label(
@@ -300,7 +300,7 @@ internal class ProjectLabDemoView
             columnWidth,
             rowHeight)
         {
-            ForeColor = backgroundColor
+            ForegroundColor = backgroundColor
         };
         DataLayout.Controls.Add(LuminanceBox);
         LuminanceLabel = new Label(
@@ -357,7 +357,7 @@ internal class ProjectLabDemoView
             sensorBarInitialWidth,
             sensorBarHeight)
         {
-            ForeColor = Meadow.Color.FromHex("98A645")
+            ForegroundColor = Meadow.Color.FromHex("98A645")
         };
         DataLayout.Controls.Add(AccelerometerX);
 
@@ -378,7 +378,7 @@ internal class ProjectLabDemoView
             sensorBarInitialWidth,
             sensorBarHeight)
         {
-            ForeColor = Meadow.Color.FromHex("C9DB31")
+            ForegroundColor = Meadow.Color.FromHex("C9DB31")
         };
         DataLayout.Controls.Add(AccelerometerY);
 
@@ -399,7 +399,7 @@ internal class ProjectLabDemoView
             sensorBarInitialWidth,
             sensorBarHeight)
         {
-            ForeColor = Meadow.Color.FromHex("E1EB8B")
+            ForegroundColor = Meadow.Color.FromHex("E1EB8B")
         };
         DataLayout.Controls.Add(AccelerometerZ);
         #endregion
@@ -433,7 +433,7 @@ internal class ProjectLabDemoView
             sensorBarInitialWidth,
             sensorBarHeight)
         {
-            ForeColor = Meadow.Color.FromHex("98A645")
+            ForegroundColor = Meadow.Color.FromHex("98A645")
         };
         DataLayout.Controls.Add(GyroscopeX);
 
@@ -454,7 +454,7 @@ internal class ProjectLabDemoView
             sensorBarInitialWidth,
             sensorBarHeight)
         {
-            ForeColor = Meadow.Color.FromHex("C9DB31")
+            ForegroundColor = Meadow.Color.FromHex("C9DB31")
         };
         DataLayout.Controls.Add(GyroscopeY);
 
@@ -475,7 +475,7 @@ internal class ProjectLabDemoView
             sensorBarInitialWidth,
             sensorBarHeight)
         {
-            ForeColor = Meadow.Color.FromHex("E1EB8B")
+            ForegroundColor = Meadow.Color.FromHex("E1EB8B")
         };
         DataLayout.Controls.Add(GyroscopeZ);
         #endregion
@@ -487,7 +487,7 @@ internal class ProjectLabDemoView
             clockWidth,
             rowHeight)
         {
-            ForeColor = ForegroundColor
+            ForegroundColor = ForegroundColor
         });
         Date = new Label(
             clockX,
@@ -523,7 +523,7 @@ internal class ProjectLabDemoView
             dPadSize,
             dPadSize)
         {
-            ForeColor = ForegroundColor
+            ForegroundColor = ForegroundColor
         };
         DataLayout.Controls.Add(Up);
         Down = new Box(
@@ -532,7 +532,7 @@ internal class ProjectLabDemoView
             dPadSize,
             dPadSize)
         {
-            ForeColor = ForegroundColor
+            ForegroundColor = ForegroundColor
         };
         DataLayout.Controls.Add(Down);
         Left = new Box(
@@ -541,7 +541,7 @@ internal class ProjectLabDemoView
             dPadSize,
             dPadSize)
         {
-            ForeColor = ForegroundColor
+            ForegroundColor = ForegroundColor
         };
         DataLayout.Controls.Add(Left);
         Right = new Box(
@@ -550,7 +550,7 @@ internal class ProjectLabDemoView
             dPadSize,
             dPadSize)
         {
-            ForeColor = ForegroundColor
+            ForegroundColor = ForegroundColor
         };
         DataLayout.Controls.Add(Right);
 
@@ -617,38 +617,38 @@ internal class ProjectLabDemoView
     {
         switch (direction)
         {
-            case 0: Up.ForeColor = pressed ? accentColor : ForegroundColor; break;
-            case 1: Down.ForeColor = pressed ? accentColor : ForegroundColor; break;
-            case 2: Left.ForeColor = pressed ? accentColor : ForegroundColor; break;
-            case 3: Right.ForeColor = pressed ? accentColor : ForegroundColor; break;
+            case 0: Up.ForegroundColor = pressed ? accentColor : ForegroundColor; break;
+            case 1: Down.ForegroundColor = pressed ? accentColor : ForegroundColor; break;
+            case 2: Left.ForegroundColor = pressed ? accentColor : ForegroundColor; break;
+            case 3: Right.ForegroundColor = pressed ? accentColor : ForegroundColor; break;
         }
     }
 
     protected void UpdateSelectReading(int reading)
     {
-        TemperatureBox.ForeColor = PressureBox.ForeColor = HumidityBox.ForeColor = LuminanceBox.ForeColor = backgroundColor;
+        TemperatureBox.ForegroundColor = PressureBox.ForegroundColor = HumidityBox.ForegroundColor = LuminanceBox.ForegroundColor = backgroundColor;
         TemperatureLabel.TextColor = PressureLabel.TextColor = HumidityLabel.TextColor = LuminanceLabel.TextColor = ForegroundColor;
         TemperatureValue.TextColor = PressureValue.TextColor = HumidityValue.TextColor = LuminanceValue.TextColor = ForegroundColor;
 
         switch (reading)
         {
             case 0:
-                TemperatureBox.ForeColor = selectedColor;
+                TemperatureBox.ForegroundColor = selectedColor;
                 TemperatureLabel.TextColor = backgroundColor;
                 TemperatureValue.TextColor = backgroundColor;
                 break;
             case 1:
-                PressureBox.ForeColor = selectedColor;
+                PressureBox.ForegroundColor = selectedColor;
                 PressureLabel.TextColor = backgroundColor;
                 PressureValue.TextColor = backgroundColor;
                 break;
             case 2:
-                HumidityBox.ForeColor = selectedColor;
+                HumidityBox.ForegroundColor = selectedColor;
                 HumidityLabel.TextColor = backgroundColor;
                 HumidityValue.TextColor = backgroundColor;
                 break;
             case 3:
-                LuminanceBox.ForeColor = selectedColor;
+                LuminanceBox.ForegroundColor = selectedColor;
                 LuminanceLabel.TextColor = backgroundColor;
                 LuminanceValue.TextColor = backgroundColor;
                 break;

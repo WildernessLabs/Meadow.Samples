@@ -103,7 +103,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
 
         _box = new Box(0, 60, 30, 30)
         {
-            ForeColor = Color.Green
+            ForegroundColor = Color.Green
         };
 
         _screen.Controls.Add(_message, _box);

@@ -27,7 +27,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
         _screen.Controls.Add(
             new Box(0, 0, _screen.Width, _screen.Height)
             {
-                ForeColor = Color.White
+                ForegroundColor = Color.White
             },
             new Label(15, 20, 290, 40)
             {
@@ -54,7 +54,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
             {
                 Text = "Button 2",
                 TextColor = Color.White,
-                ForeColor = Color.Red,
+                ForegroundColor = Color.Red,
                 ShadowColor = Color.FromHex("#555555"),
                 Font = new Font12x20(),
             });

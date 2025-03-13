@@ -14,29 +14,30 @@ public class MeadowApp : App<Desktop>
 
         // Default WinForms screen (800,600)
         //_display = new WinFormsDisplay();
-        //var views = new RotatingCube(_display);
+        //var view = new RotatingCube(_display);
 
         // Screen size of a ILI9488 display
         //Device.Display.Resize(250, 122);
-        //var views = new GnssTrackerConnectivityView(Device.Display);
+        //var view = new GnssTrackerConnectivityView(Device.Display);
 
         // Screen size of a EPD4IN2bV2 e-paper display
         //Device.Display.Resize(300, 400);
-        //var views = new HomeWidget(Device.Display);
+        //var view = new HomeWidget(Device.Display);
 
         // Screen size of a ILI9341 display
-        //var views = new CultivarView(Device.Display);
-        //var views = new ProjectLabDemoView(Device.Display);
-        //var views = new AtmosphericHMI(Device.Display);
-        //var views = new WifiWeatherV2(Device.Display);
-        //var views = new HistogramView(Device.Display);
-        //var views = new DockLayoutView(Device.Display);
-        var views = new StackLayoutView(Device.Display);
+        //var view = new CultivarView(Device.Display);
+        //var view = new ProjectLabDemoView(Device.Display);
+        //var view = new AtmosphericHMI(Device.Display);
+        //var view = new WifiWeatherV2(Device.Display);
+        //var view = new HistogramView(Device.Display);
+        //var view = new DockLayoutView(Device.Display);
+        //var view = new StackLayoutView(Device.Display);
+        var view = new GridLayoutView(Device.Display);
 
         _ = Task.Run(() =>
         {
             Thread.Sleep(2000);
-            _ = views.Run();
+            _ = view.Run();
         });
 
         return Task.CompletedTask;

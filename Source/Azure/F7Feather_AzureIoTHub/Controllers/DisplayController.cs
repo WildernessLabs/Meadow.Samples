@@ -119,7 +119,7 @@ public class DisplayController
             200,
             76)
         {
-            ForeColor = Color.Black,
+            ForegroundColor = Color.Black,
             IsFilled = false
         });
 
@@ -156,7 +156,7 @@ public class DisplayController
             200,
             76)
         {
-            ForeColor = Color.Black,
+            ForegroundColor = Color.Black,
             IsFilled = false
         });
 

@@ -33,7 +33,7 @@ class StackLayoutView
 
         var box = new Box(0, 0, 140, 50)
         {
-            ForeColor = Color.Orange,
+            ForegroundColor = Color.Orange,
             IsFilled = true
         };
         layout.Add(box);

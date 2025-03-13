@@ -36,7 +36,7 @@ public class DisplayController
             displayScreen.Height - OFFSET_Y)
         {
             IsFilled = true,
-            ForeColor = Color.Red
+            ForegroundColor = Color.Red
         });
 
         displayScreen.Controls.Add(new Box(
@@ -46,7 +46,7 @@ public class DisplayController
             displayScreen.Height - 10 - OFFSET_Y)
         {
             IsFilled = true,
-            ForeColor = Color.White
+            ForegroundColor = Color.White
         });
 
         connectivityIcon = new Picture(

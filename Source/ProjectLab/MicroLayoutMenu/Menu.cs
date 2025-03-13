@@ -29,7 +29,7 @@ public class Menu
         // we compose the screen from the back forward, so put the box on first
         _highlightBox = new Box(0, -1, screen.Width, ItemHeight + 2)
         {
-            ForeColor = SelectionColor,
+            ForegroundColor = SelectionColor,
             IsFilled = true,
         };
 
