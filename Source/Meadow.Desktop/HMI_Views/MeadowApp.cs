@@ -10,7 +10,7 @@ public class MeadowApp : App<Desktop>
 {
     public override Task Initialize()
     {
-        Device.Display.Resize(320, 240, 2);
+        Device.Display.Resize(320, 240, 3);
 
         // Default WinForms screen (800,600)
         //_display = new WinFormsDisplay();
@@ -29,7 +29,9 @@ public class MeadowApp : App<Desktop>
         //var views = new ProjectLabDemoView(Device.Display);
         //var views = new AtmosphericHMI(Device.Display);
         //var views = new WifiWeatherV2(Device.Display);
-        var views = new HistogramView(Device.Display);
+        //var views = new HistogramView(Device.Display);
+        //var views = new DockLayoutView(Device.Display);
+        var views = new StackLayoutView(Device.Display);
 
         _ = Task.Run(() =>
         {
