@@ -83,7 +83,7 @@ internal class DisplayController
 
         dataLayout.Controls.Add(new Box(0, 0, displayScreen.Width, rowHeight)
         {
-            ForeColor = foregroundColor
+            ForegroundColor = foregroundColor
         });
 
         status = new Label(margin, 15, displayScreen.Width / 2, 20)
@@ -126,7 +126,7 @@ internal class DisplayController
             displayScreen.Width - margin * 2,
             graphHeight + axisLabelsHeight)
         {
-            ForeColor = foregroundColor
+            ForegroundColor = foregroundColor
         });
 
         lineChart = new LineChart(
