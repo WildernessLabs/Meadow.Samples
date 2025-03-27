@@ -583,13 +583,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepperMotor_Sample", "Modb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motors.StepperOnline", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Motors.StepperOnline\Driver\Motors.StepperOnline.csproj", "{319CC18B-525B-4833-8D8D-B280E37B6A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusStepperMotor_Sample", "ProjectLab\ModbusStepperMotor\ModbusStepperMotor_Sample.csproj", "{C1F7C00C-5130-442E-B6B4-EB588F9CBB7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepperMotorSample", "ProjectLab\ModbusStepperMotor\StepperMotorSample.csproj", "{C1F7C00C-5130-442E-B6B4-EB588F9CBB7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensors.Environmental.Keller.XLine", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Environmental.Keller.XLine\Driver\Sensors.Environmental.Keller.XLine.csproj", "{C16D6D8B-F53B-4B6F-A41C-6DAD02BB12D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KellerXLine_Sample", "Modbus\KellerXLine\KellerXLine_Sample.csproj", "{278CDA85-E114-4113-AC78-76103FFF8C47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KellerXLineSample", "ProjectLab\KellerXLine\KellerXLineSample.csproj", "{72180A60-F721-42BD-93C9-DC58544CEDD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meadow.Blazor", "..\..\Meadow.Core\Source\ui\Meadow.Blazor\Meadow.Blazor.csproj", "{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeadowBlazor", "MultiPlatform\MeadowBlazor\MeadowBlazor.csproj", "{5D98C4D1-0108-4444-880D-3565BA1F2A8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2669,6 +2673,18 @@ Global
 		{72180A60-F721-42BD-93C9-DC58544CEDD9}.Simulation|Any CPU.ActiveCfg = Debug|Any CPU
 		{72180A60-F721-42BD-93C9-DC58544CEDD9}.Simulation|Any CPU.Build.0 = Debug|Any CPU
 		{72180A60-F721-42BD-93C9-DC58544CEDD9}.Simulation|Any CPU.Deploy.0 = Debug|Any CPU
+		{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9}.Simulation|Any CPU.ActiveCfg = Release|Any CPU
+		{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9}.Simulation|Any CPU.Build.0 = Release|Any CPU
+		{5D98C4D1-0108-4444-880D-3565BA1F2A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D98C4D1-0108-4444-880D-3565BA1F2A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D98C4D1-0108-4444-880D-3565BA1F2A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D98C4D1-0108-4444-880D-3565BA1F2A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D98C4D1-0108-4444-880D-3565BA1F2A8F}.Simulation|Any CPU.ActiveCfg = Release|Any CPU
+		{5D98C4D1-0108-4444-880D-3565BA1F2A8F}.Simulation|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2953,6 +2969,8 @@ Global
 		{C16D6D8B-F53B-4B6F-A41C-6DAD02BB12D2} = {A809F07D-DD94-4375-8776-23FBE73591A5}
 		{278CDA85-E114-4113-AC78-76103FFF8C47} = {3B2ADC8C-1ACB-49F3-8A3C-4F453FF9FE75}
 		{72180A60-F721-42BD-93C9-DC58544CEDD9} = {DA0CC626-D072-457F-89B7-C22427D4C775}
+		{B86CFABA-D1F6-48DC-9E8F-FFF7FA419CA9} = {A809F07D-DD94-4375-8776-23FBE73591A5}
+		{5D98C4D1-0108-4444-880D-3565BA1F2A8F} = {A5E391D4-541D-485D-9210-4EAC4E8A2FB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F002EA-1A25-487F-9A5D-93D1E7EC6E31}
