@@ -18,4 +18,4 @@ This example shows how to use the notification property of characteristics to no
 
 ### Bluetooth_Restart
 
-This example show how to use the stop methods to change from one service to a new service with a different definition.
+This example shows how to use the stop methods to change from one service to a new service with a different definition.

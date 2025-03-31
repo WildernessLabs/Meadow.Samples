@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace Bluetooth_Restart;
+namespace Bluetooth_Notify;
 
 // public class MeadowApp : App<F7FeatherV1>
 // public class MeadowApp : App<F7FeatherV2>
