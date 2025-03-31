@@ -160,7 +160,7 @@ public class MeadowApp : App<F7CoreComputeV2>
         };
 
         _serviceA = new Service("GattServiceA", 0xfa, numberFieldA);
-        _bleADefinition = new Definition("MeadowF7A", _serviceA);
+        _bleADefinition = new Definition($"{Device.Information.DeviceName}A", _serviceA);
 
         var numberFieldB = new CharacteristicInt32(
             SERVICE_B_NUMBER_FIELD_NAME,
@@ -194,6 +194,6 @@ public class MeadowApp : App<F7CoreComputeV2>
         };
 
         _serviceB = new Service("GattServiceB", 0xfb, numberFieldB);
-        _bleBDefinition = new Definition("MeadowF7B", _serviceB);
+        _bleBDefinition = new Definition($"{Device.Information.DeviceName}B", _serviceB);
     }
 }
