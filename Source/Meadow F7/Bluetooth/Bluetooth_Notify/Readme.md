@@ -4,7 +4,7 @@ This example demonstrates how to use a notification characteristic.
 
 ## Description
 
-This application will set up a service with a a single characteristic.  The characteristic will have notification properties meaning the system will notify a connected client each time the characteristic value changes.  The application will set the value from 1 to 60 once per second.
+This application will set up a service with a single characteristic.  The characteristic will have notification properties meaning the system will notify a connected client each time the characteristic value changes.  The application will set the value from 1 to 60 once per second.
 
 ## Connecting to Meadow
 
