@@ -7,8 +7,8 @@ using System.Threading;
 
 namespace Bluetooth_Restart;
 
-// public class MeadowApp : App<F7FeatherV1>, IApp
-// public class MeadowApp : App<F7FeatherV2>, IApp
+// public class MeadowApp : App<F7FeatherV1>
+// public class MeadowApp : App<F7FeatherV2>
 public class MeadowApp : App<F7CoreComputeV2>
 {
     /// <summary>
