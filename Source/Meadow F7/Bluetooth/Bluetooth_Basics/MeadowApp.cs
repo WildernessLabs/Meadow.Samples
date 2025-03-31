@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Bluetooth_Basics;
 
+// public class MeadowApp : App<F7FeatherV1>
+// public class MeadowApp : App<F7CoreComputeV2>
 public class MeadowApp : App<F7FeatherV2>
 {
     Definition bleTreeDefinition;
