@@ -12,7 +12,7 @@ The application behaviour can be examined using a Bluetooth client application s
 
 ![Bluetooth Devices](../../../../Design/BTNotify-Devices.png)
 
-Clicking on the _MeadowF7A_ will bring up the list of available characteristic:
+Clicking on the _MeadowF7_ will bring up the list of available characteristic:
 
 ![Bluetooth Characteristics](../../../../Design/BTNotify-NotificationCharacteristic.png)
 
