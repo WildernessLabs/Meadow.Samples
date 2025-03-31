@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Bluetooth_Basics;
 
 // public class MeadowApp : App<F7FeatherV1>
-// public class MeadowApp : App<F7CoreComputeV2>
-public class MeadowApp : App<F7FeatherV2>
+public class MeadowApp : App<F7CoreComputeV2>
+// public class MeadowApp : App<F7FeatherV2>
 {
     Definition bleTreeDefinition;
     CharacteristicBool onOffCharacteristic;
@@ -17,7 +17,7 @@ public class MeadowApp : App<F7FeatherV2>
     {
         Resolver.Log.Info("Initialize hardware...");
 
-        // initialize the bluetooth defnition tree
+        // initialize the bluetooth definition tree
         Resolver.Log.Info("Starting the BLE server.");
         bleTreeDefinition = GetDefinition();
         Device.BluetoothAdapter.StartBluetoothServer(bleTreeDefinition);
@@ -28,6 +28,7 @@ public class MeadowApp : App<F7FeatherV2>
             characteristic.ValueSet += (c, d) =>
             {
                 Resolver.Log.Info($"HEY, I JUST GOT THIS BLE DATA for Characteristic '{c.Name}' of type {d.GetType().Name}: {d}");
+                c.SetValue(d);
             };
         }
 
@@ -78,6 +79,6 @@ public class MeadowApp : App<F7FeatherV2>
                  )
         );
 
-        return new Definition("MY MEADOW F7", service);
+        return new Definition(Device.Information.DeviceName, service);
     }
 }
