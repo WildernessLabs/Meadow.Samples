@@ -1,0 +1,63 @@
+#
+#   Device specific config.
+#
+Device:
+    #
+    #   Name of the device on the network.
+    #
+    Name: BluetoothNotify
+#
+#   Network configuration.
+#
+Network:
+    Interfaces:
+        - Name: Ethernet
+          UseDHCP: false
+          IPAddress: 192.168.1.40
+          NetMask: 255.255.255.0
+          Gateway: 192.168.1.254
+        - Name: WiFi
+          UseDHCP: true
+          IPAddress: 192.168.1.16
+          NetMask: 255.255.255.0
+          Gateway: 192.168.1.254
+    #
+    #   Which interface should be used?
+    #
+    DefaultInterface: WiFi
+    #
+    #    Automatically attempt to get the time at startup?
+    #
+    GetNetworkTimeAtStartup: 1
+    #
+    # Name of the NTP servers.
+    #
+    NtpServers:
+        - 0.pool.ntp.org
+        - 1.pool.ntp.org
+        - 2.pool.ntp.org
+        - 3.pool.ntp.org
+    #
+    #   How often should the time be refreshed?
+    #
+    NtpRefreshPeriodSeconds: 3600
+    #
+    #	IP address(es) of the DNS servers.
+    #
+    DnsServers:
+        # Cloudflare
+        - 1.1.1.1
+        # Google
+        - 8.8.8.8
+        # Open DNS (Cisco)
+        - 208.67.222.222
+        # Quad 9
+        - 9.9.9.9
+#
+#   ESP32 properties.
+#
+CoProcessor:
+    #
+    #   Should we start the network using stored WiFi credentials.
+    #
+    AutomaticallyStartNetwork: false
