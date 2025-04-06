@@ -8,7 +8,7 @@ namespace ChargeState;
 
 public class MeadowApp : App<F7FeatherV1>
 {
-    private IAnalogInputPort monitorPort;
+    private IObservableAnalogInputPort monitorPort;
     private IDigitalOutputPort greenLed;
     private IDigitalOutputPort redLed;
 

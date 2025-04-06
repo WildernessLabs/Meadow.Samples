@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Meadow.Core\Source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
     <ProjectReference Include="..\..\..\..\Meadow.Core\Source\Meadow.Core\Meadow.Core.csproj" />
     <ProjectReference Include="..\..\..\..\Meadow.Core\Source\ui\Meadow.Blazor\Meadow.Blazor.csproj" />
     <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Ftxxxx\Driver\ICs.IOExpanders.Ftxxxx.csproj" />
