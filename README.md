@@ -329,7 +329,7 @@ Public project samples for Meadow and Meadow.Foundation. Click on any of the pro
             <img src="Design/wildernesslabs-meadow-project-samples-rover-leds.png" alt="iot, dotnet, meadow, rover, led"/><br/>
             Meadow Rover Part 1: Motor Control with directional LEDs</br>
             <a href="https://www.hackster.io/wilderness-labs/meadow-rover-part-1-motor-control-with-directional-leds-85107d">Hackster</a> | 
-            <a href="Source/Meadow F7 Feather/MeadowRoverLeds/">Source Code</a>
+            <a href="Source/Meadow F7 Feather/Rover/MeadowRoverLeds">Source Code</a>
         </td>
         <td>
             <img src="Design/wildernesslabs-meadow-project-samples-obstacle-radar.png" alt="iot, dotnet, meadow, sensors, displays, graphics"/><br/>
