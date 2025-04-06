@@ -17,10 +17,10 @@ public class HistogramView
         screen = new DisplayScreen(_display);
 
         spectraChart1 = new HistogramChart(10, 0, screen.Width - 20, screen.Height / 2);
-        spectraChart1.Series.Add(new HistogramChartSeries { ForeColor = Color.Red });
+        spectraChart1.Series.Add(new HistogramChartSeries { ForegroundColor = Color.Red });
 
         spectraChart2 = new HistogramChart(10, screen.Height / 2, screen.Width - 20, screen.Height / 2);
-        spectraChart2.Series.Add(new HistogramChartSeries { ForeColor = Color.Green });
+        spectraChart2.Series.Add(new HistogramChartSeries { ForegroundColor = Color.Green });
 
         screen.Controls.Add(spectraChart1, spectraChart2);
     }

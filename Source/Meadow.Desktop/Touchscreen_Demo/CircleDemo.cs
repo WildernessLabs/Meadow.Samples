@@ -73,7 +73,7 @@ public class CircleDemo
     {
         _currentCircle = new Circle(point.ScreenX, point.ScreenY, 10)
         {
-            ForeColor = GetRandomColor(),
+            ForegroundColor = GetRandomColor(),
             IsFilled = true
         };
         _circles.Add(_currentCircle);

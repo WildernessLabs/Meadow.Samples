@@ -108,7 +108,7 @@ internal class DisplayController
             57,
             20)
         {
-            ForeColor = Color.Black,
+            ForegroundColor = Color.Black,
             IsFilled = false
         });
 

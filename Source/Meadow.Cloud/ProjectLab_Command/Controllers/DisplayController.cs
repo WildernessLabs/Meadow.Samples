@@ -75,7 +75,7 @@ internal class DisplayController
 
         dataLayout.Controls.Add(new Box(0, 0, displayScreen.Width, rowHeight)
         {
-            ForeColor = Meadow.Color.FromHex("844936")
+            ForegroundColor = Meadow.Color.FromHex("844936")
         });
 
         var wifiImage = Image.LoadFromResource("ProjectLab_Command.Resources.img_wifi_connecting.bmp");
@@ -114,7 +114,7 @@ internal class DisplayController
 
         dataLayout.Controls.Add(new Box(0, rowHeight, displayScreen.Width, displayScreen.Height - rowHeight)
         {
-            ForeColor = Meadow.Color.FromHex("B35E2C")
+            ForegroundColor = Meadow.Color.FromHex("B35E2C")
         });
 
         int relayWidth = 71;
@@ -129,7 +129,7 @@ internal class DisplayController
             relayWidth,
             relayHeight)
         {
-            ForeColor = Meadow.Color.White,
+            ForegroundColor = Meadow.Color.White,
             IsFilled = false
         });
         dataLayout.Controls.Add(new Label(
@@ -162,7 +162,7 @@ internal class DisplayController
             relayWidth,
             relayHeight)
         {
-            ForeColor = Meadow.Color.White,
+            ForegroundColor = Meadow.Color.White,
             IsFilled = false
         });
         dataLayout.Controls.Add(new Label(
@@ -195,7 +195,7 @@ internal class DisplayController
             relayWidth,
             relayHeight)
         {
-            ForeColor = Meadow.Color.White,
+            ForegroundColor = Meadow.Color.White,
             IsFilled = false
         });
         dataLayout.Controls.Add(new Label(
@@ -228,7 +228,7 @@ internal class DisplayController
             relayWidth,
             relayHeight)
         {
-            ForeColor = Meadow.Color.White,
+            ForegroundColor = Meadow.Color.White,
             IsFilled = false
         });
         dataLayout.Controls.Add(new Label(

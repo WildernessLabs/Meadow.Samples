@@ -32,13 +32,13 @@ public class CultivarView
     {
         screen = new DisplayScreen(_display);
 
-        screen.Controls.Add(new Box(0, 0, screen.Width, screen.Height) { ForeColor = Meadow.Color.White });
-        screen.Controls.Add(new Box(0, 27, 106, 93) { ForeColor = Meadow.Color.FromHex("#B35E2C") });
-        screen.Controls.Add(new Box(106, 27, 108, 93) { ForeColor = Meadow.Color.FromHex("#1A80AA") });
-        screen.Controls.Add(new Box(214, 27, 106, 93) { ForeColor = Meadow.Color.FromHex("#98A645") });
+        screen.Controls.Add(new Box(0, 0, screen.Width, screen.Height) { ForegroundColor = Meadow.Color.White });
+        screen.Controls.Add(new Box(0, 27, 106, 93) { ForegroundColor = Meadow.Color.FromHex("#B35E2C") });
+        screen.Controls.Add(new Box(106, 27, 108, 93) { ForegroundColor = Meadow.Color.FromHex("#1A80AA") });
+        screen.Controls.Add(new Box(214, 27, 106, 93) { ForegroundColor = Meadow.Color.FromHex("#98A645") });
 
-        screen.Controls.Add(new Box(160, 120, 1, screen.Height) { ForeColor = Meadow.Color.Black, IsFilled = false });
-        screen.Controls.Add(new Box(0, 180, screen.Width, 1) { ForeColor = Meadow.Color.Black, IsFilled = false });
+        screen.Controls.Add(new Box(160, 120, 1, screen.Height) { ForegroundColor = Meadow.Color.Black, IsFilled = false });
+        screen.Controls.Add(new Box(0, 180, screen.Width, 1) { ForegroundColor = Meadow.Color.Black, IsFilled = false });
 
         StatusLabel = new Label(2, 6, 12, 16)
         {

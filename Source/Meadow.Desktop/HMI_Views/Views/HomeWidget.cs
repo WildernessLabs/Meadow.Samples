@@ -58,7 +58,7 @@ public class HomeWidget
 
         DisplayScreen.Controls.Add(new Box(padding, padding, 100, 100)
         {
-            ForeColor = Color.Black,
+            ForegroundColor = Color.Black,
             IsFilled = false
         });
 
@@ -152,7 +152,7 @@ public class HomeWidget
 
         DisplayScreen.Controls.Add(new Box(padding, 204, 280, 1)
         {
-            ForeColor = Color.Black
+            ForegroundColor = Color.Black
         });
 
         DisplayScreen.Controls.Add(new Label(padding, 220, DisplayScreen.Width / 2, font12X20.Height)

@@ -36,7 +36,7 @@ public class MeadowApp : App<Desktop>
         {
             _pixelBoxes[i] = new Box(x, y, boxSize, boxSize)
             {
-                ForeColor = Color.Blue
+                ForegroundColor = Color.Blue
             };
 
             _screen.Controls.Add(_pixelBoxes[i]);
@@ -81,7 +81,7 @@ public class MeadowApp : App<Desktop>
                         _ => Color.White
                     };
 
-                    _pixelBoxes[i].ForeColor = color;
+                    _pixelBoxes[i].ForegroundColor = color;
                 }
 
                 _screen.EndUpdate();

@@ -121,7 +121,7 @@ public class DisplayController
             44,
             14)
         {
-            ForeColor = foregroundColor,
+            ForegroundColor = foregroundColor,
             IsFilled = false
         });
 
@@ -209,7 +209,7 @@ public class DisplayController
             columnWidth,
             rowHeight)
         {
-            ForeColor = outdoorColor
+            ForegroundColor = outdoorColor
         };
         dataLayout.Controls.Add(temperatureBox);
         temperatureLabel = new Label(
@@ -244,7 +244,7 @@ public class DisplayController
             columnWidth,
             rowHeight)
         {
-            ForeColor = backgroundColor
+            ForegroundColor = backgroundColor
         };
         dataLayout.Controls.Add(pressureBox);
         pressureLabel = new Label(
@@ -279,7 +279,7 @@ public class DisplayController
             columnWidth,
             rowHeight)
         {
-            ForeColor = backgroundColor
+            ForegroundColor = backgroundColor
         };
         dataLayout.Controls.Add(humidityBox);
         humidityLabel = new Label(
@@ -379,24 +379,24 @@ public class DisplayController
 
     private void UpdateReadingType(int type)
     {
-        temperatureBox.ForeColor = pressureBox.ForeColor = humidityBox.ForeColor = backgroundColor;
+        temperatureBox.ForegroundColor = pressureBox.ForegroundColor = humidityBox.ForegroundColor = backgroundColor;
         temperatureLabel.TextColor = pressureLabel.TextColor = humidityLabel.TextColor = foregroundColor;
         temperatureValue.TextColor = pressureValue.TextColor = humidityValue.TextColor = foregroundColor;
 
         switch (type)
         {
             case 0:
-                temperatureBox.ForeColor = outdoorColor;
+                temperatureBox.ForegroundColor = outdoorColor;
                 temperatureLabel.TextColor = backgroundColor;
                 temperatureValue.TextColor = backgroundColor;
                 break;
             case 1:
-                pressureBox.ForeColor = outdoorColor;
+                pressureBox.ForegroundColor = outdoorColor;
                 pressureLabel.TextColor = backgroundColor;
                 pressureValue.TextColor = backgroundColor;
                 break;
             case 2:
-                humidityBox.ForeColor = outdoorColor;
+                humidityBox.ForegroundColor = outdoorColor;
                 humidityLabel.TextColor = backgroundColor;
                 humidityValue.TextColor = backgroundColor;
                 break;

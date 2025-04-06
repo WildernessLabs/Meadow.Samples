@@ -38,7 +38,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
         {
             _pixelBoxes[i] = new Box(x, y, boxSize, boxSize)
             {
-                ForeColor = Color.Blue
+                ForegroundColor = Color.Blue
             };
 
             _screen.Controls.Add(_pixelBoxes[i]);
@@ -89,7 +89,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
                     _ => Color.White
                 };
 
-                _pixelBoxes[i].ForeColor = color;
+                _pixelBoxes[i].ForegroundColor = color;
             }
 
             _screen.EndUpdate();
@@ -119,7 +119,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
                     _ => Color.White
                 };
 
-                _pixelBoxes[i].ForeColor = color;
+                _pixelBoxes[i].ForegroundColor = color;
             }
 
             _screen.EndUpdate();

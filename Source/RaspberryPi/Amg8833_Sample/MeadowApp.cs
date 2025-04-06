@@ -39,7 +39,7 @@ public class MeadowApp : App<RaspberryPi>
         {
             _pixelBoxes[i] = new Box(x, y, 4, 3)
             {
-                ForeColor = Color.Blue
+                ForegroundColor = Color.Blue
             };
 
             _screen.Controls.Add(_pixelBoxes[i]);
@@ -79,7 +79,7 @@ public class MeadowApp : App<RaspberryPi>
                     _ => Color.White
                 };
 
-                _pixelBoxes[i].ForeColor = color;
+                _pixelBoxes[i].ForegroundColor = color;
             }
 
             _screen.EndUpdate();

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
@@ -6,7 +6,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Ftxxxx" Version="*" />
-    <PackageReference Include="Meadow.Desktop" Version="*" />
+      <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Ftxxxx\Driver\ICs.IOExpanders.Ftxxxx.csproj" />
+      <ProjectReference Include="..\..\..\..\..\Meadow.Core\Source\implementations\desktop\Meadow.Desktop\Meadow.Desktop.csproj" />
     </ItemGroup>
 </Project>

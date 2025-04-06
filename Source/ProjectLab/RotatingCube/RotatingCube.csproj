@@ -7,9 +7,12 @@
         <LangVersion>10.0</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-    <PackageReference Include="Meadow.ProjectLab" Version="*" />
+        <ProjectReference Include="..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
     </ItemGroup>
     <ItemGroup>
+        <None Update="app.build.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="meadow.config.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>

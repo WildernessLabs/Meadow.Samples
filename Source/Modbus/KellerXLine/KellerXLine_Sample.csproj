@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>10.0</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Environmental.Keller.XLine\Driver\Sensors.Environmental.Keller.XLine.csproj" />
+      <ProjectReference Include="..\..\..\..\Meadow.Modbus\src\Meadow.Modbus\Meadow.Modbus.csproj" />
+    </ItemGroup>
+</Project>
