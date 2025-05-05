@@ -9,7 +9,7 @@ namespace MeadowMapleTemperature.Controllers;
 
 public class TemperatureController
 {
-    private ITemperatureSensor analogTemperature;
+    private ISamplingTemperatureSensor analogTemperature;
 
     public ObservableCollection<TemperatureModel> TemperatureLogs { get; private set; }
 
