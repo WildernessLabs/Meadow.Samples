@@ -9,7 +9,7 @@ internal interface IMeadowCloudLoggingHardware
 {
     public IPixelDisplay Display { get; }
 
-    public ITemperatureSensor TemperatureSensor { get; set; }
+    public ISamplingTemperatureSensor TemperatureSensor { get; set; }
 
     public IBarometricPressureSensor BarometricPressureSensor { get; set; }
 
