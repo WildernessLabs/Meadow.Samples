@@ -1,33 +1,44 @@
 ﻿@page "/"
+@inject Meadow.Blazor.Services.SensorViewModel ViewModel
 
 <div class="container">
     <div class="content">
         <div class="image-container">
             <img src="Assets/meadow.png" alt="Meadow" />
         </div>
-
         <h1>Meadow on Blazor</h1>
         <h2>Atmospheric readings from a BME688</h2>
 
         <div class="readings">
             <div class="reading">
                 <span>Temperature:</span>
-                <span>@temperatureValue</span>
+                <span>@ViewModel.TemperatureValue</span>
             </div>
             <div class="reading">
                 <span>Pressure:</span>
-                <span>@pressureValue</span>
+                <span>@ViewModel.PressureValue</span>
             </div>
             <div class="reading">
                 <span>Humidity:</span>
-                <span>@humidityValue</span>
+                <span>@ViewModel.HumidityValue</span>
             </div>
         </div>
     </div>
 </div>
 
 @code {
-    private string temperatureValue = "22°C";
-    private string pressureValue = "1013 hPa";
-    private string humidityValue = "55%";
+    protected override void OnInitialized()
+    {
+        ViewModel.StateChanged += OnViewModelStateChanged;
+    }
+
+    private void OnViewModelStateChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        ViewModel.StateChanged -= OnViewModelStateChanged;
+    }
 }

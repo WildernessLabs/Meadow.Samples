@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Meadow.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<SensorViewModel>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
