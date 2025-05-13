@@ -1,4 +1,5 @@
 ﻿using Meadow;
+using Meadow.Foundation.ICs.ADC;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Foundation.Leds;
 using Meadow.Hardware;

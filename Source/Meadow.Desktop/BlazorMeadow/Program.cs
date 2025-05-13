@@ -1,6 +1,8 @@
+using Meadow.Blazor;
 using Meadow.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddSingleton<SensorViewModel>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
@@ -14,6 +16,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMeadow<MeadowApplication>();
 
 app.UseStaticFiles();
 
