@@ -3,11 +3,11 @@ using Avalonia.Markup.Xaml;
 using AvaloniaMeadow.ViewModels;
 using AvaloniaMeadow.Views;
 using Meadow;
+using Meadow.Avalonia;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Atmospheric;
 using Meadow.Peripherals.Leds;
-using Meadow.UI;
 using System.Threading.Tasks;
 
 namespace AvaloniaMeadow
