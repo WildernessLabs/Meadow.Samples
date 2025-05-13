@@ -29,7 +29,7 @@ public class DisplayController
         screen.Controls.Add(new Box(5, 5, screen.Width - 10, screen.Height - 10)
         {
             IsFilled = false,
-            ForeColor = Color.FromHex("F9E000")
+            ForegroundColor = Color.FromHex("F9E000")
         });
 
         signalBars = new Picture(105, 33, 110, 103, imgSignal0Bar);

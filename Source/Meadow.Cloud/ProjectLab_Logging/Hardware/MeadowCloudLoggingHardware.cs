@@ -12,7 +12,7 @@ internal class MeadowCloudLoggingHardware : IMeadowCloudLoggingHardware
 
     public IPixelDisplay Display { get; set; }
 
-    public ITemperatureSensor TemperatureSensor { get; set; }
+    public ISamplingTemperatureSensor TemperatureSensor { get; set; }
 
     public IBarometricPressureSensor BarometricPressureSensor { get; set; }
 
