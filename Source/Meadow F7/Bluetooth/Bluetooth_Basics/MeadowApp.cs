@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace Bluetooth_Basics;
 
 // public class MeadowApp : App<F7FeatherV1>
-public class MeadowApp : App<F7CoreComputeV2>
-// public class MeadowApp : App<F7FeatherV2>
+//public class MeadowApp : App<F7CoreComputeV2>
+public class MeadowApp : App<F7FeatherV2>
 {
-    Definition bleTreeDefinition;
-    CharacteristicBool onOffCharacteristic;
+    private Definition bleTreeDefinition;
+    private CharacteristicBool onOffCharacteristic;
 
     public override Task Initialize()
     {
@@ -20,6 +20,14 @@ public class MeadowApp : App<F7CoreComputeV2>
         // initialize the bluetooth definition tree
         Resolver.Log.Info("Starting the BLE server.");
         bleTreeDefinition = GetDefinition();
+
+        Device.BluetoothAdapter.ServerStarting += (s, e) => { Resolver.Log.Info("Server starting..."); };
+        Device.BluetoothAdapter.ServerStarted += (s, e) => { Resolver.Log.Info("Server started"); };
+        Device.BluetoothAdapter.ServerStopping += (s, e) => { Resolver.Log.Info("Server stopping..."); };
+        Device.BluetoothAdapter.ServerStopped += (s, e) => { Resolver.Log.Info("Server stopped"); };
+        Device.BluetoothAdapter.ClientConnected += (s, e) => { Resolver.Log.Info("Client connected"); };
+        Device.BluetoothAdapter.ClientDisconnected += (s, e) => { Resolver.Log.Info("Client disconnected"); };
+
         Device.BluetoothAdapter.StartBluetoothServer(bleTreeDefinition);
 
         // wire up some notifications on set
