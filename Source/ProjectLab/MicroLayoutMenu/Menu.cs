@@ -45,7 +45,7 @@ public class Menu
             {
                 Text = items[i],
                 Font = MenuFont,
-                BackColor = Color.Transparent,
+                BackgroundColor = Color.Transparent,
                 VerticalAlignment = VerticalAlignment.Center,
             };
 

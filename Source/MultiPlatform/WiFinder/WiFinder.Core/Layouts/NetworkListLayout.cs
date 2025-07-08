@@ -74,11 +74,11 @@ internal class NetworkListLayout : AbsoluteLayout
 
             if (AntennaSelected)
             {
-                antennaLabel.BackColor = Color.Red;
+                antennaLabel.BackgroundColor = Color.Red;
             }
             else
             {
-                antennaLabel.BackColor = Color.Transparent;
+                antennaLabel.BackgroundColor = Color.Transparent;
             }
         }
     }

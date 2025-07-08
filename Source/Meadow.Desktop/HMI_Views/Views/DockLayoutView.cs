@@ -13,7 +13,7 @@ class DockLayoutView
         var screen = new DisplayScreen(_display);
         screen.BackgroundColor = Color.Azure;
 
-        var layout = new DockLayout(0, 0, screen.Width, screen.Height);
+        var layout = new AlignmentLayout(0, 0, screen.Width, screen.Height);
         screen.Controls.Add(layout);
 
         var font = new Font12x16();
@@ -21,19 +21,19 @@ class DockLayoutView
 
         var label = new Label(0, 0, 100, 50, Meadow.Foundation.Graphics.ScaleFactor.X1)
         {
-            Text = "Hello Dock!",
+            Text = "Hello AlignmentLayout!",
             Font = new Font12x16(),
             TextColor = Color.DarkBlue,
             HorizontalAlignment = HorizontalAlignment.Center
         };
-        layout.Add(label, DockLayout.DockPosition.Top);
+        layout.Add(label, AlignmentLayout.DockPosition.Top);
 
         var box = new Box(0, 0, 140, 50)
         {
             ForegroundColor = Color.Orange,
             IsFilled = true
         };
-        layout.Add(box, DockLayout.DockPosition.Center);
+        layout.Add(box, AlignmentLayout.DockPosition.Center);
 
         var buttonTheme = new DisplayTheme()
         {
@@ -46,15 +46,15 @@ class DockLayoutView
 
         var button1 = new Button(0, 0, 100, 50) { Text = "YES" };
         button1.ApplyTheme(buttonTheme);
-        layout.Add(button1, DockLayout.DockPosition.BottomLeft);
+        layout.Add(button1, AlignmentLayout.DockPosition.BottomLeft);
 
         var button2 = new Button(0, 0, 100, 50) { Text = "SKIP" };
         button2.ApplyTheme(buttonTheme);
-        layout.Add(button2, DockLayout.DockPosition.Bottom);
+        layout.Add(button2, AlignmentLayout.DockPosition.Bottom);
 
         var button3 = new Button(0, 0, 100, 50) { Text = "NO" };
         button3.ApplyTheme(buttonTheme);
-        layout.Add(button3, DockLayout.DockPosition.BottomRight);
+        layout.Add(button3, AlignmentLayout.DockPosition.BottomRight);
     }
 
     public Task Run()

@@ -57,7 +57,7 @@ public class WiFiWeather
         {
             Text = $"Monday,1st",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -68,7 +68,7 @@ public class WiFiWeather
         {
             Text = $"Jan",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -79,7 +79,7 @@ public class WiFiWeather
         {
             Text = $"0000",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X16,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -90,7 +90,7 @@ public class WiFiWeather
         {
             Text = $"00:00:00 AM",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -101,7 +101,7 @@ public class WiFiWeather
         {
             Text = $"Temperature",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -110,7 +110,7 @@ public class WiFiWeather
         {
             Text = $"Humidity",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -119,7 +119,7 @@ public class WiFiWeather
         {
             Text = $"Pressure",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -128,7 +128,7 @@ public class WiFiWeather
         {
             Text = $"Feels like",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -137,7 +137,7 @@ public class WiFiWeather
         {
             Text = $"Wind Dir",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -146,7 +146,7 @@ public class WiFiWeather
         {
             Text = $"Wind Spd",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -156,7 +156,7 @@ public class WiFiWeather
         {
             Text = $"23°C",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -166,7 +166,7 @@ public class WiFiWeather
         {
             Text = $"93%",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -176,7 +176,7 @@ public class WiFiWeather
         {
             Text = $"1102hPa",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font8X16,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -187,7 +187,7 @@ public class WiFiWeather
         {
             Text = $"26°C",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -197,7 +197,7 @@ public class WiFiWeather
         {
             Text = $"178°",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -207,7 +207,7 @@ public class WiFiWeather
         {
             Text = $"19m/s",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font8X16,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right

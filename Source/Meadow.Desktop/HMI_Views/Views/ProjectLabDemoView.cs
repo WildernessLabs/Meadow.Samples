@@ -113,7 +113,7 @@ internal class ProjectLabDemoView
         var image = Image.LoadFromResource("HMI_Views.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, DisplayScreen.Width, DisplayScreen.Height, image)
         {
-            BackColor = Meadow.Color.FromHex("#14607F"),
+            BackgroundColor = Meadow.Color.FromHex("#14607F"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };

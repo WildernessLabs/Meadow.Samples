@@ -46,7 +46,7 @@ public class DisplayController
         {
             Text = $"Monday,1st",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -57,7 +57,7 @@ public class DisplayController
         {
             Text = $"Jan",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -68,7 +68,7 @@ public class DisplayController
         {
             Text = $"0000",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X16,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -79,7 +79,7 @@ public class DisplayController
         {
             Text = $"00:00:00 AM",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -90,7 +90,7 @@ public class DisplayController
         {
             Text = $"Temperature",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -99,7 +99,7 @@ public class DisplayController
         {
             Text = $"Humidity",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -108,7 +108,7 @@ public class DisplayController
         {
             Text = $"Pressure",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -117,7 +117,7 @@ public class DisplayController
         {
             Text = $"Feels like",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -126,7 +126,7 @@ public class DisplayController
         {
             Text = $"Wind Dir",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -135,7 +135,7 @@ public class DisplayController
         {
             Text = $"Wind Spd",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -145,7 +145,7 @@ public class DisplayController
         {
             Text = $"0°C",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -155,7 +155,7 @@ public class DisplayController
         {
             Text = $"0%",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -165,7 +165,7 @@ public class DisplayController
         {
             Text = $"0hPa",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font8X16,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -176,7 +176,7 @@ public class DisplayController
         {
             Text = $"0°C",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -186,7 +186,7 @@ public class DisplayController
         {
             Text = $"0°",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -196,7 +196,7 @@ public class DisplayController
         {
             Text = $"0m/s",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font8X16,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
