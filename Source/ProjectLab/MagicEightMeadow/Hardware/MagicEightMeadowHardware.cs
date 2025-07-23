@@ -1,7 +1,7 @@
 ﻿using Meadow.Devices;
-using Meadow.Foundation.Sensors.Motion;
 using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
+using Meadow.Peripherals.Sensors.Motion;
 
 namespace MagicEightMeadow.Hardware;
 
@@ -13,7 +13,7 @@ internal class MagicEightMeadowHardware : IMagicEightMeadowHardware
 
     public IRgbPwmLed RgbPwmLed { get; set; }
 
-    public Bmi270 MotionSensor { get; set; }
+    public IAccelerometer MotionSensor { get; set; }
 
     public MagicEightMeadowHardware(IProjectLabHardware projectLab)
     {
@@ -26,6 +26,6 @@ internal class MagicEightMeadowHardware : IMagicEightMeadowHardware
 
         RgbPwmLed = ProjLab.RgbLed;
 
-        MotionSensor = (ProjLab as ProjectLabHardwareBase).MotionSensor;
+        MotionSensor = ProjLab.Accelerometer;
     }
 }

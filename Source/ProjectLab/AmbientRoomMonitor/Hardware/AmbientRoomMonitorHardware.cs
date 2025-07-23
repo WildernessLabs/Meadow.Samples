@@ -17,7 +17,7 @@ internal class AmbientRoomMonitorHardware : IAmbientRoomMonitorHardware
 
     public ILightSensor LightSensor { get; set; }
 
-    public ITemperatureSensor TemperatureSensor { get; set; }
+    public ISamplingTemperatureSensor TemperatureSensor { get; set; }
     public IHumiditySensor HumiditySensor { get; set; }
     public IBarometricPressureSensor BarometricPressureSensor { get; set; }
 

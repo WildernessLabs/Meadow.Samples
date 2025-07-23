@@ -22,18 +22,19 @@ internal class MainController
 
         displayService = new DisplayController(hardware.Display);
 
-        hardware.EnvironmentalSensor.Updated += EnvironmentalSensorUpdated;
+        hardware.BarometricPressureSensor.Updated += BarometricPressureSensor_Updated;
+
     }
 
-    private void EnvironmentalSensorUpdated(object sender, Meadow.IChangeResult<(Meadow.Units.Temperature? Temperature, Meadow.Units.RelativeHumidity? Humidity, Meadow.Units.Pressure? Pressure, Meadow.Units.Resistance? GasResistance)> e)
+    private void BarometricPressureSensor_Updated(object sender, IChangeResult<Meadow.Units.Pressure> e)
     {
         hardware.RgbPwmLed.StartBlink(Color.Orange);
 
         displayService.UpdateAtmosphericConditions(
             light: $"{hardware.LightSensor.Illuminance.Value.Lux:N0}",
-            pressure: $"{e.New.Pressure.Value.Millibar:N0}",
-            humidity: $"{e.New.Humidity.Value.Percent:N0}",
-            temperature: $"{e.New.Temperature.Value.Celsius:N0}");
+            pressure: $"{hardware.BarometricPressureSensor.Pressure?.Millibar:N0}",
+            humidity: $"{hardware.HumiditySensor.Humidity?.Percent:N0}",
+            temperature: $"{hardware.TemperatureSensor.Temperature?.Celsius:N0}");
 
         hardware.RgbPwmLed.StartBlink(Color.Green);
     }
@@ -41,6 +42,6 @@ internal class MainController
     public void Run()
     {
         hardware.LightSensor.StartUpdating(TimeSpan.FromSeconds(5));
-        hardware.EnvironmentalSensor.StartUpdating(TimeSpan.FromSeconds(5));
+        hardware.TemperatureSensor.StartUpdating(TimeSpan.FromSeconds(5));
     }
 }

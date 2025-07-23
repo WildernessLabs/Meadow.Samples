@@ -8,18 +8,17 @@ namespace AmbientRoomMonitor.Hardware;
 
 internal interface IAmbientRoomMonitorHardware
 {
-    public IPixelDisplay Display { get; }
+    IPixelDisplay Display { get; }
 
-    public ILightSensor LightSensor { get; }
+    ILightSensor LightSensor { get; }
 
-    public ITemperatureSensor TemperatureSensor { get; }
+    ISamplingTemperatureSensor TemperatureSensor { get; }
 
-    public IHumiditySensor HumiditySensor { get; }
+    IHumiditySensor HumiditySensor { get; }
 
-    public IBarometricPressureSensor BarometricPressureSensor { get; }
+    IBarometricPressureSensor BarometricPressureSensor { get; }
 
+    IRgbPwmLed RgbPwmLed { get; }
 
-    public IRgbPwmLed RgbPwmLed { get; }
-
-    public void Initialize();
+    void Initialize();
 }

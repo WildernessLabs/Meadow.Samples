@@ -121,8 +121,6 @@ internal class ProjectLabDemoView
         SplashLayout.Controls.Add(displayImage);
     }
 
-
-
     private void LoadDataLayout()
     {
         DataLayout = new AbsoluteLayout(0, 0, DisplayScreen.Width, DisplayScreen.Height)
