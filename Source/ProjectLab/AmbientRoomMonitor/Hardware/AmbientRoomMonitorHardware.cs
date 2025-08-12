@@ -1,7 +1,8 @@
 ﻿using Meadow.Devices;
-using Meadow.Foundation.Sensors.Atmospheric;
 using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
+using Meadow.Peripherals.Sensors;
+using Meadow.Peripherals.Sensors.Atmospheric;
 using Meadow.Peripherals.Sensors.Light;
 
 namespace AmbientRoomMonitor.Hardware;
@@ -16,7 +17,11 @@ internal class AmbientRoomMonitorHardware : IAmbientRoomMonitorHardware
 
     public ILightSensor LightSensor { get; set; }
 
-    public Bme68x EnvironmentalSensor { get; set; }
+    public ITemperatureSensor TemperatureSensor { get; set; }
+
+    public IBarometricPressureSensor BarometricPressureSensor { get; set; }
+
+    public IHumiditySensor HumiditySensor { get; set; }
 
     internal AmbientRoomMonitorHardware(IProjectLabHardware projectLab)
     {
@@ -31,6 +36,8 @@ internal class AmbientRoomMonitorHardware : IAmbientRoomMonitorHardware
 
         LightSensor = ProjLab.LightSensor;
 
-        EnvironmentalSensor = (ProjLab as ProjectLabHardwareBase).AtmosphericSensor;
+        TemperatureSensor = ProjLab.TemperatureSensor;
+        BarometricPressureSensor = ProjLab.BarometricPressureSensor;
+        HumiditySensor = ProjLab.HumiditySensor;
     }
 }

@@ -29,14 +29,14 @@ class StackLayoutView
             TextColor = Color.DarkBlue,
             HorizontalAlignment = HorizontalAlignment.Center
         };
-        layout.Add(label);
+        layout.Controls.Add(label);
 
         var box = new Box(0, 0, 140, 50)
         {
             ForegroundColor = Color.Orange,
             IsFilled = true
         };
-        layout.Add(box);
+        layout.Controls.Add(box);
 
         var buttonTheme = new DisplayTheme()
         {
@@ -49,15 +49,15 @@ class StackLayoutView
 
         var button1 = new Button(0, 0, 100, 50) { Text = "YES" };
         button1.ApplyTheme(buttonTheme);
-        layout.Add(button1);
+        layout.Controls.Add(button1);
 
         var button2 = new Button(0, 0, 100, 50) { Text = "SKIP" };
         button2.ApplyTheme(buttonTheme);
-        layout.Add(button2);
+        layout.Controls.Add(button2);
 
         var button3 = new Button(0, 0, 100, 50) { Text = "NO" };
         button3.ApplyTheme(buttonTheme);
-        layout.Add(button3);
+        layout.Controls.Add(button3);
     }
 
     public Task Run()

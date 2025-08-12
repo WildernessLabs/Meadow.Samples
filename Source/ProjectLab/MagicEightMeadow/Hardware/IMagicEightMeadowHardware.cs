@@ -1,6 +1,6 @@
-﻿using Meadow.Foundation.Sensors.Motion;
-using Meadow.Peripherals.Displays;
+﻿using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
+using Meadow.Peripherals.Sensors.Motion;
 
 namespace MagicEightMeadow.Hardware;
 
@@ -10,7 +10,7 @@ internal interface IMagicEightMeadowHardware
 
     public IRgbPwmLed RgbPwmLed { get; }
 
-    public Bmi270 MotionSensor { get; }
+    public IAccelerometer MotionSensor { get; }
 
     public void Initialize();
 }

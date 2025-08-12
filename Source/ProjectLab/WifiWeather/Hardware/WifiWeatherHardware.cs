@@ -30,6 +30,6 @@ internal class WifiWeatherHardware : IWifiWeatherHardware
 
         Display = ProjLab.Display;
 
-        TemperatureSensor = (ProjLab as ProjectLabHardwareBase).AtmosphericSensor;
+        TemperatureSensor = ProjLab.TemperatureSensor;
     }
 }

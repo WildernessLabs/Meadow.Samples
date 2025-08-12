@@ -47,7 +47,7 @@ internal class MainController
 
         await InitializeIoTHub();
 
-        hardware.EnvironmentalSensor.Updated += EnvironmentalSensorUpdated;
+        hardware.BarometricPressureSensor.Updated += BarometricPressureSensor_Updated;
     }
 
     private async Task InitializeIoTHub()
@@ -101,23 +101,27 @@ internal class MainController
         }
     }
 
-    private async void EnvironmentalSensorUpdated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
+    private async void BarometricPressureSensor_Updated(object sender, IChangeResult<Pressure> e)
     {
-        hardware.RgbPwmLed.StartBlink(Color.Orange);
+        await hardware.RgbPwmLed.StartBlink(Color.Orange);
+
+        var t = await hardware.TemperatureSensor.Read();
+        var h = await hardware.HumiditySensor.Read();
+        var p = hardware.BarometricPressureSensor.Pressure.Value;
 
         displayController.UpdateAtmosphericConditions(
-            temperature: e.New.Temperature.Value.Celsius,
-            pressure: e.New.Pressure.Value.Millibar,
-            humidity: e.New.Humidity.Value.Percent);
+            temperature: t.Celsius,
+            pressure: p.Millibar,
+            humidity: h.Percent);
 
-        await SendDataToIoTHub(e.New);
+        await SendDataToIoTHub((t, h, p, null));
 
-        hardware.RgbPwmLed.StartBlink(Color.Green);
+        await hardware.RgbPwmLed.StartBlink(Color.Green);
     }
 
     public async Task Run()
     {
-        hardware.EnvironmentalSensor.StartUpdating(TimeSpan.FromSeconds(15));
+        hardware.BarometricPressureSensor.StartUpdating(TimeSpan.FromSeconds(15));
 
         while (true)
         {

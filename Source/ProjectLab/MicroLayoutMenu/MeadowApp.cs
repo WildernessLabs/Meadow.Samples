@@ -33,7 +33,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
             {
                 Text = "Welcome to MicroLayout!",
                 TextColor = Color.Black,
-                BackColor = Color.FromHex("#C9DB31"),
+                BackgroundColor = Color.FromHex("#C9DB31"),
                 Font = new Font12x20(),
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center

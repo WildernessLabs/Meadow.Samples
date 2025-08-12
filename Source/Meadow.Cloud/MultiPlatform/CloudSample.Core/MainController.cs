@@ -25,22 +25,19 @@ public class MainController
         controlTimer = new Timer(ControlTimerProc);
     }
 
-    private void OnUpdateRetrieved(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info)
+    private void OnUpdateRetrieved(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource token)
     {
         Resolver.Log.Info($"Update {info.ID} retrieved");
     }
 
-    private void OnRetrieveProgress(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info)
+    private void OnRetrieveProgress(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource token)
     {
         Resolver.Log.Info($"{info.ID} retrieved {info.DownloadProgress}");
     }
 
-    private void OnUpdateAvailable(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info)
+    private void OnUpdateAvailable(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource token)
     {
         Resolver.Log.Info($"An update is available: {info.ID}");
-
-        Resolver.Log.Info($"retrieving...");
-        updateService.RetrieveUpdate(info);
     }
 
     private void OnConnectionStateChanged(object sender, CloudConnectionState e)

@@ -166,7 +166,7 @@ public class DisplayController
         {
             Text = "Y: Celcius | X: Every minute",
             TextColor = TextColor,
-            BackColor = foregroundColor,
+            BackgroundColor = foregroundColor,
             Font = font6x8,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -177,7 +177,7 @@ public class DisplayController
         {
             Text = "TEMPERATURE",
             TextColor = TextColor,
-            BackColor = foregroundColor,
+            BackgroundColor = foregroundColor,
             Font = font8x12,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -188,7 +188,7 @@ public class DisplayController
         {
             Text = "PRESSURE",
             TextColor = TextColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font8x12,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -199,7 +199,7 @@ public class DisplayController
         {
             Text = "HUMIDITY",
             TextColor = TextColor,
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             Font = font8x12,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -214,7 +214,7 @@ public class DisplayController
         {
             Text = "NO NETWORK CONNECTION",
             TextColor = TextColor,
-            BackColor = foregroundColor,
+            BackgroundColor = foregroundColor,
             Font = font8x12,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -248,22 +248,22 @@ public class DisplayController
     {
         displayScreen.BeginUpdate();
 
-        temperature.BackColor = backgroundColor;
-        pressure.BackColor = backgroundColor;
-        humidity.BackColor = backgroundColor;
+        temperature.BackgroundColor = backgroundColor;
+        pressure.BackgroundColor = backgroundColor;
+        humidity.BackgroundColor = backgroundColor;
 
         switch (graphType)
         {
             case 0:
-                temperature.BackColor = foregroundColor;
+                temperature.BackgroundColor = foregroundColor;
                 axisLabels.Text = "Y: Celcius | X: Every minute";
                 break;
             case 1:
-                pressure.BackColor = foregroundColor;
+                pressure.BackgroundColor = foregroundColor;
                 axisLabels.Text = "Y: Millibar | X: Every minute";
                 break;
             case 2:
-                humidity.BackColor = foregroundColor;
+                humidity.BackgroundColor = foregroundColor;
                 axisLabels.Text = "Y: Percent | X: Every minute";
                 break;
         }

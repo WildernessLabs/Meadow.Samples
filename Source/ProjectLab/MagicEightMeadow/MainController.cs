@@ -28,7 +28,6 @@ internal class MainController
         var consumer = Bmi270.CreateObserver(
             handler: result => MotionSensorHandler(result),
             filter: result => MotionSensorFilter(result));
-        hardware.MotionSensor.Subscribe(consumer);
     }
 
     private async void MotionSensorHandler(IChangeResult<(Acceleration3D? a3D, AngularVelocity3D? v3D, Temperature? t)> e)

@@ -45,7 +45,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
         Hardware.DownButton.LongClickedThreshold = TimeSpan.FromMilliseconds(500);
         Hardware.DownButton.LongClicked += DownButton_LongClicked;
 
-        (Hardware as ProjectLabHardwareBase).MotionSensor.Updated += MotionSensor_Updated;
+        Hardware.Accelerometer.Updated += Accelerometer_Updated;
 
         onboardLed.SetColor(Color.Green);
 
@@ -93,10 +93,10 @@ public class MeadowApp : ProjectLabCoreComputeApp
         graphics.DrawLine(cube.Wireframe[3, 0], cube.Wireframe[3, 1], cube.Wireframe[7, 0], cube.Wireframe[7, 1], color);
     }
 
-    private void MotionSensor_Updated(object sender, IChangeResult<(Acceleration3D? Acceleration3D, AngularVelocity3D? AngularVelocity3D, Temperature? Temperature)> e)
+    private void Accelerometer_Updated(object sender, IChangeResult<Acceleration3D> e)
     {
-        cube.XVelocity += new Angle(e.New.Acceleration3D.Value.X.Gravity);
-        cube.YVelocity -= new Angle(e.New.Acceleration3D.Value.Y.Gravity);
+        cube.XVelocity += new Angle(e.New.X.Gravity);
+        cube.YVelocity -= new Angle(e.New.Y.Gravity);
     }
 
     private void UpButton_LongClicked(object sender, EventArgs e)
@@ -149,7 +149,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
 
     public override Task Run()
     {
-        (Hardware as ProjectLabHardwareBase).MotionSensor.StartUpdating(motionUpdateInterval);
+        Hardware.Accelerometer.StartUpdating(motionUpdateInterval);
 
         cube = new Cube3d(graphics.Width / 2, graphics.Height / 2, cubeSize);
         cubeColor = initialColor;
