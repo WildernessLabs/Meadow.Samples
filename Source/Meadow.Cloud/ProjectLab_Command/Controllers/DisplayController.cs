@@ -58,7 +58,7 @@ internal class DisplayController
         var image = Image.LoadFromResource("ProjectLab_Command.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, displayScreen.Width, displayScreen.Height, image)
         {
-            BackColor = Meadow.Color.FromHex("#B35E2C"),
+            BackgroundColor = Color.FromHex("#B35E2C"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
