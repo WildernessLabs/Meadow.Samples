@@ -35,8 +35,8 @@ public class MeadowApp : ProjectLabCoreComputeApp
 
         BuildScreen();
 
-        (projectLab as ProjectLabHardwareBase).AtmosphericSensor.Updated += OnEnvironmentalSensorUpdated;
-        (projectLab as ProjectLabHardwareBase).AtmosphericSensor.StartUpdating();
+        projectLab.BarometricPressureSensor.Updated += BarometricPressureSensor_Updated;
+        projectLab.BarometricPressureSensor.StartUpdating();
 
         var wifi = Hardware.ComputeModule.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
@@ -129,25 +129,25 @@ public class MeadowApp : ProjectLabCoreComputeApp
         addressLabel.Text = address.ToString();
     }
 
-    private void OnEnvironmentalSensorUpdated(object sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)
+    private void BarometricPressureSensor_Updated(object sender, IChangeResult<Pressure> e)
     {
         var d = new Dictionary<string, float>();
 
         // we lose some numeric accuracy here, but 64-bits is much higher precision than the sensor
-        if (e.New.Temperature != null)
+        if (Hardware.TemperatureSensor != null)
         {
-            registers.SetRegisters(RegisterBank.Registers.Temperature, (float)e.New.Temperature.Value.Celsius);
-            d.Add("Temp", (float)e.New.Temperature.Value.Celsius);
+            registers.SetRegisters(RegisterBank.Registers.Temperature, (float)Hardware.TemperatureSensor.Read().Result.Celsius);
+            d.Add("Temp", (float)Hardware.TemperatureSensor.Read().Result.Celsius);
         }
-        if (e.New.Humidity != null)
+        if (Hardware.HumiditySensor != null)
         {
-            registers.SetRegisters(RegisterBank.Registers.Humidity, (float)e.New.Humidity.Value.Percent);
-            d.Add("Hum", (float)e.New.Humidity.Value.Percent);
+            registers.SetRegisters(RegisterBank.Registers.Humidity, (float)Hardware.HumiditySensor.Humidity.Value.Percent);
+            d.Add("Hum", (float)Hardware.HumiditySensor.Humidity.Value.Percent);
         }
-        if (e.New.Pressure != null)
+        if (Hardware.BarometricPressureSensor != null)
         {
-            registers.SetRegisters(RegisterBank.Registers.AirPressure, (float)e.New.Pressure.Value.Pascal);
-            d.Add("Pres", (float)e.New.Pressure.Value.Pascal);
+            registers.SetRegisters(RegisterBank.Registers.AirPressure, (float)Hardware.BarometricPressureSensor.Pressure.Value.Pascal);
+            d.Add("Pres", (float)Hardware.BarometricPressureSensor.Pressure.Value.Pascal);
         }
 
         ShowTelemetry(d);

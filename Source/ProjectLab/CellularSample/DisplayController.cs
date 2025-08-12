@@ -49,7 +49,7 @@ public class DisplayController
             Text = "---.---.---.---",
             TextColor = Color.FromHex("14607F"),
             Font = new Font16x24(),
-            BackColor = Color.FromHex("F9E000"),
+            BackgroundColor = Color.FromHex("F9E000"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Bottom,
         };

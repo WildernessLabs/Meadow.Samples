@@ -10,7 +10,7 @@ internal interface IMagicEightMeadowHardware
 
     IRgbPwmLed RgbPwmLed { get; }
 
-    IAccelerometer MotionSensor { get; set; }
+    IAccelerometer MotionSensor { get; }
 
     void Initialize();
 }

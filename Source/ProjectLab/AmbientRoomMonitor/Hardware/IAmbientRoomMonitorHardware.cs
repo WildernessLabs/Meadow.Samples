@@ -12,11 +12,11 @@ internal interface IAmbientRoomMonitorHardware
 
     ILightSensor LightSensor { get; }
 
-    ISamplingTemperatureSensor TemperatureSensor { get; }
-
-    IHumiditySensor HumiditySensor { get; }
+    ITemperatureSensor TemperatureSensor { get; }
 
     IBarometricPressureSensor BarometricPressureSensor { get; }
+
+    IHumiditySensor HumiditySensor { get; set; }
 
     IRgbPwmLed RgbPwmLed { get; }
 

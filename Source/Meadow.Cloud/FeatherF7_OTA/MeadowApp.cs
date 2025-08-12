@@ -3,6 +3,7 @@ using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Peripherals.Leds;
 using Meadow.Update;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FeatherF7_OTA;
@@ -50,8 +51,6 @@ public class MeadowApp : App<F7FeatherV2>
 
         var updateService = Resolver.UpdateService;
 
-        updateService.ClearUpdates(); // uncomment to clear persisted info
-
         updateService.StateChanged += OnUpdateStateChanged;
 
         updateService.RetrieveProgress += OnUpdateProgress;
@@ -72,33 +71,25 @@ public class MeadowApp : App<F7FeatherV2>
         Resolver.Log.Info($"UpdateState {e}");
     }
 
-    private void OnUpdateProgress(IUpdateService updateService, UpdateInfo info)
+    private void OnUpdateProgress(IUpdateService updateService, UpdateInfo info, CancellationTokenSource token)
     {
         short percentage = (short)(((double)info.DownloadProgress / info.FileSize) * 100);
 
         Resolver.Log.Info($"Downloading... {percentage}%");
     }
 
-    private async void OnUpdateAvailable(IUpdateService updateService, UpdateInfo info)
+    private async void OnUpdateAvailable(IUpdateService updateService, UpdateInfo info, CancellationTokenSource token)
     {
         Resolver.Log.Info($"Update available!");
 
         _ = onboardLed.StartBlink(Color.Magenta);
-
-        await Task.Delay(5000);
-
-        updateService.RetrieveUpdate(info);
     }
 
-    private async void OnUpdateRetrieved(IUpdateService updateService, UpdateInfo info)
+    private async void OnUpdateRetrieved(IUpdateService updateService, UpdateInfo info, CancellationTokenSource token)
     {
         Resolver.Log.Info($"Update retrieved!");
 
         _ = onboardLed.StartBlink(Color.Cyan);
-
-        await Task.Delay(5000);
-
-        updateService.ApplyUpdate(info);
     }
 
     private void OnCloudStateChanged(object sender, CloudConnectionState e)

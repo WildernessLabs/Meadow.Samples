@@ -47,7 +47,7 @@ internal class DisplayController
 
         progressBar = new ProgressBar(90, 205, 140, 16)
         {
-            BackgroundColor = Color.Black,
+            BackColor = Color.Black,
             ValueColor = Color.FromHex("0B3749"),
             BorderColor = Color.FromHex("0B3749"),
             IsVisible = false

@@ -55,7 +55,7 @@ internal class DisplayController
         var image = Image.LoadFromResource("ProjectLab_AzureIoTHub.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, displayScreen.Width, displayScreen.Height, image)
         {
-            BackgroundColor = Color.FromHex("F39E6C"),
+            BackColor = Color.FromHex("F39E6C"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
