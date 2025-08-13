@@ -28,7 +28,7 @@ Network:
     GetNetworkTimeAtStartup: true
 
     # Time synchronization period in seconds.
-    NtpRefreshPeriodSecondsSeconds: 3600
+    NtpRefreshPeriodSeconds: 3600
 
     # Name of the NTP servers.
     NtpServers:
@@ -40,4 +40,5 @@ Network:
     # IP addresses of the DNS servers.
     DnsServers:
         - 1.1.1.1
+
         - 8.8.8.8
