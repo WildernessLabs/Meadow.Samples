@@ -42,7 +42,7 @@ Network:
   GetNetworkTimeAtStartup: true
 
   # Time synchronization period in seconds.
-  NtpRefreshPeriodSecondsSeconds: 600
+  NtpRefreshPeriodSeconds: 600
 
   # Name of the NTP servers.
   NtpServers:
