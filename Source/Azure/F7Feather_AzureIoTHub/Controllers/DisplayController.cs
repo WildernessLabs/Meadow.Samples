@@ -55,7 +55,7 @@ public class DisplayController
             logo.Height,
             logo)
         {
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };

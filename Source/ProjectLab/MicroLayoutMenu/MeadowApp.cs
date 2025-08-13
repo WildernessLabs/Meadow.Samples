@@ -40,7 +40,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
             },
             new Picture(90, 74, 140, 90, image)
             {
-                BackColor = Color.FromHex("#23ABE3"),
+                BackgroundColor = Color.FromHex("#23ABE3"),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
             },

@@ -51,7 +51,7 @@ public class DisplayController
         var image = Image.LoadFromResource("ProjectLabConnectivity.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, splashLayout.Width, splashLayout.Height, image)
         {
-            BackColor = backgroundColor,
+            BackgroundColor = backgroundColor,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
