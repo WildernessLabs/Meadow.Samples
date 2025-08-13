@@ -2,6 +2,7 @@
 using Meadow.Hardware;
 using Meadow.Update;
 using ProjectLab_OTA.Hardware;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProjectLab_OTA.Controllers;
@@ -29,8 +30,6 @@ internal class MainController
     {
         var updateService = Resolver.UpdateService;
 
-        updateService.ClearUpdates(); // uncomment to clear persisted info
-
         updateService.StateChanged += OnUpdateStateChanged;
 
         updateService.RetrieveProgress += OnUpdateProgress;
@@ -51,29 +50,23 @@ internal class MainController
         displayController.UpdateStatus($"{FormatStatusMessage(e)}");
     }
 
-    private void OnUpdateProgress(IUpdateService updateService, UpdateInfo info)
+    private void OnUpdateProgress(IUpdateService updateService, UpdateInfo info, CancellationTokenSource token)
     {
         short percentage = (short)(((double)info.DownloadProgress / info.FileSize) * 100);
 
         displayController.UpdateDownloadProgress(percentage);
     }
 
-    private async void OnUpdateAvailable(IUpdateService updateService, UpdateInfo info)
+    private async void OnUpdateAvailable(IUpdateService updateService, UpdateInfo info, CancellationTokenSource token)
     {
         _ = hardware.RgbPwmLed.StartBlink(Color.Magenta);
         displayController.UpdateStatus("Update available!");
-
-        await Task.Delay(5000);
-        updateService.RetrieveUpdate(info);
     }
 
-    private async void OnUpdateRetrieved(IUpdateService updateService, UpdateInfo info)
+    private async void OnUpdateRetrieved(IUpdateService updateService, UpdateInfo info, CancellationTokenSource token)
     {
         _ = hardware.RgbPwmLed.StartBlink(Color.Cyan);
         displayController.UpdateStatus("Update retrieved!");
-
-        await Task.Delay(5000);
-        updateService.ApplyUpdate(info);
     }
 
     private void OnCloudStateChanged(object sender, CloudConnectionState e)

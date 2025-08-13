@@ -16,35 +16,28 @@ public class MainController
     public MainController()
     {
         Resolver.MeadowCloudService.ConnectionStateChanged += OnConnectionStateChanged;
-
-        Resolver.UpdateService.UpdateRetrieved += OnUpdateRetrieved;
+        Resolver.UpdateService.UpdateAvailable += OnUpdateAvailable;
         Resolver.UpdateService.RetrieveProgress += OnRetrieveProgress;
-        Resolver.UpdateService.UpdateSuccess += OnUpdateSuccess;
-        Resolver.UpdateService.UpdateFailure += OnUpdateFailure;
+        Resolver.UpdateService.UpdateRetrieved += OnUpdateRetrieved;
 
         commandController = new CommandController(Resolver.CommandService);
         telemetryController = new TelemetryController(Resolver.MeadowCloudService);
         controlTimer = new Timer(ControlTimerProc);
     }
 
-    private void OnUpdateFailure(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource cancel)
+    private void OnUpdateRetrieved(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource token)
     {
-        Resolver.Log.Error($"Update Failure: {info.ID} - {info.Version} - {info.Detail}");
+        Resolver.Log.Info($"Update {info.ID} retrieved");
     }
 
-    private void OnUpdateSuccess(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource cancel)
+    private void OnRetrieveProgress(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource token)
     {
-        Resolver.Log.Info($"Update Success: {info.ID} - {info.Version}");
+        Resolver.Log.Info($"{info.ID} retrieved {info.DownloadProgress}");
     }
 
-    private void OnRetrieveProgress(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource cancel)
+    private void OnUpdateAvailable(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource token)
     {
-        Resolver.Log.Info($"Update Retrieve Progress: {info.ID} - {info.Version} - {info.DownloadProgress}%");
-    }
-
-    private void OnUpdateRetrieved(Meadow.Update.IUpdateService updateService, Meadow.Update.UpdateInfo info, CancellationTokenSource cancel)
-    {
-        Resolver.Log.Info($"Update Retrieved: {info.ID} - {info.Version}");
+        Resolver.Log.Info($"An update is available: {info.ID}");
     }
 
     private void OnConnectionStateChanged(object sender, CloudConnectionState e)

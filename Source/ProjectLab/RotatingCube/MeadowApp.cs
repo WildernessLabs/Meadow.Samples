@@ -52,12 +52,6 @@ public class MeadowApp : ProjectLabCoreComputeApp
         return base.Initialize();
     }
 
-    private void Accelerometer_Updated(object sender, IChangeResult<Acceleration3D> e)
-    {
-        cube.XVelocity += new Angle(e.New.X.Gravity);
-        cube.YVelocity -= new Angle(e.New.Y.Gravity);
-    }
-
     public void Show3dCube()
     {
         Task.Run(() =>
@@ -97,6 +91,12 @@ public class MeadowApp : ProjectLabCoreComputeApp
         graphics.DrawLine(cube.Wireframe[1, 0], cube.Wireframe[1, 1], cube.Wireframe[5, 0], cube.Wireframe[5, 1], color);
         graphics.DrawLine(cube.Wireframe[2, 0], cube.Wireframe[2, 1], cube.Wireframe[6, 0], cube.Wireframe[6, 1], color);
         graphics.DrawLine(cube.Wireframe[3, 0], cube.Wireframe[3, 1], cube.Wireframe[7, 0], cube.Wireframe[7, 1], color);
+    }
+
+    private void Accelerometer_Updated(object sender, IChangeResult<Acceleration3D> e)
+    {
+        cube.XVelocity += new Angle(e.New.X.Gravity);
+        cube.YVelocity -= new Angle(e.New.Y.Gravity);
     }
 
     private void UpButton_LongClicked(object sender, EventArgs e)

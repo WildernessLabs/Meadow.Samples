@@ -9,7 +9,7 @@ namespace AnalogInputPort;
 
 public class MeadowApp : App<F7FeatherV2>
 {
-    IObservableAnalogInputPort analogIn;
+    private IObservableAnalogInputPort analogIn;
 
     public override Task Initialize()
     {
