@@ -21,7 +21,7 @@ class DockLayoutView
 
         var label = new Label(0, 0, 100, 50, Meadow.Foundation.Graphics.ScaleFactor.X1)
         {
-            Text = "Hello Dock!",
+            Text = "Hello AlignmentLayout!",
             Font = new Font12x16(),
             TextColor = Color.DarkBlue,
             HorizontalAlignment = HorizontalAlignment.Center

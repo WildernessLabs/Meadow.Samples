@@ -70,7 +70,7 @@ public class DisplayController
         var image = Image.LoadFromResource("AmbientMonitor.Core.Assets.img_meadow.bmp");
         var displayImage = new Picture(0, 0, displayScreen.Width, displayScreen.Height, image)
         {
-            BackColor = Meadow.Color.FromHex("575E3C"),
+            BackgroundColor = Meadow.Color.FromHex("575E3C"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };

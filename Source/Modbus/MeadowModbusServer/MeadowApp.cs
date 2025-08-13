@@ -129,7 +129,6 @@ public class MeadowApp : ProjectLabCoreComputeApp
         addressLabel.Text = address.ToString();
     }
 
-
     private void BarometricPressureSensor_Updated(object sender, IChangeResult<Pressure> e)
     {
         var d = new Dictionary<string, float>();

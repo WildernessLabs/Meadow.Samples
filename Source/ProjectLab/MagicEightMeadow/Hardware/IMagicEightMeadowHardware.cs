@@ -6,11 +6,11 @@ namespace MagicEightMeadow.Hardware;
 
 internal interface IMagicEightMeadowHardware
 {
-    public IPixelDisplay Display { get; }
+    IPixelDisplay Display { get; }
 
-    public IRgbPwmLed RgbPwmLed { get; }
+    IRgbPwmLed RgbPwmLed { get; }
 
-    public IAccelerometer MotionSensor { get; }
+    IAccelerometer MotionSensor { get; }
 
-    public void Initialize();
+    void Initialize();
 }

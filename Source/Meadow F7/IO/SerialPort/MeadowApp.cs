@@ -8,133 +8,191 @@ using System.Threading.Tasks;
 namespace SerialPort;
 
 /// <summary>
-/// To run these tests, create a loopback on COM4 by connecting D12 and D13.
+/// Loop Back testing of COMx with CRC calculated on the data to confirm no data lost or corrupted in transmission.
 /// </summary>
-public class MeadowApp : App<F7FeatherV2>
+/// <remarks>
+/// To run these tests, create a loopback on the COM port to be tested and set portName
+/// Optionally connect TTL serial RX to the loop back to monitor the data transmission.
+/// </remarks>
+/// <example>
+///     F7FeatherV2, set portName="COM1" and connect D12 and D13.
+///     F7CoreComputeV2, set portName="COM1" and connect D12 and D13.
+/// </example>
+public class MeadowApp : App<F7CoreComputeV2>
 {
+    private readonly string portName = "COM1";
+
     ISerialPort classicSerialPort;
     Encoding currentTestEncoding = Encoding.ASCII;
+    private UInt32 crcRX = 0;
+    private UInt32 crcTX = 0;
 
     public override Task Initialize()
     {
+        Resolver.Log.Info("SerialPort Loopback testing.");
+
         Resolver.Log.Info("Available serial ports:");
         foreach (var name in Device.PlatformOS.GetSerialPortNames())
         {
             Resolver.Log.Info($"  {name.FriendlyName}");
         }
-        var serialPortName = Device.PlatformOS.GetSerialPortName("COM1");
+
+        Resolver.Log.Info($"Please loop TX to RX on the port being tested: {portName}");
+        var serialPortName = Device.PlatformOS.GetSerialPortName(portName);
+
+        if (serialPortName == null)
+        {
+            throw new InvalidOperationException($"Failed GetSerialPortName({portName}). Check comport name is valid and not in use.");
+        }
+
         Resolver.Log.Info($"Using {serialPortName.FriendlyName}...");
         classicSerialPort = Device.CreateSerialPort(serialPortName, 115200);
         Resolver.Log.Info("\tCreated");
-
         // open the serial port
         classicSerialPort.Open();
-        Resolver.Log.Info("\tOpened");
+        classicSerialPort.ClearReceiveBuffer();
+        Resolver.Log.Info("\tOpened...");
 
         return Task.CompletedTask;
     }
 
     public override async Task Run()
     {
-        Resolver.Log.Info("BUGBUG: this test fails under specific conditions. See test for info.");
-        SimpleReadWriteTest();
-        Resolver.Log.Info("Simple read/write testing completed.");
+        await SimpleReadWriteTest(100, Encoding.ASCII);
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
 
+        await SimpleReadWriteTest(50, Encoding.ASCII);
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
+
+        for (int delay = 10; delay >= 2; delay--)
+        {
+            await SimpleReadWriteTest(delay, Encoding.ASCII);
+            Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+            await Task.Delay(100); // this delay is to give Logging time to send trace
+        }
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
+
+        for (int delay = 10; delay >= 2; delay--)
+        {
+            await SimpleReadWriteTest(delay, Encoding.Unicode);
+            Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+            await Task.Delay(100); // this delay is to give Logging time to send trace
+        }
         await SerialEventTest();
-        Resolver.Log.Info("Serial event testing completed.");
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
 
-        Resolver.Log.Info("LongMessageTest - currently, not absolutely sure this works. Console.WriteLine might be clipping output.");
-        Resolver.Log.Info("Also, test it with unicode encoding and things go sideways, are we losing a byte?? ");
-        await LongMessageTest();
+        Resolver.Log.Info("LongMessageTest");
+        await LongMessageTest(Encoding.ASCII);
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
+
+        await LongMessageTest(Encoding.UTF8);
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
+
+        await LongMessageTest(Encoding.Unicode);
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
+
+        await LongMessageTest(Encoding.Unicode, 10);
+        Resolver.Log.Info("----------------------------------------------------------------------------------------------------");
+        await Task.Delay(200); // this delay is to give Logging time to send trace
     }
 
     /// <summary>
     /// Tests basic reading of serial in which the Write.Length == Read.Count
     /// </summary>
-    async Task SimpleReadWriteTest()
+    async Task<bool> SimpleReadWriteTest(int delay, Encoding testEncoding, int count = 10)
     {
-        int count = 10;
-        currentTestEncoding = Encoding.Unicode;
+        //Note delay< +/ -2ms is invalid unless we have a way to know data has been sent. i.e.classicSerialPort.Flush();
+        if (delay < 2)
+        {
+            Resolver.Log.Info($"SimpleReadWriteTest: delay = {delay}. Must be > 2ms");
+            return false;
+        }
 
-        //Span<byte> buffer = new byte[512];
         byte[] buffer = new byte[512];
 
-        // run the test a few times
-        int dataLength = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            Resolver.Log.Info("Writing data...");
-            /*dataLength =*/
-            classicSerialPort.Write(currentTestEncoding.GetBytes($"{count * i} PRINT Hello Meadow!"));
+        crcTX = crcRX = 0; // Reset to Zero for this test
+        Resolver.Log.Info($"SimpleReadWriteTest: Start CRC = {crcRX:X08} delay={delay}");
 
-            // give some time for the electrons to electronify
-            // TODO/HACK/BUGBUG: reduce this to 100ms and weird stuff happens;
-            // specifically we get the following output, and i don't know why:
-            // Writing data...
-            // Serial data: 0 PRINT Hello Meadow!
-            // Writing data...
-            // Serial data: 0 PRINT Hello Meadow!
-            // Writing data...
-            // Serial data: 10 PRINT Hello Meadow!
-            // Writing data...
-            // Serial data: 20 PRINT Hello Meadow!
-            // ...
-            // how is it possible that the first line is there twice, even
-            // though we're clearing it out??
-            await Task.Delay(300);
+        // run the test a few times.  
+        for (int i = 1; i < 10; i++)
+        {
+            byte[] data = testEncoding.GetBytes($"{(count * i):D02} PRINT Hello Meadow! "); 
+            crcTX = CRC.ComputeCRC(data, 0, data.Length, crcTX);
+            var writeCount = classicSerialPort.Write(data);
+            Resolver.Log.Info($"TX: CRC = {crcTX:X08} : {writeCount:D02} : Hex Data {ConvertToHexString(data)} Serial data: {ParseToString(data, data.Length, testEncoding)}");
+
+            // leave time for TX of characters in ISR 
+            if (delay > 0)
+            {
+                await Task.Delay(delay);
+            }
 
             // empty it out
-            dataLength = classicSerialPort.BytesToRead;
-            classicSerialPort.Read(buffer, 0, dataLength);
+            var dataLength = classicSerialPort.BytesToRead;
+            var readCount = classicSerialPort.Read(buffer, 0, dataLength);
 
-            Resolver.Log.Info($"Serial data: {ParseToString(buffer, dataLength, currentTestEncoding)}");
+            crcRX = CRC.ComputeCRC(buffer, 0, readCount, crcRX);
+            Resolver.Log.Info($"RX: CRC = {crcRX:X08} : {readCount:D02} : Hex Data {ConvertToHexString(buffer, 0, readCount)} Serial data: {ParseToString(buffer, readCount, testEncoding)}");
 
-            await Task.Delay(300);
         }
+
+        Resolver.Log.Info($"SimpleReadWriteTest: End TxCRC = {crcTX:X08} RxCRC = {crcRX:X08} {(crcTX == crcRX ? "PASSED" : "FAILED")}");
+
+        return crcTX == crcRX;
     }
 
-    // TODO: Someone smarter than me (bryan) needs to review this and determine
-    // if my use of Span<T> is actually saving anything here.
-    async Task SerialEventTest()
+    async Task<bool> SerialEventTest()
     {
-        Resolver.Log.Info("SerialEventTest");
+        crcTX = crcRX = 0; // Reset to Zero for this test
+        Resolver.Log.Info($"SerialEventTest: Start CRC = {crcRX:X08}");
 
-        currentTestEncoding = Encoding.Unicode;
+        currentTestEncoding = Encoding.ASCII;
         classicSerialPort.DataReceived += ProcessData;
 
         // send some messages
-        await Task.Run(async () =>
+        await Task.Run(() =>
         {
             Resolver.Log.Info("Sending 8 messages of profundity.");
-            classicSerialPort.Write(currentTestEncoding.GetBytes("Ticking away the moments that make up a dull day,"));
-            await Task.Delay(100);
-            classicSerialPort.Write(currentTestEncoding.GetBytes("fritter and waste the hours in an offhand way."));
-            await Task.Delay(100);
-            classicSerialPort.Write(currentTestEncoding.GetBytes("Kicking around on a piece of ground in your home town,"));
-            await Task.Delay(100);
-            classicSerialPort.Write(currentTestEncoding.GetBytes("Waiting for someone or something to show you the way."));
-            await Task.Delay(100);
-            classicSerialPort.Write(currentTestEncoding.GetBytes("Tired of lying in the sunshine, staying home to watch the rain,"));
-            await Task.Delay(100);
-            classicSerialPort.Write(currentTestEncoding.GetBytes("you are young and life is long and there is time to kill today."));
-            await Task.Delay(100);
-            classicSerialPort.Write(currentTestEncoding.GetBytes("And then one day you find ten years have got behind you,"));
-            await Task.Delay(100);
-            classicSerialPort.Write(currentTestEncoding.GetBytes("No one told you when to run, you missed the starting gun."));
-            await Task.Delay(100);
+            serialTestWrite("Ticking away the moments that make up a dull day,");
+            serialTestWrite("fritter and waste the hours in an offhand way.");
+            serialTestWrite("Kicking for someone or something to show you the way.");
+            serialTestWrite("Tired of lying in the sunshine, staying home to watch the rain,");
+            serialTestWrite("you are young and life is long and there is time to kill today.");
+            serialTestWrite("And then one day you find ten years have got behind you,");
+            serialTestWrite("No one told you when to run, you missed the starting gun.");
+            return Task.CompletedTask;
         });
 
         //weak ass Hack to wait for them all to process
-        await Task.Delay(500);
+        // TODO: Implement classicSerialPort.Flush() to ensure TX buffer in NuttX is empty. Then remove delay. 
+        await Task.Delay(5000);
 
         //tear-down
         classicSerialPort.DataReceived -= ProcessData;
+
+        Resolver.Log.Info($"SerialEventTest: End TxCRC = {crcTX:X08} RxCRC = {crcRX:X08} {(crcTX == crcRX ? "PASSED" : "FAILED")}");
+        
+        return crcTX == crcRX;
     }
 
-    // the underlying OS provider only allows 255b messages to be sent on
+    int serialTestWrite(string text)
+    {
+        byte[] data = currentTestEncoding.GetBytes(text);
+        crcTX = CRC.ComputeCRC(data, 0, data.Length, crcTX);
+        return classicSerialPort.Write(data);
+    }
+
+    // the underlying OS provider only allows 511b messages to be sent on
     // the serial wire, so if we want to send a longer one, the `SerialPort`
     // class chunks it up
-    async Task LongMessageTest()
+    async Task<bool> LongMessageTest(Encoding testEncoding, int count = 1)
     {
         string longMessage = @"Ticking away the moments that make up a dull day
 Fritter and waste the hours in an offhand way.
@@ -154,29 +212,41 @@ Hanging on in quiet desperation is the English way
 The time is gone, the song is over,
 Thought I'd something more to say.";
 
-        Resolver.Log.Info("LongMessageTest");
-
-        currentTestEncoding = Encoding.ASCII;
+        crcTX = crcRX = 0; // Reset to Zero for this test
+        Resolver.Log.Info($"LongMessageTest: Start CRC = {crcRX:X08} Encoding = {testEncoding}");
 
         classicSerialPort.DataReceived += ProcessData;
+        byte[] data = testEncoding.GetBytes(longMessage);
 
-        await Task.Run(() =>
+        for (int i = 0; i < count; i++)
         {
-            int written = classicSerialPort.Write(currentTestEncoding.GetBytes(longMessage));
-            Resolver.Log.Info($"Wrote {written} bytes");
-        });
+            crcTX = CRC.ComputeCRC(data, 0, data.Length, crcTX);
+            Resolver.Log.Info($"LongMessageTest: Data  CRC = {crcTX:X08}");
 
-        //weak ass Hack to wait for them all to process
-        await Task.Delay(8000);
+            await Task.Run(() =>
+            {
+                int written = classicSerialPort.Write(data);
+                Resolver.Log.Info($"Wrote {written} bytes");
+            });
+        }
+
+        //weak ass Hack to wait for them all to process (Delay 1 full buffer)
+        // TODO: implement classicSerialPort.Flush() or classicSerialPort.BytesToWrite()
+        await Task.Delay((int)(1000.0 * (512.0/115200.0)));
 
         //tear-down
         classicSerialPort.DataReceived -= ProcessData;
+
+        Resolver.Log.Info($"LongMessageTest: End TxCRC = {crcTX:X08} RxCRC = {crcRX:X08} {(crcTX == crcRX ? "PASSED" : "FAILED")}");
+
+        return crcTX == crcRX;
     }
 
+
+
     // anonymous method declaration so we can unwire later.
-    void ProcessData(object sender, SerialDataReceivedEventArgs e)
+    private void ProcessData(object sender, SerialDataReceivedEventArgs e)
     {
-        Resolver.Log.Info("Serial Data Received");
         byte[] buffer = new byte[512];
         int bytesToRead = classicSerialPort.BytesToRead > buffer.Length
                             ? buffer.Length
@@ -184,11 +254,12 @@ Thought I'd something more to say.";
         while (true)
         {
             int readCount = classicSerialPort.Read(buffer, 0, bytesToRead);
-            Console.Write(ParseToString(buffer, readCount, currentTestEncoding));
+            crcRX = CRC.ComputeCRC(buffer, 0, readCount, crcRX);
+            Resolver.Log.Trace($"RX: CRC = {crcRX:X08} : {ParseToString(buffer, readCount, currentTestEncoding)} ");
+
             // if we got all the data, break the while loop, otherwise, keep going.
             if (readCount < 512) { break; }
         }
-        Console.Write("\n");
     }
 
     /// <summary>
@@ -197,10 +268,32 @@ Thought I'd something more to say.";
     /// </summary>
     /// <param name="buffer"></param>
     /// <param name="length"></param>
+    /// <param name="encoding"></param>
     /// <returns></returns>
-    protected string ParseToString(byte[] buffer, int length, Encoding encoding)
+    private string ParseToString(byte[] buffer, int length, Encoding encoding)
     {
-        Span<byte> actualData = buffer.AsSpan<byte>().Slice(0, length);
-        return encoding.GetString(actualData);
+        char[] data = encoding.GetChars(buffer, 0, length);
+        return new string(data);
+    }
+
+    private static string ConvertToHexString(byte[] data)
+    {
+        return ConvertToHexString(data, 0, data.Length);
+    }
+
+    private static string ConvertToHexString(byte[] data, int index, int length)
+    {
+        char[] hex = new char[(length - index) * 3];
+        const string hexChars = "0123456789ABCDEF";
+
+        for (int i = index; i < length; i++)
+        {
+            byte b = data[i];
+            hex[i * 3] = hexChars[b >> 4];
+            hex[i * 3 + 1] = hexChars[b & 0x0F];
+            hex[i * 3 + 2] = ' ';
+        }
+
+        return new string(hex);
     }
 }

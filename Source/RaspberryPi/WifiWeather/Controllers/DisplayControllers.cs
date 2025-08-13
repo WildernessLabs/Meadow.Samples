@@ -80,7 +80,7 @@ internal class DisplayController
         var image = Image.LoadFromResource("WifiWeather.Resources.img_meadow.bmp");
         var displayImage = new Picture(0, 0, DisplayScreen.Width, DisplayScreen.Height, image)
         {
-            BackColor = Color.FromHex("#14607F"),
+            BackgroundColor = Color.FromHex("#14607F"),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
