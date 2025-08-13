@@ -40,7 +40,7 @@ Network:
     #
     #   How often should the time be refreshed?
     #
-    NtpRefreshPeriodSecondsSeconds: 3600
+    NtpRefreshPeriodSeconds: 3600
     #
     #	IP address(es) of the DNS servers.
     #
