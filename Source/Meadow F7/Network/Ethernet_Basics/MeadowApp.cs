@@ -102,6 +102,11 @@ public class MeadowApp : App<F7CoreComputeV2>
 
                 if ((adapter.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) || (adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet))
                 {
+                    foreach (var gateway in adapter.GetIPProperties().GatewayAddresses)
+                    {
+                        Resolver.Log.Info($"  Gateway ................................. : {gateway.Address}");
+                    }
+                    
                     foreach (UnicastIPAddressInformation ip in adapter.GetIPProperties().UnicastAddresses)
                     {
                         if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
