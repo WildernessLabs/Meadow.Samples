@@ -63,7 +63,7 @@ public class MeadowApp : ProjectLabCoreComputeApp
                     pixelValue = (byte)((byte)frame[height * 32 + width] << 0);
 
                     //calculate a color based on the pixel value, using read and green to get shades of yellow
-                    pixelColor = new Color(pixelValue, pixelValue, 0);
+                    pixelColor = new Color(pixelValue, pixelValue, (byte)0);
                     graphics.DrawRectangle(8 + width * pixelW, height * pixelH, pixelW, pixelH, pixelColor, true);
                 }
             }
