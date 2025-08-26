@@ -1,4 +1,4 @@
-using Meadow.Blazor;
+using Meadow.AspNetCore.Builder;
 using Meadow.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
