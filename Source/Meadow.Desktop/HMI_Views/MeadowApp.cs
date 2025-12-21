@@ -10,7 +10,7 @@ public class MeadowApp : App<Desktop>
 {
     public override Task Initialize()
     {
-        Device.Display.Resize(320, 240, 3);
+        //Device.Display.Resize(320, 240, 3);
 
         // Default WinForms screen (800,600)
         //_display = new WinFormsDisplay();
@@ -32,8 +32,8 @@ public class MeadowApp : App<Desktop>
         //var view = new HistogramView(Device.Display);
         //var view = new DockLayoutView(Device.Display);
         //var view = new StackLayoutView(Device.Display);
-        var view = new GridLayoutView(Device.Display);
-
+        //var view = new GridLayoutView(Device.Display);
+        var view = new LayoutChildrenVisibilityView(Device.Display);
         _ = Task.Run(() =>
         {
             Thread.Sleep(2000);
