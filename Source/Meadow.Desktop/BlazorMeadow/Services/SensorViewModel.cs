@@ -7,7 +7,7 @@ namespace Meadow.Blazor.Services
     public class SensorViewModel : IDisposable
     {
         private readonly ILed _led;
-        private readonly Bme680 _bme680;
+        private readonly Bme680? _bme680;
 
         public string TemperatureValue { get; private set; } = "0°C";
         public string HumidityValue { get; private set; } = "0%";
@@ -19,9 +19,13 @@ namespace Meadow.Blazor.Services
         {
             _led = Resolver.Services.Get<ILed>() ?? throw new Exception("LED not found");
 
-            _bme680 = Resolver.Services.Get<Bme680>() ?? throw new Exception("BME68x not found");
-            _bme680.Updated += Bme680Updated;
-            _bme680.StartUpdating(TimeSpan.FromSeconds(2));
+            _bme680 = Resolver.Services.Get<Bme680>();
+
+            if (_bme680 is not null)
+            {
+                _bme680.Updated += Bme680Updated;
+                _bme680.StartUpdating(TimeSpan.FromSeconds(2));
+            }
         }
 
         private void Bme680Updated(object? sender, IChangeResult<(Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)> e)

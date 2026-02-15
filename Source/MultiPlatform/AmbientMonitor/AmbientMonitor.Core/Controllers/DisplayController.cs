@@ -18,11 +18,11 @@ public class DisplayController
     private Color foregroundColor = Color.FromHex("323626");
     private Color chartCurveColor = Color.FromHex("EF7D3B");
 
-    private Font6x8 font6x8 = new Font6x8();
-    private Font8x12 font8x12 = new Font8x12();
-    private Font12x20 font12X20 = new Font12x20();
+    private readonly Font6x8 font6x8 = new Font6x8();
+    private readonly Font8x12 font8x12 = new Font8x12();
+    private readonly Font12x20 font12X20 = new Font12x20();
 
-    private DisplayScreen displayScreen;
+    private readonly DisplayScreen displayScreen;
 
     private AbsoluteLayout splashLayout;
     private AbsoluteLayout dataLayout;

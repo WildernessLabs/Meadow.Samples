@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HMI_Views.Views;
 
-class DockLayoutView
+internal class DockLayoutView
 {
     public DockLayoutView(IPixelDisplay _display)
     {

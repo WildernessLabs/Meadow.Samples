@@ -7,7 +7,7 @@ namespace CellularSample;
 
 public class DisplayController
 {
-    DisplayScreen screen;
+    private readonly DisplayScreen screen;
 
     private readonly Image imgSignal0Bar = Image.LoadFromResource("CellularSample.Assets.img-cell-0.bmp");
     private readonly Image imgSignal1Bar = Image.LoadFromResource("CellularSample.Assets.img-cell-1.bmp");
@@ -15,9 +15,9 @@ public class DisplayController
     private readonly Image imgSignal3Bar = Image.LoadFromResource("CellularSample.Assets.img-cell-3.bmp");
     private readonly Image imgSignal4Bar = Image.LoadFromResource("CellularSample.Assets.img-cell-4.bmp");
 
-    private Label status;
-    private Label ipAddress;
-    private Picture signalBars;
+    private readonly Label status;
+    private readonly Label ipAddress;
+    private readonly Picture signalBars;
 
     public DisplayController(IPixelDisplay _display)
     {

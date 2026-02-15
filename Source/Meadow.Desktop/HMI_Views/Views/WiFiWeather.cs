@@ -8,9 +8,9 @@ namespace HMI_Views.Views;
 
 public class WiFiWeather
 {
-    Image _weatherIcon = Image.LoadFromResource("HMI_Views.Resources.w_clear.bmp");
+    private Image _weatherIcon = Image.LoadFromResource("HMI_Views.Resources.w_clear.bmp");
 
-    int x_padding = 20;
+    private readonly int x_padding = 20;
 
     protected DisplayScreen DisplayScreen { get; set; }
 
@@ -36,12 +36,12 @@ public class WiFiWeather
 
     protected Label WindSpeed { get; set; }
 
-    Meadow.Color backgroundColor = Meadow.Color.FromHex("#F3F7FA");
-    Meadow.Color foregroundColor = Meadow.Color.Black;
+    private Meadow.Color backgroundColor = Meadow.Color.FromHex("#F3F7FA");
+    private Meadow.Color foregroundColor = Meadow.Color.Black;
 
-    Font12x20 font12X20 = new Font12x20();
-    Font12x16 font12X16 = new Font12x16();
-    Font8x16 font8X16 = new Font8x16();
+    private readonly Font12x20 font12X20 = new Font12x20();
+    private readonly Font12x16 font12X16 = new Font12x16();
+    private readonly Font8x16 font8X16 = new Font8x16();
 
     public WiFiWeather(IPixelDisplay display)
     {

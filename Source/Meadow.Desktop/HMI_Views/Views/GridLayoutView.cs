@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HMI_Views.Views;
 
-class GridLayoutView
+internal class GridLayoutView
 {
     public GridLayoutView(IPixelDisplay _display)
     {

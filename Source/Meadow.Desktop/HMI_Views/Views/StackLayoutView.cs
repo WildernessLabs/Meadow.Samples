@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HMI_Views.Views;
 
-class StackLayoutView
+internal class StackLayoutView
 {
     public StackLayoutView(IPixelDisplay _display)
     {
